@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=uhn
+Name=Update Notifier
+Comment=Update notification daemon
+X-KDE-autostart-phase=2
+OnlyShowIn=KDE;
+X-Ubuntu-Gettext-Domain=update-notifier
+
