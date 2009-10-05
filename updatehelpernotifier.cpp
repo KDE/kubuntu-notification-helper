@@ -40,6 +40,7 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     : QObject( parent )
     , dirWatch( 0 )
     , apportDirWatch( 0 )
+    , apportNotifyShowing( false )
 {
 // FIXME Crashes and I don't know why
 //     KConfig config("updatehelpernotifier");
@@ -59,6 +60,7 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     {
         apportDirWatch =  new KDirWatch( this );
         apportDirWatch->addDir( "/var/crash/" );
+        apportNotifyShowing = false;
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
 
         // Force check since we just started up and there might have been crashes on reboot
@@ -98,22 +100,27 @@ void UpdateHelperNotifier::aptDirectoryChanged()
 
 void UpdateHelperNotifier::apportDirectoryChanged()
 {
-    // We could be too fast for apport,  so wait a bit before showing the notification
-    sleep ( 2 );
-    QPixmap pix = KIcon( "apport" ).pixmap( 48, 48 );
+    if ( !apportNotifyShowing )
+    {
+        // We could be too fast for apport,  so wait a bit before showing the notification
+        sleep ( 2 );
+        QPixmap pix = KIcon( "apport" ).pixmap( 48, 48 );
 
-    KNotification *apportNotify = new KNotification( "Restart", 0, KNotification::Persistent );
-    apportNotify->setText( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
-    apportNotify->setPixmap( pix );
+        KNotification *apportNotify = new KNotification( "Restart", 0, KNotification::Persistent );
+        apportNotify->setText( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
+        apportNotify->setPixmap( pix );
 
-    QStringList actions;
-    actions << i18nc( "Opens a dialog with more details", "Details" );
-    actions << i18nc( "User declines action, closing the notification", "Ignore" );
+        QStringList actions;
+        actions << i18nc( "Opens a dialog with more details", "Details" );
+        actions << i18nc( "User declines action, closing the notification", "Ignore" );
 
-    apportNotify->setActions( actions );
-    connect( apportNotify, SIGNAL( action1Activated() ), this, SLOT( runApport() ) );
-    apportNotify->sendEvent();
-    kDebug() << "You should see an apport notification by now";
+        apportNotify->setActions( actions );
+        connect( apportNotify, SIGNAL( action1Activated() ), this, SLOT( runApport() ) );
+        apportNotify->sendEvent();
+        
+        apportNotifyShowing = true;
+        connect( apportNotify, SIGNAL( closed() ), this, SLOT( apportNotifyClosed() ) );
+    }
 }
 
 void UpdateHelperNotifier::restartActivated()
@@ -142,6 +149,11 @@ int UpdateHelperNotifier::checkApport( bool system )
         apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
 
     return apportProcess->execute();
+}
+
+void UpdateHelperNotifier::apportNotifyClosed()
+{
+    apportNotifyShowing = false;
 }
 
 #include "updatehelpernotifier.moc"

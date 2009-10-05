@@ -40,11 +40,13 @@ class UpdateHelperNotifier
         void apportDirectoryChanged();
         void restartActivated();
         void runApport();
+        void apportNotifyClosed();
 
     private:
         KDirWatch *dirWatch;
         KDirWatch *apportDirWatch;
-        QAction *m_restartAction;
+
+        bool apportNotifyShowing;
         bool showRestartNotification;
 
         int checkApport( bool system );
