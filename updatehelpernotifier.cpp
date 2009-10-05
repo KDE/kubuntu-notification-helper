@@ -132,7 +132,7 @@ void UpdateHelperNotifier::runApport()
         KProcess::startDetached("/usr/share/apport/apport-kde");
 }
 
-int UpdateHelperNotifier::checkApport( bool system)
+int UpdateHelperNotifier::checkApport( bool system )
 {
     KProcess *apportProcess = new KProcess();
 

@@ -21,6 +21,7 @@ int main(int argc, char **argv)
     KApplication app;
 
     UpdateHelperNotifier *notifier = new UpdateHelperNotifier;
+    Q_UNUSED( notifier );
 
     return app.exec();
 }
