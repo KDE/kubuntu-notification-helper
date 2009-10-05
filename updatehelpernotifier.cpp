@@ -60,9 +60,8 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
         apportDirWatch =  new KDirWatch( this );
         apportDirWatch->addDir( "/var/crash/" );
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
-        // Check once since we just started up and there might have been crashes on reboot
-        // TODO Check if anything's in apport, and then run the notification function saves about 0.8 MB of
-        // RAM not having to construct the new KNotification
+        // Force apport notification since we just started up and there might have been crashes on reboot
+        // TODO Check if anything's in /var/crash, and then run apportDirectoryChanged only if somethin's there.
         apportDirectoryChanged();
     }
 }
@@ -124,7 +123,7 @@ void UpdateHelperNotifier::restartActivated()
 
 void UpdateHelperNotifier::runApport()
 {
-    // We're too fast for apport, so wait a bit
+    // We could be too fast for apport, (depending on when the notification is clicked) so wait a bit
     sleep ( 1 );
     int result = system("/usr/share/apport/apport-checkreports --system");
     if ( result == 0 )
