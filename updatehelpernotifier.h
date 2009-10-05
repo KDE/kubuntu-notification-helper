@@ -40,6 +40,7 @@ class UpdateHelperNotifier
         void apportDirectoryChanged();
         void restartActivated();
         void runApport();
+        int checkApport( bool system );
 
     private:
         KDirWatch *dirWatch;

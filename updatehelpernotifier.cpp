@@ -61,8 +61,9 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
         apportDirWatch->addDir( "/var/crash/" );
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
         // Force check since we just started up and there might have been crashes on reboot
-        int result = system("/usr/share/apport/apport-checkreports --system");
-        if ( result != 0 )
+        int result = checkApport( false );
+        kDebug() << "result == " << result;
+        if ( result == 0 )
             apportDirectoryChanged();
     }
 }
@@ -122,11 +123,23 @@ void UpdateHelperNotifier::restartActivated()
 
 void UpdateHelperNotifier::runApport()
 {
-    int result = system("/usr/share/apport/apport-checkreports --system");
+    int result = checkApport( true );
     if ( result == 0 )
         KProcess::startDetached( QStringList() << "kdesudo" << "/usr/share/apport/apport-kde" );
     else
         KProcess::startDetached("/usr/share/apport/apport-kde");
+}
+
+int UpdateHelperNotifier::checkApport( bool system)
+{
+    KProcess *apportProcess = new KProcess();
+
+    if ( system )
+        apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" << "--system" );
+    else
+        apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
+
+    return apportProcess->execute(3000);
 }
 
 #include "updatehelpernotifier.moc"
