@@ -116,11 +116,11 @@ void UpdateHelperNotifier::apportDirectoryChanged()
 
         apportNotify->setActions( actions );
         connect( apportNotify, SIGNAL( action1Activated() ), this, SLOT( runApport() ) );
-        connect( apportNotify, SIGNAL( action2Activated() ), this, SLOT( apportNotifyClosedt() ) );
-        apportNotify->sendEvent();
-        
-        apportNotifyShowing = true;
+        connect( apportNotify, SIGNAL( action2Activated() ), this, SLOT( apportNotifyClosed() ) );
         connect( apportNotify, SIGNAL( closed() ), this, SLOT( apportNotifyClosed() ) );
+        apportNotify->sendEvent();
+
+        apportNotifyShowing = true;
     }
 }
 
