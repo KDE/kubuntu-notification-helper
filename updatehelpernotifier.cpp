@@ -26,7 +26,7 @@
 
 // KDE
 #include <KConfigGroup>
-#include <KDebug>
+// #include <KDebug>
 #include <KIcon>
 #include <KLocale>
 #include <KNotification>
@@ -133,7 +133,6 @@ void UpdateHelperNotifier::disableRestartNotification()
     KConfigGroup notifyGroup( &cfg, "Notify" );
     notifyGroup.writeEntry( "ShowRestartNotification", false );
     showRestartNotification = false;
-    kDebug() << "showRestartNotification is now: " << showRestartNotification;
 }
 
 void UpdateHelperNotifier::runApport()

@@ -7,7 +7,7 @@
 static const char description[] =
     I18N_NOOP("Notification daemon for Kubuntu update helpers");
 
-static const char version[] = "0.1";
+static const char version[] = "0.2";
 
 int main(int argc, char **argv)
 {

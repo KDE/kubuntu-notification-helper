@@ -1,0 +1,4 @@
+- Package upgrade hook handling
+Things that could conceivably be done by other apps:
+- Codec installation
+- Checking for new Kubuntu versions
