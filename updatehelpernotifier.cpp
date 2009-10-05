@@ -25,7 +25,7 @@
 #include <QtDBus/QDBusConnection>
 
 // KDE
-#include <KConfig>
+#include <KConfigGroup>
 #include <KDebug>
 #include <KIcon>
 #include <KLocale>
@@ -42,12 +42,9 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     , apportDirWatch( 0 )
     , apportNotifyShowing( false )
 {
-// FIXME Doesn't compile and I don't know why
-//     KConfig config("updatehelpernotifier");
-//     KConfigGroup notifyGroup( &config, "Notify" );
-//     showRestartNotification = notifyGroup.readEntry( "ShowRestartNotification", "True" );
-
-    showRestartNotification = true;
+    KConfig cfg( "updatehelpernotifier" );
+    KConfigGroup notifyGroup( &cfg, "Notify" );
+    showRestartNotification = notifyGroup.readEntry( "ShowRestartNotification", true );
 
     if ( showRestartNotification )
     {
@@ -78,8 +75,6 @@ UpdateHelperNotifier::~UpdateHelperNotifier()
 
 void UpdateHelperNotifier::aptDirectoryChanged()
 {
-    showRestartNotification = true;
-
     if ( showRestartNotification && QFile::exists( "/var/lib/update-notifier/dpkg-run-stamp") && QFile::exists( "/var/run/reboot-required" ) )
     {
         QPixmap pix = KIcon( "system-reboot" ).pixmap( 48, 48 );
@@ -91,9 +86,11 @@ void UpdateHelperNotifier::aptDirectoryChanged()
         QStringList actions;
         actions << i18nc( "Restart the computer", "Restart" );
         actions << i18nc( "User declines an action", "Not now" );
+        actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
 
         notify->setActions( actions );
         connect( notify, SIGNAL( action1Activated() ), this, SLOT( restartActivated() ) );
+        connect( notify, SIGNAL( action3Activated() ), this, SLOT( disableRestartNotification() ) );
         notify->sendEvent();
     }
 }
@@ -128,6 +125,15 @@ void UpdateHelperNotifier::restartActivated()
 {
     // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive - see README.kworkspace for other possibilities
     KProcess::startDetached( QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3" );
+}
+
+void UpdateHelperNotifier::disableRestartNotification()
+{
+    KConfig cfg( "updatehelpernotifier" );
+    KConfigGroup notifyGroup( &cfg, "Notify" );
+    notifyGroup.writeEntry( "ShowRestartNotification", false );
+    showRestartNotification = false;
+    kDebug() << "showRestartNotification is now: " << showRestartNotification;
 }
 
 void UpdateHelperNotifier::runApport()

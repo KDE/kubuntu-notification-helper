@@ -39,6 +39,7 @@ class UpdateHelperNotifier
         void aptDirectoryChanged();
         void apportDirectoryChanged();
         void restartActivated();
+        void disableRestartNotification();
         void runApport();
         void apportNotifyClosed();
 
