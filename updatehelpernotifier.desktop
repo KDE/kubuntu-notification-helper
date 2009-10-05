@@ -1,9 +1,7 @@
 [Desktop Entry]
-Type=Application
-Exec=uhn
-Name=Update Notifier
-Comment=Update notification daemon
-X-KDE-autostart-phase=2
-OnlyShowIn=KDE;
-X-Ubuntu-Gettext-Domain=update-notifier
-
+Name=Update Helper Notifier
+Type=Service
+X-KDE-ServiceTypes=KDEDModule
+X-KDE-Library=updatehelpernotifier
+X-KDE-DBus-ModuleName=updatehelpernotifier
+X-KDE-Kded-autoload=true

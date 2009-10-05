@@ -80,6 +80,7 @@ void UpdateHelperNotifier::aptDirectoryChanged()
         QPixmap pix = KIcon( "system-reboot" ).pixmap( 48, 48 );
 
         KNotification *notify = new KNotification( "Restart", 0, KNotification::Persistent );
+        notify->setComponentData(KComponentData("updatehelpernotifier"));
         notify->setText( i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
         notify->setPixmap( pix );
 
@@ -104,6 +105,7 @@ void UpdateHelperNotifier::apportDirectoryChanged()
         QPixmap pix = KIcon( "apport" ).pixmap( 48, 48 );
 
         KNotification *apportNotify = new KNotification( "Restart", 0, KNotification::Persistent );
+        apportNotify->setComponentData(KComponentData("updatehelpernotifier"));
         apportNotify->setText( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
         apportNotify->setPixmap( pix );
 
