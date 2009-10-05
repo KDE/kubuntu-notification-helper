@@ -60,9 +60,10 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
         apportDirWatch =  new KDirWatch( this );
         apportDirWatch->addDir( "/var/crash/" );
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
-        // Force apport notification since we just started up and there might have been crashes on reboot
-        // TODO Check if anything's in /var/crash, and then run apportDirectoryChanged only if somethin's there.
-        apportDirectoryChanged();
+        // Force check since we just started up and there might have been crashes on reboot
+        int result = system("/usr/share/apport/apport-checkreports --system");
+        if ( result != 0 )
+            apportDirectoryChanged();
     }
 }
 
@@ -95,9 +96,11 @@ void UpdateHelperNotifier::aptDirectoryChanged()
 
 void UpdateHelperNotifier::apportDirectoryChanged()
 {
+    // We could be too fast for apport,  so wait a bit before showing the notification
+    sleep ( 2 );
     QPixmap pix = KIcon( "apport" ).pixmap( 48, 48 );
 
-    KNotification *apportNotify = new KNotification( "Apport", 0, KNotification::Persistent );
+    KNotification *apportNotify = new KNotification( "Restart", 0, KNotification::Persistent );
     apportNotify->setText( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
     apportNotify->setPixmap( pix );
 
@@ -113,18 +116,12 @@ void UpdateHelperNotifier::apportDirectoryChanged()
 
 void UpdateHelperNotifier::restartActivated()
 {
-    KProcess* proc = new KProcess(this);
-    QStringList cmd;
     // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive - see README.kworkspace for other possibilities
-    cmd <<  "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3";
-    proc->setProgram(cmd);
-    proc->start();
+    KProcess::startDetached( QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3" );
 }
 
 void UpdateHelperNotifier::runApport()
 {
-    // We could be too fast for apport, (depending on when the notification is clicked) so wait a bit
-    sleep ( 1 );
     int result = system("/usr/share/apport/apport-checkreports --system");
     if ( result == 0 )
         KProcess::startDetached( QStringList() << "kdesudo" << "/usr/share/apport/apport-kde" );

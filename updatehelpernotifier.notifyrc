@@ -3,27 +3,7 @@ Name=Update Helper Notifier
 IconName=system-software-update
 Comment=Update Helper Notification Daemon
 
-[Event/Restricted]
-Name=Install Restricted Multimedia
-Comment=Install restricted multimedia functionality
-Action=Popup
-
-[Event/Apport]
-Name=An application has crashed
-Comment=An application has crashed on your system (now or in the past)
-Action=Popup
-
 [Event/Restart]
 Name=Restart
 Comment=A system restart is required
-Action=Popup
-
-[Event/Crash]
-Name=Crash Handler
-Comment=Application has crashed
-Action=Popup
-
-[Event/Information]
-Name=Upgrade Information
-Comment=Software upgrade notifications
 Action=Popup
