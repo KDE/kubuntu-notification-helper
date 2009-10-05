@@ -116,6 +116,7 @@ void UpdateHelperNotifier::apportDirectoryChanged()
 
         apportNotify->setActions( actions );
         connect( apportNotify, SIGNAL( action1Activated() ), this, SLOT( runApport() ) );
+        connect( apportNotify, SIGNAL( action2Activated() ), this, SLOT( apportNotifyClosedt() ) );
         apportNotify->sendEvent();
         
         apportNotifyShowing = true;
