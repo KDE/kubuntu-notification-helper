@@ -42,7 +42,7 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     , apportDirWatch( 0 )
     , apportNotifyShowing( false )
 {
-// FIXME Crashes and I don't know why
+// FIXME Doesn't compile and I don't know why
 //     KConfig config("updatehelpernotifier");
 //     KConfigGroup notifyGroup( &config, "Notify" );
 //     showRestartNotification = notifyGroup.readEntry( "ShowRestartNotification", "True" );
