@@ -75,7 +75,7 @@ UpdateHelperNotifier::~UpdateHelperNotifier()
 
 void UpdateHelperNotifier::aptDirectoryChanged()
 {
-    if ( showRestartNotification && QFile::exists( "/var/lib/update-notifier/dpkg-run-stamp") && QFile::exists( "/var/run/reboot-required" ) )
+    if ( QFile::exists( "/var/lib/update-notifier/dpkg-run-stamp") && QFile::exists( "/var/run/reboot-required" ) )
     {
         QPixmap pix = KIcon( "system-reboot" ).pixmap( 48, 48 );
 
