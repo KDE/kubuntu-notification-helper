@@ -27,12 +27,14 @@
 #include <KDirWatch>
 #include <KNotification>
 
+
 class UpdateHelperNotifier
 : public QObject
 {
     Q_OBJECT
     public:
-        UpdateHelperNotifier( QObject* parent = NULL );
+        UpdateHelperNotifier( QObject *parent = 0 );
+
         virtual ~UpdateHelperNotifier();
 
     private slots:
