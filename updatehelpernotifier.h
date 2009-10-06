@@ -24,7 +24,6 @@
 #include <QAction>
 
 // KDE includes
-#include <KDirWatch>
 #include <KNotification>
 
 
@@ -46,9 +45,6 @@ class UpdateHelperNotifier
         void apportNotifyClosed();
 
     private:
-        KDirWatch *dirWatch;
-        KDirWatch *apportDirWatch;
-
         bool apportNotifyShowing;
         bool showRestartNotification;
 

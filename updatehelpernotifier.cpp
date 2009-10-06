@@ -26,6 +26,7 @@
 
 // KDE
 #include <KConfigGroup>
+#include <KDirWatch>
 // #include <KDebug>
 #include <KIcon>
 #include <KLocale>
@@ -38,8 +39,6 @@
 
 UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     : QObject( parent )
-    , dirWatch( 0 )
-    , apportDirWatch( 0 )
     , apportNotifyShowing( false )
 {
     KConfig cfg( "updatehelpernotifier" );
@@ -48,14 +47,14 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
 
     if ( showRestartNotification )
     {
-        dirWatch = new KDirWatch( this );
+        KDirWatch *dirWatch = new KDirWatch( this );
         dirWatch->addFile( "/var/lib/update-notifier/dpkg-run-stamp" );
         connect( dirWatch, SIGNAL( created( const QString & ) ), this, SLOT( aptDirectoryChanged() ) );
     }
 
     if ( QFile::exists( "/usr/share/apport/apport-kde" ) || QFile::exists( "/usr/share/apport/apport-gtk" ) )
     {
-        apportDirWatch =  new KDirWatch( this );
+        KDirWatch *apportDirWatch =  new KDirWatch( this );
         apportDirWatch->addDir( "/var/crash/" );
         apportNotifyShowing = false;
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
