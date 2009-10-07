@@ -21,6 +21,8 @@
 // Qt
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
+#include <QtGui/QLabel>
+#include <QtGui/QPushButton>
 #include <QtDBus/QDBusMessage>
 #include <QtDBus/QDBusConnection>
 
@@ -28,10 +30,12 @@
 #include <KConfigGroup>
 #include <KDirWatch>
 #include <KDebug>
+#include <KGlobal>
 #include <KIcon>
 #include <KLocale>
 #include <KNotification>
 #include <KProcess>
+#include <KVBox>
 
 // Includes for the sleep(), dirent functions respectively
 #include <unistd.h>
@@ -41,7 +45,8 @@
 UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     : QObject( parent )
     , apportNotifyShowing( false )
-    , fileInfoMap()
+    , parsedHookMap()
+    , dialog( 0 )
 {
     KConfig cfg( "updatehelpernotifier" );
     KConfigGroup notifyGroup( &cfg, "Notify" );
@@ -75,7 +80,7 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
 
 UpdateHelperNotifier::~UpdateHelperNotifier()
 {
-
+    delete dialog;
 }
 
 void UpdateHelperNotifier::aptDirectoryChanged()
@@ -136,9 +141,7 @@ void UpdateHelperNotifier::hooksDirectoryChanged()
     int i,n;
 
     n = scandir( "/var/lib/update-notifier/user.d/", &namelist, 0, alphasort );
-    if (n < 0)
-        kWarning() << "scanning directory failed";
-    else
+    if (n > 0)
     {
         for ( i = 0; i < n; i++ )
         {
@@ -149,16 +152,15 @@ void UpdateHelperNotifier::hooksDirectoryChanged()
 
     foreach ( QString fileName, fileList ) {
         QMap< QString, QString > fileResult = processUpgradeHook( fileName );
-        // if not empty, add file name to a fileInfoMap qmap of strings
+        // if not empty, add parsed hook to the list of parsed hooks
         if ( !fileResult.isEmpty() )
         {
             fileResult["fileName"] = fileName;
-            fileInfoMap[fileName] = fileResult;
+            parsedHookMap[fileName] = fileResult;
         }
     }
 
-    // if fileInfoMap is not empty, notify
-    if ( !fileInfoMap.isEmpty() )
+    if ( !parsedHookMap.isEmpty() )
     {
         QPixmap pix = KIcon( "help-hint" ).pixmap( 48, 48 );
 
@@ -231,7 +233,7 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
     QFile hookFile("/var/lib/update-notifier/user.d/" + fileName );
 
     /* Parsing magic. (https://wiki.kubuntu.org/InteractiveUpgradeHooks)
-    Read the file to a QString, split it up at each line. Then if a colon
+    Read the hook to a QString, split it up at each line. Then if a colon
     is in the line, split it into two fields, they key and the value.
     the line. Make a key/value pair in our fileInfo map. If the line beings
     with a space, append it to the value of the most recently added key.
@@ -243,20 +245,19 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
         QStringList streamList = streamAllString.split( '\n' );
         foreach ( QString streamLine, streamList )
         {
-            kDebug() << "streamLine == " << streamLine;
             bool containsColon = streamLine.contains( ':' );
             bool startsWithSpace = streamLine.startsWith( ' ' );
             if ( containsColon )
             {
                 QStringList list = streamLine.split( ": " );
                 QString key = list.first();
-                kDebug() << "key == " << key;
                 fileInfo[key] = list.last();
-                kDebug() << "value == " << list.last();
             }
             else if ( startsWithSpace )
             {
-                fileInfo["Description"] = (fileInfo.value( fileInfo.key("Description") ) + streamLine);
+                QString previousDescription = fileInfo[ "Description" ];
+                kDebug() << "previousDescription == " << previousDescription;
+                fileInfo[ "Description" ] = ( previousDescription + streamLine );
             }
             else if ( streamLine.isEmpty() )
             {
@@ -266,10 +267,28 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
             else
             {
                 // Not an upgrade hook or malformed
-                kDebug() << "Not an upgrade hook file";
                 return emptyMap;
             }
         }
+    }
+
+    // TODO: Check if already shown
+    if ( fileInfo.contains( "DontShowAfterReboot" ) )
+    {
+        if ( fileInfo.value("DontShowAfterReboot") == "True" )
+        {
+            // TODO: Find uptime, stat upgrade hook age, don't show if older than uptime
+        }
+    }
+
+    if ( !fileInfo.contains( "DisplayIf") )
+    {
+        KProcess *displayIfProcess = new KProcess();
+        displayIfProcess->setProgram( fileInfo.value(" DisplayIf" ) );
+
+        int programResult = displayIfProcess->execute();
+        if ( programResult != 0 )
+            return emptyMap;
     }
 
     return fileInfo;
@@ -277,7 +296,93 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
 
 void UpdateHelperNotifier::hooksActivated()
 {
-    // TODO: Show a dialog to process upgrade hooks
+    dialog = new KPageDialog;
+    dialog->setCaption( "Update Information" );
+    dialog->setWindowIcon( KIcon( "help-hint" ) );
+
+    // Take the parsed upgrade hook(s) and put them in pages
+    QMap< QString, QMap< QString, QString> >::iterator i;
+    for (i = parsedHookMap.begin(); i !=  parsedHookMap.end(); ++i)
+    {
+        // Any way to do this without copying this to a new QMap?
+        QMap< QString, QString > parsedHook = *i;
+
+        // Make new dialog page
+        KVBox *vbox = new KVBox();
+
+           // FIXME: Figure out how to grab the user's language, don't hardcode
+//         QString language = KGlobal::locale::language();
+        QString language = "es";
+
+        // Get a translated name if possible
+        QString name;
+        if ( parsedHook.contains( "Name-" + language ) )
+            name = parsedHook.value( "Name-" + language );
+        else
+        {
+            QMap<QString, QString>::const_iterator nameIter = parsedHook.constFind("Name");
+            while (nameIter != parsedHook.end() && nameIter.key() == "Name")
+            {
+                name = nameIter.value();
+                break;
+            }
+        }
+
+        // Get a translated description if possible
+        QLabel *descLabel = new QLabel( vbox );
+        QString desc;
+        if ( parsedHook.contains( "Description-" + language ) )
+            desc = parsedHook.value( "Description-" + language );
+        else
+        {
+            QMap<QString, QString>::const_iterator descIter = parsedHook.constFind("Description");
+            while (descIter != parsedHook.end() && descIter.key() == "Description")
+            {
+                desc = descIter.value();
+                break;
+            }
+        }
+
+        descLabel->setWordWrap( true );
+        descLabel->setText( desc );
+
+        // Look for a command field, and set command if present
+        QString command;
+        QMap<QString, QString>::const_iterator commandIter = parsedHook.constFind("Command");
+        while (commandIter != parsedHook.end() && commandIter.key() == "Command")
+        {
+            command = commandIter.value();
+            break;
+        }
+
+        bool terminal = false;
+        QMap<QString, QString>::const_iterator terminalIter = parsedHook.constFind("Terminal");
+        while (terminalIter != parsedHook.end() && terminalIter.key() == "Command")
+        {
+            QString terminalValue = commandIter.value();
+            if ( terminalValue == "True" )
+                terminal = true;
+            break;
+        }
+
+        if ( !command.isEmpty() )
+        {
+            QPushButton *runButton = new QPushButton( KIcon( "system-run" ), i18n( "Run this action now" ), vbox );
+            connect( runButton, SIGNAL( clicked() ), this, SLOT( runHookCommand( command, terminal ) ) );
+        }
+
+        KPageWidgetItem *page = new KPageWidgetItem( vbox, name );
+        page->setIcon( KIcon( "help-hint" ) );
+
+        dialog->addPage( page );
+    }
+
+    dialog->show();
+}
+
+void UpdateHelperNotifier::runHookCommand( QString command, bool terminal )
+{
+
 }
 
 #include "updatehelpernotifier.moc"

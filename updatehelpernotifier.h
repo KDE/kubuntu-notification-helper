@@ -25,7 +25,7 @@
 
 // KDE includes
 #include <KNotification>
-
+#include <KPageDialog>
 
 class UpdateHelperNotifier
 : public QObject
@@ -45,11 +45,13 @@ class UpdateHelperNotifier
         void runApport();
         void apportNotifyClosed();
         void hooksActivated();
+        void runHookCommand( QString command, bool terminal );
 
     private:
         bool apportNotifyShowing;
         bool showRestartNotification;
-        QMap< QString, QMap< QString, QString > > fileInfoMap;
+        QMap< QString, QMap< QString, QString > > parsedHookMap;
+        KPageDialog* dialog;
 
         int checkApport( bool system );
         QMap< QString, QString > processUpgradeHook( QString fileName );
