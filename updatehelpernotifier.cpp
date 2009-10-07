@@ -27,19 +27,21 @@
 // KDE
 #include <KConfigGroup>
 #include <KDirWatch>
-// #include <KDebug>
+#include <KDebug>
 #include <KIcon>
 #include <KLocale>
 #include <KNotification>
 #include <KProcess>
 
-// Include for the sleep() function
+// Includes for the sleep(), dirent functions respectively
 #include <unistd.h>
+#include <dirent.h>
 
 
 UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     : QObject( parent )
     , apportNotifyShowing( false )
+    , fileInfoMap()
 {
     KConfig cfg( "updatehelpernotifier" );
     KConfigGroup notifyGroup( &cfg, "Notify" );
@@ -47,9 +49,9 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
 
     if ( showRestartNotification )
     {
-        KDirWatch *dirWatch = new KDirWatch( this );
-        dirWatch->addFile( "/var/lib/update-notifier/dpkg-run-stamp" );
-        connect( dirWatch, SIGNAL( created( const QString & ) ), this, SLOT( aptDirectoryChanged() ) );
+        KDirWatch *stampDirWatch = new KDirWatch( this );
+        stampDirWatch->addFile( "/var/lib/update-notifier/dpkg-run-stamp" );
+        connect( stampDirWatch, SIGNAL( created( const QString & ) ), this, SLOT( aptDirectoryChanged() ) );
     }
 
     if ( QFile::exists( "/usr/share/apport/apport-kde" ) || QFile::exists( "/usr/share/apport/apport-gtk" ) )
@@ -65,6 +67,10 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
         if ( result == 0 )
             apportDirectoryChanged();
     }
+
+    KDirWatch *hooksDirWatch = new KDirWatch( this );
+    hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
+    connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hooksDirectoryChanged() ) );
 }
 
 UpdateHelperNotifier::~UpdateHelperNotifier()
@@ -122,6 +128,55 @@ void UpdateHelperNotifier::apportDirectoryChanged()
     }
 }
 
+void UpdateHelperNotifier::hooksDirectoryChanged()
+{
+    QStringList fileList;
+
+    struct dirent **namelist;
+    int i,n;
+
+    n = scandir( "/var/lib/update-notifier/user.d/", &namelist, 0, alphasort );
+    if (n < 0)
+        kWarning() << "scanning directory failed";
+    else
+    {
+        for ( i = 0; i < n; i++ )
+        {
+            fileList << namelist[i]->d_name;
+            free( namelist[i] );
+        }
+    }
+
+    foreach ( QString fileName, fileList ) {
+        QMap< QString, QString > fileResult = processUpgradeHook( fileName );
+        // if not empty, add file name to a fileInfoMap qmap of strings
+        if ( !fileResult.isEmpty() )
+        {
+            fileResult["fileName"] = fileName;
+            fileInfoMap[fileName] = fileResult;
+        }
+    }
+
+    // if fileInfoMap is not empty, notify
+    if ( !fileInfoMap.isEmpty() )
+    {
+        QPixmap pix = KIcon( "help-hint" ).pixmap( 48, 48 );
+
+        KNotification *notify = new KNotification( "Restart", 0, KNotification::Persistent );
+        notify->setComponentData(KComponentData("updatehelpernotifier"));
+        notify->setText( i18n( "Software upgrade notifications are available" ) );
+        notify->setPixmap( pix );
+
+        QStringList actions;
+        actions << i18nc( "Opens a dialog with more details", "Details" );
+        actions << i18nc( "User declines action, closing the notification", "Ignore" );
+
+        notify->setActions( actions );
+        connect( notify, SIGNAL( action1Activated() ), this, SLOT( hooksActivated() ) );
+        notify->sendEvent();
+    }
+}
+
 void UpdateHelperNotifier::restartActivated()
 {
     // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive - see README.kworkspace for other possibilities
@@ -161,6 +216,68 @@ int UpdateHelperNotifier::checkApport( bool system )
 void UpdateHelperNotifier::apportNotifyClosed()
 {
     apportNotifyShowing = false;
+}
+
+QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileName )
+{
+    QMap< QString, QString > fileInfo;
+    QMap< QString, QString > emptyMap;
+
+    // Toss crap from the directory lister (current dir and one-level-up items)
+    if ( fileName.startsWith( '.' ) )
+        return emptyMap;
+
+    // Open the upgrade hook file
+    QFile hookFile("/var/lib/update-notifier/user.d/" + fileName );
+
+    /* Parsing magic. (https://wiki.kubuntu.org/InteractiveUpgradeHooks)
+    Read the file to a QString, split it up at each line. Then if a colon
+    is in the line, split it into two fields, they key and the value.
+    the line. Make a key/value pair in our fileInfo map. If the line beings
+    with a space, append it to the value of the most recently added key.
+    (As seen in the case of the upgrade hook description field) */
+    if ( hookFile.open( QFile::ReadOnly ) )
+    {
+        QTextStream stream( &hookFile );
+        QString streamAllString = stream.readAll();
+        QStringList streamList = streamAllString.split( '\n' );
+        foreach ( QString streamLine, streamList )
+        {
+            kDebug() << "streamLine == " << streamLine;
+            bool containsColon = streamLine.contains( ':' );
+            bool startsWithSpace = streamLine.startsWith( ' ' );
+            if ( containsColon )
+            {
+                QStringList list = streamLine.split( ": " );
+                QString key = list.first();
+                kDebug() << "key == " << key;
+                fileInfo[key] = list.last();
+                kDebug() << "value == " << list.last();
+            }
+            else if ( startsWithSpace )
+            {
+                fileInfo["Description"] = (fileInfo.value( fileInfo.key("Description") ) + streamLine);
+            }
+            else if ( streamLine.isEmpty() )
+            {
+                // Handle empty newline(s) at the end of files
+                continue;
+            }
+            else
+            {
+                // Not an upgrade hook or malformed
+                kDebug() << "Not an upgrade hook file";
+                return emptyMap;
+            }
+        }
+    }
+
+    return fileInfo;
+}
+
+void UpdateHelperNotifier::hooksActivated()
+{
+    // TODO: Show a dialog to process upgrade hooks
 }
 
 #include "updatehelpernotifier.moc"

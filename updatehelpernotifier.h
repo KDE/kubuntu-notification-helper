@@ -39,16 +39,20 @@ class UpdateHelperNotifier
     private slots:
         void aptDirectoryChanged();
         void apportDirectoryChanged();
+        void hooksDirectoryChanged();
         void restartActivated();
         void disableRestartNotification();
         void runApport();
         void apportNotifyClosed();
+        void hooksActivated();
 
     private:
         bool apportNotifyShowing;
         bool showRestartNotification;
+        QMap< QString, QMap< QString, QString > > fileInfoMap;
 
         int checkApport( bool system );
+        QMap< QString, QString > processUpgradeHook( QString fileName );
 
 };
 
