@@ -281,10 +281,10 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
         }
     }
 
-    if ( !fileInfo.contains( "DisplayIf") )
+    if ( fileInfo.contains( "DisplayIf") )
     {
         KProcess *displayIfProcess = new KProcess();
-        displayIfProcess->setProgram( fileInfo.value(" DisplayIf" ) );
+        displayIfProcess->setProgram( fileInfo.value("DisplayIf" ) );
 
         int programResult = displayIfProcess->execute();
         if ( programResult != 0 )
@@ -310,7 +310,7 @@ void UpdateHelperNotifier::hooksActivated()
         // Make new dialog page
         KVBox *vbox = new KVBox();
 
-           // FIXME: Figure out how to grab the user's language, don't hardcode
+        // FIXME: Figure out how to grab the user's language, don't hardcode
 //         QString language = KGlobal::locale::language();
         QString language = "es";
 
