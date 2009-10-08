@@ -46,6 +46,7 @@ class UpdateHelperNotifier
         void apportNotifyClosed();
         void hooksActivated();
         void runHookCommand( QString command, bool terminal );
+        void cleanUpDialog();
 
     private:
         bool apportNotifyShowing;

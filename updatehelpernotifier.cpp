@@ -19,7 +19,7 @@
 #include "updatehelpernotifier.h"
 
 // Qt
-#include <QtCore/QFile>
+#include <QtCore/QFileInfo>
 #include <QtCore/QTimer>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
@@ -37,7 +37,7 @@
 #include <KProcess>
 #include <KVBox>
 
-// Includes for the sleep(), dirent functions respectively
+// Lower level includes for sleep, dirent
 #include <unistd.h>
 #include <dirent.h>
 
@@ -277,7 +277,26 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
     {
         if ( fileInfo.value("DontShowAfterReboot") == "True" )
         {
-            // TODO: Find uptime, stat upgrade hook age, don't show if older than uptime
+            QFile uptimeFile( "/proc/uptime" );
+            if ( uptimeFile.open( QFile::ReadOnly ) )
+            {
+                QTextStream stream( &uptimeFile );
+                QString uptimeLine = stream.readLine();
+                QStringList uptimeStringList = uptimeLine.split(' ');
+                // We don't need the last part of /proc/uptime
+                uptimeStringList.removeLast();
+                QString uptimeString = uptimeStringList.first();
+                float uptime = uptimeString.toFloat();
+                const QDateTime now = QDateTime::currentDateTime();
+
+                QDateTime statTime = QFileInfo( "/var/lib/update-notifier/user.d/" + fileName ).lastModified();
+
+
+                if ( uptime > 0 && ( now.toTime_t() > uptime ) )
+                {
+                    return emptyMap;
+                }
+            }
         }
     }
 
@@ -299,6 +318,8 @@ void UpdateHelperNotifier::hooksActivated()
     dialog = new KPageDialog;
     dialog->setCaption( "Update Information" );
     dialog->setWindowIcon( KIcon( "help-hint" ) );
+    dialog->setButtons( KDialog::Ok );
+    connect( dialog, SIGNAL( okClicked() ), SLOT( cleanUpDialog() ) );
 
     // Take the parsed upgrade hook(s) and put them in pages
     QMap< QString, QMap< QString, QString> >::iterator i;
@@ -383,6 +404,12 @@ void UpdateHelperNotifier::hooksActivated()
 void UpdateHelperNotifier::runHookCommand( QString command, bool terminal )
 {
 
+}
+
+void UpdateHelperNotifier::cleanUpDialog()
+{
+    dialog->deleteLater();
+    dialog = 0;
 }
 
 #include "updatehelpernotifier.moc"
