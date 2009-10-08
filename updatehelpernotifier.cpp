@@ -19,7 +19,6 @@
 #include "updatehelpernotifier.h"
 
 // Qt
-#include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtCore/QTimer>
 #include <QtGui/QLabel>
@@ -326,9 +325,7 @@ void UpdateHelperNotifier::hooksActivated()
 
         KVBox *vbox = new KVBox();
 
-        // FIXME: Figure out how to grab the user's language, don't hardcode
-//         QString language = KGlobal::locale::language();
-        QString language = "es";
+        QString language =  KGlobal::locale()->language();
 
         // Get a translated name if possible
         QString name;
