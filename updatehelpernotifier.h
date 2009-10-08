@@ -16,8 +16,8 @@
  * <http://www.gnu.org/licenses/> for a copy of the LGPLv3 License.        *
  ***************************************************************************/
 
-#ifndef _UPDATEHELPERNOTIFIER_H_
-#define _UPDATEHELPERNOTIFIER_H_
+#ifndef UPDATEHELPERNOTIFIER_H
+#define UPDATEHELPERNOTIFIER_H
 
 // Qt includes
 #include <QTimer>

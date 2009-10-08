@@ -150,7 +150,7 @@ void UpdateHelperNotifier::hooksDirectoryChanged()
         }
     }
 
-    foreach ( QString fileName, fileList ) {
+    foreach ( const QString &fileName, fileList ) {
         QMap< QString, QString > fileResult = processUpgradeHook( fileName );
         // if not empty, add parsed hook to the list of parsed hooks
         if ( !fileResult.isEmpty() )
@@ -243,7 +243,7 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
         QTextStream stream( &hookFile );
         QString streamAllString = stream.readAll();
         QStringList streamList = streamAllString.split( '\n' );
-        foreach ( QString streamLine, streamList )
+        foreach ( const QString &streamLine, streamList )
         {
             bool containsColon = streamLine.contains( ':' );
             bool startsWithSpace = streamLine.startsWith( ' ' );
