@@ -21,13 +21,13 @@
 #include <kpluginfactory.h>
 #include <kpluginloader.h>
 
-K_PLUGIN_FACTORY(UpdateHelperNotifierModuleFactory,
-                 registerPlugin<UpdateHelperNotifierModule>();
+K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
+                 registerPlugin<NotificationHelperModule>();
     )
-K_EXPORT_PLUGIN(UpdateHelperNotifierModuleFactory("UpdateHelpernotifier"))
+K_EXPORT_PLUGIN(NotificationHelperModuleFactory("UpdateHelpernotifier"))
 
 
-UpdateHelperNotifierModule::UpdateHelperNotifierModule(QObject* parent, const QList<QVariant>&)
+NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
     : KDEDModule(parent)
 {
 }

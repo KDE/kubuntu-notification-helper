@@ -27,14 +27,14 @@
 #include <KNotification>
 #include <KPageDialog>
 
-class UpdateHelperNotifier
+class NotificationHelper
 : public QObject
 {
     Q_OBJECT
     public:
-        UpdateHelperNotifier( QObject *parent = 0 );
+        NotificationHelper( QObject *parent = 0 );
 
-        virtual ~UpdateHelperNotifier();
+        virtual ~NotificationHelper();
 
     private slots:
         void aptDirectoryChanged();

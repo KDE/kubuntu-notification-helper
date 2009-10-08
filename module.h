@@ -23,16 +23,16 @@
 #include <QtCore/QObject>
 #include <QtDBus/QtDBus>
 
-#include "updatehelpernotifier.h"
+#include "notificationhelper.h"
 
-class UpdateHelperNotifierModule
+class NotificationHelperModule
     : public KDEDModule
     {
     Q_OBJECT
     public:
-        UpdateHelperNotifierModule(QObject* parent, const QList<QVariant>&);
+        NotificationHelperModule(QObject* parent, const QList<QVariant>&);
     private:
-        UpdateHelperNotifier notifier;
+        NotificationHelper notifier;
     };
 
 #endif

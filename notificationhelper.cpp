@@ -16,7 +16,7 @@
  * <http://www.gnu.org/licenses/> for a copy of the LGPLv3 License.        *
  ***************************************************************************/
 
-#include "updatehelpernotifier.h"
+#include "notificationhelper.h"
 
 // Qt
 #include <QtCore/QFileInfo>
@@ -43,13 +43,13 @@
 #include <kde_file.h>
 
 
-UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
+NotificationHelper::NotificationHelper( QObject* parent )
     : QObject( parent )
     , apportNotifyShowing( false )
     , parsedHookMap()
     , dialog( 0 )
 {
-    KConfig cfg( "updatehelpernotifier" );
+    KConfig cfg( "notificationhelper" );
     KConfigGroup notifyGroup( &cfg, "Notify" );
     showRestartNotification = notifyGroup.readEntry( "ShowRestartNotification", true );
 
@@ -79,19 +79,19 @@ UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
     connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hooksDirectoryChanged() ) );
 }
 
-UpdateHelperNotifier::~UpdateHelperNotifier()
+NotificationHelper::~NotificationHelper()
 {
     delete dialog;
 }
 
-void UpdateHelperNotifier::aptDirectoryChanged()
+void NotificationHelper::aptDirectoryChanged()
 {
     if ( QFile::exists( "/var/lib/update-notifier/dpkg-run-stamp") && QFile::exists( "/var/run/reboot-required" ) )
     {
         QPixmap pix = KIcon( "system-reboot" ).pixmap( 48, 48 );
 
         KNotification *notify = new KNotification( "Restart", 0, KNotification::Persistent );
-        notify->setComponentData(KComponentData("updatehelpernotifier"));
+        notify->setComponentData(KComponentData("notificationhelper"));
         notify->setText( i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
         notify->setPixmap( pix );
 
@@ -107,7 +107,7 @@ void UpdateHelperNotifier::aptDirectoryChanged()
     }
 }
 
-void UpdateHelperNotifier::apportDirectoryChanged()
+void NotificationHelper::apportDirectoryChanged()
 {
     if ( !apportNotifyShowing )
     {
@@ -116,7 +116,7 @@ void UpdateHelperNotifier::apportDirectoryChanged()
         QPixmap pix = KIcon( "apport" ).pixmap( 48, 48 );
 
         KNotification *apportNotify = new KNotification( "Restart", 0, KNotification::Persistent );
-        apportNotify->setComponentData(KComponentData("updatehelpernotifier"));
+        apportNotify->setComponentData(KComponentData("notificationhelper"));
         apportNotify->setText( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
         apportNotify->setPixmap( pix );
 
@@ -134,7 +134,7 @@ void UpdateHelperNotifier::apportDirectoryChanged()
     }
 }
 
-void UpdateHelperNotifier::hooksDirectoryChanged()
+void NotificationHelper::hooksDirectoryChanged()
 {
     QStringList fileList;
 
@@ -165,7 +165,7 @@ void UpdateHelperNotifier::hooksDirectoryChanged()
         QPixmap pix = KIcon( "help-hint" ).pixmap( 48, 48 );
 
         KNotification *notify = new KNotification( "Restart", 0, KNotification::Persistent );
-        notify->setComponentData(KComponentData("updatehelpernotifier"));
+        notify->setComponentData(KComponentData("notificationhelper"));
         notify->setText( i18n( "Software upgrade notifications are available" ) );
         notify->setPixmap( pix );
 
@@ -179,21 +179,21 @@ void UpdateHelperNotifier::hooksDirectoryChanged()
     }
 }
 
-void UpdateHelperNotifier::restartActivated()
+void NotificationHelper::restartActivated()
 {
     // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive - see README.kworkspace for other possibilities
     KProcess::startDetached( QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3" );
 }
 
-void UpdateHelperNotifier::disableRestartNotification()
+void NotificationHelper::disableRestartNotification()
 {
-    KConfig cfg( "updatehelpernotifier" );
+    KConfig cfg( "notificationhelper" );
     KConfigGroup notifyGroup( &cfg, "Notify" );
     notifyGroup.writeEntry( "ShowRestartNotification", false );
     showRestartNotification = false;
 }
 
-void UpdateHelperNotifier::runApport()
+void NotificationHelper::runApport()
 {
     bool systemCheck = true;
     int result = checkApport( systemCheck );
@@ -203,7 +203,7 @@ void UpdateHelperNotifier::runApport()
         KProcess::startDetached("/usr/share/apport/apport-kde");
 }
 
-int UpdateHelperNotifier::checkApport( bool system )
+int NotificationHelper::checkApport( bool system )
 {
     KProcess *apportProcess = new KProcess();
 
@@ -215,12 +215,12 @@ int UpdateHelperNotifier::checkApport( bool system )
     return apportProcess->execute();
 }
 
-void UpdateHelperNotifier::apportNotifyClosed()
+void NotificationHelper::apportNotifyClosed()
 {
     apportNotifyShowing = false;
 }
 
-QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileName )
+QMap<QString, QString> NotificationHelper::processUpgradeHook( QString fileName )
 {
     QMap< QString, QString > fileInfo;
     QMap< QString, QString > emptyMap;
@@ -308,7 +308,7 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
     return fileInfo;
 }
 
-void UpdateHelperNotifier::hooksActivated()
+void NotificationHelper::hooksActivated()
 {
     dialog = new KPageDialog;
     dialog->setCaption( "Update Information" );
@@ -393,15 +393,15 @@ void UpdateHelperNotifier::hooksActivated()
     dialog->show();
 }
 
-void UpdateHelperNotifier::runHookCommand( QString command, bool terminal )
+void NotificationHelper::runHookCommand( QString command, bool terminal )
 {
 
 }
 
-void UpdateHelperNotifier::cleanUpDialog()
+void NotificationHelper::cleanUpDialog()
 {
     dialog->deleteLater();
     dialog = 0;
 }
 
-#include "updatehelpernotifier.moc"
+#include "notificationhelper.moc"
