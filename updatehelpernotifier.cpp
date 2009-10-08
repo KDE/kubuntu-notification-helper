@@ -19,6 +19,7 @@
 #include "updatehelpernotifier.h"
 
 // Qt
+#include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtCore/QTimer>
 #include <QtGui/QLabel>
@@ -40,6 +41,7 @@
 // Lower level includes for sleep, dirent
 #include <unistd.h>
 #include <dirent.h>
+#include <kde_file.h>
 
 
 UpdateHelperNotifier::UpdateHelperNotifier( QObject* parent )
@@ -137,17 +139,16 @@ void UpdateHelperNotifier::hooksDirectoryChanged()
 {
     QStringList fileList;
 
-    struct dirent **namelist;
-    int i,n;
+    DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );
+    KDE_struct_dirent *ep;
 
-    n = scandir( "/var/lib/update-notifier/user.d/", &namelist, 0, alphasort );
-    if (n > 0)
+    while( ( ep = KDE_readdir( dp ) ) != 0L )
     {
-        for ( i = 0; i < n; i++ )
-        {
-            fileList << namelist[i]->d_name;
-            free( namelist[i] );
-        }
+        QString fn( QFile::decodeName( ep->d_name ) );
+        if (fn == "." || fn == ".." || fn.at(fn.length() - 1) == '~')
+            continue;
+
+        fileList << QFile::decodeName(ep->d_name);
     }
 
     foreach ( const QString &fileName, fileList ) {
@@ -225,10 +226,6 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
     QMap< QString, QString > fileInfo;
     QMap< QString, QString > emptyMap;
 
-    // Toss crap from the directory lister (current dir and one-level-up items)
-    if ( fileName.startsWith( '.' ) )
-        return emptyMap;
-
     // Open the upgrade hook file
     QFile hookFile("/var/lib/update-notifier/user.d/" + fileName );
 
@@ -256,7 +253,6 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
             else if ( startsWithSpace )
             {
                 QString previousDescription = fileInfo[ "Description" ];
-                kDebug() << "previousDescription == " << previousDescription;
                 fileInfo[ "Description" ] = ( previousDescription + streamLine );
             }
             else if ( streamLine.isEmpty() )
