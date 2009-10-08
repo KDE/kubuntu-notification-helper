@@ -291,8 +291,9 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
 
                 QDateTime statTime = QFileInfo( "/var/lib/update-notifier/user.d/" + fileName ).lastModified();
 
+                // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
 
-                if ( uptime > 0 && ( now.toTime_t() > uptime ) )
+                if ( uptime > 0 && ( ( now.toTime_t() - statTime.toTime_t() ) > uptime ) )
                 {
                     return emptyMap;
                 }
