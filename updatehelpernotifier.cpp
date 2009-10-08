@@ -272,7 +272,7 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
         }
     }
 
-    // TODO: Check if already shown
+    // TODO: Check if already shown, keep track via KConfig
     if ( fileInfo.contains( "DontShowAfterReboot" ) )
     {
         if ( fileInfo.value("DontShowAfterReboot") == "True" )
@@ -290,7 +290,6 @@ QMap<QString, QString> UpdateHelperNotifier::processUpgradeHook( QString fileNam
                 const QDateTime now = QDateTime::currentDateTime();
 
                 QDateTime statTime = QFileInfo( "/var/lib/update-notifier/user.d/" + fileName ).lastModified();
-
                 // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
 
                 if ( uptime > 0 && ( ( now.toTime_t() - statTime.toTime_t() ) > uptime ) )
@@ -329,7 +328,6 @@ void UpdateHelperNotifier::hooksActivated()
         // Any way to do this without copying this to a new QMap?
         QMap< QString, QString > parsedHook = *i;
 
-        // Make new dialog page
         KVBox *vbox = new KVBox();
 
         // FIXME: Figure out how to grab the user's language, don't hardcode
@@ -368,7 +366,6 @@ void UpdateHelperNotifier::hooksActivated()
         descLabel->setWordWrap( true );
         descLabel->setText( desc );
 
-        // Look for a command field, and set command if present
         QString command;
         QMap<QString, QString>::const_iterator commandIter = parsedHook.constFind("Command");
         while (commandIter != parsedHook.end() && commandIter.key() == "Command")
@@ -390,6 +387,7 @@ void UpdateHelperNotifier::hooksActivated()
         if ( !command.isEmpty() )
         {
             QPushButton *runButton = new QPushButton( KIcon( "system-run" ), i18n( "Run this action now" ), vbox );
+            // FIXME: How to pass command and terminal to the slot properly? This doesn't work.
             connect( runButton, SIGNAL( clicked() ), this, SLOT( runHookCommand( command, terminal ) ) );
         }
 
