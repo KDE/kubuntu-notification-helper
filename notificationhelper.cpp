@@ -69,7 +69,7 @@ NotificationHelper::NotificationHelper( QObject* parent )
         KDirWatch *apportDirWatch =  new KDirWatch( this );
         apportDirWatch->addDir( "/var/crash/" );
         apportNotifyShowing = false;
-        connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
+        connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportEvent() ) );
 
         // Force check since we just started up and there might have been crashes on reboot
         QTimer::singleShot(5000, this, SLOT(apportEvent()));
