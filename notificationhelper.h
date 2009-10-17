@@ -16,16 +16,12 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef UPDATEHELPERNOTIFIER_H
-#define UPDATEHELPERNOTIFIER_H
+#ifndef NOTIFICATIONHELPER_H
+#define NOTIFICATIONHELPER_H
 
 #include "rebootevent.h"
 #include "apportevent.h"
 #include "hookevent.h"
-
-// Qt includes
-#include <QTimer>
-#include <QAction>
 
 class NotificationHelper
 : public QObject
@@ -40,9 +36,6 @@ class NotificationHelper
         void apportEvent();
         void hookEvent();
         void rebootEvent();
-
-//         void hooksActivated();
-//         void runHookCommand( QString command, bool terminal );
 
     private:
         ApportEvent* aEvent;
