@@ -18,9 +18,6 @@
 
 #include "rebootevent.h"
 
-// Qt includes
-#include <QtCore/QFile>
-
 // KDE includes
 #include <KProcess>
 
@@ -38,7 +35,7 @@ void RebootEvent::show()
     QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
     QStringList actions;
     actions << i18nc( "Restart the computer", "Restart" );
-    actions << i18nc( "User declines an action", "Not now" );
+    actions << i18nc( "User declines an action", "Ignore" );
     actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
     kDebug()<<"rebootevent";
     Event::show(icon,text,actions);
