@@ -24,7 +24,6 @@
 #include <QtGui/QPushButton>
 
 // KDE includes
-#include <KDebug>
 #include <KGlobal>
 #include <KLocale>
 #include <KProcess>
@@ -48,7 +47,6 @@ HookEvent::~HookEvent()
 
 void HookEvent::show()
 {
-    kDebug() << "haldo from hookevent::show";
     QStringList fileList;
 
     DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );

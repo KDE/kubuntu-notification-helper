@@ -24,7 +24,6 @@
 
 // KDE
 #include <KDirWatch>
-#include <KDebug>
 
 // Lower-level include for sleep
 #include <unistd.h>
