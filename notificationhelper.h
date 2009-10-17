@@ -45,7 +45,7 @@ class NotificationHelper
 //         void hookEvent();
         void rebootEvent();
 
-        void apportDirectoryChanged();
+//         void apportDirectoryChanged();
 //         void hooksDirectoryChanged();
 //         void runApport();
 //         void hooksActivated();
