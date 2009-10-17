@@ -19,8 +19,6 @@
 #define MODULE_H
 
 #include <KDEDModule>
-#include <QtCore/QObject>
-#include <QtDBus/QtDBus>
 
 #include "notificationhelper.h"
 
