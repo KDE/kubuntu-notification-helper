@@ -47,7 +47,6 @@ class NotificationHelper
 //         void runHookCommand( QString command, bool terminal );
 
     private:
-        bool apportNotifyShowing;
 //         QMap< QString, QMap< QString, QString > > parsedHookMap;
         ApportEvent* aEvent;
 //         HookEvent* hEvent;
