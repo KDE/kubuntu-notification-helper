@@ -51,7 +51,7 @@ void Event::show(QPixmap icon, QString text, QStringList actions)
 
     active = true;
 kDebug()<<name;
-    KNotification *notify = new KNotification(name, 0);
+    KNotification *notify = new KNotification(name, 0, KNotification::Persistent);
     notify->setComponentData(KComponentData("notificationhelper"));
 
     notify->setPixmap( icon );
