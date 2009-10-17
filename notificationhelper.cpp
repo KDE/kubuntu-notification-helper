@@ -75,9 +75,12 @@ NotificationHelper::NotificationHelper( QObject* parent )
         QTimer::singleShot(5000, this, SLOT(apportDirectoryChanged()));
     }
 
-//     KDirWatch *hooksDirWatch = new KDirWatch( this );
-//     hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
-//     connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hooksDirectoryChanged() ) );
+//     if ( !hEvent->hidden )
+//     {
+//         KDirWatch *hooksDirWatch = new KDirWatch( this );
+//         hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
+//         connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hooksDirectoryChanged() ) );
+//     }
 }
 
 NotificationHelper::~NotificationHelper()
