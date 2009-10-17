@@ -72,7 +72,7 @@ NotificationHelper::NotificationHelper( QObject* parent )
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportDirectoryChanged() ) );
 
         // Force check since we just started up and there might have been crashes on reboot
-        QTimer::singleShot(5000, this, SLOT(apportDirectoryChanged()));
+        QTimer::singleShot(5000, this, SLOT(apportEvent()));
     }
 
 //     if ( !hEvent->hidden )
@@ -101,6 +101,8 @@ void NotificationHelper::rebootEvent()
 
 void NotificationHelper::apportEvent()
 {
+    // We could be too fast for apport,  so wait a bit before showing the notification
+    sleep ( 2 );
     aEvent->show();
 }
 
@@ -109,13 +111,6 @@ void NotificationHelper::apportEvent()
 //     HookEvent *hEvent = new HookEvent(this, "Hook");
 //     hEvent->show();
 // }
-
-void NotificationHelper::apportDirectoryChanged()
-{
-    // We could be too fast for apport,  so wait a bit before showing the notification
-    sleep ( 2 );
-    apportEvent();
-}
 
 // void NotificationHelper::hooksDirectoryChanged()
 // {
