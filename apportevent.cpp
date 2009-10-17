@@ -21,7 +21,7 @@ ApportEvent::~ApportEvent()
 void ApportEvent::show()
 {
     QPixmap icon = KIcon( "apport" ).pixmap( 48, 48 );
-    QString text( i18nc( "Notification when apport detects a crash", "An application has crashed on your /esystem (now or in the past)" ) );
+    QString text( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
     QStringList actions;
     actions << i18nc( "Opens a dialog with more details", "Details" );
     actions << i18nc( "User declines an action", "Ignore" );
