@@ -14,6 +14,7 @@
 #include <QtGui/QPushButton>
 
 // KDE includes
+#include <KGlobal>
 #include <KLocale>
 #include <KIcon>
 #include <KVBox>
