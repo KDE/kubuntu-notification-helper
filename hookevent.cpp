@@ -9,6 +9,7 @@
 #include "hookevent.h"
 
 // Qt includes
+#include <QtCore/QFileInfo>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
 
@@ -45,7 +46,7 @@ void HookEvent::run()
 // // // // // // 
 
 
-QMap<QString, QString> NotificationHelper::processUpgradeHook( QString fileName )
+QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
 {
     QMap< QString, QString > fileInfo;
     QMap< QString, QString > emptyMap;
@@ -133,7 +134,7 @@ QMap<QString, QString> NotificationHelper::processUpgradeHook( QString fileName 
     return fileInfo;
 }
 
-void NotificationHelper::hooksActivated()
+void HookEvent::hooksActivated()
 {
     dialog = new KPageDialog;
     dialog->setCaption( "Update Information" );
@@ -218,12 +219,12 @@ void NotificationHelper::hooksActivated()
     dialog->show();
 }
 
-void NotificationHelper::runHookCommand( QString command, bool terminal )
+void HookEvent::runHookCommand( QString command, bool terminal )
 {
 
 }
 
-void NotificationHelper::cleanUpDialog()
+void HookEvent::cleanUpDialog()
 {
     dialog->deleteLater();
     dialog = 0;

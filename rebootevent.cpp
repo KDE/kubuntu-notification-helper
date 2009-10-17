@@ -8,6 +8,10 @@
 
 #include "rebootevent.h"
 
+// Qt includes
+#include <QtCore/QFile>
+
+// KDE includes
 #include <KProcess>
 
 RebootEvent::RebootEvent( QObject* parent, QString name)
@@ -19,14 +23,21 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
-    QPixmap icon = KIcon( "system-reboot" ).pixmap( 48, 48 );
-    QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );        
-    QStringList actions;
-    actions << i18nc( "Restart the computer", "Restart" );
-    actions << i18nc( "User declines an action", "Not now" );
-    actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
-    kDebug()<<"rebootevent";
-    Event::show(icon,text,actions);
+    if ( QFile::exists( "/var/run/reboot-required" ) )
+    {
+        QPixmap icon = KIcon( "system-reboot" ).pixmap( 48, 48 );
+        QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
+        QStringList actions;
+        actions << i18nc( "Restart the computer", "Restart" );
+        actions << i18nc( "User declines an action", "Not now" );
+        actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
+        kDebug()<<"rebootevent";
+        Event::show(icon,text,actions);
+    }
+    else
+    {
+      // TODO: destroy self since nothing was found
+    }
 }
 
 void RebootEvent::run()

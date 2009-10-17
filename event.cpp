@@ -8,7 +8,6 @@
 
 #include "event.h"
 
-#include <KLocale>
 #include <KConfigGroup>
 
 Event::Event( QObject* parent, QString name)

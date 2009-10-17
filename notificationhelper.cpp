@@ -19,10 +19,7 @@
 #include "notificationhelper.h"
 
 // Qt
-#include <QtCore/QFileInfo>
 #include <QtCore/QTimer>
-#include <QtDBus/QDBusMessage>
-#include <QtDBus/QDBusConnection>
 
 // KDE
 #include <KDirWatch>
