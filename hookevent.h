@@ -11,6 +11,9 @@
 
 #include "event.h"
 
+// KDE includes
+#include <KPageDialog>
+
 class HookEvent : public Event
 {
     Q_OBJECT
@@ -22,6 +25,10 @@ class HookEvent : public Event
 
     private slots:
         void run();
+        void cleanUpDialog();
+
+    private:
+        KPageDialog* dialog;
 };
 
 #endif

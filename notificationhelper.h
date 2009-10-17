@@ -27,10 +27,6 @@
 #include <QTimer>
 #include <QAction>
 
-// KDE includes
-#include <KNotification>
-#include <KPageDialog>
-
 class NotificationHelper
 : public QObject
 {
@@ -45,17 +41,14 @@ class NotificationHelper
 //         void hookEvent();
         void rebootEvent();
 
-//         void apportDirectoryChanged();
 //         void hooksDirectoryChanged();
 //         void runApport();
 //         void hooksActivated();
 //         void runHookCommand( QString command, bool terminal );
-        void cleanUpDialog();
 
     private:
         bool apportNotifyShowing;
 //         QMap< QString, QMap< QString, QString > > parsedHookMap;
-        KPageDialog* dialog;
         ApportEvent* aEvent;
 //         HookEvent* hEvent;
         RebootEvent* rEvent;

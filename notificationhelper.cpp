@@ -21,21 +21,14 @@
 // Qt
 #include <QtCore/QFileInfo>
 #include <QtCore/QTimer>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
 #include <QtDBus/QDBusMessage>
 #include <QtDBus/QDBusConnection>
 
 // KDE
-#include <KConfigGroup>
 #include <KDirWatch>
 #include <KDebug>
 #include <KGlobal>
-#include <KIcon>
 #include <KLocale>
-#include <KNotification>
-#include <KProcess>
-#include <KVBox>
 
 // Lower level includes for sleep, dirent
 #include <unistd.h>
@@ -46,7 +39,6 @@
 NotificationHelper::NotificationHelper( QObject* parent )
     : QObject( parent )
 //     , parsedHookMap()
-    , dialog(0)
     , aEvent(0)
 //     , hEvent(0)
     , rEvent(0)
@@ -85,8 +77,6 @@ NotificationHelper::NotificationHelper( QObject* parent )
 
 NotificationHelper::~NotificationHelper()
 {
-    delete dialog;
-
     delete aEvent;
 //     delete hEvent;
     delete rEvent;
@@ -144,15 +134,5 @@ void NotificationHelper::apportEvent()
 //     }
 // }
 
-
-
-// // 
-// //
-
-void NotificationHelper::cleanUpDialog()
-{
-    dialog->deleteLater();
-    dialog = 0;
-}
 
 #include "notificationhelper.moc"

@@ -8,15 +8,23 @@
 
 #include "hookevent.h"
 
+// Qt includes
+#include <QtGui/QLabel>
+#include <QtGui/QPushButton>
+
+// KDE includes
 #include <KLocale>
 #include <KIcon>
+#include <KVBox>
 
 HookEvent::HookEvent( QObject* parent, QString name)
     : Event(parent, name)
 {}
 
 HookEvent::~HookEvent()
-{}
+{
+    delete dialog;
+}
 
 void HookEvent::show()
 {
@@ -50,7 +58,7 @@ QMap<QString, QString> NotificationHelper::processUpgradeHook( QString fileName 
     is in the line, split it into two fields, they key and the value.
     the line. Make a key/value pair in our fileInfo map. If the line beings
     with a space, append it to the value of the most recently added key.
-    (As seen in the case of the upgrade hook description field) */
+    (As seen in the case of multi-line upgrade hook description fields) */
     if ( hookFile.open( QFile::ReadOnly ) )
     {
         QTextStream stream( &hookFile );
@@ -215,6 +223,10 @@ void NotificationHelper::runHookCommand( QString command, bool terminal )
 
 }
 
-
+void NotificationHelper::cleanUpDialog()
+{
+    dialog->deleteLater();
+    dialog = 0;
+}
 
 #include "hookevent.moc"
