@@ -22,7 +22,7 @@ class ApportEvent : public Event
 
     private slots:
         void run();
-        int checkApport();
+//         int checkApport();
 };
 
 #endif

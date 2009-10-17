@@ -35,12 +35,13 @@ void ApportEvent::run()
    KToolInvocation::kdeinitExec("/usr/share/apport/apport-kde");
 }
 
-int ApportEvent::checkApport()
-{
-    KProcess *apportProcess = new KProcess();
-    apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
-
-    return apportProcess->execute();
-}
+// TODO: what to do with this? doesnt have any use at this point
+// int ApportEvent::checkApport()
+// {
+//     KProcess *apportProcess = new KProcess();
+//     apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
+// 
+//     return apportProcess->execute();
+// }
 
 #include "apportevent.moc"
