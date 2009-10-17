@@ -1,9 +1,18 @@
 [Global]
-Name=Update Helper Notifier
 IconName=system-software-update
-Comment=Update Helper Notification Daemon
+Comment=Notification Helper for system notifications
 
 [Event/Restart]
-Name=Restart
+Name=Restart PC
 Comment=A system restart is required
 Action=Popup
+
+[Event/Apport]
+Name=Apport Crash
+Comment=Crash!
+Action=Popup
+
+#[Event/Hook]
+#Name=Hook
+#Comment=A system restart is required
+#Action=Popup

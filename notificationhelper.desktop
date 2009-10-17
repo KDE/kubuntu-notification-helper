@@ -1,7 +1,8 @@
 [Desktop Entry]
-Name=Update Helper Notifier
+Name=Notification Helper
 Type=Service
 X-KDE-ServiceTypes=KDEDModule
-X-KDE-Library=updatehelpernotifier
-X-KDE-DBus-ModuleName=updatehelpernotifier
+X-KDE-Library=notificationhelper
+X-KDE-FactoryName=notificationhelper
+X-KDE-DBus-ModuleName=notificationhelper
 X-KDE-Kded-autoload=true

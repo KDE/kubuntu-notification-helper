@@ -24,7 +24,7 @@
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();
     )
-K_EXPORT_PLUGIN(NotificationHelperModuleFactory("UpdateHelpernotifier"))
+K_EXPORT_PLUGIN(NotificationHelperModuleFactory("NotificationHelper"))
 
 
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)

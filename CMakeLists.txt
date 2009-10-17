@@ -12,7 +12,12 @@ include_directories( ${KDE4_INCLUDES} ${QT_INCLUDES} )
 
 set(notificationhelper_SRCS
     module.cpp
-    notificationhelper.cpp)
+    notificationhelper.cpp
+    event.cpp
+    rebootevent.cpp
+    apportevent.cpp
+#     hookevent.cpp
+)
 
 # kde4_add_executable(notificationhelper ${notificationhelper_SRCS})
 kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})

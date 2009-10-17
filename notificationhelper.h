@@ -19,6 +19,10 @@
 #ifndef UPDATEHELPERNOTIFIER_H
 #define UPDATEHELPERNOTIFIER_H
 
+#include "rebootevent.h"
+#include "apportevent.h"
+// #include "hookevent.h"
+
 // Qt includes
 #include <QTimer>
 #include <QAction>
@@ -37,26 +41,27 @@ class NotificationHelper
         virtual ~NotificationHelper();
 
     private slots:
-        void aptDirectoryChanged();
+        void apportEvent();
+//         void hookEvent();
+        void rebootEvent();
+
         void apportDirectoryChanged();
-        void hooksDirectoryChanged();
-        void restartActivated();
-        void disableRestartNotification();
-        void runApport();
-        void apportNotifyClosed();
-        void hooksActivated();
-        void runHookCommand( QString command, bool terminal );
+//         void hooksDirectoryChanged();
+//         void runApport();
+//         void hooksActivated();
+//         void runHookCommand( QString command, bool terminal );
         void cleanUpDialog();
 
     private:
         bool apportNotifyShowing;
-        bool showRestartNotification;
-        QMap< QString, QMap< QString, QString > > parsedHookMap;
+//         QMap< QString, QMap< QString, QString > > parsedHookMap;
         KPageDialog* dialog;
+        ApportEvent* aEvent;
+//         HookEvent* hEvent;
+        RebootEvent* rEvent;
 
-        int checkApport( bool system );
-        QMap< QString, QString > processUpgradeHook( QString fileName );
-
+//         int checkApport( bool system );
+//         QMap< QString, QString > processUpgradeHook( QString fileName );
 };
 
 #endif
