@@ -23,21 +23,15 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
-    if ( QFile::exists( "/var/run/reboot-required" ) )
-    {
-        QPixmap icon = KIcon( "system-reboot" ).pixmap( 48, 48 );
-        QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
-        QStringList actions;
-        actions << i18nc( "Restart the computer", "Restart" );
-        actions << i18nc( "User declines an action", "Not now" );
-        actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
-        kDebug()<<"rebootevent";
-        Event::show(icon,text,actions);
-    }
-    else
-    {
-      // TODO: destroy self since nothing was found
-    }
+
+    QPixmap icon = KIcon( "system-reboot" ).pixmap( 48, 48 );
+    QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
+    QStringList actions;
+    actions << i18nc( "Restart the computer", "Restart" );
+    actions << i18nc( "User declines an action", "Not now" );
+    actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
+    kDebug()<<"rebootevent";
+    Event::show(icon,text,actions);
 }
 
 void RebootEvent::run()
