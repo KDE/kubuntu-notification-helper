@@ -21,7 +21,7 @@
 
 #include "rebootevent.h"
 #include "apportevent.h"
-// #include "hookevent.h"
+#include "hookevent.h"
 
 // Qt includes
 #include <QTimer>
@@ -38,22 +38,16 @@ class NotificationHelper
 
     private slots:
         void apportEvent();
-//         void hookEvent();
+        void hookEvent();
         void rebootEvent();
 
-//         void hooksDirectoryChanged();
-//         void runApport();
 //         void hooksActivated();
 //         void runHookCommand( QString command, bool terminal );
 
     private:
-//         QMap< QString, QMap< QString, QString > > parsedHookMap;
         ApportEvent* aEvent;
-//         HookEvent* hEvent;
+        HookEvent* hEvent;
         RebootEvent* rEvent;
-
-//         int checkApport( bool system );
-//         QMap< QString, QString > processUpgradeHook( QString fileName );
 };
 
 #endif

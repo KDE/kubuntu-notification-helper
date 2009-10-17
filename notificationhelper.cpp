@@ -19,27 +19,25 @@
 #include "notificationhelper.h"
 
 // Qt
+#include <QtCore/QFile>
 #include <QtCore/QTimer>
 
 // KDE
 #include <KDirWatch>
 #include <KDebug>
 
-// Lower level includes for sleep, dirent
+// Lower-level include for sleep
 #include <unistd.h>
-#include <dirent.h>
-#include <kde_file.h>
 
 
 NotificationHelper::NotificationHelper( QObject* parent )
     : QObject( parent )
-//     , parsedHookMap()
     , aEvent(0)
-//     , hEvent(0)
+    , hEvent(0)
     , rEvent(0)
 {
     aEvent = new ApportEvent(this, "Apport");
-//     hEvent = new HookEvent(this, "Hook");
+    hEvent = new HookEvent(this, "Hook");
     rEvent = new RebootEvent(this, "Restart");
 
     if ( !rEvent->hidden )
@@ -61,18 +59,18 @@ NotificationHelper::NotificationHelper( QObject* parent )
         QTimer::singleShot(5000, this, SLOT(apportEvent()));
     }
 
-//     if ( !hEvent->hidden )
-//     {
-//         KDirWatch *hooksDirWatch = new KDirWatch( this );
-//         hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
-//         connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hooksDirectoryChanged() ) );
-//     }
+    if ( !hEvent->hidden )
+    {
+        KDirWatch *hooksDirWatch = new KDirWatch( this );
+        hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
+        connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hookEvent() ) );
+    }
 }
 
 NotificationHelper::~NotificationHelper()
 {
     delete aEvent;
-//     delete hEvent;
+    delete hEvent;
     delete rEvent;
 }
 
@@ -90,43 +88,9 @@ void NotificationHelper::apportEvent()
     aEvent->show();
 }
 
-// void NotificationHelper::hookEvent()
-// {
-//     HookEvent *hEvent = new HookEvent(this, "Hook");
-//     hEvent->show();
-// }
-
-// void NotificationHelper::hooksDirectoryChanged()
-// {
-//     QStringList fileList;
-// 
-//     DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );
-//     KDE_struct_dirent *ep;
-// 
-//     while( ( ep = KDE_readdir( dp ) ) != 0L )
-//     {
-//         QString fn( QFile::decodeName( ep->d_name ) );
-//         if (fn == "." || fn == ".." || fn.at(fn.length() - 1) == '~')
-//             continue;
-// 
-//         fileList << QFile::decodeName(ep->d_name);
-//     }
-// 
-//     foreach ( const QString &fileName, fileList ) {
-//         QMap< QString, QString > fileResult = processUpgradeHook( fileName );
-//         // if not empty, add parsed hook to the list of parsed hooks
-//         if ( !fileResult.isEmpty() )
-//         {
-//             fileResult["fileName"] = fileName;
-//             parsedHookMap[fileName] = fileResult;
-//         }
-//     }
-// 
-//     if ( !parsedHookMap.isEmpty() )
-//     {
-//         hookEvent();
-//     }
-// }
-
+void NotificationHelper::hookEvent()
+{
+    hEvent->show();
+}
 
 #include "notificationhelper.moc"

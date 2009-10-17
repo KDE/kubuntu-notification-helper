@@ -36,9 +36,12 @@ class HookEvent : public Event
     private slots:
         void run();
         void cleanUpDialog();
+        void runHookCommand ( QString command, bool terminal );
 
     private:
         KPageDialog* dialog;
+        QMap< QString, QMap< QString, QString > > parsedHookMap;
+        QMap< QString, QString > processUpgradeHook( QString fileName );
 };
 
 #endif

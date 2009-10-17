@@ -24,13 +24,21 @@
 #include <QtGui/QPushButton>
 
 // KDE includes
+#include <KDebug>
 #include <KGlobal>
 #include <KLocale>
+#include <KProcess>
 #include <KIcon>
 #include <KVBox>
 
+// Lower-level includes for dirent
+#include <dirent.h>
+#include <kde_file.h>
+
 HookEvent::HookEvent( QObject* parent, QString name)
     : Event(parent, name)
+    , dialog(0)
+    , parsedHookMap()
 {}
 
 HookEvent::~HookEvent()
@@ -40,22 +48,46 @@ HookEvent::~HookEvent()
 
 void HookEvent::show()
 {
-    QPixmap icon = KIcon( "help-hint" ).pixmap( 48, 48 );
-    QString text(i18nc( "Notification when an upgrade requires the user to do something", "Software upgrade notifications are available" ) );
-    QStringList actions;
-    actions << i18nc( "Opens a dialog with more details", "Details" );
-    actions << i18nc( "User declines an action", "Ignore" );
-    actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
-    Event::show(icon,text,actions);
+    kDebug() << "haldo from hookevent::show";
+    QStringList fileList;
+
+    DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );
+    KDE_struct_dirent *ep;
+
+    while( ( ep = KDE_readdir( dp ) ) != 0L )
+    {
+        QString fn( QFile::decodeName( ep->d_name ) );
+        if (fn == "." || fn == ".." || fn.at(fn.length() - 1) == '~')
+            continue;
+
+        fileList << QFile::decodeName(ep->d_name);
+    }
+
+    foreach ( const QString &fileName, fileList ) {
+        QMap< QString, QString > fileResult = processUpgradeHook( fileName );
+        // if not empty, add parsed hook to the list of parsed hooks
+        if ( !fileResult.isEmpty() )
+        {
+            fileResult["fileName"] = fileName;
+            parsedHookMap[fileName] = fileResult;
+        }
+    }
+
+    if ( !parsedHookMap.isEmpty() )
+    {
+        QPixmap icon = KIcon( "help-hint" ).pixmap( 48, 48 );
+        QString text(i18nc( "Notification when an upgrade requires the user to do something", "Software upgrade notifications are available" ) );
+        QStringList actions;
+        actions << i18nc( "Opens a dialog with more details", "Details" );
+        actions << i18nc( "User declines an action", "Ignore" );
+        actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
+        Event::show(icon,text,actions);
+    }
+    else
+    {
+        // TODO: Destroy self
+    }
 }
-
-void HookEvent::run()
-{
-    Event::run();
-}
-
-// // // // // // 
-
 
 QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
 {
@@ -145,7 +177,7 @@ QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
     return fileInfo;
 }
 
-void HookEvent::hooksActivated()
+void HookEvent::run()
 {
     dialog = new KPageDialog;
     dialog->setCaption( "Update Information" );
@@ -228,6 +260,7 @@ void HookEvent::hooksActivated()
     }
 
     dialog->show();
+    Event::run();
 }
 
 void HookEvent::runHookCommand( QString command, bool terminal )

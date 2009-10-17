@@ -1,6 +1,6 @@
 [Global]
 IconName=system-software-update
-Comment=Notification Helper for system notifications
+Comment=System Notification Helper
 
 [Event/Restart]
 Name=Restart PC
@@ -12,7 +12,7 @@ Name=Apport Crash
 Comment=Crash!
 Action=Popup
 
-#[Event/Hook]
-#Name=Hook
-#Comment=A system restart is required
-#Action=Popup
+[Event/Hook]
+Name=Hook
+Comment=A system restart is required
+Action=Popup
