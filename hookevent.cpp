@@ -269,7 +269,7 @@ void HookEvent::runHookCommand()
     if ( terminal )
     {
         // if command is quoted, invokeTerminal will refuse to interpret it properly
-        if ( command.startsWith( "\"" ) && command.endsWith( "\"" ) )
+        if ( command.startsWith( '\"' ) && command.endsWith( '\"' ) )
         {
         // FIXME: the fudge? I have no clue what this does in python, no chance of me being able to port it
 //             self.command = self.command[1:][:-1]
