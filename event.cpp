@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
  *                                                                         *
  *   This program is free software: you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -55,7 +56,6 @@ void Event::writeHidden(bool value)
 
 void Event::show(QPixmap icon, QString text, QStringList actions)
 {
-    kDebug() << "active == " << active;
     if( active || hidden )
         return;
 
@@ -99,7 +99,6 @@ void Event::hide()
 
 void Event::notifyClosed()
 {
-    kDebug() << "writing active == false";
     active = false;
 }
 

@@ -38,6 +38,8 @@ HookEvent::HookEvent( QObject* parent, QString name)
     : Event(parent, name)
     , dialog(0)
     , parsedHookMap()
+    , command(0)
+    , terminal(false)
 {}
 
 HookEvent::~HookEvent()
@@ -226,7 +228,6 @@ void HookEvent::run()
         descLabel->setWordWrap( true );
         descLabel->setText( desc );
 
-        QString command;
         QMap<QString, QString>::const_iterator commandIter = parsedHook.constFind("Command");
         while (commandIter != parsedHook.end() && commandIter.key() == "Command")
         {
@@ -234,11 +235,10 @@ void HookEvent::run()
             break;
         }
 
-        bool terminal = false;
         QMap<QString, QString>::const_iterator terminalIter = parsedHook.constFind("Terminal");
-        while (terminalIter != parsedHook.end() && terminalIter.key() == "Command")
+        while (terminalIter != parsedHook.end() && terminalIter.key() == "Terminal")
         {
-            QString terminalValue = commandIter.value();
+            QString terminalValue = terminalIter.value();
             if ( terminalValue == "True" )
                 terminal = true;
             break;
@@ -248,7 +248,7 @@ void HookEvent::run()
         {
             QPushButton *runButton = new QPushButton( KIcon( "system-run" ), i18n( "Run this action now" ), vbox );
             // FIXME: How to pass command and terminal to the slot properly? This doesn't work.
-            connect( runButton, SIGNAL( clicked() ), this, SLOT( runHookCommand( command, terminal ) ) );
+            connect( runButton, SIGNAL( clicked() ), this, SLOT( runHookCommand() ) );
         }
 
         KPageWidgetItem *page = new KPageWidgetItem( vbox, name );
@@ -261,9 +261,28 @@ void HookEvent::run()
     Event::run();
 }
 
-void HookEvent::runHookCommand( QString command, bool terminal )
+void HookEvent::runHookCommand()
 {
+    if ( terminal )
+    {
+        // if command is quoted, invokeTerminal will refuse to interpret it properly
+        if ( command.startsWith( "\"" ) && command.endsWith( "\"" ) )
+        {
+        // FIXME: the fudge? I have no clue what this does in python, no chance of me being able to port it
+//             self.command = self.command[1:][:-1]
+//             KToolInvocation.invokeTerminal(self.command)
+        }
+    }
+    else
+    {
+        KProcess *process = new KProcess();
+        process->setShellCommand( command );
+        process->startDetached();
+        kDebug() << "invoking upgrade hook command";
+    }
 
+    command.clear();
+    terminal = false;
 }
 
 void HookEvent::cleanUpDialog()
