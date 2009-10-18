@@ -43,7 +43,7 @@ NotificationHelper::NotificationHelper( QObject* parent )
     {
         KDirWatch *stampDirWatch = new KDirWatch( this );
         stampDirWatch->addFile( "/var/lib/update-notifier/dpkg-run-stamp" );
-        connect( stampDirWatch, SIGNAL( created( const QString & ) ), this, SLOT( rebootEvent() ) );
+        connect( stampDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( rebootEvent() ) );
         rebootEvent();
     }
 
