@@ -33,7 +33,7 @@ class Event
     Q_OBJECT
     public:
         Event( QObject* parent, QString name );
-        void show(QPixmap icon, QString text, QStringList actions);
+        void show( QPixmap icon, QString text, QStringList actions );
 
         const QString name;
         bool hidden;
@@ -54,7 +54,7 @@ class Event
         QString cfgstring;
 
         bool readHidden();
-        void writeHidden(bool value);
+        void writeHidden( bool value );
 };
 
 #endif

@@ -42,7 +42,7 @@ void ApportEvent::show()
 
 void ApportEvent::run()
 {
-   KToolInvocation::kdeinitExec("/usr/share/apport/apport-kde");
+   KToolInvocation::kdeinitExec( "/usr/share/apport/apport-kde" );
 }
 
 // TODO: what to do with this? doesn't have any use at this point

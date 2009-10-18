@@ -35,9 +35,9 @@ NotificationHelper::NotificationHelper( QObject* parent )
     , hEvent(0)
     , rEvent(0)
 {
-    aEvent = new ApportEvent(this, "Apport");
-    hEvent = new HookEvent(this, "Hook");
-    rEvent = new RebootEvent(this, "Restart");
+    aEvent = new ApportEvent( this, "Apport" );
+    hEvent = new HookEvent( this, "Hook" );
+    rEvent = new RebootEvent( this, "Restart" );
 
     if ( !rEvent->hidden )
     {
@@ -48,19 +48,21 @@ NotificationHelper::NotificationHelper( QObject* parent )
     }
 
 
-   if ( !aEvent->hidden && (QFile::exists( "/usr/share/apport/apport-kde" ) || QFile::exists( "/usr/share/apport/apport-gtk" )) )
+   if ( !aEvent->hidden && ( QFile::exists( "/usr/share/apport/apport-kde" ) || QFile::exists( "/usr/share/apport/apport-gtk" ) ) )
     {
         KDirWatch *apportDirWatch =  new KDirWatch( this );
         apportDirWatch->addDir( "/var/crash/" );
         connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportEvent() ) );
 
         // Force check since we just started up and there might have been crashes on reboot
-        QTimer::singleShot(5000, this, SLOT(apportEvent()));
+        QTimer::singleShot( 5000, this, SLOT( apportEvent() ) );
     }
 
     if ( !hEvent->hidden )
     {
         KDirWatch *hooksDirWatch = new KDirWatch( this );
+        // TODO: be conditional on dpkg-run-stamp here too, then notify if user.d is not empty.
+        // This will fix duplicate notifications since dpkg should be done messing with user.d
         hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
         connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hookEvent() ) );
     }

@@ -38,15 +38,15 @@ Event::~Event()
 
 bool Event::readHidden()
 {
-    KConfig cfg("notificationhelper");
+    KConfig cfg( "notificationhelper" );
     KConfigGroup notifyGroup( &cfg, "Event" );
-    return notifyGroup.readEntry(cfgstring, false );
+    return notifyGroup.readEntry( cfgstring, false );
 
 }
 
 void Event::writeHidden(bool value)
 {
-    KConfig cfg("notificationhelper");
+    KConfig cfg( "notificationhelper" );
     KConfigGroup notifyGroup( &cfg, "Event" );
     kDebug() << cfgstring << " " << value;
     notifyGroup.writeEntry( cfgstring, value );
@@ -55,13 +55,13 @@ void Event::writeHidden(bool value)
 
 void Event::show(QPixmap icon, QString text, QStringList actions)
 {
-    if(active || hidden)
+    if( active || hidden )
         return;
 
     active = true;
     kDebug() << name;
-    KNotification *notify = new KNotification(name, 0, KNotification::Persistent);
-    notify->setComponentData(KComponentData("notificationhelper"));
+    KNotification *notify = new KNotification( name, 0, KNotification::Persistent );
+    notify->setComponentData( KComponentData( "notificationhelper" ) );
 
     notify->setPixmap( icon );
     notify->setText( text );
@@ -86,7 +86,7 @@ void Event::ignore()
 
 void Event::hide()
 {
-    writeHidden(true);
+    writeHidden( true );
     hidden = true;
 //     notify->deleteLater();
 }

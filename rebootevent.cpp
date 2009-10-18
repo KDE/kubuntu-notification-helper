@@ -18,7 +18,6 @@
 
 #include "rebootevent.h"
 
-// KDE includes
 #include <KProcess>
 
 RebootEvent::RebootEvent( QObject* parent, QString name)
@@ -38,7 +37,7 @@ void RebootEvent::show()
     actions << i18nc( "User declines an action", "Ignore" );
     actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
     kDebug()<<"rebootevent";
-    Event::show(icon,text,actions);
+    Event::show( icon, text, actions );
 }
 
 void RebootEvent::run()
