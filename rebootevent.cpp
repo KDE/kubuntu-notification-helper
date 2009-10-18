@@ -36,7 +36,7 @@ void RebootEvent::show()
     actions << i18nc( "Restart the computer", "Restart" );
     actions << i18nc( "User declines an action", "Ignore" );
     actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
-    kDebug()<<"rebootevent";
+
     Event::show( icon, text, actions );
 }
 

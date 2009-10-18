@@ -1,5 +1,5 @@
 [Global]
-IconName=system-software-update
+IconName=applications-system
 Comment=System Notification Helper
 
 [Event/Restart]

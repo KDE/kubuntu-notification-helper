@@ -47,6 +47,7 @@ class Event
     private slots:
         void ignore();
         void hide();
+        void notifyClosed();
 
     private:
         bool active;

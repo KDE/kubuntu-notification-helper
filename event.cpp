@@ -71,6 +71,8 @@ void Event::show(QPixmap icon, QString text, QStringList actions)
     connect( notify, SIGNAL( action2Activated() ), this, SLOT( ignore() ) );
     connect( notify, SIGNAL( action3Activated() ), this, SLOT( hide() ) );
 
+    connect( notify, SIGNAL( closed() ), this, SLOT( notifyClosed() ) );
+
     notify->sendEvent();
 }
 
@@ -89,6 +91,11 @@ void Event::hide()
     writeHidden( true );
     hidden = true;
 //     notify->deleteLater();
+}
+
+void Event::notifyClosed()
+{
+    active = false;
 }
 
 #include "event.moc"
