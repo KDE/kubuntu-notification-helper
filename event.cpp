@@ -55,6 +55,7 @@ void Event::writeHidden(bool value)
 
 void Event::show(QPixmap icon, QString text, QStringList actions)
 {
+    kDebug() << "active == " << active;
     if( active || hidden )
         return;
 
@@ -78,16 +79,19 @@ void Event::show(QPixmap icon, QString text, QStringList actions)
 
 void Event::run()
 {
+    notifyClosed();
 //     notify->deleteLater();
 }
 
 void Event::ignore()
 {
+    notifyClosed();
 //     notify->deleteLater();
 }
 
 void Event::hide()
 {
+    notifyClosed();
     writeHidden( true );
     hidden = true;
 //     notify->deleteLater();
@@ -95,6 +99,7 @@ void Event::hide()
 
 void Event::notifyClosed()
 {
+    kDebug() << "writing active == false";
     active = false;
 }
 
