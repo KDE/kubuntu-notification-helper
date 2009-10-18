@@ -85,7 +85,7 @@ void NotificationHelper::rebootEvent()
 void NotificationHelper::apportEvent()
 {
     // We could be too fast for apport,  so wait a bit before showing the notification
-    sleep ( 2 );
+    sleep( 2 );
     aEvent->show();
 }
 

@@ -29,13 +29,12 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
-
     QPixmap icon = KIcon( "system-reboot" ).pixmap( 48, 48 );
     QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is required" ) );
     QStringList actions;
     actions << i18nc( "Restart the computer", "Restart" );
     actions << i18nc( "User declines an action", "Ignore" );
-    actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
+    actions << i18nc( "User indicates he never wants to see this notification again", "Ignore forever" );
 
     Event::show( icon, text, actions );
 }

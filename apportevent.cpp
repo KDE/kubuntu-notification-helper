@@ -18,7 +18,6 @@
 
 #include "apportevent.h"
 
-#include <KProcess>
 #include <KToolInvocation>
 
 ApportEvent::ApportEvent( QObject* parent, QString name)
@@ -44,14 +43,5 @@ void ApportEvent::run()
 {
    KToolInvocation::kdeinitExec( "/usr/share/apport/apport-kde" );
 }
-
-// TODO: what to do with this? doesn't have any use at this point
-// int ApportEvent::checkApport()
-// {
-//     KProcess *apportProcess = new KProcess();
-//     apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
-// 
-//     return apportProcess->execute();
-// }
 
 #include "apportevent.moc"

@@ -1,4 +1,6 @@
 - Package upgrade hook handling
+- Implement KCM to manage hidden notification types (i.e. unset hide state from config)
+- Distro upgrade stuff?
 Things that could conceivably be done by other apps:
 - Codec installation
 - Checking for new Kubuntu versions
