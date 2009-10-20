@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2009-10-20 19:25-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: apportevent.cpp:36
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+
+#: apportevent.cpp:38 hookevent.cpp:84
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr ""
+
+#: apportevent.cpp:39 hookevent.cpp:85 rebootevent.cpp:39
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr ""
+
+#: apportevent.cpp:40 hookevent.cpp:86
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr ""
+
+#: hookevent.cpp:82
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr ""
+
+#: hookevent.cpp:252
+msgid "Run this action now"
+msgstr ""
+
+#: rebootevent.cpp:36
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is required"
+msgstr ""
+
+#: rebootevent.cpp:38
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr ""
+
+#: rebootevent.cpp:40
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Ignore forever"
+msgstr ""
