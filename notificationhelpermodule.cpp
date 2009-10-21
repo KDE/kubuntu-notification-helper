@@ -78,8 +78,6 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     if ( !hEvent->hidden )
     {
         KDirWatch *hooksDirWatch = new KDirWatch( this );
-        // TODO: be conditional on dpkg-run-stamp here too, then notify if user.d is not empty.
-        // This will fix duplicate notifications since dpkg should be done messing with user.d
         hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
         connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hookEvent() ) );
     }
