@@ -1,6 +1,5 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,21 +18,23 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPER_H
-#define NOTIFICATIONHELPER_H
+#ifndef NOTIFICATIONHELPERMODULE_H
+#define NOTIFICATIONHELPERMODULE_H
+
+#include <KDEDModule>
 
 #include "rebootevent.h"
 #include "apportevent.h"
 #include "hookevent.h"
 
-class NotificationHelper
-: public QObject
-{
+class NotificationHelperModule
+    : public KDEDModule
+    {
     Q_OBJECT
     public:
-        NotificationHelper( QObject *parent = 0 );
+        NotificationHelperModule(QObject* parent, const QList<QVariant>&);
 
-        virtual ~NotificationHelper();
+        virtual ~NotificationHelperModule();
 
     private slots:
         void apportEvent();
@@ -44,6 +45,6 @@ class NotificationHelper
         ApportEvent* aEvent;
         HookEvent* hEvent;
         RebootEvent* rEvent;
-};
+    };
 
 #endif

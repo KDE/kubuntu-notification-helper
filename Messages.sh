@@ -1,2 +1,2 @@
 #! /usr/bin/env bash
-$XGETTEXT *.cpp -o $podir/kded_kubuntu-notification-helper.pot
+$XGETTEXT *.cpp -o $podir/notificationhelper.pot

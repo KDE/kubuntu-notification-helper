@@ -8,11 +8,12 @@ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories( ${KDE4_INCLUDES} ${QT_INCLUDES} )
 
 
-########### next target ###############
+# Add translations
+include(MacroOptionalAddSubdirectory)
+macro_optional_add_subdirectory( po )
 
 set(notificationhelper_SRCS
-    module.cpp
-    notificationhelper.cpp
+    notificationhelpermodule.cpp
     event.cpp
     rebootevent.cpp
     apportevent.cpp

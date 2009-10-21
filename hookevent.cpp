@@ -28,9 +28,9 @@
 
 // KDE includes
 #include <KGlobal>
-#include <KLocale>
 #include <KProcess>
 #include <KIcon>
+#include <KLocale>
 #include <KVBox>
 
 // Lower-level includes for dirent

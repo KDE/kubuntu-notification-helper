@@ -1,6 +1,5 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,25 +18,40 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#include "notificationhelper.h"
+#include "notificationhelpermodule.h"
 
 // Qt
 #include <QtCore/QFile>
 #include <QtCore/QTimer>
 
 // KDE
+#include <KAboutData>
 #include <KDirWatch>
+#include <KLocalizedString>
+#include <KPluginFactory>
 
 // Lower-level include for sleep
 #include <unistd.h>
 
+K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
+                 registerPlugin<NotificationHelperModule>();
+    )
+K_EXPORT_PLUGIN(NotificationHelperModuleFactory("NotificationHelper"))
 
-NotificationHelper::NotificationHelper( QObject* parent )
-    : QObject( parent )
+
+NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
+    : KDEDModule(parent)
     , aEvent(0)
     , hEvent(0)
     , rEvent(0)
 {
+    KGlobal::locale()->insertCatalog("notificationhelper");
+
+    KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
+                         "0.3", ki18n("A Notification Helper for kubuntu"),
+                         KAboutData::License_GPL, ki18n("(C) 2009 Jonathan Thomas"),
+                         KLocalizedString(), "http://kubuntu.org");
+
     aEvent = new ApportEvent( this, "Apport" );
     hEvent = new HookEvent( this, "Hook" );
     rEvent = new RebootEvent( this, "Restart" );
@@ -71,30 +85,30 @@ NotificationHelper::NotificationHelper( QObject* parent )
     }
 }
 
-NotificationHelper::~NotificationHelper()
+NotificationHelperModule::~NotificationHelperModule()
 {
     delete aEvent;
     delete hEvent;
     delete rEvent;
 }
 
-void NotificationHelper::rebootEvent()
+void NotificationHelperModule::rebootEvent()
 {
     if ( !QFile::exists( "/var/run/reboot-required" ) )
         return;
     rEvent->show();
 }
 
-void NotificationHelper::apportEvent()
+void NotificationHelperModule::apportEvent()
 {
     // We could be too fast for apport,  so wait a bit before showing the notification
     sleep( 2 );
     aEvent->show();
 }
 
-void NotificationHelper::hookEvent()
+void NotificationHelperModule::hookEvent()
 {
     hEvent->show();
 }
 
-#include "notificationhelper.moc"
+#include "notificationhelpermodule.moc"
