@@ -44,7 +44,7 @@ void RebootEvent::show()
 
 void RebootEvent::run()
 {
-    // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive - see README.kworkspace for other possibilities
+    // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive
     KProcess::startDetached( QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3" );
     Event::run();
 }
