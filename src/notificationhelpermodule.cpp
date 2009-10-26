@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
+ *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -100,9 +101,8 @@ void NotificationHelperModule::rebootEvent()
 
 void NotificationHelperModule::apportEvent()
 {
-    // We could be too fast for apport,  so wait a bit before showing the notification
-    sleep( 2 );
-    aEvent->show();
+    // We could be too fast for apport, so wait a bit before showing the notification
+    QTimer::singleShot( 2000, aEvent, SLOT( show() ) );
 }
 
 void NotificationHelperModule::hookEvent()
