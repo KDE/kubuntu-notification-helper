@@ -31,9 +31,6 @@
 #include <KLocalizedString>
 #include <KPluginFactory>
 
-// Lower-level include for sleep
-#include <unistd.h>
-
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();
     )
