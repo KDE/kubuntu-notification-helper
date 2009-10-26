@@ -18,37 +18,22 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPERMODULE_H
-#define NOTIFICATIONHELPERMODULE_H
+#ifndef INSTALLEVENT_H
+#define INSTALLEVENT_H
 
-#include <KDEDModule>
+#include "event.h"
 
-
-#include "events/rebootevent.h"
-#include "events/apportevent.h"
-#include "events/hookevent.h"
-// #include "installevent.h"
-
-class NotificationHelperModule
-    : public KDEDModule
-    {
+class InstallEvent : public Event
+{
     Q_OBJECT
     public:
-        NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+        InstallEvent( QObject* parent, QString name );
+        void show();
 
-        virtual ~NotificationHelperModule();
+        virtual ~InstallEvent();
 
     private slots:
-        void apportEvent();
-        void hookEvent();
-        void rebootEvent();
-//         void installEvent();
-
-    private:
-        ApportEvent* aEvent;
-        HookEvent* hEvent;
-        RebootEvent* rEvent;
-//         InstallEvent iEvent;
-    };
+        void run();
+};
 
 #endif

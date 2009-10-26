@@ -34,7 +34,7 @@
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();
     )
-K_EXPORT_PLUGIN(NotificationHelperModuleFactory("NotificationHelper"))
+K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 
 
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
@@ -42,6 +42,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     , aEvent(0)
     , hEvent(0)
     , rEvent(0)
+//     , iEvent(0)
 {
     // FIXME: As far as I can tell, localization doesn't work
     KGlobal::locale()->insertCatalog("notificationhelper");
@@ -54,6 +55,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     aEvent = new ApportEvent( this, "Apport" );
     hEvent = new HookEvent( this, "Hook" );
     rEvent = new RebootEvent( this, "Restart" );
+//     iEvent = new InstallEvent(this, "Install" );
 
     if ( !rEvent->hidden )
     {
@@ -80,6 +82,11 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
         connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hookEvent() ) );
     }
+
+//     if ( !iEvent->hidden )
+//     {
+//         installEvent();
+//     }
 }
 
 NotificationHelperModule::~NotificationHelperModule()
@@ -87,6 +94,7 @@ NotificationHelperModule::~NotificationHelperModule()
     delete aEvent;
     delete hEvent;
     delete rEvent;
+//     delete iEvent;
 }
 
 void NotificationHelperModule::rebootEvent()
@@ -106,5 +114,10 @@ void NotificationHelperModule::hookEvent()
 {
     hEvent->show();
 }
+
+// void NotificationHelperModule::hookEvent()
+// {
+//     iEvent->show();
+// }
 
 #include "notificationhelpermodule.moc"

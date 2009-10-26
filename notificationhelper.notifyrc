@@ -13,6 +13,11 @@ Comment=Crash!
 Action=Popup
 
 [Event/Hook]
-Name=Hook
+Name=Upgrade Hook
 Comment=A system restart is required
+Action=Popup
+
+[Event/Install]
+Name=Restricted Install
+Comment=Extra packages for restricted multimedia functionality are available
 Action=Popup
