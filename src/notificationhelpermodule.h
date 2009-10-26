@@ -23,9 +23,9 @@
 
 #include <KDEDModule>
 
-#include "rebootevent.h"
-#include "apportevent.h"
-#include "hookevent.h"
+#include "events/rebootevent.h"
+#include "events/apportevent.h"
+#include "events/hookevent.h"
 
 class NotificationHelperModule
     : public KDEDModule
