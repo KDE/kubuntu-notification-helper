@@ -18,36 +18,29 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPERMODULE_H
-#define NOTIFICATIONHELPERMODULE_H
+#include "installevent.h"
 
-#include <KDEDModule>
 
-#include "rebootevent.h"
-#include "apportevent.h"
-#include "hookevent.h"
-// #include "installevent.h"
+InstallEvent::InstallEvent( QObject* parent, QString name)
+    : Event(parent, name)
+{}
 
-class NotificationHelperModule
-    : public KDEDModule
-    {
-    Q_OBJECT
-    public:
-        NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+InstallEvent::~InstallEvent()
+{}
 
-        virtual ~NotificationHelperModule();
+void InstallEvent::show()
+{
+    QPixmap icon = KIcon( "download" ).pixmap( 48, 48 );
+    QString text(i18nc( "Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available" ) );
+    QStringList actions;
+    actions << i18nc( "Action to begin install process", "Install" );
+    actions << i18nc( "User declines an action", "Ignore" );
+    actions << i18nc( "User indicates he never wants to see this notification again", "Ignore forever" );
 
-    private slots:
-        void apportEvent();
-        void hookEvent();
-        void rebootEvent();
-//         void installEvent();
+    Event::show( icon, text, actions );
+}
 
-    private:
-        ApportEvent* aEvent;
-        HookEvent* hEvent;
-        RebootEvent* rEvent;
-//         InstallEvent iEvent;
-    };
-
-#endif
+void RebootEvent::run()
+{
+    
+}
