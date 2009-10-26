@@ -29,9 +29,11 @@ class ApportEvent : public Event
     Q_OBJECT
     public:
         ApportEvent( QObject* parent, QString name );
-        void show();
 
         virtual ~ApportEvent();
+
+    public slots:
+        void show();
 
     private slots:
         void run();
