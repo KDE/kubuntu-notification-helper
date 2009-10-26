@@ -44,7 +44,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     , aEvent(0)
     , hEvent(0)
     , rEvent(0)
-    , iEvent(0)
+//     , iEvent(0)
 {
     // FIXME: As far as I can tell, localization doesn't work
     KGlobal::locale()->insertCatalog("notificationhelper");
@@ -96,7 +96,7 @@ NotificationHelperModule::~NotificationHelperModule()
     delete aEvent;
     delete hEvent;
     delete rEvent;
-    delete iEvent;
+//     delete iEvent;
 }
 
 void NotificationHelperModule::rebootEvent()
@@ -118,9 +118,9 @@ void NotificationHelperModule::hookEvent()
     hEvent->show();
 }
 
-void NotificationHelperModule::hookEvent()
-{
-    iEvent->show();
-}
+// void NotificationHelperModule::hookEvent()
+// {
+//     iEvent->show();
+// }
 
 #include "notificationhelpermodule.moc"
