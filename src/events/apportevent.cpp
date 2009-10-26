@@ -21,6 +21,7 @@
 
 #include "apportevent.h"
 
+#include <KProcess>
 #include <KToolInvocation>
 
 ApportEvent::ApportEvent( QObject* parent, QString name)
@@ -30,8 +31,20 @@ ApportEvent::ApportEvent( QObject* parent, QString name)
 ApportEvent::~ApportEvent()
 {}
 
+bool ApportEvent::reportsAvailable()
+{
+        KProcess *apportProcess = new KProcess();
+        apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
+
+        if ( apportProcess->execute() == 0 )
+            return true;
+        return false;
+}
+
 void ApportEvent::show()
 {
+    if ( !reportsAvailable() )
+        return;
     QPixmap icon = KIcon( "apport" ).pixmap( 48, 48 );
     QString text( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
     QStringList actions;

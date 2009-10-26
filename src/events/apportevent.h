@@ -29,6 +29,7 @@ class ApportEvent : public Event
     Q_OBJECT
     public:
         ApportEvent( QObject* parent, QString name );
+        bool reportsAvailable();
 
         virtual ~ApportEvent();
 
