@@ -1,9 +1,10 @@
 set(notificationhelper_SRCS
     notificationhelpermodule.cpp
     events/event.cpp
-    events/rebootevent.cpp
     events/apportevent.cpp
     events/hookevent.cpp
+    events/installevent.cpp
+    events/rebootevent.cpp
 )
 
 kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})

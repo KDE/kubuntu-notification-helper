@@ -41,8 +41,8 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     : KDEDModule(parent)
     , aEvent(0)
     , hEvent(0)
-    , rEvent(0)
 //     , iEvent(0)
+    , rEvent(0)
 {
     // FIXME: As far as I can tell, localization doesn't work
     KGlobal::locale()->insertCatalog("notificationhelper");
@@ -54,8 +54,8 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
     aEvent = new ApportEvent( this, "Apport" );
     hEvent = new HookEvent( this, "Hook" );
-    rEvent = new RebootEvent( this, "Restart" );
 //     iEvent = new InstallEvent(this, "Install" );
+    rEvent = new RebootEvent( this, "Restart" );
 
     if ( !rEvent->hidden )
     {
@@ -93,15 +93,8 @@ NotificationHelperModule::~NotificationHelperModule()
 {
     delete aEvent;
     delete hEvent;
-    delete rEvent;
 //     delete iEvent;
-}
-
-void NotificationHelperModule::rebootEvent()
-{
-    if ( !QFile::exists( "/var/run/reboot-required" ) )
-        return;
-    rEvent->show();
+    delete rEvent;
 }
 
 void NotificationHelperModule::apportEvent()
@@ -115,9 +108,16 @@ void NotificationHelperModule::hookEvent()
     hEvent->show();
 }
 
-// void NotificationHelperModule::hookEvent()
+// void NotificationHelperModule::installEvent()
 // {
 //     iEvent->show();
 // }
+
+void NotificationHelperModule::rebootEvent()
+{
+    if ( !QFile::exists( "/var/run/reboot-required" ) )
+        return;
+    rEvent->show();
+}
 
 #include "notificationhelpermodule.moc"

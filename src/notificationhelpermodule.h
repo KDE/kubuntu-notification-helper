@@ -23,11 +23,10 @@
 
 #include <KDEDModule>
 
-
-#include "events/rebootevent.h"
 #include "events/apportevent.h"
 #include "events/hookevent.h"
 // #include "installevent.h"
+#include "events/rebootevent.h"
 
 class NotificationHelperModule
     : public KDEDModule
