@@ -44,9 +44,6 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 //     , iEvent(0)
     , rEvent(0)
 {
-    // FIXME: As far as I can tell, localization doesn't work
-    KGlobal::locale()->insertCatalog("notificationhelper");
-
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
                          "0.3", ki18n("A Notification Helper for kubuntu"),
                          KAboutData::License_GPL, ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
