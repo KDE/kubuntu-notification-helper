@@ -6,12 +6,12 @@ msgstr ""
 #: apportevent.cpp:38 hookevent.cpp:84
 msgctxt "Opens a dialog with more details"
 msgid "Details"
-msgstr ""
+msgstr "Detalles"
 
 #: apportevent.cpp:39 hookevent.cpp:85 rebootevent.cpp:39
 msgctxt "User declines an action"
 msgid "Ignore"
-msgstr ""
+msgstr "Ignorar"
 
 #: apportevent.cpp:40 hookevent.cpp:86
 msgctxt "User indicates he never wants to see this notification again"
@@ -42,12 +42,12 @@ msgstr "(C) 2009 Jonathan Thomas"
 #: rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Jonathan Thomas"
 
 #: rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "echidnaman@kubuntu.org"
 
 #: rebootevent.cpp:36
 msgctxt "Notification when the upgrade requires a restart"
@@ -57,9 +57,9 @@ msgstr ""
 #: rebootevent.cpp:38
 msgctxt "Restart the computer"
 msgid "Restart"
-msgstr ""
+msgstr "Reiniciar"
 
 #: rebootevent.cpp:40
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Ignore forever"
-msgstr ""
+msgstr "Ignorar por siempre"
