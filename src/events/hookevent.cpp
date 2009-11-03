@@ -22,6 +22,7 @@
 #include "hookevent.h"
 
 // Qt includes
+#include <QtCore/QDir>
 #include <QtCore/QFileInfo>
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
@@ -34,8 +35,8 @@
 #include <KVBox>
 
 // Lower-level includes for dirent
-#include <dirent.h>
-#include <kde_file.h>
+//#include <dirent.h>
+//#include <kde_file.h>
 
 HookEvent::HookEvent( QObject* parent, QString name)
     : Event(parent, name)
@@ -54,7 +55,7 @@ void HookEvent::show()
 {
     QStringList fileList;
 
-    DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );
+    /*DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );
     KDE_struct_dirent *ep;
 
     while( ( ep = KDE_readdir( dp ) ) != 0L )
@@ -64,7 +65,12 @@ void HookEvent::show()
             continue;
 
         fileList << QFile::decodeName(ep->d_name);
-    }
+    }*/
+
+    QDir hookDir("/var/lib/update-notifier/user.d/");
+    fileList << hookDir.entryList(QDir::Files);
+
+    kDebug(7020) << fileList;
 
     foreach ( const QString &fileName, fileList ) {
         QMap< QString, QString > fileResult = processUpgradeHook( fileName );
