@@ -34,10 +34,6 @@
 #include <KLocale>
 #include <KVBox>
 
-// Lower-level includes for dirent
-//#include <dirent.h>
-//#include <kde_file.h>
-
 HookEvent::HookEvent( QObject* parent, QString name)
     : Event(parent, name)
     , dialog(0)
@@ -55,22 +51,8 @@ void HookEvent::show()
 {
     QStringList fileList;
 
-    /*DIR *dp = opendir( QFile::encodeName( "/var/lib/update-notifier/user.d/" ) );
-    KDE_struct_dirent *ep;
-
-    while( ( ep = KDE_readdir( dp ) ) != 0L )
-    {
-        QString fn( QFile::decodeName( ep->d_name ) );
-        if (fn == "." || fn == ".." || fn.at(fn.length() - 1) == '~')
-            continue;
-
-        fileList << QFile::decodeName(ep->d_name);
-    }*/
-
     QDir hookDir("/var/lib/update-notifier/user.d/");
     fileList << hookDir.entryList(QDir::Files);
-
-    kDebug(7020) << fileList;
 
     foreach ( const QString &fileName, fileList ) {
         QMap< QString, QString > fileResult = processUpgradeHook( fileName );
@@ -277,7 +259,7 @@ void HookEvent::runHookCommand()
         // if command is quoted, invokeTerminal will refuse to interpret it properly
         if ( command.startsWith( '\"' ) && command.endsWith( '\"' ) )
         {
-        // FIXME: the fudge? I have no clue what this does in python, no chance of me being able to port it
+        // FIXME: strip the quotes from the beginnging and end of the string, then ktoolinvocation it
 //             self.command = self.command[1:][:-1]
 //             KToolInvocation.invokeTerminal(self.command)
         }
@@ -287,7 +269,6 @@ void HookEvent::runHookCommand()
         KProcess *process = new KProcess();
         process->setShellCommand( command );
         process->startDetached();
-        kDebug() << "invoking upgrade hook command";
     }
 
     command.clear();
