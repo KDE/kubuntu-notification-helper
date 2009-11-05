@@ -12,8 +12,3 @@ add_subdirectory( src )
 # Add translations
 include(MacroOptionalAddSubdirectory)
 macro_optional_add_subdirectory( po )
-
-########### install files ###############
-
-install( FILES notificationhelper.notifyrc DESTINATION ${DATA_INSTALL_DIR}/notificationhelper )
-install( FILES notificationhelper.desktop  DESTINATION  ${SERVICES_INSTALL_DIR}/kded )
