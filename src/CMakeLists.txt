@@ -3,6 +3,7 @@ set(notificationhelper_SRCS
     events/event.cpp
     events/apportevent.cpp
     events/hookevent.cpp
+    events/hookgui.cpp
 #     events/installevent.cpp
     events/rebootevent.cpp
 )

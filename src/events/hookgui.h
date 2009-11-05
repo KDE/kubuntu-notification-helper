@@ -19,29 +19,31 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef HOOKEVENT_H
-#define HOOKEVENT_H
+#ifndef HOOKGUI_H
+#define HOOKGUI_H
 
-#include "event.h"
 
 // KDE includes
 #include <KPageDialog>
 
-class HookEvent : public Event
+class HookGui : public QObject
 {
     Q_OBJECT
     public:
-        HookEvent( QObject* parent, QString name );
-        void show();
+        HookGui( QObject* parent, QMap< QString, QMap< QString, QString > > parsedHookMap );
 
-        virtual ~HookEvent();
+        virtual ~HookGui();
 
     private slots:
-        void run();
+        void cleanUpDialog();
+        void runHookCommand();
 
     private:
+        KPageDialog* dialog;
         QMap< QString, QMap< QString, QString > > parsedHookMap;
         QMap< QString, QString > processUpgradeHook( QString fileName );
+        QString command;
+        bool terminal;
 };
 
 #endif

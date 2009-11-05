@@ -28,25 +28,19 @@
 #include <QtGui/QPushButton>
 
 // KDE includes
-#include <KGlobal>
+#include <KDebug>
 #include <KProcess>
-#include <KIcon>
-#include <KLocale>
-#include <KToolInvocation>
-#include <KVBox>
+
+// Own includes
+#include "hookgui.h"
 
 HookEvent::HookEvent( QObject* parent, QString name)
     : Event(parent, name)
-    , dialog(0)
     , parsedHookMap()
-    , command(0)
-    , terminal(false)
 {}
 
 HookEvent::~HookEvent()
-{
-    delete dialog;
-}
+{}
 
 void HookEvent::show()
 {
@@ -164,114 +158,9 @@ QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
 
 void HookEvent::run()
 {
-    dialog = new KPageDialog;
-    dialog->setCaption( "Update Information" );
-    dialog->setWindowIcon( KIcon( "help-hint" ) );
-    dialog->setButtons( KDialog::Ok );
-    connect( dialog, SIGNAL( okClicked() ), SLOT( cleanUpDialog() ) );
-
-    // Take the parsed upgrade hook(s) and put them in pages
-    QMap< QString, QMap< QString, QString > >::iterator i;
-    for (i = parsedHookMap.begin(); i !=  parsedHookMap.end(); ++i)
-    {
-        // Any way to do this without copying this to a new QMap?
-        QMap< QString, QString > parsedHook = *i;
-
-        KVBox *vbox = new KVBox();
-
-        QString language =  KGlobal::locale()->language();
-
-        // Get a translated name if possible
-        QString name;
-        if ( parsedHook.contains( "Name-" + language ) )
-            name = parsedHook.value( "Name-" + language );
-        else
-        {
-            QMap<QString, QString>::const_iterator nameIter = parsedHook.constFind( "Name" );
-            while ( nameIter != parsedHook.end() && nameIter.key() == "Name" )
-            {
-                name = nameIter.value();
-                break;
-            }
-        }
-
-        // Get a translated description if possible
-        QLabel *descLabel = new QLabel( vbox );
-        QString desc;
-        if ( parsedHook.contains( "Description-" + language ) )
-            desc = parsedHook.value( "Description-" + language );
-        else
-        {
-            QMap< QString, QString >::const_iterator descIter = parsedHook.constFind( "Description" );
-            while ( descIter != parsedHook.end() && descIter.key() == "Description" )
-            {
-                desc = descIter.value();
-                break;
-            }
-        }
-
-        descLabel->setWordWrap( true );
-        descLabel->setText( desc );
-
-        QMap< QString, QString >::const_iterator commandIter = parsedHook.constFind( "Command" );
-        while ( commandIter != parsedHook.end() && commandIter.key() == "Command" )
-        {
-            command = commandIter.value();
-            break;
-        }
-
-        QMap< QString, QString >::const_iterator terminalIter = parsedHook.constFind( "Terminal" );
-        while ( terminalIter != parsedHook.end() && terminalIter.key() == "Terminal" )
-        {
-            QString terminalValue = terminalIter.value();
-            if ( terminalValue == "True" )
-                terminal = true;
-            break;
-        }
-
-        if ( !command.isEmpty() )
-        {
-            QPushButton *runButton = new QPushButton( KIcon( "system-run" ), i18n( "Run this action now" ), vbox );
-            connect( runButton, SIGNAL( clicked() ), this, SLOT( runHookCommand() ) );
-        }
-
-        KPageWidgetItem *page = new KPageWidgetItem( vbox, name );
-        page->setIcon( KIcon( "help-hint" ) );
-
-        dialog->addPage( page );
-    }
-
-    dialog->show();
+    HookGui* gui = new HookGui( this, parsedHookMap );
+    kDebug() << "running the GUI class";
     Event::run();
-}
-
-void HookEvent::runHookCommand()
-{
-    if ( terminal )
-    {
-        // if command is quoted, invokeTerminal will refuse to interpret it properly
-        if ( command.startsWith( '\"' ) && command.endsWith( '\"' ) )
-        {
-            command.remove( 0, 1 );
-            command.remove( ( command.length() - 1 ), 1);
-            KToolInvocation::invokeTerminal( command );
-        }
-    }
-    else
-    {
-        KProcess *process = new KProcess();
-        process->setShellCommand( command );
-        process->startDetached();
-    }
-
-    command.clear();
-    terminal = false;
-}
-
-void HookEvent::cleanUpDialog()
-{
-    dialog->deleteLater();
-    dialog = 0;
 }
 
 #include "hookevent.moc"
