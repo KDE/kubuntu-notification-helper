@@ -19,28 +19,22 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef HOOKEVENT_H
-#define HOOKEVENT_H
+#ifndef HOOKPARSER_H
+#define HOOKPARSER_H
 
-#include "event.h"
+#include <QtCore/QObject>
+#include <QtCore/QMap>
 
-// KDE includes
-#include <KPageDialog>
-
-class HookEvent : public Event
+class HookParser : public QObject
 {
     Q_OBJECT
     public:
-        HookEvent( QObject* parent, QString name );
-        void show();
+        HookParser( QObject* parent );
 
-        virtual ~HookEvent();
+        virtual ~HookParser();
 
-    private slots:
-        void run();
-
-    private:
-        QMap< QString, QMap< QString, QString > > parsedHookMap;
+    public slots:
+        QMap<QString, QString> parseHook( QString fileName );
 };
 
 #endif

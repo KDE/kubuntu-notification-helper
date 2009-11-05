@@ -22,7 +22,6 @@
 #ifndef HOOKGUI_H
 #define HOOKGUI_H
 
-
 // KDE includes
 #include <KPageDialog>
 

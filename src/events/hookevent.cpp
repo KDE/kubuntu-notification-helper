@@ -23,14 +23,9 @@
 
 // Qt includes
 #include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-
-// KDE includes
-#include <KProcess>
 
 // Own includes
+#include "hookparser.h"
 #include "hookgui.h"
 
 HookEvent::HookEvent( QObject* parent, QString name)
@@ -48,10 +43,11 @@ void HookEvent::show()
     QStringList fileList;
     fileList << hookDir.entryList( QDir::Files );
 
+    HookParser* parser = new HookParser( this );
     foreach ( const QString &fileName, fileList ) {
-        QMap< QString, QString > fileResult = processUpgradeHook( fileName );
-        // if not empty, add parsed hook to the list of parsed hooks
+        QMap< QString, QString > fileResult = parser->parseHook( fileName );
         if ( !fileResult.isEmpty() )
+            // Add parsed hook to map
             parsedHookMap[fileName] = fileResult;
     }
 
@@ -65,94 +61,6 @@ void HookEvent::show()
         actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
         Event::show(icon,text,actions);
     }
-}
-
-QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
-{
-    QMap< QString, QString > fileInfo;
-    QMap< QString, QString > emptyMap;
-
-    // Open the upgrade hook file
-    QFile hookFile("/var/lib/update-notifier/user.d/" + fileName );
-
-    /* Parsing magic. (https://wiki.kubuntu.org/InteractiveUpgradeHooks)
-    Read the hook to a QString, split it up at each line. Then if a colon
-    is in the line, split it into two fields, they key and the value.
-    the line. Make a key/value pair in our fileInfo map. If the line beings
-    with a space, append it to the value of the most recently added key.
-    (As seen in the case of multi-line upgrade hook description fields) */
-    if ( hookFile.open( QFile::ReadOnly ) )
-    {
-        QTextStream stream( &hookFile );
-        QString streamAllString = stream.readAll();
-        QStringList streamList = streamAllString.split( '\n' );
-        foreach ( const QString &streamLine, streamList )
-        {
-            bool containsColon = streamLine.contains( ':' );
-            bool startsWithSpace = streamLine.startsWith( ' ' );
-            if ( containsColon )
-            {
-                QStringList list = streamLine.split( ": " );
-                QString key = list.first();
-                fileInfo[key] = list.last();
-            }
-            else if ( startsWithSpace )
-            {
-                QString previousDescription = fileInfo[ "Description" ];
-                fileInfo[ "Description" ] = ( previousDescription + streamLine );
-            }
-            // Handle empty newline(s) at the end of files
-            else if ( streamLine.isEmpty() )
-            {
-                continue;
-            }
-            // Not an upgrade hook or malformed
-            else
-            {
-                return emptyMap;
-           }
-        }
-    }
-
-    // TODO: Check if already shown, keep track via KConfig
-    if ( fileInfo.contains( "DontShowAfterReboot" ) )
-    {
-        if ( fileInfo.value("DontShowAfterReboot") == "True" )
-        {
-            QFile uptimeFile( "/proc/uptime" );
-            if ( uptimeFile.open( QFile::ReadOnly ) )
-            {
-                QTextStream stream( &uptimeFile );
-                QString uptimeLine = stream.readLine();
-                QStringList uptimeStringList = uptimeLine.split(' ');
-                // We don't need the last part of /proc/uptime
-                uptimeStringList.removeLast();
-                QString uptimeString = uptimeStringList.first();
-                float uptime = uptimeString.toFloat();
-                const QDateTime now = QDateTime::currentDateTime();
-
-                QDateTime statTime = QFileInfo( "/var/lib/update-notifier/user.d/" + fileName ).lastModified();
-                // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
-
-                if ( uptime > 0 && ( ( now.toTime_t() - statTime.toTime_t() ) > uptime ) )
-                {
-                    return emptyMap;
-                }
-            }
-        }
-    }
-
-    if ( fileInfo.contains( "DisplayIf" ) )
-    {
-        KProcess *displayIfProcess = new KProcess();
-        displayIfProcess->setProgram( fileInfo.value( "DisplayIf" ) );
-
-        int programResult = displayIfProcess->execute();
-        if ( programResult != 0 )
-            return emptyMap;
-    }
-
-    return fileInfo;
 }
 
 void HookEvent::run()
