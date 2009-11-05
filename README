@@ -1,0 +1,21 @@
+Requires:
+-kdelibs dev packages
+-gettext
+
+To use:
+-Install as normal
+-Run kbuildsycoca4
+-kcmchell4 kcmkded
+-Start Notification Helper
+
+kubuntu-notification-helper is set to turn on automatically on boot.
+
+To test modifications to k-n-h:
+-Install as normal
+-Run kbuildsycoca4
+-killall kded4; sleep 2; kded4
+-kcmchell4 kcmkded
+-Start Notification Helper
+
+If you change the notifyrc, you will also want to kill/restart knotify4
+
