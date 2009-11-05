@@ -1,6 +1,5 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,22 +18,19 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef APPORTEVENT_H
-#define APPORTEVENT_H
+#ifndef INSTALLEVENT_H
+#define INSTALLEVENT_H
 
-#include "event.h"
+#include "../event.h"
 
-class ApportEvent : public Event
+class InstallEvent : public Event
 {
     Q_OBJECT
     public:
-        ApportEvent( QObject* parent, QString name );
-        bool reportsAvailable();
-
-        virtual ~ApportEvent();
-
-    public slots:
+        InstallEvent( QObject* parent, QString name );
         void show();
+
+        virtual ~InstallEvent();
 
     private slots:
         void run();

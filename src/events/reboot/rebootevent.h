@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
+ *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -18,19 +19,19 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef INSTALLEVENT_H
-#define INSTALLEVENT_H
+#ifndef REBOOTEVENT_H
+#define REBOOTEVENT_H
 
-#include "event.h"
+#include "../event.h"
 
-class InstallEvent : public Event
+class RebootEvent : public Event
 {
     Q_OBJECT
     public:
-        InstallEvent( QObject* parent, QString name );
+        RebootEvent( QObject* parent, QString name );
         void show();
 
-        virtual ~InstallEvent();
+        virtual ~RebootEvent();
 
     private slots:
         void run();

@@ -19,19 +19,22 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef REBOOTEVENT_H
-#define REBOOTEVENT_H
+#ifndef APPORTEVENT_H
+#define APPORTEVENT_H
 
-#include "event.h"
+#include "../event.h"
 
-class RebootEvent : public Event
+class ApportEvent : public Event
 {
     Q_OBJECT
     public:
-        RebootEvent( QObject* parent, QString name );
-        void show();
+        ApportEvent( QObject* parent, QString name );
+        bool reportsAvailable();
 
-        virtual ~RebootEvent();
+        virtual ~ApportEvent();
+
+    public slots:
+        void show();
 
     private slots:
         void run();

@@ -22,7 +22,7 @@
 #ifndef HOOKEVENT_H
 #define HOOKEVENT_H
 
-#include "event.h"
+#include "../event.h"
 
 // KDE includes
 #include <KPageDialog>
