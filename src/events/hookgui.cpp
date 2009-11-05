@@ -26,7 +26,6 @@
 #include <QtGui/QPushButton>
 
 // KDE includes
-#include <KDebug>
 #include <KGlobal>
 #include <KProcess>
 #include <KIcon>
@@ -118,7 +117,6 @@ HookGui::HookGui( QObject* parent, QMap< QString, QMap< QString, QString > > par
     }
 
     dialog->show();
-    kDebug() << "You should be seeing something by now";
 }
 
 HookGui::~HookGui()

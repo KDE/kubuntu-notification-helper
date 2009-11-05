@@ -28,7 +28,6 @@
 #include <QtGui/QPushButton>
 
 // KDE includes
-#include <KDebug>
 #include <KProcess>
 
 // Own includes
@@ -159,8 +158,8 @@ QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
 void HookEvent::run()
 {
     HookGui* gui = new HookGui( this, parsedHookMap );
-    kDebug() << "running the GUI class";
     Event::run();
+    Q_UNUSED( gui );
 }
 
 #include "hookevent.moc"
