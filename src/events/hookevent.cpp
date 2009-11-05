@@ -32,6 +32,7 @@
 #include <KProcess>
 #include <KIcon>
 #include <KLocale>
+#include <KToolInvocation>
 #include <KVBox>
 
 HookEvent::HookEvent( QObject* parent, QString name)
@@ -49,19 +50,16 @@ HookEvent::~HookEvent()
 
 void HookEvent::show()
 {
-    QStringList fileList;
+    QDir hookDir( "/var/lib/update-notifier/user.d/" );
 
-    QDir hookDir("/var/lib/update-notifier/user.d/");
-    fileList << hookDir.entryList(QDir::Files);
+    QStringList fileList;
+    fileList << hookDir.entryList( QDir::Files );
 
     foreach ( const QString &fileName, fileList ) {
         QMap< QString, QString > fileResult = processUpgradeHook( fileName );
         // if not empty, add parsed hook to the list of parsed hooks
         if ( !fileResult.isEmpty() )
-        {
-            fileResult["fileName"] = fileName;
             parsedHookMap[fileName] = fileResult;
-        }
     }
 
     if ( !parsedHookMap.isEmpty() )
@@ -73,10 +71,6 @@ void HookEvent::show()
         actions << i18nc( "User declines an action", "Ignore" );
         actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
         Event::show(icon,text,actions);
-    }
-    else
-    {
-        // TODO: Destroy self
     }
 }
 
@@ -114,14 +108,14 @@ QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
                 QString previousDescription = fileInfo[ "Description" ];
                 fileInfo[ "Description" ] = ( previousDescription + streamLine );
             }
+            // Handle empty newline(s) at the end of files
             else if ( streamLine.isEmpty() )
             {
-                // Handle empty newline(s) at the end of files
                 continue;
             }
+            // Not an upgrade hook or malformed
             else
             {
-                // Not an upgrade hook or malformed
                 return emptyMap;
            }
         }
@@ -155,10 +149,10 @@ QMap<QString, QString> HookEvent::processUpgradeHook( QString fileName )
         }
     }
 
-    if ( fileInfo.contains( "DisplayIf") )
+    if ( fileInfo.contains( "DisplayIf" ) )
     {
         KProcess *displayIfProcess = new KProcess();
-        displayIfProcess->setProgram( fileInfo.value("DisplayIf" ) );
+        displayIfProcess->setProgram( fileInfo.value( "DisplayIf" ) );
 
         int programResult = displayIfProcess->execute();
         if ( programResult != 0 )
@@ -177,7 +171,7 @@ void HookEvent::run()
     connect( dialog, SIGNAL( okClicked() ), SLOT( cleanUpDialog() ) );
 
     // Take the parsed upgrade hook(s) and put them in pages
-    QMap< QString, QMap< QString, QString> >::iterator i;
+    QMap< QString, QMap< QString, QString > >::iterator i;
     for (i = parsedHookMap.begin(); i !=  parsedHookMap.end(); ++i)
     {
         // Any way to do this without copying this to a new QMap?
@@ -193,8 +187,8 @@ void HookEvent::run()
             name = parsedHook.value( "Name-" + language );
         else
         {
-            QMap<QString, QString>::const_iterator nameIter = parsedHook.constFind("Name");
-            while (nameIter != parsedHook.end() && nameIter.key() == "Name")
+            QMap<QString, QString>::const_iterator nameIter = parsedHook.constFind( "Name" );
+            while ( nameIter != parsedHook.end() && nameIter.key() == "Name" )
             {
                 name = nameIter.value();
                 break;
@@ -208,8 +202,8 @@ void HookEvent::run()
             desc = parsedHook.value( "Description-" + language );
         else
         {
-            QMap<QString, QString>::const_iterator descIter = parsedHook.constFind("Description");
-            while (descIter != parsedHook.end() && descIter.key() == "Description")
+            QMap< QString, QString >::const_iterator descIter = parsedHook.constFind( "Description" );
+            while ( descIter != parsedHook.end() && descIter.key() == "Description" )
             {
                 desc = descIter.value();
                 break;
@@ -219,15 +213,15 @@ void HookEvent::run()
         descLabel->setWordWrap( true );
         descLabel->setText( desc );
 
-        QMap<QString, QString>::const_iterator commandIter = parsedHook.constFind("Command");
-        while (commandIter != parsedHook.end() && commandIter.key() == "Command")
+        QMap< QString, QString >::const_iterator commandIter = parsedHook.constFind( "Command" );
+        while ( commandIter != parsedHook.end() && commandIter.key() == "Command" )
         {
             command = commandIter.value();
             break;
         }
 
-        QMap<QString, QString>::const_iterator terminalIter = parsedHook.constFind("Terminal");
-        while (terminalIter != parsedHook.end() && terminalIter.key() == "Terminal")
+        QMap< QString, QString >::const_iterator terminalIter = parsedHook.constFind( "Terminal" );
+        while ( terminalIter != parsedHook.end() && terminalIter.key() == "Terminal" )
         {
             QString terminalValue = terminalIter.value();
             if ( terminalValue == "True" )
@@ -238,7 +232,6 @@ void HookEvent::run()
         if ( !command.isEmpty() )
         {
             QPushButton *runButton = new QPushButton( KIcon( "system-run" ), i18n( "Run this action now" ), vbox );
-            // FIXME: How to pass command and terminal to the slot properly? This doesn't work.
             connect( runButton, SIGNAL( clicked() ), this, SLOT( runHookCommand() ) );
         }
 
@@ -259,9 +252,9 @@ void HookEvent::runHookCommand()
         // if command is quoted, invokeTerminal will refuse to interpret it properly
         if ( command.startsWith( '\"' ) && command.endsWith( '\"' ) )
         {
-        // FIXME: strip the quotes from the beginnging and end of the string, then ktoolinvocation it
-//             self.command = self.command[1:][:-1]
-//             KToolInvocation.invokeTerminal(self.command)
+            command.remove( 0, 1 );
+            command.remove( ( command.length() - 1 ), 1);
+            KToolInvocation::invokeTerminal( command );
         }
     }
     else
