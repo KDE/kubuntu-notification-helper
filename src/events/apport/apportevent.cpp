@@ -24,8 +24,8 @@
 #include <KProcess>
 #include <KToolInvocation>
 
-ApportEvent::ApportEvent( QObject* parent, QString name)
-    : Event(parent, name)
+ApportEvent::ApportEvent(QObject* parent, QString name)
+        : Event(parent, name)
 {}
 
 ApportEvent::~ApportEvent()
@@ -36,31 +36,34 @@ bool ApportEvent::reportsAvailable()
 // TODO: there is also a --system arg for checkreports, update-notifier does seem to use that
 //       in an either-or combo... so question is why does that --system arg exist at all if
 //       we are supposed to either-or the results of two runs anyway?
-        KProcess *apportProcess = new KProcess();
-        apportProcess->setProgram( QStringList() << "/usr/share/apport/apport-checkreports" );
+    KProcess *apportProcess = new KProcess();
+    apportProcess->setProgram(QStringList() << "/usr/share/apport/apport-checkreports");
 
-        if ( apportProcess->execute() == 0 )
-            return true;
-        return false;
+    if (apportProcess->execute() == 0) {
+        return true;
+    }
+    return false;
 }
 
 void ApportEvent::show()
 {
-    if ( !reportsAvailable() )
+    if (!reportsAvailable()) {
         return;
-    QPixmap icon = KIcon( "apport" ).pixmap( 48, 48 );
-    QString text( i18nc( "Notification when apport detects a crash", "An application has crashed on your system (now or in the past)" ) );
-    QStringList actions;
-    actions << i18nc( "Opens a dialog with more details", "Details" );
-    actions << i18nc( "User declines an action", "Ignore" );
-    actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
+    }
 
-    Event::show(icon,text,actions);
+    QPixmap icon = KIcon("apport").pixmap(48, 48);
+    QString text(i18nc("Notification when apport detects a crash", "An application has crashed on your system (now or in the past)"));
+    QStringList actions;
+    actions << i18nc("Opens a dialog with more details", "Details");
+    actions << i18nc("User declines an action", "Ignore");
+    actions << i18nc("User indicates he never wants to see this notification again", "Never show again");
+
+    Event::show(icon, text, actions);
 }
 
 void ApportEvent::run()
 {
-   KToolInvocation::kdeinitExec( "/usr/share/apport/apport-kde" );
+    KToolInvocation::kdeinitExec("/usr/share/apport/apport-kde");
 }
 
 #include "apportevent.moc"

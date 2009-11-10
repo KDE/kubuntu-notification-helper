@@ -27,14 +27,14 @@
 class RebootEvent : public Event
 {
     Q_OBJECT
-    public:
-        RebootEvent( QObject* parent, QString name );
-        void show();
+public:
+    RebootEvent(QObject* parent, QString name);
+    void show();
 
-        virtual ~RebootEvent();
+    virtual ~RebootEvent();
 
-    private slots:
-        void run();
+private slots:
+    void run();
 };
 
 #endif

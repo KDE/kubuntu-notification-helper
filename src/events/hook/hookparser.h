@@ -28,13 +28,13 @@
 class HookParser : public QObject
 {
     Q_OBJECT
-    public:
-        HookParser( QObject* parent );
+public:
+    HookParser(QObject* parent);
 
-        virtual ~HookParser();
+    virtual ~HookParser();
 
-    public slots:
-        QMap<QString, QString> parseHook( QString fileName );
+public slots:
+    QMap<QString, QString> parseHook(QString fileName);
 };
 
 #endif

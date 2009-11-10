@@ -28,21 +28,21 @@
 class HookGui : public QObject
 {
     Q_OBJECT
-    public:
-        HookGui( QObject* parent, QMap< QString, QMap< QString, QString > > parsedHookMap );
+public:
+    HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > parsedHookMap);
 
-        virtual ~HookGui();
+    virtual ~HookGui();
 
-    private slots:
-        void cleanUpDialog();
-        void runHookCommand();
+private slots:
+    void cleanUpDialog();
+    void runHookCommand();
 
-    private:
-        KPageDialog* dialog;
-        QMap< QString, QMap< QString, QString > > parsedHookMap;
-        QMap< QString, QString > processUpgradeHook( QString fileName );
-        QString command;
-        bool terminal;
+private:
+    KPageDialog* dialog;
+    QMap< QString, QMap< QString, QString > > parsedHookMap;
+    QMap< QString, QString > processUpgradeHook(QString fileName);
+    QString command;
+    bool terminal;
 };
 
 #endif

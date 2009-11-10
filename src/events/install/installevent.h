@@ -26,14 +26,14 @@
 class InstallEvent : public Event
 {
     Q_OBJECT
-    public:
-        InstallEvent( QObject* parent, QString name );
-        void show();
+public:
+    InstallEvent(QObject* parent, QString name);
+    void show();
 
-        virtual ~InstallEvent();
+    virtual ~InstallEvent();
 
-    private slots:
-        void run();
+private slots:
+    void run();
 };
 
 #endif

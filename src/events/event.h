@@ -32,34 +32,34 @@
 #include <KIcon>
 
 class Event
-: public QObject
+            : public QObject
 {
     Q_OBJECT
-    public:
-        Event( QObject* parent, QString name );
-        void show( QPixmap icon, QString text, QStringList actions );
+public:
+    Event(QObject* parent, QString name);
+    void show(QPixmap icon, QString text, QStringList actions);
 
-        const QString name;
-        bool hidden;
-        KNotification *notify;
+    const QString name;
+    bool hidden;
+    KNotification *notify;
 
-        virtual ~Event();
+    virtual ~Event();
 
-    public slots:
-        void run();
+public slots:
+    void run();
 
-    private slots:
-        void ignore();
-        void hide();
-        void notifyClosed();
+private slots:
+    void ignore();
+    void hide();
+    void notifyClosed();
 
-    private:
-        bool active;
+private:
+    bool active;
 
-        QString cfgstring;
+    QString cfgstring;
 
-        bool readHidden();
-        void writeHidden( bool value );
+    bool readHidden();
+    void writeHidden(bool value);
 };
 
 #endif

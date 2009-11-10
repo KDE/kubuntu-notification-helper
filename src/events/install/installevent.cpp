@@ -21,8 +21,8 @@
 #include "installevent.h"
 
 
-InstallEvent::InstallEvent( QObject* parent, QString name)
-    : Event(parent, name)
+InstallEvent::InstallEvent(QObject* parent, QString name)
+        : Event(parent, name)
 {}
 
 InstallEvent::~InstallEvent()
@@ -30,17 +30,17 @@ InstallEvent::~InstallEvent()
 
 void InstallEvent::show()
 {
-    QPixmap icon = KIcon( "download" ).pixmap( 48, 48 );
-    QString text(i18nc( "Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available" ) );
+    QPixmap icon = KIcon("download").pixmap(48, 48);
+    QString text(i18nc("Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available"));
     QStringList actions;
-    actions << i18nc( "Action to begin install process", "Install" );
-    actions << i18nc( "User declines an action", "Ignore" );
-    actions << i18nc( "User indicates he never wants to see this notification again", "Ignore forever" );
+    actions << i18nc("Action to begin install process", "Install");
+    actions << i18nc("User declines an action", "Ignore");
+    actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
 
-    Event::show( icon, text, actions );
+    Event::show(icon, text, actions);
 }
 
 void RebootEvent::run()
 {
-    
+
 }

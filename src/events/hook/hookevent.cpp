@@ -28,9 +28,9 @@
 #include "hookparser.h"
 #include "hookgui.h"
 
-HookEvent::HookEvent( QObject* parent, QString name)
-    : Event(parent, name)
-    , parsedHookMap()
+HookEvent::HookEvent(QObject* parent, QString name)
+        : Event(parent, name)
+        , parsedHookMap()
 {}
 
 HookEvent::~HookEvent()
@@ -38,36 +38,36 @@ HookEvent::~HookEvent()
 
 void HookEvent::show()
 {
-    QDir hookDir( "/var/lib/update-notifier/user.d/" );
+    QDir hookDir("/var/lib/update-notifier/user.d/");
 
     QStringList fileList;
-    fileList << hookDir.entryList( QDir::Files );
+    fileList << hookDir.entryList(QDir::Files);
 
-    HookParser* parser = new HookParser( this );
-    foreach ( const QString &fileName, fileList ) {
-        QMap< QString, QString > fileResult = parser->parseHook( fileName );
-        if ( !fileResult.isEmpty() )
+    HookParser* parser = new HookParser(this);
+    foreach(const QString &fileName, fileList) {
+        QMap< QString, QString > fileResult = parser->parseHook(fileName);
+        if (!fileResult.isEmpty()) {
             // Add parsed hook to map
             parsedHookMap[fileName] = fileResult;
+        }
     }
 
-    if ( !parsedHookMap.isEmpty() )
-    {
-        QPixmap icon = KIcon( "help-hint" ).pixmap( 48, 48 );
-        QString text(i18nc( "Notification when an upgrade requires the user to do something", "Software upgrade notifications are available" ) );
+    if (!parsedHookMap.isEmpty()) {
+        QPixmap icon = KIcon("help-hint").pixmap(48, 48);
+        QString text(i18nc("Notification when an upgrade requires the user to do something", "Software upgrade notifications are available"));
         QStringList actions;
-        actions << i18nc( "Opens a dialog with more details", "Details" );
-        actions << i18nc( "User declines an action", "Ignore" );
-        actions << i18nc( "User indicates he never wants to see this notification again", "Never show again" );
-        Event::show(icon,text,actions);
+        actions << i18nc("Opens a dialog with more details", "Details");
+        actions << i18nc("User declines an action", "Ignore");
+        actions << i18nc("User indicates he never wants to see this notification again", "Never show again");
+        Event::show(icon, text, actions);
     }
 }
 
 void HookEvent::run()
 {
-    HookGui* gui = new HookGui( this, parsedHookMap );
+    HookGui* gui = new HookGui(this, parsedHookMap);
     Event::run();
-    Q_UNUSED( gui );
+    Q_UNUSED(gui);
 }
 
 #include "hookevent.moc"

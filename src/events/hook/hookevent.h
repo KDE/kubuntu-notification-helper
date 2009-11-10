@@ -30,17 +30,17 @@
 class HookEvent : public Event
 {
     Q_OBJECT
-    public:
-        HookEvent( QObject* parent, QString name );
-        void show();
+public:
+    HookEvent(QObject* parent, QString name);
+    void show();
 
-        virtual ~HookEvent();
+    virtual ~HookEvent();
 
-    private slots:
-        void run();
+private slots:
+    void run();
 
-    private:
-        QMap< QString, QMap< QString, QString > > parsedHookMap;
+private:
+    QMap< QString, QMap< QString, QString > > parsedHookMap;
 };
 
 #endif

@@ -23,8 +23,8 @@
 
 #include <KProcess>
 
-RebootEvent::RebootEvent( QObject* parent, QString name)
-    : Event(parent, name)
+RebootEvent::RebootEvent(QObject* parent, QString name)
+        : Event(parent, name)
 {}
 
 RebootEvent::~RebootEvent()
@@ -32,20 +32,20 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
-    QPixmap icon = KIcon( "system-reboot" ).pixmap( 48, 48 );
-    QString text(i18nc( "Notification when the upgrade requires a restart", "A system restart is needed to complete the update process" ) );
+    QPixmap icon = KIcon("system-reboot").pixmap(48, 48);
+    QString text(i18nc("Notification when the upgrade requires a restart", "A system restart is needed to complete the update process"));
     QStringList actions;
-    actions << i18nc( "Restart the computer", "Restart" );
-    actions << i18nc( "User declines an action", "Ignore" );
-    actions << i18nc( "User indicates he never wants to see this notification again", "Ignore forever" );
+    actions << i18nc("Restart the computer", "Restart");
+    actions << i18nc("User declines an action", "Ignore");
+    actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
 
-    Event::show( icon, text, actions );
+    Event::show(icon, text, actions);
 }
 
 void RebootEvent::run()
 {
     // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive
-    KProcess::startDetached( QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3" );
+    KProcess::startDetached(QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3");
     Event::run();
 }
 

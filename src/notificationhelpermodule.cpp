@@ -33,51 +33,48 @@
 
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();
-    )
+                )
 K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 
 
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
-    : KDEDModule(parent)
-    , aEvent(0)
-    , hEvent(0)
+        : KDEDModule(parent)
+        , aEvent(0)
+        , hEvent(0)
 //     , iEvent(0)
-    , rEvent(0)
+        , rEvent(0)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
                          "0.3", ki18n("A Notification Helper for kubuntu"),
                          KAboutData::License_GPL, ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
                          KLocalizedString(), "http://kubuntu.org");
 
-    aEvent = new ApportEvent( this, "Apport" );
-    hEvent = new HookEvent( this, "Hook" );
+    aEvent = new ApportEvent(this, "Apport");
+    hEvent = new HookEvent(this, "Hook");
 //     iEvent = new InstallEvent(this, "Install" );
-    rEvent = new RebootEvent( this, "Restart" );
+    rEvent = new RebootEvent(this, "Restart");
 
-    if ( !rEvent->hidden )
-    {
-        KDirWatch *stampDirWatch = new KDirWatch( this );
-        stampDirWatch->addFile( "/var/lib/update-notifier/dpkg-run-stamp" );
-        connect( stampDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( rebootEvent() ) );
+    if (!rEvent->hidden) {
+        KDirWatch *stampDirWatch = new KDirWatch(this);
+        stampDirWatch->addFile("/var/lib/update-notifier/dpkg-run-stamp");
+        connect(stampDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(rebootEvent()));
         rebootEvent();
     }
 
 
-   if ( !aEvent->hidden && ( QFile::exists( "/usr/share/apport/apport-kde" ) || QFile::exists( "/usr/share/apport/apport-gtk" ) ) )
-    {
-        KDirWatch *apportDirWatch =  new KDirWatch( this );
-        apportDirWatch->addDir( "/var/crash/" );
-        connect( apportDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( apportEvent() ) );
+    if (!aEvent->hidden && (QFile::exists("/usr/share/apport/apport-kde") || QFile::exists("/usr/share/apport/apport-gtk"))) {
+        KDirWatch *apportDirWatch =  new KDirWatch(this);
+        apportDirWatch->addDir("/var/crash/");
+        connect(apportDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(apportEvent()));
 
         // Force check since we just started up and there might have been crashes on reboot
-        QTimer::singleShot( 5000, this, SLOT( apportEvent() ) );
+        QTimer::singleShot(5000, this, SLOT(apportEvent()));
     }
 
-    if ( !hEvent->hidden )
-    {
-        KDirWatch *hooksDirWatch = new KDirWatch( this );
-        hooksDirWatch->addDir( "/var/lib/update-notifier/user.d/" );
-        connect( hooksDirWatch, SIGNAL( dirty( const QString & ) ), this, SLOT( hookEvent() ) );
+    if (!hEvent->hidden) {
+        KDirWatch *hooksDirWatch = new KDirWatch(this);
+        hooksDirWatch->addDir("/var/lib/update-notifier/user.d/");
+        connect(hooksDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(hookEvent()));
     }
 
 //     if ( !iEvent->hidden )
@@ -97,7 +94,7 @@ NotificationHelperModule::~NotificationHelperModule()
 void NotificationHelperModule::apportEvent()
 {
     // We could be too fast for apport, so wait a bit before showing the notification
-    QTimer::singleShot( 2000, aEvent, SLOT( show() ) );
+    QTimer::singleShot(2000, aEvent, SLOT(show()));
 }
 
 void NotificationHelperModule::hookEvent()
@@ -112,8 +109,10 @@ void NotificationHelperModule::hookEvent()
 
 void NotificationHelperModule::rebootEvent()
 {
-    if ( !QFile::exists( "/var/run/reboot-required" ) )
+    if (!QFile::exists("/var/run/reboot-required")) {
         return;
+    }
+
     rEvent->show();
 }
 

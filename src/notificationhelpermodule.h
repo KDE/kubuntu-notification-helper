@@ -29,25 +29,25 @@
 #include "events/reboot/rebootevent.h"
 
 class NotificationHelperModule
-    : public KDEDModule
-    {
+            : public KDEDModule
+{
     Q_OBJECT
-    public:
-        NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+public:
+    NotificationHelperModule(QObject* parent, const QList<QVariant>&);
 
-        virtual ~NotificationHelperModule();
+    virtual ~NotificationHelperModule();
 
-    private slots:
-        void apportEvent();
-        void hookEvent();
-        void rebootEvent();
+private slots:
+    void apportEvent();
+    void hookEvent();
+    void rebootEvent();
 //         void installEvent();
 
-    private:
-        ApportEvent* aEvent;
-        HookEvent* hEvent;
-        RebootEvent* rEvent;
+private:
+    ApportEvent* aEvent;
+    HookEvent* hEvent;
+    RebootEvent* rEvent;
 //         InstallEvent iEvent;
-    };
+};
 
 #endif

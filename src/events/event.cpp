@@ -23,11 +23,11 @@
 
 #include <KConfigGroup>
 
-Event::Event( QObject* parent, QString name)
-    : QObject( parent )
-    , name(name)
-    , hidden(false)
-    , active(false)
+Event::Event(QObject* parent, QString name)
+        : QObject(parent)
+        , name(name)
+        , hidden(false)
+        , active(false)
 {
     cfgstring = "hide" + name + "Notifier";
     hidden = readHidden();
@@ -39,39 +39,40 @@ Event::~Event()
 
 bool Event::readHidden()
 {
-    KConfig cfg( "notificationhelper" );
-    KConfigGroup notifyGroup( &cfg, "Event" );
-    return notifyGroup.readEntry( cfgstring, false );
+    KConfig cfg("notificationhelper");
+    KConfigGroup notifyGroup(&cfg, "Event");
+    return notifyGroup.readEntry(cfgstring, false);
 }
 
 void Event::writeHidden(bool value)
 {
-    KConfig cfg( "notificationhelper" );
-    KConfigGroup notifyGroup( &cfg, "Event" );
+    KConfig cfg("notificationhelper");
+    KConfigGroup notifyGroup(&cfg, "Event");
     kDebug() << cfgstring << " " << value;
-    notifyGroup.writeEntry( cfgstring, value );
+    notifyGroup.writeEntry(cfgstring, value);
     notifyGroup.config()->sync();
 }
 
 void Event::show(QPixmap icon, QString text, QStringList actions)
 {
-    if( active || hidden )
+    if (active || hidden) {
         return;
+    }
 
     active = true;
     kDebug() << name;
-    KNotification *notify = new KNotification( name, 0, KNotification::Persistent );
-    notify->setComponentData( KComponentData( "notificationhelper" ) );
+    KNotification *notify = new KNotification(name, 0, KNotification::Persistent);
+    notify->setComponentData(KComponentData("notificationhelper"));
 
-    notify->setPixmap( icon );
-    notify->setText( text );
-    notify->setActions( actions );
+    notify->setPixmap(icon);
+    notify->setText(text);
+    notify->setActions(actions);
 
-    connect( notify, SIGNAL( action1Activated() ), this, SLOT( run() ) );
-    connect( notify, SIGNAL( action2Activated() ), this, SLOT( ignore() ) );
-    connect( notify, SIGNAL( action3Activated() ), this, SLOT( hide() ) );
+    connect(notify, SIGNAL(action1Activated()), this, SLOT(run()));
+    connect(notify, SIGNAL(action2Activated()), this, SLOT(ignore()));
+    connect(notify, SIGNAL(action3Activated()), this, SLOT(hide()));
 
-    connect( notify, SIGNAL( closed() ), this, SLOT( notifyClosed() ) );
+    connect(notify, SIGNAL(closed()), this, SLOT(notifyClosed()));
 
     notify->sendEvent();
 }
@@ -89,7 +90,7 @@ void Event::ignore()
 void Event::hide()
 {
     notifyClosed();
-    writeHidden( true );
+    writeHidden(true);
     hidden = true;
 }
 
