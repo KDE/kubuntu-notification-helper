@@ -38,71 +38,68 @@ HookParser::~HookParser()
 
 QMap<QString, QString> HookParser::parseHook(QString fileName)
 {
-    QMap<QString, QString> fileInfo;
-    QMap<QString, QString> emptyMap;
+    const QMap<QString, QString> emptyMap;
 
-    // Open the upgrade hook file
     QFile hookFile("/var/lib/update-notifier/user.d/" + fileName);
+    if (!hookFile.open(QFile::ReadOnly)) {
+        return emptyMap;
+    }
 
-    /* Parsing magic. (https://wiki.kubuntu.org/InteractiveUpgradeHooks)
-    Read the hook to a QString, split it up at each line. Then if a colon
-    is in the line, split it into two fields, they key and the value.
-    the line. Make a key/value pair in our fileInfo map. If the line beings
-    with a space, append it to the value of the most recently added key.
-    (As seen in the case of multi-line upgrade hook description fields) */
-    if (hookFile.open(QFile::ReadOnly)) {
-        QTextStream stream(&hookFile);
-        QString streamAllString = stream.readAll();
-        QStringList streamList = streamAllString.split('\n');
-        foreach(const QString &streamLine, streamList) {
-            bool containsColon = streamLine.contains(':');
-            bool startsWithSpace = streamLine.startsWith(' ');
-            if (containsColon) {
-                QStringList list = streamLine.split(": ");
-                QString key = list.first();
-                fileInfo[key] = list.last();
-            } else if (startsWithSpace) {
-                QString previousDescription = fileInfo[ "Description" ];
-                fileInfo[ "Description" ] = (previousDescription + streamLine);
-            }
-            // Handle empty newline(s) at the end of files
-            else if (streamLine.isEmpty()) {
+    // See https://wiki.kubuntu.org/InteractiveUpgradeHooks for details on the hook format
+    QMap<QString, QString> hookMap;
+    QTextStream stream(&hookFile);
+
+    QString lastKey;
+    QString line;
+    do {
+        line = stream.readLine();
+
+        if (line.contains(':')) {
+            QStringList list = line.split(": ");
+            QString key = list.at(0);
+            QString value = list.at(1);
+            hookMap[key] = value;
+            lastKey = key;
+        } else if (line.startsWith(' ')) {
+            if (lastKey.isEmpty()) {
                 continue;
             }
+            hookMap[lastKey] += line;
+        } else if (line.isEmpty()) {
+            // Handle empty newline(s) at the end of files
+            continue;
+        } else {
             // Not an upgrade hook or malformed
-            else {
+            return emptyMap;
+        }
+    } while (!line.isNull());
+
+    // TODO: Check if already shown, keep track via KConfig
+    // TODO: Find a more sane way to get that information?
+    if (hookMap.contains("DontShowAfterReboot") && hookMap["DontShowAfterReboot"] == "True") {
+        QFile uptimeFile("/proc/uptime");
+        if (uptimeFile.open(QFile::ReadOnly)) {
+            QTextStream stream(&uptimeFile);
+            QString uptimeLine = stream.readLine();
+            QStringList uptimeStringList = uptimeLine.split(' ');
+            // We don't need the last part of /proc/uptime
+            uptimeStringList.removeLast();
+            QString uptimeString = uptimeStringList.first();
+            float uptime = uptimeString.toFloat();
+            const QDateTime now = QDateTime::currentDateTime();
+
+            QDateTime statTime = QFileInfo("/var/lib/update-notifier/user.d/" + fileName).lastModified();
+            // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
+
+            if (uptime > 0 && ((now.toTime_t() - statTime.toTime_t()) > uptime)) {
                 return emptyMap;
             }
         }
     }
 
-    // TODO: Check if already shown, keep track via KConfig
-    if (fileInfo.contains("DontShowAfterReboot")) {
-        if (fileInfo.value("DontShowAfterReboot") == "True") {
-            QFile uptimeFile("/proc/uptime");
-            if (uptimeFile.open(QFile::ReadOnly)) {
-                QTextStream stream(&uptimeFile);
-                QString uptimeLine = stream.readLine();
-                QStringList uptimeStringList = uptimeLine.split(' ');
-                // We don't need the last part of /proc/uptime
-                uptimeStringList.removeLast();
-                QString uptimeString = uptimeStringList.first();
-                float uptime = uptimeString.toFloat();
-                const QDateTime now = QDateTime::currentDateTime();
-
-                QDateTime statTime = QFileInfo("/var/lib/update-notifier/user.d/" + fileName).lastModified();
-                // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
-
-                if (uptime > 0 && ((now.toTime_t() - statTime.toTime_t()) > uptime)) {
-                    return emptyMap;
-                }
-            }
-        }
-    }
-
-    if (fileInfo.contains("DisplayIf")) {
+    if (hookMap.contains("DisplayIf")) {
         KProcess *displayIfProcess = new KProcess();
-        displayIfProcess->setProgram(fileInfo.value("DisplayIf"));
+        displayIfProcess->setProgram(hookMap["DisplayIf"]);
 
         int programResult = displayIfProcess->execute();
         if (programResult != 0) {
@@ -110,7 +107,7 @@ QMap<QString, QString> HookParser::parseHook(QString fileName)
         }
     }
 
-    return fileInfo;
+    return hookMap;
 }
 
 #include "hookparser.moc"
