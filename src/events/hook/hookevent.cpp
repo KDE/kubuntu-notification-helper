@@ -45,7 +45,7 @@ void HookEvent::show()
 
     HookParser* parser = new HookParser(this);
     foreach(const QString &fileName, fileList) {
-        QMap< QString, QString > fileResult = parser->parseHook(fileName);
+        QMap<QString, QString> fileResult = parser->parseHook(hookDir.filePath(fileName));
         if (!fileResult.isEmpty()) {
             // Add parsed hook to map
             parsedHookMap[fileName] = fileResult;

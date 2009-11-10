@@ -36,18 +36,18 @@ HookParser::HookParser(QObject* parent)
 HookParser::~HookParser()
 {}
 
-QMap<QString, QString> HookParser::parseHook(QString fileName)
+QMap<QString, QString> HookParser::parseHook(const QString &hookPath)
 {
     const QMap<QString, QString> emptyMap;
 
-    QFile hookFile("/var/lib/update-notifier/user.d/" + fileName);
-    if (!hookFile.open(QFile::ReadOnly)) {
+    QFile file(hookPath);
+    if (!file.open(QFile::ReadOnly)) {
         return emptyMap;
     }
 
     // See https://wiki.kubuntu.org/InteractiveUpgradeHooks for details on the hook format
     QMap<QString, QString> hookMap;
-    QTextStream stream(&hookFile);
+    QTextStream stream(&file);
 
     QString lastKey;
     QString line;
@@ -88,7 +88,7 @@ QMap<QString, QString> HookParser::parseHook(QString fileName)
             float uptime = uptimeString.toFloat();
             const QDateTime now = QDateTime::currentDateTime();
 
-            QDateTime statTime = QFileInfo("/var/lib/update-notifier/user.d/" + fileName).lastModified();
+            QDateTime statTime = QFileInfo(hookPath).lastModified();
             // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
 
             if (uptime > 0 && ((now.toTime_t() - statTime.toTime_t()) > uptime)) {

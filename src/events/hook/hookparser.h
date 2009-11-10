@@ -34,7 +34,7 @@ public:
     virtual ~HookParser();
 
 public slots:
-    QMap<QString, QString> parseHook(QString fileName);
+    QMap<QString, QString> parseHook(const QString &hookPath);
 };
 
 #endif
