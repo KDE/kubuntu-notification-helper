@@ -53,7 +53,7 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
 
         KVBox *vbox = new KVBox();
 
-        QString language =  KGlobal::locale()->language();
+        const QString language =  KGlobal::locale()->language();
 
         // Get a translated name if possible
         QString name;
