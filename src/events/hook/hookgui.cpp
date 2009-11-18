@@ -58,7 +58,7 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
         // Get a translated name if possible
         QString name;
         if (parsedHook.contains("Name-" + language)) {
-            name = parsedHook.value("Name-" + language);
+            name = parsedHook["Name-" + language];
         } else {
             QMap<QString, QString>::const_iterator nameIter = parsedHook.constFind("Name");
             while (nameIter != parsedHook.end() && nameIter.key() == "Name") {
@@ -71,7 +71,7 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
         QLabel *descLabel = new QLabel(vbox);
         QString desc;
         if (parsedHook.contains("Description-" + language)) {
-            desc = parsedHook.value("Description-" + language);
+            desc = parsedHook["Description-" + language];
         } else {
             QMap< QString, QString >::const_iterator descIter = parsedHook.constFind("Description");
             while (descIter != parsedHook.end() && descIter.key() == "Description") {
