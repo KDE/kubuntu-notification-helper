@@ -1,4 +1,22 @@
-- Package upgrade hook handling needs love (Works, but ugly implementation)
-- Implement KCM to manage hidden notification types (i.e. unset hide state from config)
-Things that could be done by other apps, but which we probably should do for now:
-- Codec installation
+General:
+- Package upgrade hook handling needs loving. (Handling works, but the code is ugly)
+
+0.5 goals:
+* Make sure current implementation of apport/hook/reboot notifications are solid.
+* Implement codec notification/installation, based on the current DBus interface.
+
+Once 0.5.0 is released, Kubuntu Notification Helper will go into bugfix mode until
+Kubuntu 10.04 is released.
+
+1.0 goals:
+* Implement KCM to manage hidden notification types (i.e. unset hide state from config)
+* Possibly use an external lower-level parser for upgrade hooks rather than rolling
+  our own.
+* Depreciate Kubuntu-specific codec implementation, assuming apachelogger's plans for.
+  the new holy system have gone upstream by that time
+
+Once 1.0.0 is released, Kubuntu Notification Helper will ideally be feature-complete.
+The project will go into semi-permanent bugfixing/maintenance mode, breaking this to
+add new features if the need arises. This will provide a super-stable base for
+localization work. A 2.0 release will probably mean a KDE5 port, which is still many 
+years away.
