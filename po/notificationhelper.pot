@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-06 16:18-0500\n"
+"POT-Creation-Date: 2009-11-20 15:55-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,62 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: rc.cpp:1
-msgctxt "NAME OF TRANSLATORS"
-msgid "Your names"
+#: src/daemon/apportevent/apportevent.cpp:55
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
 msgstr ""
 
-#: rc.cpp:2
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "Your emails"
+#: src/daemon/apportevent/apportevent.cpp:57
+#: src/daemon/hookevent/hookevent.cpp:59
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr ""
+
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/hookevent/hookevent.cpp:60
+#: src/daemon/installevent/installevent.cpp:37
+#: src/daemon/rebootevent/rebootevent.cpp:39
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr ""
+
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/hookevent/hookevent.cpp:61
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr ""
+
+#: src/daemon/hookevent/hookgui.cpp:102
+msgid "Run this action now"
+msgstr ""
+
+#: src/daemon/hookevent/hookevent.cpp:57
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:34
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages for restricted multimedia functionality are available"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:36
+msgctxt "Action to begin install process"
+msgid "Install"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:38
+#: src/daemon/rebootevent/rebootevent.cpp:40
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Ignore forever"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:36
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:38
+msgctxt "Restart the computer"
+msgid "Restart"
 msgstr ""
