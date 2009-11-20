@@ -23,10 +23,10 @@
 
 #include <KDEDModule>
 
-#include "events/apport/apportevent.h"
-#include "events/hook/hookevent.h"
-// #include "events/install/installevent.h"
-#include "events/reboot/rebootevent.h"
+#include "apportevent/apportevent.h"
+#include "hookevent/hookevent.h"
+// #include "installevent/installevent.h"
+#include "rebootevent/rebootevent.h"
 
 class NotificationHelperModule
             : public KDEDModule
@@ -41,13 +41,13 @@ private slots:
     void apportEvent();
     void hookEvent();
     void rebootEvent();
-//         void installEvent();
+//     void installEvent();
 
 private:
     ApportEvent* aEvent;
     HookEvent* hEvent;
     RebootEvent* rEvent;
-//         InstallEvent iEvent;
+//     InstallEvent* iEvent;
 };
 
 #endif

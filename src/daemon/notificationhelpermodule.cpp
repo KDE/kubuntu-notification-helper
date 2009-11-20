@@ -41,7 +41,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         : KDEDModule(parent)
         , aEvent(0)
         , hEvent(0)
-//     , iEvent(0)
+//         , iEvent(0)
         , rEvent(0)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
