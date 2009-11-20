@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Notification Helper
-Name[es]=Ayudante de la Notificación del Sistema
-Type=Service
-X-KDE-ServiceTypes=KDEDModule
-X-KDE-Library=notificationhelper
-X-KDE-FactoryName=notificationhelper
-X-KDE-DBus-ModuleName=notificationhelper
-X-KDE-Kded-autoload=true
