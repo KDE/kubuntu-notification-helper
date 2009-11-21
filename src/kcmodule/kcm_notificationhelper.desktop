@@ -7,7 +7,7 @@ X-KDE-ServiceTypes=KCModule
 X-KDE-Library=kcm_notificationhelper
 X-KDE-ParentApp=kcontrol
 
-# X-KDE-Keywords=Notify,Alerts,Notification,popups
+X-KDE-Keywords=Notify,Alerts,Notification,popups
 X-KDE-System-Settings-Parent-Category=notifications
 X-KDE-Weight=60
 
