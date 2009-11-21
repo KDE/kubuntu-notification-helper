@@ -2,9 +2,9 @@ General:
 - Package upgrade hook handling needs loving. (Handling works, but the code is ugly)
 
 0.5 goals:
-* Make sure current implementation of apport/hook/reboot notifications are solid.
+* Make sure current apport/hook/reboot notifications are solid for LTS. (IP)
 * Implement codec notification/installation, based on the current DBus interface.
-* Implement KCM to manage hidden notification types (i.e. unset hide state from config)
+* Implement KCM to manage hidden notification types (i.e. unset hide state) (DONE)
 
 Once 0.5.0 is released, Kubuntu Notification Helper will go into bugfix mode until
 Kubuntu 10.04 is released.
