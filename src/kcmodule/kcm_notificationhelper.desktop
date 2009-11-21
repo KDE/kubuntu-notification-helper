@@ -1,0 +1,17 @@
+[Desktop Entry]
+Exec=kcmshell4 kcm_notificationhelper
+Icon=preferences-desktop-notification
+Type=Service
+X-KDE-ServiceTypes=KCModule
+
+X-KDE-Library=kcm_notificationhelper
+X-KDE-ParentApp=kcontrol
+
+# X-KDE-Keywords=Notify,Alerts,Notification,popups
+X-KDE-System-Settings-Parent-Category=notifications
+X-KDE-Weight=60
+
+Name=Helper Notifications
+Comment=Control the notifications for system helpers
+
+Categories=Qt;KDE;X-KDE-settings-sound;
