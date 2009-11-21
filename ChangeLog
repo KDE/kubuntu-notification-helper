@@ -1,0 +1,10 @@
+0.5.0: (WIP)
+======
+
+* Initial release
+* Implements notifications for:
+  - Apport crash events
+  - Package update information events (Upgrade hooks)
+  - Notification for when a reboot is required
+* Includes a KConfig module accessible from the Notifications section
+  of System Settings for controlling which notifications are shown.
