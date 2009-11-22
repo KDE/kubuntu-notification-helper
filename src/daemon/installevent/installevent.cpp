@@ -44,3 +44,5 @@ void RebootEvent::run()
 {
 
 }
+
+#include "hookevent.moc"

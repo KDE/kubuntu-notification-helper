@@ -40,7 +40,7 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
         , terminal(false)
 {
     dialog = new KPageDialog;
-    dialog->setCaption("Update Information");
+    dialog->setCaption(i18n("Update Information"));
     dialog->setWindowIcon(KIcon("help-hint"));
     dialog->setButtons(KDialog::Ok);
     connect(dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
