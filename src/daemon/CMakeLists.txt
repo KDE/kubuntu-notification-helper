@@ -5,7 +5,8 @@ set(notificationhelper_SRCS
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
     hookevent/hookparser.cpp
-#     installevent/installevent.cpp
+    installevent/installevent.cpp
+    installevent/installgui.cpp
     rebootevent/rebootevent.cpp
 )
 

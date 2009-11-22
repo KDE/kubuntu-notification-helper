@@ -37,7 +37,7 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     : KCModule(NotificationHelperConfigFactory::componentData(), parent)
     , apportCheckBox(0)
     , hookCheckBox(0)
-//     , installCheckBox(0)
+    , installCheckBox(0)
     , rebootCheckBox(0)
 {
     KAboutData *about =
@@ -57,17 +57,17 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
 
     apportCheckBox = new QCheckBox(i18n("Show Apport crash notifications"), this);
     hookCheckBox = new QCheckBox(i18n("Show upgrade information notifications"), this);
-//     installCheckBox = new QCheckBox(i18n("Show restricted codec availability notifications"), this);
+    installCheckBox = new QCheckBox(i18n("Show restricted codec availability notifications"), this);
     rebootCheckBox = new QCheckBox(i18n("Show reboot required notifications"), this);
 
     connect(apportCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(hookCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
-//     connect(installCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
+    connect(installCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(rebootCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
 
     lay->addWidget(apportCheckBox);
     lay->addWidget(hookCheckBox);
-//     lay->addWidget(installCheckBox);
+    lay->addWidget(installCheckBox);
     lay->addWidget(rebootCheckBox);
     lay->addStretch();
 }
@@ -83,7 +83,7 @@ void NotificationHelperConfigModule::load()
 
     apportCheckBox->setChecked(!notifyGroup.readEntry("hideApportNotifier", false));
     hookCheckBox->setChecked(!notifyGroup.readEntry("hideHookNotifier", false));
-//     installCheckBox->setChecked(!notifyGroup.readEntry("hideInstallNotifier", false));
+    installCheckBox->setChecked(!notifyGroup.readEntry("hideInstallNotifier", false));
     rebootCheckBox->setChecked(!notifyGroup.readEntry("hideRestartNotifier", false));
 }
 
@@ -94,7 +94,7 @@ void NotificationHelperConfigModule::save()
 
     notifyGroup.writeEntry("hideApportNotifier", !apportCheckBox->isChecked());
     notifyGroup.writeEntry("hideHookNotifier", !hookCheckBox->isChecked());
-//     notifyGroup.writeEntry("hideInstallNotifier", !installCheckBox->isChecked());
+    notifyGroup.writeEntry("hideInstallNotifier", !installCheckBox->isChecked());
     notifyGroup.writeEntry("hideRestartNotifier", !rebootCheckBox->isChecked());
 
     cfg.sync();
@@ -105,7 +105,7 @@ void NotificationHelperConfigModule::defaults()
 {
     apportCheckBox->setChecked(true);
     hookCheckBox->setChecked(true);
-//     installCheckBox->setChecked(true);
+    installCheckBox->setChecked(true);
     rebootCheckBox->setChecked(true);
 }
 

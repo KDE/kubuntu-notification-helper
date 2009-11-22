@@ -18,34 +18,26 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#include "installevent.h"
+#ifndef INSTALLGUI_H
+#define INSTALLGUI_H
 
-// Own includes
-#include "installgui.h"
+// KDE includes
+#include <KDialog>
 
-InstallEvent::InstallEvent(QObject* parent, QString name)
-        : Event(parent, name)
-{}
-
-InstallEvent::~InstallEvent()
-{}
-
-void InstallEvent::show()
+class InstallGui : public QObject
 {
-    QPixmap icon = KIcon("download").pixmap(48, 48);
-    QString text(i18nc("Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available"));
-    QStringList actions;
-    actions << i18nc("Action to begin install process", "Install");
-    actions << i18nc("User declines an action", "Ignore");
-    actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
+    Q_OBJECT
+public:
+    InstallGui(QObject* parent);
 
-    Event::show(icon, text, actions);
-}
+    virtual ~InstallGui();
 
-void InstallEvent::run()
-{
-    InstallGui* gui = new InstallGui(this);
-    Event::run();
-}
+private slots:
+    void cleanUpDialog();
+    void runPackageInstall();
 
-#include "installevent.moc"
+private:
+    KDialog* dialog;
+};
+
+#endif

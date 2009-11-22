@@ -18,34 +18,58 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#include "installevent.h"
-
-// Own includes
 #include "installgui.h"
 
-InstallEvent::InstallEvent(QObject* parent, QString name)
-        : Event(parent, name)
-{}
+// Qt includes
+#include <QLabel>
+#include <QListWidget>
+#include <QVBoxLayout>
 
-InstallEvent::~InstallEvent()
-{}
+// KDE includes
+#include <KDebug>
+#include <KLocalizedString>
 
-void InstallEvent::show()
+InstallGui::InstallGui(QObject* parent)
+        : QObject(parent)
+        , dialog(0)
 {
-    QPixmap icon = KIcon("download").pixmap(48, 48);
-    QString text(i18nc("Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available"));
-    QStringList actions;
-    actions << i18nc("Action to begin install process", "Install");
-    actions << i18nc("User declines an action", "Ignore");
-    actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
+    dialog = new KDialog;
+    dialog->setWindowIcon(KIcon("download"));
+    dialog->setCaption(i18n("Install Packages"));
+    dialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
+    connect(dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
 
-    Event::show(icon, text, actions);
+    QWidget* widget = new QWidget(dialog);
+    QVBoxLayout* layout = new QVBoxLayout(widget);
+    widget->setLayout(layout);
+
+    QLabel* label = new QLabel(widget);
+    label->setWordWrap(true);
+    label->setText(i18n("For extra multimedia functionality select restricted packages to be installed."));
+    layout->addWidget(label);
+
+    QListWidget* listWidget = new QListWidget(widget);
+    layout->addWidget(listWidget);
+
+    dialog->setMainWidget(widget);
+    dialog->show();
 }
 
-void InstallEvent::run()
+InstallGui::~InstallGui()
 {
-    InstallGui* gui = new InstallGui(this);
-    Event::run();
+    delete dialog;
 }
 
-#include "installevent.moc"
+void InstallGui::runPackageInstall()
+{
+    kDebug() << "unimplemented";
+}
+
+void InstallGui::cleanUpDialog()
+{
+    dialog->deleteLater();
+    dialog = 0;
+}
+
+#include "installgui.moc"

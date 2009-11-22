@@ -25,7 +25,7 @@
 
 #include "apportevent/apportevent.h"
 #include "hookevent/hookevent.h"
-// #include "installevent/installevent.h"
+#include "installevent/installevent.h"
 #include "rebootevent/rebootevent.h"
 
 class NotificationHelperModule
@@ -41,13 +41,13 @@ private slots:
     void apportEvent();
     void hookEvent();
     void rebootEvent();
-//     void installEvent();
+    void installEvent();
 
 private:
     ApportEvent* aEvent;
     HookEvent* hEvent;
+    InstallEvent* iEvent;
     RebootEvent* rEvent;
-//     InstallEvent* iEvent;
 };
 
 #endif

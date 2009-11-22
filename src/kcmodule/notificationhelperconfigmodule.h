@@ -45,7 +45,7 @@ protected Q_SLOTS:
 private:
     QCheckBox* apportCheckBox;
     QCheckBox* hookCheckBox;
-//     QCheckBox* installCheckBox;
+    QCheckBox* installCheckBox;
     QCheckBox* rebootCheckBox;
 };
 

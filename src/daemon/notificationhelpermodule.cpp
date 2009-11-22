@@ -41,7 +41,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         : KDEDModule(parent)
         , aEvent(0)
         , hEvent(0)
-//         , iEvent(0)
+        , iEvent(0)
         , rEvent(0)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
@@ -51,7 +51,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
     aEvent = new ApportEvent(this, "Apport");
     hEvent = new HookEvent(this, "Hook");
-//     iEvent = new InstallEvent(this, "Install" );
+    iEvent = new InstallEvent(this, "Install" );
     rEvent = new RebootEvent(this, "Restart");
 
     if (!rEvent->hidden) {
@@ -77,17 +77,17 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         connect(hooksDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(hookEvent()));
     }
 
-//     if ( !iEvent->hidden )
-//     {
-//         installEvent();
-//     }
+    if ( !iEvent->hidden )
+    {
+        installEvent();
+    }
 }
 
 NotificationHelperModule::~NotificationHelperModule()
 {
     delete aEvent;
     delete hEvent;
-//     delete iEvent;
+    delete iEvent;
     delete rEvent;
 }
 
@@ -102,10 +102,10 @@ void NotificationHelperModule::hookEvent()
     hEvent->show();
 }
 
-// void NotificationHelperModule::installEvent()
-// {
-//     iEvent->show();
-// }
+void NotificationHelperModule::installEvent()
+{
+    iEvent->show();
+}
 
 void NotificationHelperModule::rebootEvent()
 {

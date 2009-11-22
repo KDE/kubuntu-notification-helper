@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-22 11:42-0500\n"
+"POT-Creation-Date: 2009-11-22 13:03-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,13 +29,13 @@ msgstr ""
 #: src/daemon/rebootevent/rebootevent.cpp:39
 #: src/daemon/apportevent/apportevent.cpp:58
 #: src/daemon/hookevent/hookevent.cpp:60
-#: src/daemon/installevent/installevent.cpp:37
+#: src/daemon/installevent/installevent.cpp:39
 msgctxt "User declines an action"
 msgid "Ignore"
 msgstr ""
 
 #: src/daemon/rebootevent/rebootevent.cpp:40
-#: src/daemon/installevent/installevent.cpp:38
+#: src/daemon/installevent/installevent.cpp:40
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Ignore forever"
 msgstr ""
@@ -70,12 +70,26 @@ msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:34
+#: src/daemon/installevent/installgui.cpp:38
+msgid "Install Packages"
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:40
+msgid "Install Selected"
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:49
+msgid ""
+"For extra multimedia functionality select restricted packages to be "
+"installed."
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:36
 msgctxt "Notification when a package wants to install extra software"
 msgid "Extra packages for restricted multimedia functionality are available"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:36
+#: src/daemon/installevent/installevent.cpp:38
 msgctxt "Action to begin install process"
 msgid "Install"
 msgstr ""
