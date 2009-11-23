@@ -22,6 +22,8 @@
 
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
+        , applicationName(0)
+        , packageName(0)
         , iGui(0)
 {}
 
@@ -40,6 +42,17 @@ void InstallEvent::show()
     actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
 
     Event::show(icon, text, actions);
+}
+
+void InstallEvent::getInfo(const QString application, const QString package)
+{
+    applicationName = application;
+    packageName = package;
+
+    // Check to see if we have packages to offer
+
+    // If we do, show the user
+    // show();
 }
 
 void InstallEvent::run()

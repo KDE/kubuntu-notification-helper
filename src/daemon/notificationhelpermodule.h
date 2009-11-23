@@ -21,12 +21,16 @@
 #ifndef NOTIFICATIONHELPERMODULE_H
 #define NOTIFICATIONHELPERMODULE_H
 
+// KDE includes
 #include <KDEDModule>
 
+// Own includes
 #include "apportevent/apportevent.h"
 #include "hookevent/hookevent.h"
 #include "installevent/installevent.h"
 #include "rebootevent/rebootevent.h"
+
+#include "installevent/installdbuswatcher.h"
 
 class NotificationHelperModule
             : public KDEDModule
@@ -41,13 +45,15 @@ private slots:
     void apportEvent();
     void hookEvent();
     void rebootEvent();
-    void installEvent();
+    void installEvent(const QString application, const QString name);
 
 private:
     ApportEvent* aEvent;
     HookEvent* hEvent;
     InstallEvent* iEvent;
     RebootEvent* rEvent;
+
+    InstallDBusWatcher* installWatcher;
 };
 
 #endif

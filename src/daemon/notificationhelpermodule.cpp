@@ -43,6 +43,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         , hEvent(0)
         , iEvent(0)
         , rEvent(0)
+        , installWatcher(0)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
                          "0.4", ki18n("A Notification Helper for Kubuntu"),
@@ -79,7 +80,9 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
     if ( !iEvent->hidden )
     {
-        installEvent();
+        installWatcher = new InstallDBusWatcher(this);
+        connect(installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
+                                       this, SLOT(installEvent(const QString &, const QString &)));
     }
 }
 
@@ -89,6 +92,7 @@ NotificationHelperModule::~NotificationHelperModule()
     delete hEvent;
     delete iEvent;
     delete rEvent;
+    delete installWatcher;
 }
 
 void NotificationHelperModule::apportEvent()
@@ -102,9 +106,9 @@ void NotificationHelperModule::hookEvent()
     hEvent->show();
 }
 
-void NotificationHelperModule::installEvent()
+void NotificationHelperModule::installEvent(const QString application, const QString package)
 {
-    iEvent->show();
+    iEvent->getInfo(application, package);
 }
 
 void NotificationHelperModule::rebootEvent()

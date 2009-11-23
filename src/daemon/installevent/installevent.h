@@ -23,6 +23,8 @@
 
 #include "../event.h"
 
+#include <QString>
+
 #include "installgui.h"
 
 class InstallEvent : public Event
@@ -34,10 +36,15 @@ public:
 
     virtual ~InstallEvent();
 
+public slots:
+    void getInfo(const QString application, const QString package);
+
 private slots:
     void run();
 
 private:
+    QString applicationName;
+    QString packageName;
     InstallGui* iGui;
 };
 
