@@ -89,7 +89,7 @@ void InstallEvent::getInfo(const QString application, const QString package)
 
 void InstallEvent::run()
 {
-    iGui = new InstallGui(this, packageList);
+    iGui = new InstallGui(this, applicationName, packageList);
     Event::run();
 }
 

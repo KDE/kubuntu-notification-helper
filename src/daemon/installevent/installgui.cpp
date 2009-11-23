@@ -25,16 +25,18 @@
 #include <QVBoxLayout>
 
 // KDE includes
-#include <KDebug>
 #include <KLocalizedString>
-#include <KProcess>
+#include <KNotification>
+#include <KToolInvocation>
 
-InstallGui::InstallGui(QObject* parent, const QMap<QString, QString> packageList)
+InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QString, QString> packageList)
         : QObject(parent)
         , dialog(0)
+        , applicationName(0)
         , toInstallList(0)
 {
     toInstallList.clear();
+    applicationName = application;
 
     dialog = new KDialog;
     dialog->setWindowIcon(KIcon("download"));
@@ -83,16 +85,15 @@ void InstallGui::packageToggled(QListWidgetItem *item)
     } else {
         toInstallList.removeAt(toInstallList.indexOf(item->toolTip()));
     }
-
-    kDebug() << "toInstallList == " << toInstallList;
 }
 
 void InstallGui::runPackageInstall()
 {
-    KProcess *process = new KProcess();
-    process->setProgram(QStringList() << "/usr/lib/kde4/libexec/kdesu" << "install-package --install" << toInstallList);
-    // TODO: notify on install finish
-    process->execute();
+    if (KToolInvocation::kdeinitExec("/usr/lib/kde4/libexec/kdesu", QStringList() << "install-package --install" << toInstallList) == 0) {
+        KNotification::event("Install",
+                             i18n("You will need to restart %1 to use the new functionality", applicationName),
+                             KIcon("system-software-update").pixmap(QSize(22,22)));
+    }
 }
 
 void InstallGui::cleanUpDialog()
