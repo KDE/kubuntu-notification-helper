@@ -24,8 +24,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-// KDE includes
-#include <KDebug>
+// // KDE includes
 #include <KLocalizedString>
 #include <KNotification>
 #include <KToolInvocation>
@@ -93,7 +92,6 @@ void InstallGui::runPackageInstall()
     int returnValue = KToolInvocation::kdeinitExec("/usr/lib/kde4/libexec/kdesu",
                                                    QStringList() << "install-package --install" << toInstallList);
     if (returnValue == 0) {
-        kDebug() << "Install finished";
         KNotification *notify = new KNotification("Install", 0);
         notify->setComponentData(KComponentData("notificationhelper"));
 
