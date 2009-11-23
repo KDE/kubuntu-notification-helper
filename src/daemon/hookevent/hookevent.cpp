@@ -24,13 +24,11 @@
 // Qt includes
 #include <QtCore/QDir>
 
-// Own includes
-#include "hookparser.h"
-#include "hookgui.h"
-
 HookEvent::HookEvent(QObject* parent, QString name)
         : Event(parent, name)
+        , parser(0)
         , parsedHookMap()
+        , hGui(0)
 {}
 
 HookEvent::~HookEvent()
@@ -43,7 +41,7 @@ void HookEvent::show()
     QStringList fileList;
     fileList << hookDir.entryList(QDir::Files);
 
-    HookParser* parser = new HookParser(this);
+    parser = new HookParser(this);
     foreach(const QString &fileName, fileList) {
         QMap<QString, QString> fileResult = parser->parseHook(hookDir.filePath(fileName));
         if (!fileResult.isEmpty()) {
@@ -65,9 +63,8 @@ void HookEvent::show()
 
 void HookEvent::run()
 {
-    HookGui* gui = new HookGui(this, parsedHookMap);
+    hGui = new HookGui(this, parsedHookMap);
     Event::run();
-    Q_UNUSED(gui);
 }
 
 #include "hookevent.moc"

@@ -35,6 +35,9 @@ public:
 
 public Q_SLOTS:
     bool installRestricted(QString application, QString package);
+
+signals:
+    void installRestrictedCalled(QString application, QString package);
 };
 
 #endif

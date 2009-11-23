@@ -27,6 +27,10 @@
 // KDE includes
 #include <KPageDialog>
 
+// Own includes
+#include "hookparser.h"
+#include "hookgui.h"
+
 class HookEvent : public Event
 {
     Q_OBJECT
@@ -40,7 +44,9 @@ private slots:
     void run();
 
 private:
+    HookParser* parser;
     QMap< QString, QMap< QString, QString > > parsedHookMap;
+    HookGui* hGui;
 };
 
 #endif
