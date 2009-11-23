@@ -25,6 +25,7 @@
 #include <QVBoxLayout>
 
 // KDE includes
+#include <KDebug>
 #include <KLocalizedString>
 #include <KNotification>
 #include <KToolInvocation>
@@ -89,10 +90,17 @@ void InstallGui::packageToggled(QListWidgetItem *item)
 
 void InstallGui::runPackageInstall()
 {
-    if (KToolInvocation::kdeinitExec("/usr/lib/kde4/libexec/kdesu", QStringList() << "install-package --install" << toInstallList) == 0) {
-        KNotification::event("Install",
-                             i18n("You will need to restart %1 to use the new functionality", applicationName),
-                             KIcon("system-software-update").pixmap(QSize(22,22)));
+    int returnValue = KToolInvocation::kdeinitExec("/usr/lib/kde4/libexec/kdesu",
+                                                   QStringList() << "install-package --install" << toInstallList);
+    if (returnValue == 0) {
+        kDebug() << "Install finished";
+        KNotification *notify = new KNotification("Install", 0);
+        notify->setComponentData(KComponentData("notificationhelper"));
+
+        notify->setPixmap(KIcon("download").pixmap(48,48));
+        notify->setText(i18n("Once the install is finished, you will need to restart %1 to use the new functionality", applicationName));
+
+        notify->sendEvent();
     }
 }
 

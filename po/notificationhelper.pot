@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-23 15:13-0500\n"
+"POT-Creation-Date: 2009-11-23 16:12-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,21 +71,29 @@ msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
 msgstr ""
 
-#: src/daemon/installevent/installgui.cpp:41
+#: src/daemon/installevent/installgui.cpp:44
 msgid "Install Packages"
 msgstr ""
 
-#: src/daemon/installevent/installgui.cpp:43
+#: src/daemon/installevent/installgui.cpp:46
 msgid "Install Selected"
 msgstr ""
 
-#: src/daemon/installevent/installgui.cpp:53
+#: src/daemon/installevent/installgui.cpp:56
 msgid ""
 "For extra multimedia functionality, select restricted packages to be "
 "installed."
 msgstr ""
 
+#: src/daemon/installevent/installgui.cpp:101
+#, kde-format
+msgid ""
+"Once the install is finished, you will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+
 #: src/daemon/installevent/installevent.cpp:34
+msgctxt "The name of the Adobe Flash plugin"
 msgid "Flash"
 msgstr ""
 
