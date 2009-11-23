@@ -21,15 +21,11 @@
 #include "installdbuswatcher.h"
 
 // Qt includes
-// #include <QBusConnection>
+#include <QString>
 
 InstallDBusWatcher::InstallDBusWatcher(QObject* parent)
         : QObject(parent)
-{
-//     QDBusConnection conn = QDBusConnection::sessionBus();
-// 
-//     conn.interface()->registerService("org.kubuntu.restrictedInstall"));
-}
+{}
 
 InstallDBusWatcher::~InstallDBusWatcher()
 {}
