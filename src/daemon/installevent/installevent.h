@@ -23,7 +23,7 @@
 
 #include "../event.h"
 
-#include <QString>
+#include <QStringList>
 
 #include "installgui.h"
 
@@ -45,6 +45,7 @@ private slots:
 private:
     QString applicationName;
     QString packageName;
+    QStringList packageList;
     InstallGui* iGui;
 };
 

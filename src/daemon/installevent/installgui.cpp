@@ -22,22 +22,26 @@
 
 // Qt includes
 #include <QLabel>
-#include <QListWidget>
 #include <QVBoxLayout>
 
 // KDE includes
 #include <KDebug>
 #include <KLocalizedString>
+#include <KProcess>
 
-InstallGui::InstallGui(QObject* parent)
+InstallGui::InstallGui(QObject* parent, const QStringList packageList)
         : QObject(parent)
         , dialog(0)
+        , toInstallList(0)
 {
+    toInstallList.clear();
+
     dialog = new KDialog;
     dialog->setWindowIcon(KIcon("download"));
     dialog->setCaption(i18n("Install Packages"));
     dialog->setButtons(KDialog::Ok | KDialog::Cancel);
     dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
+    connect(dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
     connect(dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
 
     QWidget* widget = new QWidget(dialog);
@@ -50,7 +54,15 @@ InstallGui::InstallGui(QObject* parent)
     layout->addWidget(label);
 
     QListWidget* listWidget = new QListWidget(widget);
+    connect(listWidget, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(packageToggled(QListWidgetItem *)));
     layout->addWidget(listWidget);
+
+    foreach(const QString &package, packageList) {
+        QListWidgetItem* item = new QListWidgetItem(package);
+        item->setCheckState(Qt::Checked);
+        toInstallList << package;
+        listWidget->addItem(item);
+    }
 
     dialog->setMainWidget(widget);
     dialog->show();
@@ -61,9 +73,23 @@ InstallGui::~InstallGui()
     delete dialog;
 }
 
+void InstallGui::packageToggled(QListWidgetItem *item)
+{
+    if (item->checkState() == Qt::Checked) {
+        toInstallList << item->text();
+    } else {
+        toInstallList.removeAt(toInstallList.indexOf(item->text()));
+    }
+
+    kDebug() << "toInstallList == " << toInstallList;
+}
+
 void InstallGui::runPackageInstall()
 {
-    kDebug() << "unimplemented";
+    KProcess *process = new KProcess();
+    process->setProgram(QStringList() << "/usr/lib/kde4/libexec/kdesu" << "install-package --install" << toInstallList);
+    // TODO: notify on install finish
+    process->execute();
 }
 
 void InstallGui::cleanUpDialog()

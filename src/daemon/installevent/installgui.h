@@ -21,6 +21,10 @@
 #ifndef INSTALLGUI_H
 #define INSTALLGUI_H
 
+// Qt includes
+#include <QListWidget>
+#include <QStringList>
+
 // KDE includes
 #include <KDialog>
 
@@ -28,16 +32,18 @@ class InstallGui : public QObject
 {
     Q_OBJECT
 public:
-    InstallGui(QObject* parent);
+    InstallGui(QObject* parent, const QStringList packageList);
 
     virtual ~InstallGui();
 
 private slots:
     void cleanUpDialog();
+    void packageToggled(QListWidgetItem *item);
     void runPackageInstall();
 
 private:
     KDialog* dialog;
+    QStringList toInstallList;
 };
 
 #endif

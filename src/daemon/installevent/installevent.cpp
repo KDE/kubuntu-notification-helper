@@ -20,10 +20,14 @@
 
 #include "installevent.h"
 
+// Qt includes
+#include <QFile>
+
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , applicationName(0)
         , packageName(0)
+        , packageList(0)
         , iGui(0)
 {}
 
@@ -35,7 +39,8 @@ InstallEvent::~InstallEvent()
 void InstallEvent::show()
 {
     QPixmap icon = KIcon("download").pixmap(48, 48);
-    QString text(i18nc("Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available"));
+    QString text(i18nc("Notification when a package wants to install extra software",
+                       "Extra packages for restricted multimedia functionality are available"));
     QStringList actions;
     actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("User declines an action", "Ignore");
@@ -48,22 +53,21 @@ void InstallEvent::getInfo(const QString application, const QString package)
 {
     applicationName = application;
     packageName = package;
+    packageList.clear();
 
-    // My super funtime pseudocode-so-I-don't-forget-overnight routine
-    // Check to see if we have packages to offer
-    // bool anythingToShow = checkIfAnythingToShow();
+    // Check to see if requested package is installed or not
+    if (!QFile::exists("/var/lib/dpkg/info/" + package + ".list")) {
+        packageList << package;
+    }
 
-    // If we do, show the user, populate list for iGui
-    // if (anythingToShow) {
-    // QStringList packageList = getPackageList();
-    // show();
-    // }
+    if (!packageList.isEmpty()) {
+       show();
+    }
 }
 
 void InstallEvent::run()
 {
-    // TODO: Pass QStringList of packages to install to Gui
-    iGui = new InstallGui(this);
+    iGui = new InstallGui(this, packageList);
     Event::run();
 }
 
