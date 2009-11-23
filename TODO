@@ -3,7 +3,7 @@ General:
 
 0.5 goals:
 * Make sure current apport/hook/reboot notifications are solid for LTS. (IP)
-* Implement codec notification/installation, based on the current DBus interface.
+* Implement codec notification/installation, based on the current DBus interface. (DONE)
 * Implement KCM to manage hidden notification types (i.e. unset hide state) (DONE)
 
 Once 0.5.0 is released, Kubuntu Notification Helper will go into bugfix mode until
