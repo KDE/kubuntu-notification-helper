@@ -5,10 +5,14 @@ set(notificationhelper_SRCS
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
     hookevent/hookparser.cpp
+    installevent/installdbuswatcher.cpp
     installevent/installevent.cpp
     installevent/installgui.cpp
     rebootevent/rebootevent.cpp
 )
+
+QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restrictedInstall.xml
+                     installevent/installdbuswatcher.h InstallDBusWatcher)
 
 kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})
 
