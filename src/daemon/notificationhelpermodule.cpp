@@ -48,7 +48,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
                          "0.4", ki18n("A Notification Helper for Kubuntu"),
                          KAboutData::License_GPL, ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
-                         KLocalizedString(), "http://kubuntu.org");
+                         KLocalizedString(), "http://kubuntu.org", "https://bugs.launchpad.net/ubuntu");
 
     aEvent = new ApportEvent(this, "Apport");
     hEvent = new HookEvent(this, "Hook");
