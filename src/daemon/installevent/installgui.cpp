@@ -50,7 +50,7 @@ InstallGui::InstallGui(QObject* parent, const QMap<QString, QString> packageList
 
     QLabel* label = new QLabel(widget);
     label->setWordWrap(true);
-    label->setText(i18n("For extra multimedia functionality select restricted packages to be installed."));
+    label->setText(i18n("For extra multimedia functionality, select restricted packages to be installed."));
     layout->addWidget(label);
 
     QListWidget* listWidget = new QListWidget(widget);

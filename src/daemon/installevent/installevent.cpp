@@ -23,8 +23,6 @@
 // Qt includes
 #include <QFile>
 
-#include <KDebug>
-
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , applicationName(0)
@@ -64,12 +62,12 @@ void InstallEvent::show()
 void InstallEvent::getInfo(const QString application, const QString package)
 {
     applicationName = application;
+    packageList.clear();
 
     if (multimediaCategory.contains(package)) {
         QMap<QString, QString>::const_iterator packageIter = multimediaCategory.constBegin();
         while (packageIter != multimediaCategory.end()) {
             if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
-                kDebug() << "packageIter.value() == " << packageIter.value();
                 packageList[packageIter.key()] = packageIter.value();
             }
             ++packageIter;
@@ -83,8 +81,6 @@ void InstallEvent::getInfo(const QString application, const QString package)
             ++packageIter;
         }
     }
-
-    kDebug() << "packageList" << packageList;
 
     if (!packageList.isEmpty()) {
        show();
