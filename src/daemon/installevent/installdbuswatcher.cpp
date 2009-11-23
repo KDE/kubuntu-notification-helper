@@ -19,13 +19,20 @@
  ***************************************************************************/
 
 #include "installdbuswatcher.h"
+#include "restrictedinstalladaptor.h"
 
 // Qt includes
+#include <QDBusConnection>
 #include <QString>
 
 InstallDBusWatcher::InstallDBusWatcher(QObject* parent)
         : QObject(parent)
-{}
+{
+    new RestrictedInstallAdaptor(this);
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.registerObject("/org/kubuntu/restrictedInstall", this);
+    dbus.registerService("org.kubuntu.restrictedInstall");
+}
 
 InstallDBusWatcher::~InstallDBusWatcher()
 {}
