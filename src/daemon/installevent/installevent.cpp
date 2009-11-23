@@ -23,13 +23,25 @@
 // Qt includes
 #include <QFile>
 
+#include <KDebug>
+
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , applicationName(0)
-        , packageName(0)
-        , packageList(0)
+        , multimediaCategory()
+        , semanticCategory()
+        , packageList()
         , iGui(0)
-{}
+{
+    multimediaCategory["flashplugin-installer"] = i18n("Flash");
+    multimediaCategory["libxine1-ffmpeg"] = i18n("MPEG Plugins");
+    multimediaCategory["libavcodec-unstripped-52"] = i18n("Video Codecs");
+    multimediaCategory["libdvdread4"] = i18n("DVD Reading");
+    multimediaCategory["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
+    multimediaCategory["libmp3lame0"] = i18n("MP3 Encoding");
+
+    semanticCategory["soprano-backend-sesame"] = i18n("Improved Semantic Desktop Plugin");
+}
 
 InstallEvent::~InstallEvent()
 {
@@ -52,13 +64,27 @@ void InstallEvent::show()
 void InstallEvent::getInfo(const QString application, const QString package)
 {
     applicationName = application;
-    packageName = package;
-    packageList.clear();
 
-    // Check to see if requested package is installed or not
-    if (!QFile::exists("/var/lib/dpkg/info/" + package + ".list")) {
-        packageList << package;
+    if (multimediaCategory.contains(package)) {
+        QMap<QString, QString>::const_iterator packageIter = multimediaCategory.constBegin();
+        while (packageIter != multimediaCategory.end()) {
+            if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
+                kDebug() << "packageIter.value() == " << packageIter.value();
+                packageList[packageIter.key()] = packageIter.value();
+            }
+            ++packageIter;
+        }
+    } else if (semanticCategory.contains(package)) {
+        QMap<QString, QString>::const_iterator packageIter = semanticCategory.constBegin();
+        while (packageIter != semanticCategory.end()) {
+            if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
+                packageList[packageIter.key()] = packageIter.value();
+            }
+            ++packageIter;
+        }
     }
+
+    kDebug() << "packageList" << packageList;
 
     if (!packageList.isEmpty()) {
        show();

@@ -23,6 +23,7 @@
 
 // Qt includes
 #include <QListWidget>
+#include <QMap>
 #include <QStringList>
 
 // KDE includes
@@ -32,7 +33,7 @@ class InstallGui : public QObject
 {
     Q_OBJECT
 public:
-    InstallGui(QObject* parent, const QStringList packageList);
+    InstallGui(QObject* parent, const QMap<QString, QString> packageList);
 
     virtual ~InstallGui();
 

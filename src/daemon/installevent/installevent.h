@@ -23,8 +23,11 @@
 
 #include "../event.h"
 
+// Qt includes
+#include <QMap>
 #include <QStringList>
 
+// Own includes
 #include "installgui.h"
 
 class InstallEvent : public Event
@@ -44,8 +47,9 @@ private slots:
 
 private:
     QString applicationName;
-    QString packageName;
-    QStringList packageList;
+    QMap<QString, QString> multimediaCategory;
+    QMap<QString, QString> semanticCategory;
+    QMap<QString, QString> packageList;
     InstallGui* iGui;
 };
 

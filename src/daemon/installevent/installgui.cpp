@@ -29,7 +29,7 @@
 #include <KLocalizedString>
 #include <KProcess>
 
-InstallGui::InstallGui(QObject* parent, const QStringList packageList)
+InstallGui::InstallGui(QObject* parent, const QMap<QString, QString> packageList)
         : QObject(parent)
         , dialog(0)
         , toInstallList(0)
@@ -57,11 +57,14 @@ InstallGui::InstallGui(QObject* parent, const QStringList packageList)
     connect(listWidget, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(packageToggled(QListWidgetItem *)));
     layout->addWidget(listWidget);
 
-    foreach(const QString &package, packageList) {
-        QListWidgetItem* item = new QListWidgetItem(package);
+    QMap<QString, QString>::const_iterator nameIter = packageList.constBegin();
+    while (nameIter != packageList.end()) {
+        QListWidgetItem* item = new QListWidgetItem(nameIter.value());
+        item->setToolTip(nameIter.key());
+        toInstallList << nameIter.key();
         item->setCheckState(Qt::Checked);
-        toInstallList << package;
         listWidget->addItem(item);
+        ++nameIter;
     }
 
     dialog->setMainWidget(widget);
@@ -76,9 +79,9 @@ InstallGui::~InstallGui()
 void InstallGui::packageToggled(QListWidgetItem *item)
 {
     if (item->checkState() == Qt::Checked) {
-        toInstallList << item->text();
+        toInstallList << item->toolTip();
     } else {
-        toInstallList.removeAt(toInstallList.indexOf(item->text()));
+        toInstallList.removeAt(toInstallList.indexOf(item->toolTip()));
     }
 
     kDebug() << "toInstallList == " << toInstallList;
