@@ -37,7 +37,7 @@ void InstallEvent::show()
     QPixmap icon = KIcon("download").pixmap(48, 48);
     QString text(i18nc("Notification when a package wants to install extra software", "Extra packages for restricted multimedia functionality are available"));
     QStringList actions;
-    actions << i18nc("Action to begin install process", "Install");
+    actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("User declines an action", "Ignore");
     actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
 
@@ -49,14 +49,20 @@ void InstallEvent::getInfo(const QString application, const QString package)
     applicationName = application;
     packageName = package;
 
+    // My super funtime pseudocode-so-I-don't-forget-overnight routine
     // Check to see if we have packages to offer
+    // bool anythingToShow = checkIfAnythingToShow();
 
-    // If we do, show the user
+    // If we do, show the user, populate list for iGui
+    // if (anythingToShow) {
+    // QStringList packageList = getPackageList();
     // show();
+    // }
 }
 
 void InstallEvent::run()
 {
+    // TODO: Pass QStringList of packages to install to Gui
     iGui = new InstallGui(this);
     Event::run();
 }

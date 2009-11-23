@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-22 22:19-0500\n"
+"POT-Creation-Date: 2009-11-22 23:32-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,14 +28,14 @@ msgstr ""
 
 #: src/daemon/rebootevent/rebootevent.cpp:39
 #: src/daemon/apportevent/apportevent.cpp:58
-#: src/daemon/hookevent/hookevent.cpp:60
-#: src/daemon/installevent/installevent.cpp:39
+#: src/daemon/hookevent/hookevent.cpp:58
+#: src/daemon/installevent/installevent.cpp:41
 msgctxt "User declines an action"
 msgid "Ignore"
 msgstr ""
 
 #: src/daemon/rebootevent/rebootevent.cpp:40
-#: src/daemon/installevent/installevent.cpp:40
+#: src/daemon/installevent/installevent.cpp:42
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Ignore forever"
 msgstr ""
@@ -46,13 +46,14 @@ msgid "An application has crashed on your system (now or in the past)"
 msgstr ""
 
 #: src/daemon/apportevent/apportevent.cpp:57
-#: src/daemon/hookevent/hookevent.cpp:59
+#: src/daemon/hookevent/hookevent.cpp:57
+#: src/daemon/installevent/installevent.cpp:40
 msgctxt "Opens a dialog with more details"
 msgid "Details"
 msgstr ""
 
 #: src/daemon/apportevent/apportevent.cpp:59
-#: src/daemon/hookevent/hookevent.cpp:61
+#: src/daemon/hookevent/hookevent.cpp:59
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Never show again"
 msgstr ""
@@ -65,7 +66,7 @@ msgstr ""
 msgid "Run this action now"
 msgstr ""
 
-#: src/daemon/hookevent/hookevent.cpp:57
+#: src/daemon/hookevent/hookevent.cpp:55
 msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
 msgstr ""
@@ -84,24 +85,19 @@ msgid ""
 "installed."
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:36
+#: src/daemon/installevent/installevent.cpp:38
 msgctxt "Notification when a package wants to install extra software"
 msgid "Extra packages for restricted multimedia functionality are available"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:38
-msgctxt "Action to begin install process"
-msgid "Install"
-msgstr ""
-
-#: src/daemon/notificationhelpermodule.cpp:47
+#: src/daemon/notificationhelpermodule.cpp:48
 msgid "Kubuntu Notification Helper"
 msgstr ""
 
-#: src/daemon/notificationhelpermodule.cpp:48
+#: src/daemon/notificationhelpermodule.cpp:49
 msgid "A Notification Helper for Kubuntu"
 msgstr ""
 
-#: src/daemon/notificationhelpermodule.cpp:49
+#: src/daemon/notificationhelpermodule.cpp:50
 msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
 msgstr ""
