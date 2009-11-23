@@ -31,7 +31,7 @@ InstallEvent::InstallEvent(QObject* parent, QString name)
         , packageList()
         , iGui(0)
 {
-    multimediaCategory["flashplugin-installer"] = i18n("Flash");
+    multimediaCategory["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
     multimediaCategory["libxine1-ffmpeg"] = i18n("MPEG Plugins");
     multimediaCategory["libavcodec-unstripped-52"] = i18n("Video Codecs");
     multimediaCategory["libdvdread4"] = i18n("DVD Reading");
