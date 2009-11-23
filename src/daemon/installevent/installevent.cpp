@@ -50,7 +50,7 @@ void InstallEvent::show()
 {
     QPixmap icon = KIcon("download").pixmap(48, 48);
     QString text(i18nc("Notification when a package wants to install extra software",
-                       "Extra packages for restricted multimedia functionality are available for %1", applicationName));
+                       "Extra, restrictively-licensed packages are available for %1 to enhance functionality", applicationName));
     QStringList actions;
     actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("User declines an action", "Ignore");
