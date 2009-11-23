@@ -47,6 +47,7 @@ public:
 
 public slots:
     void run();
+    void reloadConfig();
 
 private slots:
     void ignore();

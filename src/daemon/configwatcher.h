@@ -1,6 +1,5 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,44 +18,26 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPERMODULE_H
-#define NOTIFICATIONHELPERMODULE_H
+#ifndef CONFIGWATCHER_H
+#define CONFIGWATCHER_H
 
-// KDE includes
-#include <KDEDModule>
+// Qt includes
+#include <QObject>
 
-// Own includes
-#include "apportevent/apportevent.h"
-#include "hookevent/hookevent.h"
-#include "installevent/installevent.h"
-#include "rebootevent/rebootevent.h"
-
-#include "configwatcher.h"
-#include "installevent/installdbuswatcher.h"
-
-class NotificationHelperModule
-            : public KDEDModule
+class ConfigWatcher : public QObject
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "org.kubuntu.NotificationHelper")
 public:
-    NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+    ConfigWatcher(QObject* parent);
 
-    virtual ~NotificationHelperModule();
+    virtual ~ConfigWatcher();
 
-private slots:
-    void apportEvent();
-    void hookEvent();
-    void rebootEvent();
-    void installEvent(const QString application, const QString name);
+public Q_SLOTS:
+    void reloadConfig();
 
-private:
-    ApportEvent* aEvent;
-    HookEvent* hEvent;
-    InstallEvent* iEvent;
-    RebootEvent* rEvent;
-
-    ConfigWatcher* configWatcher;
-    InstallDBusWatcher* installWatcher;
+signals:
+    void reloadConfigCalled();
 };
 
 #endif

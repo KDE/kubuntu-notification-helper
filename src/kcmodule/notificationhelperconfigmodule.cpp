@@ -21,6 +21,8 @@
 #include "notificationhelperconfigmodule.h"
 
 // Qt includes
+#include <QDBusConnection>
+#include <QDBusMessage>
 #include <QGroupBox>
 #include <QVBoxLayout>
 
@@ -99,6 +101,10 @@ void NotificationHelperConfigModule::save()
 
     cfg.sync();
     notifyGroup.sync();
+
+    QDBusMessage message =
+        QDBusMessage::createSignal("/NotificationHelper", "org.kubuntu.NotificationHelper", "reloadConfig");
+    QDBusConnection::sessionBus().send(message);
 }
 
 void NotificationHelperConfigModule::defaults()

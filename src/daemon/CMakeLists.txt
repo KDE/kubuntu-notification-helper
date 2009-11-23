@@ -1,6 +1,7 @@
 set(notificationhelper_SRCS
     notificationhelpermodule.cpp
     event.cpp
+    configwatcher.cpp
     apportevent/apportevent.cpp
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
@@ -11,6 +12,8 @@ set(notificationhelper_SRCS
     rebootevent/rebootevent.cpp
 )
 
+QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
+                     configwatcher.h ConfigWatcher)
 QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restrictedInstall.xml
                      installevent/installdbuswatcher.h InstallDBusWatcher)
 

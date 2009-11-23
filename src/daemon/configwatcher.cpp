@@ -1,6 +1,5 @@
 /***************************************************************************
  *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,44 +18,32 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPERMODULE_H
-#define NOTIFICATIONHELPERMODULE_H
+#include "configwatcher.h"
+#include "notificationhelperadaptor.h"
+
+// Qt includes
+#include <QDBusConnection>
+#include <QString>
 
 // KDE includes
-#include <KDEDModule>
+#include <KDebug>
 
-// Own includes
-#include "apportevent/apportevent.h"
-#include "hookevent/hookevent.h"
-#include "installevent/installevent.h"
-#include "rebootevent/rebootevent.h"
-
-#include "configwatcher.h"
-#include "installevent/installdbuswatcher.h"
-
-class NotificationHelperModule
-            : public KDEDModule
+ConfigWatcher::ConfigWatcher(QObject* parent)
+        : QObject(parent)
 {
-    Q_OBJECT
-public:
-    NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+    new NotificationHelperAdaptor(this);
+    QDBusConnection dbus = QDBusConnection::sessionBus();
+    dbus.registerObject("/NotificationHelper", this);
+    dbus.registerService("org.kubuntu.NotificationHelper");
+}
 
-    virtual ~NotificationHelperModule();
+ConfigWatcher::~ConfigWatcher()
+{}
 
-private slots:
-    void apportEvent();
-    void hookEvent();
-    void rebootEvent();
-    void installEvent(const QString application, const QString name);
+void ConfigWatcher::reloadConfig()
+{
+    kDebug() << "Config changed! Emit!";
+    emit reloadConfigCalled();
+}
 
-private:
-    ApportEvent* aEvent;
-    HookEvent* hEvent;
-    InstallEvent* iEvent;
-    RebootEvent* rEvent;
-
-    ConfigWatcher* configWatcher;
-    InstallDBusWatcher* installWatcher;
-};
-
-#endif
+#include "configwatcher.moc"

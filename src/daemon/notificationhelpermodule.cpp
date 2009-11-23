@@ -50,23 +50,18 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                          KAboutData::License_GPL, ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
                          KLocalizedString(), "http://kubuntu.org", "https://bugs.launchpad.net/ubuntu");
 
+    configWatcher = new ConfigWatcher(this);
+
     aEvent = new ApportEvent(this, "Apport");
     hEvent = new HookEvent(this, "Hook");
     iEvent = new InstallEvent(this, "Install" );
     rEvent = new RebootEvent(this, "Restart");
 
-    if (!rEvent->hidden) {
-        KDirWatch *stampDirWatch = new KDirWatch(this);
-        stampDirWatch->addFile("/var/lib/update-notifier/dpkg-run-stamp");
-        connect(stampDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(rebootEvent()));
-        rebootEvent();
-    }
-
-
     if (!aEvent->hidden && (QFile::exists("/usr/share/apport/apport-kde") || QFile::exists("/usr/share/apport/apport-gtk"))) {
         KDirWatch *apportDirWatch =  new KDirWatch(this);
         apportDirWatch->addDir("/var/crash/");
         connect(apportDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(apportEvent()));
+        connect(configWatcher, SIGNAL(reloadConfigCalled()), aEvent, SLOT(reloadConfig()));
 
         // Force check since we just started up and there might have been crashes on reboot
         QTimer::singleShot(5000, this, SLOT(apportEvent()));
@@ -76,6 +71,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         KDirWatch *hooksDirWatch = new KDirWatch(this);
         hooksDirWatch->addDir("/var/lib/update-notifier/user.d/");
         connect(hooksDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(hookEvent()));
+        connect(configWatcher, SIGNAL(reloadConfigCalled()), hEvent, SLOT(reloadConfig()));
     }
 
     if ( !iEvent->hidden )
@@ -83,6 +79,16 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         installWatcher = new InstallDBusWatcher(this);
         connect(installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
                                        this, SLOT(installEvent(const QString &, const QString &)));
+        connect(configWatcher, SIGNAL(reloadConfigCalled()), iEvent, SLOT(reloadConfig()));
+    }
+
+    if (!rEvent->hidden) {
+        KDirWatch *stampDirWatch = new KDirWatch(this);
+        stampDirWatch->addFile("/var/lib/update-notifier/dpkg-run-stamp");
+        connect(stampDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(rebootEvent()));
+        connect(configWatcher, SIGNAL(reloadConfigCalled()), rEvent, SLOT(reloadConfig()));
+
+        rebootEvent();
     }
 }
 

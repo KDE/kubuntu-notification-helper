@@ -99,4 +99,10 @@ void Event::notifyClosed()
     active = false;
 }
 
+void Event::reloadConfig()
+{
+    kDebug() << "reloadConfig called";
+    hidden = readHidden();
+}
+
 #include "event.moc"
