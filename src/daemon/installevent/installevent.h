@@ -23,6 +23,8 @@
 
 #include "../event.h"
 
+#include "installgui.h"
+
 class InstallEvent : public Event
 {
     Q_OBJECT
@@ -34,6 +36,9 @@ public:
 
 private slots:
     void run();
+
+private:
+    InstallGui* iGui;
 };
 
 #endif

@@ -32,7 +32,7 @@ InstallDBusWatcher::~InstallDBusWatcher()
 
 bool InstallDBusWatcher::installRestricted(QString application, QString package)
 {
-    //TODO: emit crap here
+    emit installRestrictedCalled(application, package);
     return true;
 }
 

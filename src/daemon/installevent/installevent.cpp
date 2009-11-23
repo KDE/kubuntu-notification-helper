@@ -20,15 +20,15 @@
 
 #include "installevent.h"
 
-// Own includes
-#include "installgui.h"
-
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
+        , iGui(0)
 {}
 
 InstallEvent::~InstallEvent()
-{}
+{
+    delete iGui;
+}
 
 void InstallEvent::show()
 {
@@ -44,7 +44,7 @@ void InstallEvent::show()
 
 void InstallEvent::run()
 {
-    InstallGui* gui = new InstallGui(this);
+    iGui = new InstallGui(this);
     Event::run();
 }
 
