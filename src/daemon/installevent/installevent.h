@@ -25,7 +25,6 @@
 
 // Qt includes
 #include <QtCore/QMap>
-#include <QtCore/QStringList>
 
 class InstallGui;
 
