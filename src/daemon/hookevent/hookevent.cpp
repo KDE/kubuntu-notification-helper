@@ -30,9 +30,9 @@
 
 HookEvent::HookEvent(QObject* parent, QString name)
         : Event(parent, name)
-        , parser(0)
-        , parsedHookMap()
-        , hGui(0)
+        , m_parser(0)
+        , m_parsedHookMap()
+        , m_hookGui(0)
 {}
 
 HookEvent::~HookEvent()
@@ -45,16 +45,16 @@ void HookEvent::show()
     QStringList fileList;
     fileList << hookDir.entryList(QDir::Files);
 
-    parser = new HookParser(this);
+    m_parser = new HookParser(this);
     foreach(const QString &fileName, fileList) {
-        QMap<QString, QString> fileResult = parser->parseHook(hookDir.filePath(fileName));
+        QMap<QString, QString> fileResult = m_parser->parseHook(hookDir.filePath(fileName));
         if (!fileResult.isEmpty()) {
             // Add parsed hook to map
-            parsedHookMap[fileName] = fileResult;
+            m_parsedHookMap[fileName] = fileResult;
         }
     }
 
-    if (!parsedHookMap.isEmpty()) {
+    if (!m_parsedHookMap.isEmpty()) {
         QPixmap icon = KIcon("help-hint").pixmap(48, 48);
         QString text(i18nc("Notification when an upgrade requires the user to do something", "Software upgrade notifications are available"));
         QStringList actions;
@@ -67,7 +67,7 @@ void HookEvent::show()
 
 void HookEvent::run()
 {
-    hGui = new HookGui(this, parsedHookMap);
+    m_hookGui = new HookGui(this, m_parsedHookMap);
     Event::run();
 }
 

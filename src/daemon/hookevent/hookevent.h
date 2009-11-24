@@ -24,6 +24,8 @@
 
 #include "../event.h"
 
+#include <QtCore/QMap>
+
 class HookParser;
 class HookGui;
 
@@ -42,9 +44,9 @@ private slots:
     void run();
 
 private:
-    HookParser* parser;
-    QMap< QString, QMap< QString, QString > > parsedHookMap;
-    HookGui* hGui;
+    HookParser* m_parser;
+    QMap< QString, QMap< QString, QString > > m_parsedHookMap;
+    HookGui* m_hookGui;
 };
 
 #endif
