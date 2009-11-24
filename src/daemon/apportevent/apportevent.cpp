@@ -51,7 +51,7 @@ void ApportEvent::show()
         return;
     }
 
-    QPixmap icon = KIcon("apport").pixmap(48, 48);
+    QPixmap icon = KIcon("apport").pixmap(NOTIFICATION_ICON_SIZE);
     QString text(i18nc("Notification when apport detects a crash", "An application has crashed on your system (now or in the past)"));
     QStringList actions;
     actions << i18nc("Opens a dialog with more details", "Details");

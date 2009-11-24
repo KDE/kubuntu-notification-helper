@@ -30,6 +30,8 @@
 // for implementing classes
 #include <KIcon>
 
+#define NOTIFICATION_ICON_SIZE 48,48
+
 class Event
             : public QObject
 {
