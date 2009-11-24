@@ -22,8 +22,8 @@
 #ifndef HOOKPARSER_H
 #define HOOKPARSER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QMap>
+#include <QObject>
+#include <QMap>
 
 class HookParser : public QObject
 {

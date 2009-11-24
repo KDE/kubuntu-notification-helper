@@ -22,8 +22,8 @@
 #include "notificationhelpermodule.h"
 
 // Qt
-#include <QtCore/QFile>
-#include <QtCore/QTimer>
+#include <QFile>
+#include <QTimer>
 
 // KDE
 #include <KAboutData>

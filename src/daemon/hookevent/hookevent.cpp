@@ -22,7 +22,7 @@
 #include "hookevent.h"
 
 // Qt includes
-#include <QtCore/QDir>
+#include <QDir>
 
 HookEvent::HookEvent(QObject* parent, QString name)
         : Event(parent, name)
