@@ -24,13 +24,11 @@
 
 #include <QtCore/QObject>
 
-#include <KDebug>
+// #include <KDebug>
 #include <KLocalizedString>
 
 // for implementing classes
 #include <KIcon>
-
-class KNotification;
 
 class Event
             : public QObject
