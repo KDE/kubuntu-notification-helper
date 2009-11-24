@@ -37,11 +37,9 @@ private slots:
     void runHookCommand();
 
 private:
-    KPageDialog* dialog;
-    QMap< QString, QMap< QString, QString > > parsedHookMap;
-    QMap< QString, QString > processUpgradeHook(QString fileName);
-    QString command;
-    bool terminal;
+    KPageDialog* m_dialog;
+    QString m_command;
+    bool m_terminal;
 };
 
 #endif

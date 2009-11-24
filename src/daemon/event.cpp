@@ -26,43 +26,46 @@
 
 Event::Event(QObject* parent, QString name)
         : QObject(parent)
-        , name(name)
-        , hidden(false)
-        , active(false)
+        , m_name(name)
+        , m_hidden(false)
+        , m_active(false)
 {
-    cfgstring = "hide" + name + "Notifier";
-    hidden = readHidden();
+    m_cfgstring = "hide" + m_name + "Notifier";
+    m_hidden = readHiddenConfig();
 }
 
 Event::~Event()
 {
 }
 
-bool Event::readHidden()
+bool Event::readHiddenConfig()
 {
     KConfig cfg("notificationhelper");
     KConfigGroup notifyGroup(&cfg, "Event");
-    return notifyGroup.readEntry(cfgstring, false);
+    return notifyGroup.readEntry(m_cfgstring, false);
 }
 
-void Event::writeHidden(bool value)
+void Event::writeHiddenConfig(bool value)
 {
     KConfig cfg("notificationhelper");
     KConfigGroup notifyGroup(&cfg, "Event");
-    kDebug() << cfgstring << " " << value;
-    notifyGroup.writeEntry(cfgstring, value);
+    notifyGroup.writeEntry(m_cfgstring, value);
     notifyGroup.config()->sync();
+}
+
+bool Event::isHidden()
+{
+    return m_hidden;
 }
 
 void Event::show(QPixmap icon, QString text, QStringList actions)
 {
-    if (active || hidden) {
+    if (m_active || m_hidden) {
         return;
     }
 
-    active = true;
-    kDebug() << name;
-    KNotification *notify = new KNotification(name, 0, KNotification::Persistent);
+    m_active = true;
+    KNotification *notify = new KNotification(m_name, 0, KNotification::Persistent);
     notify->setComponentData(KComponentData("notificationhelper"));
 
     notify->setPixmap(icon);
@@ -91,18 +94,18 @@ void Event::ignore()
 void Event::hide()
 {
     notifyClosed();
-    writeHidden(true);
-    hidden = true;
+    writeHiddenConfig(true);
+    m_hidden = true;
 }
 
 void Event::notifyClosed()
 {
-    active = false;
+    m_active = false;
 }
 
 void Event::reloadConfig()
 {
-    hidden = readHidden();
+    m_hidden = readHiddenConfig();
 }
 
 #include "event.moc"

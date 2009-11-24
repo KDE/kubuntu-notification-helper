@@ -35,15 +35,15 @@
 
 HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > parsedHookMap)
         : QObject(parent)
-        , dialog(0)
-        , command(0)
-        , terminal(false)
+        , m_dialog(0)
+        , m_command(0)
+        , m_terminal(false)
 {
-    dialog = new KPageDialog;
-    dialog->setCaption(i18n("Update Information"));
-    dialog->setWindowIcon(KIcon("help-hint"));
-    dialog->setButtons(KDialog::Ok);
-    connect(dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
+    m_dialog = new KPageDialog;
+    m_dialog->setCaption(i18n("Update Information"));
+    m_dialog->setWindowIcon(KIcon("help-hint"));
+    m_dialog->setButtons(KDialog::Ok);
+    connect(m_dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
 
     // Take the parsed upgrade hook(s) and put them in pages
     QMap< QString, QMap< QString, QString > >::iterator i;
@@ -85,7 +85,7 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
 
         QMap< QString, QString >::const_iterator commandIter = parsedHook.constFind("Command");
         while (commandIter != parsedHook.end() && commandIter.key() == "Command") {
-            command = commandIter.value();
+            m_command = commandIter.value();
             break;
         }
 
@@ -93,12 +93,12 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
         while (terminalIter != parsedHook.end() && terminalIter.key() == "Terminal") {
             QString terminalValue = terminalIter.value();
             if (terminalValue == "True") {
-                terminal = true;
+                m_terminal = true;
             }
             break;
         }
 
-        if (!command.isEmpty()) {
+        if (!m_command.isEmpty()) {
             QPushButton *runButton = new QPushButton(KIcon("system-run"), i18n("Run this action now"), vbox);
             connect(runButton, SIGNAL(clicked()), this, SLOT(runHookCommand()));
         }
@@ -106,40 +106,40 @@ HookGui::HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > pars
         KPageWidgetItem *page = new KPageWidgetItem(vbox, name);
         page->setIcon(KIcon("help-hint"));
 
-        dialog->addPage(page);
+        m_dialog->addPage(page);
     }
 
-    dialog->show();
+    m_dialog->show();
 }
 
 HookGui::~HookGui()
 {
-    delete dialog;
+    delete m_dialog;
 }
 
 void HookGui::runHookCommand()
 {
-    if (terminal) {
+    if (m_terminal) {
         // if command is quoted, invokeTerminal will refuse to interpret it properly
-        if (command.startsWith('\"') && command.endsWith('\"')) {
-            command.remove(0, 1);
-            command.remove((command.length() - 1), 1);
-            KToolInvocation::invokeTerminal(command);
+        if (m_command.startsWith('\"') && m_command.endsWith('\"')) {
+            m_command.remove(0, 1);
+            m_command.remove((m_command.length() - 1), 1);
+            KToolInvocation::invokeTerminal(m_command);
         }
     } else {
         KProcess *process = new KProcess();
-        process->setShellCommand(command);
+        process->setShellCommand(m_command);
         process->startDetached();
     }
 
-    command.clear();
-    terminal = false;
+    m_command.clear();
+    m_terminal = false;
 }
 
 void HookGui::cleanUpDialog()
 {
-    dialog->deleteLater();
-    dialog = 0;
+    m_dialog->deleteLater();
+    m_dialog = 0;
 }
 
 #include "hookgui.moc"

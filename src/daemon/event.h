@@ -40,8 +40,6 @@ public:
     Event(QObject* parent, QString name);
     void show(QPixmap icon, QString text, QStringList actions);
 
-    const QString name;
-    bool hidden;
     KNotification *notify;
 
     virtual ~Event();
@@ -49,6 +47,7 @@ public:
 public slots:
     void run();
     void reloadConfig();
+    bool isHidden();
 
 private slots:
     void ignore();
@@ -56,12 +55,14 @@ private slots:
     void notifyClosed();
 
 private:
-    bool active;
+    const QString m_name;
+    bool m_hidden;
+    bool m_active;
 
-    QString cfgstring;
+    QString m_cfgstring;
 
-    bool readHidden();
-    void writeHidden(bool value);
+    bool readHiddenConfig();
+    void writeHiddenConfig(bool value);
 };
 
 #endif

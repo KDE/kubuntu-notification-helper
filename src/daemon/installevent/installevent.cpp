@@ -28,32 +28,32 @@
 
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
-        , applicationName(0)
-        , multimediaCategory()
-        , semanticCategory()
-        , packageList()
-        , iGui(0)
+        , m_applicationName(0)
+        , m_multimediaCategory()
+        , m_semanticCategory()
+        , m_packageList()
+        , m_installGui(0)
 {
-    multimediaCategory["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
-    multimediaCategory["libxine1-ffmpeg"] = i18n("MPEG Plugins");
-    multimediaCategory["libavcodec-unstripped-52"] = i18n("Video Codecs");
-    multimediaCategory["libdvdread4"] = i18n("DVD Reading");
-    multimediaCategory["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
-    multimediaCategory["libmp3lame0"] = i18n("MP3 Encoding");
+    m_multimediaCategory["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
+    m_multimediaCategory["libxine1-ffmpeg"] = i18n("MPEG Plugins");
+    m_multimediaCategory["libavcodec-unstripped-52"] = i18n("Video Codecs");
+    m_multimediaCategory["libdvdread4"] = i18n("DVD Reading");
+    m_multimediaCategory["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
+    m_multimediaCategory["libmp3lame0"] = i18n("MP3 Encoding");
 
-    semanticCategory["soprano-backend-sesame"] = i18n("Improved Semantic Desktop Plugin");
+    m_semanticCategory["soprano-backend-sesame"] = i18n("Improved Semantic Desktop Plugin");
 }
 
 InstallEvent::~InstallEvent()
 {
-    delete iGui;
+    delete m_installGui;
 }
 
 void InstallEvent::show()
 {
     QPixmap icon = KIcon("download").pixmap(48, 48);
     QString text(i18nc("Notification when a package wants to install extra software",
-                       "Extra, restrictively-licensed packages are available for %1 to enhance functionality", applicationName));
+                       "Extra, restrictively-licensed packages are available for %1 to enhance functionality", m_applicationName));
     QStringList actions;
     actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("User declines an action", "Ignore");
@@ -64,35 +64,35 @@ void InstallEvent::show()
 
 void InstallEvent::getInfo(const QString application, const QString package)
 {
-    applicationName = application;
-    packageList.clear();
+    m_applicationName = application;
+    m_packageList.clear();
 
-    if (multimediaCategory.contains(package)) {
-        QMap<QString, QString>::const_iterator packageIter = multimediaCategory.constBegin();
-        while (packageIter != multimediaCategory.end()) {
+    if (m_multimediaCategory.contains(package)) {
+        QMap<QString, QString>::const_iterator packageIter = m_multimediaCategory.constBegin();
+        while (packageIter != m_multimediaCategory.end()) {
             if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
-                packageList[packageIter.key()] = packageIter.value();
+                m_packageList[packageIter.key()] = packageIter.value();
             }
             ++packageIter;
         }
-    } else if (semanticCategory.contains(package)) {
-        QMap<QString, QString>::const_iterator packageIter = semanticCategory.constBegin();
-        while (packageIter != semanticCategory.end()) {
+    } else if (m_semanticCategory.contains(package)) {
+        QMap<QString, QString>::const_iterator packageIter = m_semanticCategory.constBegin();
+        while (packageIter != m_semanticCategory.end()) {
             if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
-                packageList[packageIter.key()] = packageIter.value();
+                m_packageList[packageIter.key()] = packageIter.value();
             }
             ++packageIter;
         }
     }
 
-    if (!packageList.isEmpty()) {
+    if (!m_packageList.isEmpty()) {
        show();
     }
 }
 
 void InstallEvent::run()
 {
-    iGui = new InstallGui(this, applicationName, packageList);
+    m_installGui = new InstallGui(this, m_applicationName, m_packageList);
     Event::run();
 }
 

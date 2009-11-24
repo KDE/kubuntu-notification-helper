@@ -32,22 +32,22 @@
 
 InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QString, QString> packageList)
         : QObject(parent)
-        , dialog(0)
-        , applicationName(0)
-        , toInstallList(0)
+        , m_dialog(0)
+        , m_applicationName(0)
+        , m_toInstallList(0)
 {
-    toInstallList.clear();
-    applicationName = application;
+    m_toInstallList.clear();
+    m_applicationName = application;
 
-    dialog = new KDialog;
-    dialog->setWindowIcon(KIcon("download"));
-    dialog->setCaption(i18n("Install Packages"));
-    dialog->setButtons(KDialog::Ok | KDialog::Cancel);
-    dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
-    connect(dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
-    connect(dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
+    m_dialog = new KDialog;
+    m_dialog->setWindowIcon(KIcon("download"));
+    m_dialog->setCaption(i18n("Install Packages"));
+    m_dialog->setButtons(KDialog::Ok | KDialog::Cancel);
+    m_dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
+    connect(m_dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
+    connect(m_dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
 
-    QWidget* widget = new QWidget(dialog);
+    QWidget* widget = new QWidget(m_dialog);
     QVBoxLayout* layout = new QVBoxLayout(widget);
     widget->setLayout(layout);
 
@@ -64,40 +64,40 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
     while (nameIter != packageList.end()) {
         QListWidgetItem* item = new QListWidgetItem(nameIter.value());
         item->setToolTip(nameIter.key());
-        toInstallList << nameIter.key();
+        m_toInstallList << nameIter.key();
         item->setCheckState(Qt::Checked);
         listWidget->addItem(item);
         ++nameIter;
     }
 
-    dialog->setMainWidget(widget);
-    dialog->show();
+    m_dialog->setMainWidget(widget);
+    m_dialog->show();
 }
 
 InstallGui::~InstallGui()
 {
-    delete dialog;
+    delete m_dialog;
 }
 
 void InstallGui::packageToggled(QListWidgetItem *item)
 {
     if (item->checkState() == Qt::Checked) {
-        toInstallList << item->toolTip();
+        m_toInstallList << item->toolTip();
     } else {
-        toInstallList.removeAt(toInstallList.indexOf(item->toolTip()));
+        m_toInstallList.removeAt(m_toInstallList.indexOf(item->toolTip()));
     }
 }
 
 void InstallGui::runPackageInstall()
 {
     int returnValue = KToolInvocation::kdeinitExec("/usr/lib/kde4/libexec/kdesu",
-                                                   QStringList() << "install-package --install" << toInstallList);
+                                                   QStringList() << "install-package --install" << m_toInstallList);
     if (returnValue == 0) {
         KNotification *notify = new KNotification("Install", 0);
         notify->setComponentData(KComponentData("notificationhelper"));
 
         notify->setPixmap(KIcon("download").pixmap(48,48));
-        notify->setText(i18n("Once the install is finished, you will need to restart %1 to use the new functionality", applicationName));
+        notify->setText(i18n("Once the install is finished, you will need to restart %1 to use the new functionality", m_applicationName));
 
         notify->sendEvent();
     }
@@ -105,8 +105,8 @@ void InstallGui::runPackageInstall()
 
 void InstallGui::cleanUpDialog()
 {
-    dialog->deleteLater();
-    dialog = 0;
+    m_dialog->deleteLater();
+    m_dialog = 0;
 }
 
 #include "installgui.moc"

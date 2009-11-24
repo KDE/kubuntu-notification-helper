@@ -42,9 +42,9 @@ private slots:
     void runPackageInstall();
 
 private:
-    KDialog* dialog;
-    QString applicationName;
-    QStringList toInstallList;
+    KDialog* m_dialog;
+    QString m_applicationName;
+    QStringList m_toInstallList;
 };
 
 #endif

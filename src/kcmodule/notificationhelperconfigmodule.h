@@ -42,10 +42,10 @@ protected Q_SLOTS:
     void configChanged();
 
 private:
-    QCheckBox* apportCheckBox;
-    QCheckBox* hookCheckBox;
-    QCheckBox* installCheckBox;
-    QCheckBox* rebootCheckBox;
+    QCheckBox* m_apportCheckBox;
+    QCheckBox* m_hookCheckBox;
+    QCheckBox* m_installCheckBox;
+    QCheckBox* m_rebootCheckBox;
 };
 
 #endif

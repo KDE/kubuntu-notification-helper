@@ -49,13 +49,13 @@ private slots:
     void installEvent(const QString application, const QString name);
 
 private:
-    ApportEvent* aEvent;
-    HookEvent* hEvent;
-    InstallEvent* iEvent;
-    RebootEvent* rEvent;
+    ApportEvent* m_apportEvent;
+    HookEvent* m_hookEvent;
+    InstallEvent* m_installEvent;
+    RebootEvent* m_rebootEvent;
 
-    ConfigWatcher* configWatcher;
-    InstallDBusWatcher* installWatcher;
+    ConfigWatcher* m_configWatcher;
+    InstallDBusWatcher* m_installWatcher;
 };
 
 #endif

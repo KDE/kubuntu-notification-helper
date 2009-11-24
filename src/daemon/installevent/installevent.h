@@ -34,22 +34,22 @@ class InstallEvent : public Event
     Q_OBJECT
 public:
     InstallEvent(QObject* parent, QString name);
-    void show();
 
     virtual ~InstallEvent();
 
 public slots:
     void getInfo(const QString application, const QString package);
+    void show();
 
 private slots:
     void run();
 
 private:
-    QString applicationName;
-    QMap<QString, QString> multimediaCategory;
-    QMap<QString, QString> semanticCategory;
-    QMap<QString, QString> packageList;
-    InstallGui* iGui;
+    QString m_applicationName;
+    QMap<QString, QString> m_multimediaCategory;
+    QMap<QString, QString> m_semanticCategory;
+    QMap<QString, QString> m_packageList;
+    InstallGui* m_installGui;
 };
 
 #endif

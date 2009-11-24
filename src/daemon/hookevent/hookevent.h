@@ -32,9 +32,11 @@ class HookEvent : public Event
     Q_OBJECT
 public:
     HookEvent(QObject* parent, QString name);
-    void show();
 
     virtual ~HookEvent();
+
+public slots:
+    void show();
 
 private slots:
     void run();

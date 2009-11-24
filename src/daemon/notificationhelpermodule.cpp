@@ -48,54 +48,55 @@ K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
         : KDEDModule(parent)
-        , aEvent(0)
-        , hEvent(0)
-        , iEvent(0)
-        , rEvent(0)
-        , installWatcher(0)
+        , m_apportEvent(0)
+        , m_hookEvent(0)
+        , m_installEvent(0)
+        , m_rebootEvent(0)
+        , m_configWatcher(0)
+        , m_installWatcher(0)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper", ki18n("Kubuntu Notification Helper"),
                          "0.4", ki18n("A Notification Helper for Kubuntu"),
                          KAboutData::License_GPL, ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
                          KLocalizedString(), "http://kubuntu.org", "https://bugs.launchpad.net/ubuntu");
 
-    configWatcher = new ConfigWatcher(this);
+    m_configWatcher = new ConfigWatcher(this);
 
-    aEvent = new ApportEvent(this, "Apport");
-    hEvent = new HookEvent(this, "Hook");
-    iEvent = new InstallEvent(this, "Install" );
-    rEvent = new RebootEvent(this, "Restart");
+    m_apportEvent = new ApportEvent(this, "Apport");
+    m_hookEvent = new HookEvent(this, "Hook");
+    m_installEvent = new InstallEvent(this, "Install" );
+    m_rebootEvent = new RebootEvent(this, "Restart");
 
-    if (!aEvent->hidden && (QFile::exists("/usr/share/apport/apport-kde") || QFile::exists("/usr/share/apport/apport-gtk"))) {
+    if (!m_apportEvent->isHidden() && (QFile::exists("/usr/share/apport/apport-kde") || QFile::exists("/usr/share/apport/apport-gtk"))) {
         KDirWatch *apportDirWatch =  new KDirWatch(this);
         apportDirWatch->addDir("/var/crash/");
         connect(apportDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(apportEvent()));
-        connect(configWatcher, SIGNAL(reloadConfigCalled()), aEvent, SLOT(reloadConfig()));
+        connect(m_configWatcher, SIGNAL(reloadConfigCalled()), m_apportEvent, SLOT(reloadConfig()));
 
         // Force check since we just started up and there might have been crashes on reboot
         QTimer::singleShot(5000, this, SLOT(apportEvent()));
     }
 
-    if (!hEvent->hidden) {
+    if (!m_hookEvent->isHidden()) {
         KDirWatch *hooksDirWatch = new KDirWatch(this);
         hooksDirWatch->addDir("/var/lib/update-notifier/user.d/");
         connect(hooksDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(hookEvent()));
-        connect(configWatcher, SIGNAL(reloadConfigCalled()), hEvent, SLOT(reloadConfig()));
+        connect(m_configWatcher, SIGNAL(reloadConfigCalled()), m_hookEvent, SLOT(reloadConfig()));
     }
 
-    if ( !iEvent->hidden )
+    if ( !m_installEvent->isHidden() )
     {
-        installWatcher = new InstallDBusWatcher(this);
-        connect(installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
+        m_installWatcher = new InstallDBusWatcher(this);
+        connect(m_installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
                                        this, SLOT(installEvent(const QString &, const QString &)));
-        connect(configWatcher, SIGNAL(reloadConfigCalled()), iEvent, SLOT(reloadConfig()));
+        connect(m_configWatcher, SIGNAL(reloadConfigCalled()), m_installEvent, SLOT(reloadConfig()));
     }
 
-    if (!rEvent->hidden) {
+    if (!m_rebootEvent->isHidden()) {
         KDirWatch *stampDirWatch = new KDirWatch(this);
         stampDirWatch->addFile("/var/lib/update-notifier/dpkg-run-stamp");
         connect(stampDirWatch, SIGNAL(dirty(const QString &)), this, SLOT(rebootEvent()));
-        connect(configWatcher, SIGNAL(reloadConfigCalled()), rEvent, SLOT(reloadConfig()));
+        connect(m_configWatcher, SIGNAL(reloadConfigCalled()), m_rebootEvent, SLOT(reloadConfig()));
 
         rebootEvent();
     }
@@ -103,27 +104,28 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
 NotificationHelperModule::~NotificationHelperModule()
 {
-    delete aEvent;
-    delete hEvent;
-    delete iEvent;
-    delete rEvent;
-    delete installWatcher;
+    delete m_apportEvent;
+    delete m_hookEvent;
+    delete m_installEvent;
+    delete m_rebootEvent;
+    delete m_installWatcher;
+    delete m_configWatcher;
 }
 
 void NotificationHelperModule::apportEvent()
 {
     // We could be too fast for apport, so wait a bit before showing the notification
-    QTimer::singleShot(2000, aEvent, SLOT(show()));
+    QTimer::singleShot(2000, m_apportEvent, SLOT(show()));
 }
 
 void NotificationHelperModule::hookEvent()
 {
-    hEvent->show();
+    m_hookEvent->show();
 }
 
 void NotificationHelperModule::installEvent(const QString application, const QString package)
 {
-    iEvent->getInfo(application, package);
+    m_installEvent->getInfo(application, package);
 }
 
 void NotificationHelperModule::rebootEvent()
@@ -132,7 +134,7 @@ void NotificationHelperModule::rebootEvent()
         return;
     }
 
-    rEvent->show();
+    m_rebootEvent->show();
 }
 
 #include "notificationhelpermodule.moc"

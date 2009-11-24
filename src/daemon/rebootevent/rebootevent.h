@@ -29,9 +29,11 @@ class RebootEvent : public Event
     Q_OBJECT
 public:
     RebootEvent(QObject* parent, QString name);
-    void show();
 
     virtual ~RebootEvent();
+
+public slots:
+    void show();
 
 private slots:
     void run();
