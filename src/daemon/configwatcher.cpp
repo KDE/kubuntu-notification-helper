@@ -25,9 +25,6 @@
 #include <QDBusConnection>
 #include <QString>
 
-// KDE includes
-#include <KDebug>
-
 ConfigWatcher::ConfigWatcher(QObject* parent)
         : QObject(parent)
 {
@@ -42,7 +39,6 @@ ConfigWatcher::~ConfigWatcher()
 
 void ConfigWatcher::reloadConfig()
 {
-    kDebug() << "Config changed! Emit!";
     emit reloadConfigCalled();
 }
 

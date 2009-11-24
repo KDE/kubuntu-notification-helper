@@ -101,7 +101,6 @@ void Event::notifyClosed()
 
 void Event::reloadConfig()
 {
-    kDebug() << "reloadConfig called";
     hidden = readHidden();
 }
 

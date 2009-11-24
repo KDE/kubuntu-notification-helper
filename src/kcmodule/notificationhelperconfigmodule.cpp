@@ -102,8 +102,10 @@ void NotificationHelperConfigModule::save()
     cfg.sync();
     notifyGroup.sync();
 
-    QDBusMessage message =
-        QDBusMessage::createSignal("/NotificationHelper", "org.kubuntu.NotificationHelper", "reloadConfig");
+    QDBusMessage message = QDBusMessage::createMethodCall("org.kubuntu.NotificationHelper",
+                           "/NotificationHelper",
+                           "org.kubuntu.NotificationHelper",
+                           "reloadConfig");
     QDBusConnection::sessionBus().send(message);
 }
 
