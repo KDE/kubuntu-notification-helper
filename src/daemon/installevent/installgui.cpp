@@ -25,6 +25,7 @@
 #include <QVBoxLayout>
 
 // // KDE includes
+#include <KDialog>
 #include <KLocalizedString>
 #include <KNotification>
 #include <KToolInvocation>

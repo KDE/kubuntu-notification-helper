@@ -22,6 +22,7 @@
 #include "event.h"
 
 #include <KConfigGroup>
+#include <KNotification>
 
 Event::Event(QObject* parent, QString name)
         : QObject(parent)

@@ -23,6 +23,9 @@
 // Qt includes
 #include <QFile>
 
+// Own includes
+#include "installgui.h"
+
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , applicationName(0)

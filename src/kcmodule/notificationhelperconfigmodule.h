@@ -21,11 +21,10 @@
 #ifndef NOTIFICATIONHELPERCONFIGMODULE_H
 #define NOTIFICATIONHELPERCONFIGMODULE_H
 
-// Qt includes
-#include <QCheckBox>
-
 // KDE includes
 #include <KCModule>
+
+class QCheckBox;
 
 class NotificationHelperConfigModule
             : public KCModule

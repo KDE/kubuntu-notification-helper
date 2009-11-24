@@ -25,14 +25,13 @@
 // KDE includes
 #include <KDEDModule>
 
-// Own includes
-#include "apportevent/apportevent.h"
-#include "hookevent/hookevent.h"
-#include "installevent/installevent.h"
-#include "rebootevent/rebootevent.h"
+class ApportEvent;
+class HookEvent;
+class InstallEvent;
+class RebootEvent;
 
-#include "configwatcher.h"
-#include "installevent/installdbuswatcher.h"
+class ConfigWatcher;
+class InstallDBusWatcher;
 
 class NotificationHelperModule
             : public KDEDModule

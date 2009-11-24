@@ -26,10 +26,11 @@
 
 #include <KDebug>
 #include <KLocalizedString>
-#include <KNotification>
 
 // for implementing classes
 #include <KIcon>
+
+class KNotification;
 
 class Event
             : public QObject

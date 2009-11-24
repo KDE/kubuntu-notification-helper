@@ -24,12 +24,8 @@
 
 #include "../event.h"
 
-// KDE includes
-#include <KPageDialog>
-
-// Own includes
-#include "hookparser.h"
-#include "hookgui.h"
+class HookParser;
+class HookGui;
 
 class HookEvent : public Event
 {

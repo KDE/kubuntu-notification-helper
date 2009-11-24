@@ -24,6 +24,10 @@
 // Qt includes
 #include <QDir>
 
+// Own includes
+#include "hookparser.h"
+#include "hookgui.h"
+
 HookEvent::HookEvent(QObject* parent, QString name)
         : Event(parent, name)
         , parser(0)

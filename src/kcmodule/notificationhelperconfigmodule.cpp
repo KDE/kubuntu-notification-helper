@@ -21,6 +21,7 @@
 #include "notificationhelperconfigmodule.h"
 
 // Qt includes
+#include <QCheckBox>
 #include <QDBusConnection>
 #include <QDBusMessage>
 #include <QGroupBox>

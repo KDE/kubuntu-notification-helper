@@ -21,15 +21,24 @@
 
 #include "notificationhelpermodule.h"
 
-// Qt
+// Qt includes
 #include <QFile>
 #include <QTimer>
 
-// KDE
+// KDE includes
 #include <KAboutData>
 #include <KDirWatch>
 #include <KLocalizedString>
 #include <KPluginFactory>
+
+// Own includes
+#include "apportevent/apportevent.h"
+#include "hookevent/hookevent.h"
+#include "installevent/installevent.h"
+#include "rebootevent/rebootevent.h"
+
+#include "configwatcher.h"
+#include "installevent/installdbuswatcher.h"
 
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();

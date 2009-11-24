@@ -27,8 +27,7 @@
 #include <QMap>
 #include <QStringList>
 
-// Own includes
-#include "installgui.h"
+class InstallGui;
 
 class InstallEvent : public Event
 {

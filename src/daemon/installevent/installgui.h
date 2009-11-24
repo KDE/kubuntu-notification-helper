@@ -26,8 +26,7 @@
 #include <QMap>
 #include <QStringList>
 
-// KDE includes
-#include <KDialog>
+class KDialog;
 
 class InstallGui : public QObject
 {
