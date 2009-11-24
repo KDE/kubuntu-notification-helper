@@ -38,31 +38,27 @@ class Event
     Q_OBJECT
 public:
     Event(QObject* parent, QString name);
-    void show(QPixmap icon, QString text, QStringList actions);
-
-    KNotification *notify;
 
     virtual ~Event();
 
 public slots:
+    bool isHidden();
+    void show(QPixmap icon, QString text, QStringList actions);
     void run();
     void reloadConfig();
-    bool isHidden();
 
 private slots:
+    bool readHiddenConfig();
+    void writeHiddenConfig(bool value);
     void ignore();
     void hide();
     void notifyClosed();
 
 private:
+    QString m_cfgstring;
     const QString m_name;
     bool m_hidden;
     bool m_active;
-
-    QString m_cfgstring;
-
-    bool readHiddenConfig();
-    void writeHiddenConfig(bool value);
 };
 
 #endif
