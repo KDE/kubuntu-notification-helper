@@ -21,8 +21,8 @@
 #include "installgui.h"
 
 // Qt includes
-#include <QLabel>
-#include <QVBoxLayout>
+#include <QtGui/QLabel>
+#include <QtGui/QVBoxLayout>
 
 // // KDE includes
 #include <KDialog>

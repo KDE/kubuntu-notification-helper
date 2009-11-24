@@ -21,7 +21,7 @@
 #include "installevent.h"
 
 // Qt includes
-#include <QFile>
+#include <QtCore/QFile>
 
 // Own includes
 #include "installgui.h"

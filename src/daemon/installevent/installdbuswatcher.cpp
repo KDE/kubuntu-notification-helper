@@ -22,8 +22,8 @@
 #include "restrictedinstalladaptor.h"
 
 // Qt includes
-#include <QDBusConnection>
-#include <QString>
+#include <QtDBus/QDBusConnection>
+#include <QtCore/QString>
 
 InstallDBusWatcher::InstallDBusWatcher(QObject* parent)
         : QObject(parent)

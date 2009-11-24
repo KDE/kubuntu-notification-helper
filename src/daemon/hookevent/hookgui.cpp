@@ -22,8 +22,8 @@
 #include "hookgui.h"
 
 // Qt includes
-#include <QLabel>
-#include <QPushButton>
+#include <QtGui/QLabel>
+#include <QtGui/QPushButton>
 
 // KDE includes
 #include <KGlobal>

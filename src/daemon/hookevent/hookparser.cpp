@@ -21,10 +21,10 @@
 #include "hookparser.h"
 
 // Qt includes
-#include <QDir>
-#include <QFileInfo>
-#include <QTextStream>
-#include <QDateTime>
+#include <QtCore/QDir>
+#include <QtCore/QFileInfo>
+#include <QtCore/QTextStream>
+#include <QtCore/QDateTime>
 
 // KDE includes
 #include <KProcess>

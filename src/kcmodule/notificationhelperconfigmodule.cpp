@@ -21,11 +21,11 @@
 #include "notificationhelperconfigmodule.h"
 
 // Qt includes
-#include <QCheckBox>
-#include <QDBusConnection>
-#include <QDBusMessage>
-#include <QGroupBox>
-#include <QVBoxLayout>
+#include <QtDBus/QDBusConnection>
+#include <QtDBus/QDBusMessage>
+#include <QtGui/QCheckBox>
+#include <QtGui/QGroupBox>
+#include <QtGui/QVBoxLayout>
 
 // KDE includes
 #include <KAboutData>

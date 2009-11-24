@@ -24,8 +24,8 @@
 #include "../event.h"
 
 // Qt includes
-#include <QMap>
-#include <QStringList>
+#include <QtCore/QMap>
+#include <QtCore/QStringList>
 
 class InstallGui;
 

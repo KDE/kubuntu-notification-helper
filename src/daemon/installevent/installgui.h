@@ -22,9 +22,9 @@
 #define INSTALLGUI_H
 
 // Qt includes
-#include <QListWidget>
-#include <QMap>
-#include <QStringList>
+#include <QtCore/QMap>
+#include <QtCore/QStringList>
+#include <QtGui/QListWidget>
 
 class KDialog;
 

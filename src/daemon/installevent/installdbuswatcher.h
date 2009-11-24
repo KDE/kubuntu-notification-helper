@@ -22,7 +22,7 @@
 #define INSTALLDBUSWATCHER_H
 
 // Qt includes
-#include <QObject>
+#include <QtCore/QObject>
 
 class InstallDBusWatcher : public QObject
 {

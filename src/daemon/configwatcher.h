@@ -22,7 +22,7 @@
 #define CONFIGWATCHER_H
 
 // Qt includes
-#include <QObject>
+#include <QtCore/QObject>
 
 class ConfigWatcher : public QObject
 {

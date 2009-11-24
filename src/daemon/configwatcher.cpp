@@ -22,8 +22,8 @@
 #include "notificationhelperadaptor.h"
 
 // Qt includes
-#include <QDBusConnection>
-#include <QString>
+#include <QtDBus/QDBusConnection>
+#include <QtCore/QString>
 
 ConfigWatcher::ConfigWatcher(QObject* parent)
         : QObject(parent)

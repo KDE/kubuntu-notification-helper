@@ -22,7 +22,7 @@
 #ifndef EVENT_H
 #define EVENT_H
 
-#include <QObject>
+#include <QtCore/QObject>
 
 #include <KDebug>
 #include <KLocalizedString>

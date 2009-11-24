@@ -22,7 +22,7 @@
 #include "hookevent.h"
 
 // Qt includes
-#include <QDir>
+#include <QtCore/QDir>
 
 // Own includes
 #include "hookparser.h"
