@@ -36,7 +36,10 @@ HookEvent::HookEvent(QObject* parent, QString name)
 {}
 
 HookEvent::~HookEvent()
-{}
+{
+    delete m_parser;
+    delete m_hookGui;
+}
 
 void HookEvent::show()
 {
