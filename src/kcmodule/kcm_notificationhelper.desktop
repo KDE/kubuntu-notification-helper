@@ -11,7 +11,7 @@ X-KDE-Keywords=Notify,Alerts,Notification,popups
 X-KDE-System-Settings-Parent-Category=notifications
 X-KDE-Weight=60
 
-Name=Helper Notifications
+Name=Other Notifications
 Comment=Control the notifications for system helpers
 
 Categories=Qt;KDE;X-KDE-settings-sound;
