@@ -33,9 +33,9 @@ ApportEvent::~ApportEvent()
 
 bool ApportEvent::reportsAvailable()
 {
-// TODO: there is also a --system arg for checkreports, update-notifier does seem to use that
-//       in an either-or combo... so question is why does that --system arg exist at all if
-//       we are supposed to either-or the results of two runs anyway?
+// TODO: there is also a --system arg for checkreports, update-notifier does seem to use
+//       that in an either-or combo... so question is why does that --system arg exist at
+//       all if we are supposed to either-or the results of two runs anyway?
     KProcess *apportProcess = new KProcess();
     apportProcess->setProgram(QStringList() << "/usr/share/apport/apport-checkreports");
 
@@ -52,11 +52,13 @@ void ApportEvent::show()
     }
 
     QPixmap icon = KIcon("apport").pixmap(NOTIFICATION_ICON_SIZE);
-    QString text(i18nc("Notification when apport detects a crash", "An application has crashed on your system (now or in the past)"));
+    QString text(i18nc("Notification when apport detects a crash",
+                       "An application has crashed on your system (now or in the past)"));
     QStringList actions;
     actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("User declines an action", "Ignore");
-    actions << i18nc("User indicates he never wants to see this notification again", "Never show again");
+    actions << i18nc("User indicates he never wants to see this notification again",
+                     "Never show again");
 
     Event::show(icon, text, actions);
 }

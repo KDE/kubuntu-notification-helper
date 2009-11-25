@@ -59,11 +59,13 @@ void HookEvent::show()
 
     if (!m_parsedHookMap.isEmpty()) {
         QPixmap icon = KIcon("help-hint").pixmap(NOTIFICATION_ICON_SIZE);
-        QString text(i18nc("Notification when an upgrade requires the user to do something", "Software upgrade notifications are available"));
+        QString text(i18nc("Notification when an upgrade requires the user to do something",
+                           "Software upgrade notifications are available"));
         QStringList actions;
         actions << i18nc("Opens a dialog with more details", "Details");
         actions << i18nc("User declines an action", "Ignore");
-        actions << i18nc("User indicates he never wants to see this notification again", "Never show again");
+        actions << i18nc("User indicates he never wants to see this notification again",
+                         "Never show again");
         Event::show(icon, text, actions);
     }
 }

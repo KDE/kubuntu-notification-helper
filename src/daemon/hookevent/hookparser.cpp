@@ -89,7 +89,6 @@ QMap<QString, QString> HookParser::parseHook(const QString &hookPath)
             const QDateTime now = QDateTime::currentDateTime();
 
             QDateTime statTime = QFileInfo(hookPath).lastModified();
-            // kDebug() << "uptime == " << uptime << " now == " << now.toTime_t() << " statTime == " << statTime.toTime_t();
 
             if (uptime > 0 && ((now.toTime_t() - statTime.toTime_t()) > uptime)) {
                 return emptyMap;

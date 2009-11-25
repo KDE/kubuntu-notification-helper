@@ -57,7 +57,8 @@ void InstallEvent::show()
     QStringList actions;
     actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("User declines an action", "Ignore");
-    actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
+    actions << i18nc("User indicates he never wants to see this notification again",
+                     "Ignore forever");
 
     Event::show(icon, text, actions);
 }
