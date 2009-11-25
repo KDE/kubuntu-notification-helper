@@ -99,8 +99,8 @@ void InstallGui::runPackageInstall()
         notify->setComponentData(KComponentData("notificationhelper"));
 
         notify->setPixmap(KIcon("download").pixmap(48,48));
-        notify->setText(i18n("Once the install is finished, you will need to restart %1 to use the new functionality", m_applicationName));
-
+        notify->setText(i18n("Once the install is finished, you will need to restart %1"
+                             " to use the new functionality", m_applicationName));
         notify->sendEvent();
     }
 }

@@ -59,7 +59,7 @@ void InstallEvent::show()
     actions << i18nc("Opens a dialog with more details", "Details");
     actions << i18nc("Button to dismiss this notification once", "Ignore for now");
     actions << i18nc("Button to make this notification never show up again",
-                     "Never show again")
+                     "Never show again");
 
     Event::show(icon, text, actions);
 }
