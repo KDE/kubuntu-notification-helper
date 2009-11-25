@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-23 16:12-0500\n"
+"POT-Creation-Date: 2009-11-25 10:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,33 +27,33 @@ msgid "Restart"
 msgstr ""
 
 #: src/daemon/rebootevent/rebootevent.cpp:39
-#: src/daemon/apportevent/apportevent.cpp:58
-#: src/daemon/hookevent/hookevent.cpp:58
-#: src/daemon/installevent/installevent.cpp:56
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/hookevent/hookevent.cpp:66
+#: src/daemon/installevent/installevent.cpp:59
 msgctxt "User declines an action"
 msgid "Ignore"
 msgstr ""
 
 #: src/daemon/rebootevent/rebootevent.cpp:40
-#: src/daemon/installevent/installevent.cpp:57
+#: src/daemon/installevent/installevent.cpp:61
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Ignore forever"
 msgstr ""
 
-#: src/daemon/apportevent/apportevent.cpp:55
+#: src/daemon/apportevent/apportevent.cpp:56
 msgctxt "Notification when apport detects a crash"
 msgid "An application has crashed on your system (now or in the past)"
 msgstr ""
 
-#: src/daemon/apportevent/apportevent.cpp:57
-#: src/daemon/hookevent/hookevent.cpp:57
-#: src/daemon/installevent/installevent.cpp:55
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/hookevent/hookevent.cpp:65
+#: src/daemon/installevent/installevent.cpp:58
 msgctxt "Opens a dialog with more details"
 msgid "Details"
 msgstr ""
 
-#: src/daemon/apportevent/apportevent.cpp:59
-#: src/daemon/hookevent/hookevent.cpp:59
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/hookevent/hookevent.cpp:68
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Never show again"
 msgstr ""
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Run this action now"
 msgstr ""
 
-#: src/daemon/hookevent/hookevent.cpp:55
+#: src/daemon/hookevent/hookevent.cpp:63
 msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
 msgstr ""
@@ -81,59 +81,61 @@ msgstr ""
 
 #: src/daemon/installevent/installgui.cpp:56
 msgid ""
-"For extra multimedia functionality, select restricted packages to be "
-"installed."
+"For extra multimedia functionality, select packages to be installed. These "
+"packages are not installed by default due to either patent issues or "
+"restrictive licensing."
 msgstr ""
 
-#: src/daemon/installevent/installgui.cpp:101
+#: src/daemon/installevent/installgui.cpp:102
 #, kde-format
 msgid ""
 "Once the install is finished, you will need to restart %1 to use the new "
 "functionality"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:34
+#: src/daemon/installevent/installevent.cpp:37
 msgctxt "The name of the Adobe Flash plugin"
 msgid "Flash"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:35
+#: src/daemon/installevent/installevent.cpp:38
 msgid "MPEG Plugins"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:36
+#: src/daemon/installevent/installevent.cpp:39
 msgid "Video Codecs"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:37
+#: src/daemon/installevent/installevent.cpp:40
 msgid "DVD Reading"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:38
+#: src/daemon/installevent/installevent.cpp:41
 msgid "K3b CD Codecs"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:39
+#: src/daemon/installevent/installevent.cpp:42
 msgid "MP3 Encoding"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:41
+#: src/daemon/installevent/installevent.cpp:44
 msgid "Improved Semantic Desktop Plugin"
 msgstr ""
 
-#: src/daemon/installevent/installevent.cpp:53
+#: src/daemon/installevent/installevent.cpp:56
+#, kde-format
 msgctxt "Notification when a package wants to install extra software"
-msgid "Extra packages for restricted multimedia functionality are available"
+msgid "Extra packages can be installed to enhance functionality for %1"
 msgstr ""
 
-#: src/daemon/notificationhelpermodule.cpp:48
+#: src/daemon/notificationhelpermodule.cpp:59
 msgid "Kubuntu Notification Helper"
 msgstr ""
 
-#: src/daemon/notificationhelpermodule.cpp:49
+#: src/daemon/notificationhelpermodule.cpp:60
 msgid "A Notification Helper for Kubuntu"
 msgstr ""
 
-#: src/daemon/notificationhelpermodule.cpp:50
+#: src/daemon/notificationhelpermodule.cpp:62
 msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
 msgstr ""

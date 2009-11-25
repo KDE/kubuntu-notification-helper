@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-23 16:12-0500\n"
+"POT-Creation-Date: 2009-11-25 10:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,38 +16,42 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:44
+#: src/kcmodule/notificationhelperconfigmodule.cpp:47
 msgid "kcmnotificationhelper"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:45
+#: src/kcmodule/notificationhelperconfigmodule.cpp:48
 msgid "Kubuntu Notification Helper Configuration"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:47
-msgid "(C) 2009 Jonathan Thomas"
+#: src/kcmodule/notificationhelperconfigmodule.cpp:50
+msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:49
+#: src/kcmodule/notificationhelperconfigmodule.cpp:53
 msgid "Jonathan Thomas"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:52
+#: src/kcmodule/notificationhelperconfigmodule.cpp:54
+msgid "Harald Sitter"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:57
 msgid "Configure the behavior of Kubuntu Notification Helper"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:58
+#: src/kcmodule/notificationhelperconfigmodule.cpp:63
 msgid "Show Apport crash notifications"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:59
+#: src/kcmodule/notificationhelperconfigmodule.cpp:64
 msgid "Show upgrade information notifications"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:60
+#: src/kcmodule/notificationhelperconfigmodule.cpp:65
 msgid "Show restricted codec availability notifications"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:61
+#: src/kcmodule/notificationhelperconfigmodule.cpp:66
 msgid "Show reboot required notifications"
 msgstr ""
