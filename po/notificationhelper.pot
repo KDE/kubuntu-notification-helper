@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-25 10:47-0500\n"
+"POT-Creation-Date: 2009-11-25 12:50-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,28 +16,30 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/daemon/rebootevent/rebootevent.cpp:36
+#: src/daemon/rebootevent/rebootevent.cpp:37
 msgctxt "Notification when the upgrade requires a restart"
 msgid "A system restart is needed to complete the update process"
 msgstr ""
 
-#: src/daemon/rebootevent/rebootevent.cpp:38
+#: src/daemon/rebootevent/rebootevent.cpp:39
 msgctxt "Restart the computer"
 msgid "Restart"
 msgstr ""
 
-#: src/daemon/rebootevent/rebootevent.cpp:39
+#: src/daemon/rebootevent/rebootevent.cpp:40
 #: src/daemon/apportevent/apportevent.cpp:59
 #: src/daemon/hookevent/hookevent.cpp:66
-#: src/daemon/installevent/installevent.cpp:59
-msgctxt "User declines an action"
-msgid "Ignore"
+#: src/daemon/installevent/installevent.cpp:60
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
 msgstr ""
 
-#: src/daemon/rebootevent/rebootevent.cpp:40
-#: src/daemon/installevent/installevent.cpp:61
-msgctxt "User indicates he never wants to see this notification again"
-msgid "Ignore forever"
+#: src/daemon/rebootevent/rebootevent.cpp:42
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/hookevent/hookevent.cpp:68
+#: src/daemon/installevent/installevent.cpp:62
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
 msgstr ""
 
 #: src/daemon/apportevent/apportevent.cpp:56
@@ -47,15 +49,9 @@ msgstr ""
 
 #: src/daemon/apportevent/apportevent.cpp:58
 #: src/daemon/hookevent/hookevent.cpp:65
-#: src/daemon/installevent/installevent.cpp:58
+#: src/daemon/installevent/installevent.cpp:59
 msgctxt "Opens a dialog with more details"
 msgid "Details"
-msgstr ""
-
-#: src/daemon/apportevent/apportevent.cpp:61
-#: src/daemon/hookevent/hookevent.cpp:68
-msgctxt "User indicates he never wants to see this notification again"
-msgid "Never show again"
 msgstr ""
 
 #: src/daemon/hookevent/hookgui.cpp:43
