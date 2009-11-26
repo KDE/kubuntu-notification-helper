@@ -5,7 +5,7 @@ Requires:
 To use:
 -Install as normal
 -Run kbuildsycoca4
--kcmchell4 kcmkded
+-kcmshell4 kcmkded
 -Start Notification Helper
 
 kubuntu-notification-helper is set to turn on automatically on boot.

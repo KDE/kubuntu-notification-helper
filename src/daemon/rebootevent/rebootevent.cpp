@@ -33,11 +33,13 @@ RebootEvent::~RebootEvent()
 void RebootEvent::show()
 {
     QPixmap icon = KIcon("system-reboot").pixmap(NOTIFICATION_ICON_SIZE);
-    QString text(i18nc("Notification when the upgrade requires a restart", "A system restart is needed to complete the update process"));
+    QString text(i18nc("Notification when the upgrade requires a restart",
+                       "A system restart is needed to complete the update process"));
     QStringList actions;
     actions << i18nc("Restart the computer", "Restart");
-    actions << i18nc("User declines an action", "Ignore");
-    actions << i18nc("User indicates he never wants to see this notification again", "Ignore forever");
+    actions << i18nc("Button to dismiss this notification once", "Ignore for now");
+    actions << i18nc("Button to make this notification never show up again",
+                     "Never show again");
 
     Event::show(icon, text, actions);
 }
@@ -45,7 +47,8 @@ void RebootEvent::show()
 void RebootEvent::run()
 {
     // 1,1,3 == ShutdownConfirmYes ShutdownTypeReboot ShutdownModeInteractive
-    KProcess::startDetached(QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer" << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3");
+    KProcess::startDetached(QStringList() << "qdbus" << "org.kde.ksmserver" << "/KSMServer"
+                            << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3");
     Event::run();
 }
 

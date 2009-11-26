@@ -3,21 +3,21 @@ IconName=applications-system
 Comment=System Notification Helper
 
 [Event/Restart]
-Name=Restart PC
+Name=Reboot Required
 Comment=A system restart is required
 Action=Popup
 
 [Event/Apport]
 Name=Apport Crash
-Comment=Crash!
+Comment=An application has crashed on your system (now or in the past)
 Action=Popup
 
 [Event/Hook]
 Name=Upgrade Hook
-Comment=A system restart is required
+Comment=Software upgrade notifications are available
 Action=Popup
 
 [Event/Install]
 Name=Restricted Install
-Comment=Extra packages for restricted multimedia functionality are available
+Comment=Extra packages can be installed to enhance application functionality
 Action=Popup
