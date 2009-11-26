@@ -18,7 +18,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#include "hookparser.h"
+#include "hook.h"
 
 // Qt includes
 #include <QtCore/QDir>
@@ -28,15 +28,57 @@
 
 // KDE includes
 #include <KProcess>
+#include <KToolInvocation>
 
-HookParser::HookParser(QObject* parent)
+Hook::Hook(QObject* parent, const QString& hookPath)
         : QObject(parent)
+        , m_hookPath(hookPath)
+{
+    m_fields = parse(hookPath);
+}
+
+Hook::~Hook()
 {}
 
-HookParser::~HookParser()
-{}
+QString Hook::getField(const QString &name)
+{
+    if (m_fields.contains(name)) {
+        return m_fields[name];
+    }
+    return QString("");
+}
 
-QMap<QString, QString> HookParser::parseHook(const QString &hookPath)
+QString Hook::getField(const QString &name, const QString &language)
+{
+    QString key = name + "-" + language;
+    if (m_fields.contains(key)) {
+        return m_fields[key];
+    }
+    return getField(name);
+}
+
+bool Hook::isValid()
+{
+    return !m_fields.isEmpty();
+}
+
+void Hook::runCommand()
+{
+    QString command = getField("Command");
+    if (getField("Terminal") == "True") {
+        // if command is quoted, invokeTerminal will refuse to interpret it properly
+        if (command.startsWith('\"') && command.endsWith('\"')) {
+            command = command.mid(1, command.length() - 2);
+        }
+        KToolInvocation::invokeTerminal(command);
+    } else {
+        KProcess *process = new KProcess();
+        process->setShellCommand(command);
+        process->startDetached();
+    }
+}
+
+QMap<QString, QString> Hook::parse(const QString &hookPath)
 {
     const QMap<QString, QString> emptyMap;
 
@@ -74,39 +116,51 @@ QMap<QString, QString> HookParser::parseHook(const QString &hookPath)
         }
     } while (!line.isNull());
 
+    return hookMap;
+}
+
+bool Hook::isNotificationRequired()
+{
     // TODO: Check if already shown, keep track via KConfig
     // TODO: Find a more sane way to get that information?
-    if (hookMap.contains("DontShowAfterReboot") && hookMap["DontShowAfterReboot"] == "True") {
-        QFile uptimeFile("/proc/uptime");
-        if (uptimeFile.open(QFile::ReadOnly)) {
-            QTextStream stream(&uptimeFile);
-            QString uptimeLine = stream.readLine();
-            QStringList uptimeStringList = uptimeLine.split(' ');
-            // We don't need the last part of /proc/uptime
-            uptimeStringList.removeLast();
-            QString uptimeString = uptimeStringList.first();
-            float uptime = uptimeString.toFloat();
+    if (getField("DontShowAfterReboot") == "True") {
+        float uptime = getUptime();
+        if (uptime > 0) {
             const QDateTime now = QDateTime::currentDateTime();
-
-            QDateTime statTime = QFileInfo(hookPath).lastModified();
-
-            if (uptime > 0 && ((now.toTime_t() - statTime.toTime_t()) > uptime)) {
-                return emptyMap;
+            QDateTime statTime = QFileInfo(m_hookPath).lastModified();
+            if (now.toTime_t() - statTime.toTime_t() > uptime) {
+                return false;
             }
         }
     }
 
-    if (hookMap.contains("DisplayIf")) {
+    QString condition = getField("DisplayIf");
+    if (!condition.isEmpty()) {
         KProcess *displayIfProcess = new KProcess();
-        displayIfProcess->setProgram(hookMap["DisplayIf"]);
-
+        displayIfProcess->setProgram(condition);
         int programResult = displayIfProcess->execute();
         if (programResult != 0) {
-            return emptyMap;
+            return false;
         }
     }
 
-    return hookMap;
+    return true;
 }
 
-#include "hookparser.moc"
+float Hook::getUptime()
+{
+    float uptime = 0;
+    QFile uptimeFile("/proc/uptime");
+    if (uptimeFile.open(QFile::ReadOnly)) {
+        QTextStream stream(&uptimeFile);
+        QString uptimeLine = stream.readLine();
+        QStringList uptimeStringList = uptimeLine.split(' ');
+        // We don't need the last part of /proc/uptime
+        uptimeStringList.removeLast();
+        QString uptimeString = uptimeStringList.first();
+        uptime = uptimeString.toFloat();
+    }
+    return uptime;
+}
+
+#include "hook.moc"

@@ -22,19 +22,32 @@
 #ifndef HOOKPARSER_H
 #define HOOKPARSER_H
 
+
 #include <QtCore/QObject>
+#include <QtCore/QString>
 #include <QtCore/QMap>
 
-class HookParser : public QObject
+class Hook : public QObject
 {
     Q_OBJECT
 public:
-    HookParser(QObject* parent);
+    Hook(QObject* parent, const QString& hookPath);
 
-    virtual ~HookParser();
+    virtual ~Hook();
 
 public slots:
-    QMap<QString, QString> parseHook(const QString &hookPath);
+    bool isValid();
+    bool isNotificationRequired();
+    QString getField(const QString& name, const QString &language);
+    QString getField(const QString& name);
+    void runCommand();
+    
+private:
+    QMap<QString, QString> parse(const QString &hookPath);
+    float getUptime();
+    
+    QString m_hookPath;
+    QMap<QString, QString> m_fields;
 };
 
 #endif

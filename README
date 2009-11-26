@@ -14,7 +14,7 @@ To test modifications to k-n-h:
 -Install as normal
 -Run kbuildsycoca4
 -killall kded4; sleep 2; kded4
--kcmchell4 kcmkded
+-kcmshell4 kcmkded
 -Start Notification Helper
 
 If you change the notifyrc, you will also want to kill/restart knotify4

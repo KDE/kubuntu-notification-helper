@@ -25,39 +25,33 @@
 #include <QtCore/QDir>
 
 // Own includes
-#include "hookparser.h"
+#include "hook.h"
 #include "hookgui.h"
 
 HookEvent::HookEvent(QObject* parent, QString name)
         : Event(parent, name)
-        , m_parser(0)
-        , m_parsedHookMap()
+        , m_hooks()
         , m_hookGui(0)
 {}
 
 HookEvent::~HookEvent()
 {
-    delete m_parser;
     delete m_hookGui;
 }
 
 void HookEvent::show()
 {
+    m_hooks.clear();
     QDir hookDir("/var/lib/update-notifier/user.d/");
-
-    QStringList fileList;
-    fileList << hookDir.entryList(QDir::Files);
-
-    m_parser = new HookParser(this);
+    QStringList fileList = hookDir.entryList(QDir::Files);
     foreach(const QString &fileName, fileList) {
-        QMap<QString, QString> fileResult = m_parser->parseHook(hookDir.filePath(fileName));
-        if (!fileResult.isEmpty()) {
-            // Add parsed hook to map
-            m_parsedHookMap[fileName] = fileResult;
+        Hook *hook = new Hook(this, hookDir.filePath(fileName));
+        if (hook->isValid() && hook->isNotificationRequired()) {
+            m_hooks << hook;
         }
     }
 
-    if (!m_parsedHookMap.isEmpty()) {
+    if (!m_hooks.isEmpty()) {
         QPixmap icon = KIcon("help-hint").pixmap(NOTIFICATION_ICON_SIZE);
         QString text(i18nc("Notification when an upgrade requires the user to do something",
                            "Software upgrade notifications are available"));
@@ -72,7 +66,7 @@ void HookEvent::show()
 
 void HookEvent::run()
 {
-    m_hookGui = new HookGui(this, m_parsedHookMap);
+    m_hookGui = new HookGui(this, m_hooks);
     Event::run();
 }
 

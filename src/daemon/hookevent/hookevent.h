@@ -23,10 +23,11 @@
 #define HOOKEVENT_H
 
 #include "../event.h"
+#include "hook.h"
 
-#include <QtCore/QMap>
+#include <QtCore/QList>
 
-class HookParser;
+class Hook;
 class HookGui;
 
 class HookEvent : public Event
@@ -44,8 +45,7 @@ private slots:
     void run();
 
 private:
-    HookParser* m_parser;
-    QMap< QString, QMap< QString, QString > > m_parsedHookMap;
+    QList<Hook*> m_hooks;
     HookGui* m_hookGui;
 };
 
