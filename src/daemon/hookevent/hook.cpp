@@ -30,6 +30,30 @@
 #include <KProcess>
 #include <KToolInvocation>
 
+float getUptime()
+{
+    float uptime = 0;
+    QFile uptimeFile("/proc/uptime");
+    if (uptimeFile.open(QFile::ReadOnly)) {
+        QTextStream stream(&uptimeFile);
+        QString uptimeLine = stream.readLine();
+        QStringList uptimeStringList = uptimeLine.split(' ');
+        // We don't need the last part of /proc/uptime
+        uptimeStringList.removeLast();
+        QString uptimeString = uptimeStringList.first();
+        uptime = uptimeString.toFloat();
+    }
+    return uptime;
+}
+
+QString trimLeft(QString str, int start = 0)
+{
+    int len = str.length();
+    while (start < len && str[start].isSpace())
+        start++;
+    return str.mid(start);
+}
+
 Hook::Hook(QObject* parent, const QString& hookPath)
         : QObject(parent)
         , m_hookPath(hookPath)
@@ -88,35 +112,38 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
     }
 
     // See https://wiki.kubuntu.org/InteractiveUpgradeHooks for details on the hook format
-    QMap<QString, QString> hookMap;
+    QMap<QString, QString> fields;
     QTextStream stream(&file);
 
     QString lastKey;
     QString line;
     do {
         line = stream.readLine();
-
-        if (line.contains(':')) {
-            QStringList list = line.split(": ");
-            QString key = list.at(0);
-            QString value = list.at(1);
-            hookMap[key] = value;
-            lastKey = key;
-        } else if (line.startsWith(' ')) {
-            if (lastKey.isEmpty()) {
-                continue;
-            }
-            hookMap[lastKey] += line;
-        } else if (line.isEmpty()) {
-            // Handle empty newline(s) at the end of files
-            continue;
+        if (line.isEmpty()) {
+            continue; // skip empty lines, e.g. at end of file
+        } else if (line[0].isSpace()) {
+            line = trimLeft(line);
+            if (line.isEmpty())
+                continue; // treat it like empty line (lenient)
+            if (lastKey.isEmpty())
+                return emptyMap; // not a valid upgrade hook
+            QString value = fields[lastKey];
+            if (!value.isEmpty())
+                value += " ";
+            fields[lastKey] = value + line;
         } else {
-            // Not an upgrade hook or malformed
-            return emptyMap;
+            int split = line.indexOf(':');
+            if (split <= 0) {
+                return emptyMap; // not a valid upgrade hook
+            }
+            QString key = line.left(split);
+            QString value = trimLeft(line, split + 1);
+            fields[key] = value;
+            lastKey = key;
         }
     } while (!line.isNull());
 
-    return hookMap;
+    return fields;
 }
 
 bool Hook::isNotificationRequired()
@@ -145,22 +172,6 @@ bool Hook::isNotificationRequired()
     }
 
     return true;
-}
-
-float Hook::getUptime()
-{
-    float uptime = 0;
-    QFile uptimeFile("/proc/uptime");
-    if (uptimeFile.open(QFile::ReadOnly)) {
-        QTextStream stream(&uptimeFile);
-        QString uptimeLine = stream.readLine();
-        QStringList uptimeStringList = uptimeLine.split(' ');
-        // We don't need the last part of /proc/uptime
-        uptimeStringList.removeLast();
-        QString uptimeString = uptimeStringList.first();
-        uptime = uptimeString.toFloat();
-    }
-    return uptime;
 }
 
 #include "hook.moc"

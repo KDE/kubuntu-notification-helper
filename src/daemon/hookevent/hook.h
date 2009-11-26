@@ -44,7 +44,6 @@ public slots:
     
 private:
     QMap<QString, QString> parse(const QString &hookPath);
-    float getUptime();
     
     QString m_hookPath;
     QMap<QString, QString> m_fields;
