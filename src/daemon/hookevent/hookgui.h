@@ -31,16 +31,17 @@ class HookGui : public QObject
 {
     Q_OBJECT
 public:
-    HookGui(QObject* parent, QList<Hook*> hooks);
+    HookGui(QObject* parent);
 
     virtual ~HookGui();
 
-private slots:
-    void cleanUpDialog();
+public slots:
+    void updateDialog(QList<Hook*> hooks);
+    void closeDialog();
 
 private:
-    QList<Hook*> m_hooks;
     KPageDialog* m_dialog;
+    QList<KPageWidgetItem *> m_pages;
 };
 
 #endif

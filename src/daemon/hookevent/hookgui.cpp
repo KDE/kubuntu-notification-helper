@@ -33,17 +33,26 @@
 #include <KToolInvocation>
 #include <KVBox>
 
-HookGui::HookGui(QObject* parent, QList<Hook*> hooks)
+HookGui::HookGui(QObject* parent)
         : QObject(parent)
-        , m_hooks(hooks)
         , m_dialog(0)
 {
     m_dialog = new KPageDialog;
     m_dialog->setCaption(i18n("Update Information"));
     m_dialog->setWindowIcon(KIcon("help-hint"));
     m_dialog->setButtons(KDialog::Ok);
-    connect(m_dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
+    connect(m_dialog, SIGNAL(okClicked()), SLOT(closeDialog()));
+}
 
+void HookGui::updateDialog(QList<Hook*> hooks)
+{
+    m_dialog->hide();
+    // remove old pages
+    foreach (KPageWidgetItem *page, m_pages) {
+            m_dialog->removePage(page);
+    }
+    m_pages.clear();
+    
     // Take the parsed upgrade hook(s) and put them in pages
     const QString language =  KGlobal::locale()->language();
     QList<Hook*>::iterator i;
@@ -67,9 +76,12 @@ HookGui::HookGui(QObject* parent, QList<Hook*> hooks)
         page->setIcon(KIcon("help-hint"));
 
         m_dialog->addPage(page);
+        m_pages << page;
     }
 
-    m_dialog->show();
+    m_dialog->showNormal();
+    m_dialog->raise();
+    m_dialog->activateWindow();
 }
 
 HookGui::~HookGui()
@@ -77,7 +89,7 @@ HookGui::~HookGui()
     delete m_dialog;
 }
 
-void HookGui::cleanUpDialog()
+void HookGui::closeDialog()
 {
     m_dialog->deleteLater();
     m_dialog = 0;

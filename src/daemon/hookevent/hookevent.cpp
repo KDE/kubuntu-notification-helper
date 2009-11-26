@@ -66,7 +66,9 @@ void HookEvent::show()
 
 void HookEvent::run()
 {
-    m_hookGui = new HookGui(this, m_hooks);
+    if (!m_hookGui)
+        m_hookGui = new HookGui(this);
+    m_hookGui->updateDialog(m_hooks);
     Event::run();
 }
 
