@@ -5,7 +5,7 @@ set(notificationhelper_SRCS
     apportevent/apportevent.cpp
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
-    hookevent/hookparser.cpp
+    hookevent/hook.cpp
     installevent/installdbuswatcher.cpp
     installevent/installevent.cpp
     installevent/installgui.cpp

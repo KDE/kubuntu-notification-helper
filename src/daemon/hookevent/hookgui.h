@@ -23,23 +23,27 @@
 #define HOOKGUI_H
 
 #include <KPageDialog>
+#include "hook.h"
+
+class Hook;
 
 class HookGui : public QObject
 {
     Q_OBJECT
 public:
-    HookGui(QObject* parent, QMap< QString, QMap< QString, QString > > parsedHookMap);
+    HookGui(QObject* parent);
 
     virtual ~HookGui();
 
-private slots:
-    void cleanUpDialog();
-    void runHookCommand();
+public slots:
+    void createDialog();
+    void updateDialog(QList<Hook*> hooks);
+    void showDialog(QList<Hook*> hooks);
+    void closeDialog();
 
 private:
     KPageDialog* m_dialog;
-    QString m_command;
-    bool m_terminal;
+    QList<KPageWidgetItem *> m_pages;
 };
 
 #endif
