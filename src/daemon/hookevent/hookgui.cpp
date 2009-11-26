@@ -36,6 +36,16 @@
 HookGui::HookGui(QObject* parent)
         : QObject(parent)
         , m_dialog(0)
+{}
+
+void HookGui::showDialog(QList<Hook*> hooks)
+{
+    if (!m_dialog)
+        createDialog();
+    updateDialog(hooks);
+}
+
+void HookGui::createDialog()
 {
     m_dialog = new KPageDialog;
     m_dialog->setCaption(i18n("Update Information"));
@@ -46,12 +56,14 @@ HookGui::HookGui(QObject* parent)
 
 void HookGui::updateDialog(QList<Hook*> hooks)
 {
-    m_dialog->hide();
-    // remove old pages
-    foreach (KPageWidgetItem *page, m_pages) {
-            m_dialog->removePage(page);
+    if (!m_pages.isEmpty()) {
+        m_dialog->hide();
+        // remove old pages
+        foreach (KPageWidgetItem *page, m_pages) {
+                m_dialog->removePage(page);
+        }
+        m_pages.clear();
     }
-    m_pages.clear();
     
     // Take the parsed upgrade hook(s) and put them in pages
     const QString language =  KGlobal::locale()->language();
@@ -93,6 +105,7 @@ void HookGui::closeDialog()
 {
     m_dialog->deleteLater();
     m_dialog = 0;
+    m_pages.clear();
 }
 
 #include "hookgui.moc"
