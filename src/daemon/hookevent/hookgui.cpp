@@ -24,13 +24,12 @@
 // Qt includes
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
+#include <QSignalMapper>
 
 // KDE includes
 #include <KGlobal>
-#include <KProcess>
 #include <KIcon>
 #include <KLocale>
-#include <KToolInvocation>
 #include <KVBox>
 
 HookGui::HookGui(QObject* parent)
@@ -60,18 +59,23 @@ void HookGui::updateDialog(QList<Hook*> hooks)
         m_dialog->hide();
         // remove old pages
         foreach (KPageWidgetItem *page, m_pages) {
-                m_dialog->removePage(page);
+            m_dialog->removePage(page);
         }
         m_pages.clear();
     }
     
     // Take the parsed upgrade hook(s) and put them in pages
     const QString language =  KGlobal::locale()->language();
+    QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
     QList<Hook*>::iterator i;
     for (i = hooks.begin(); i !=  hooks.end(); ++i) {
         Hook *hook = *i;
 
         KVBox *vbox = new KVBox();
+        QString name = hook->getField("Name", language);
+        KPageWidgetItem *page = new KPageWidgetItem(vbox, name);
+        page->setIcon(KIcon("help-hint"));
+        page->setProperty("hook", qVariantFromValue((QObject *)hook));
 
         QString desc = hook->getField("Description", language);
         QLabel *descLabel = new QLabel(vbox);
@@ -79,17 +83,21 @@ void HookGui::updateDialog(QList<Hook*> hooks)
         descLabel->setText(desc);
 
         if (!hook->getField("Command").isEmpty()) {
-            QPushButton *runButton = new QPushButton(KIcon("system-run"), i18n("Run this action now"), vbox);
-            connect(runButton, SIGNAL(clicked()), hook, SLOT(runCommand()));
+            QString label = hook->getField("ButtonText", language);
+            if (label.isEmpty())
+                label = i18n("Run this action now");
+            QPushButton *runButton = new QPushButton(KIcon("system-run"), label, vbox);
+            runButton->setObjectName("runButton");
+            signalMapper->setMapping(runButton, page);
+            connect(runButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
         }
-
-        QString name = hook->getField("Name", language);
-        KPageWidgetItem *page = new KPageWidgetItem(vbox, name);
-        page->setIcon(KIcon("help-hint"));
 
         m_dialog->addPage(page);
         m_pages << page;
     }
+
+    connect(signalMapper, SIGNAL(mapped(QObject *)),
+            this, SLOT(runCommand(QObject *)));
 
     m_dialog->showNormal();
     m_dialog->raise();
@@ -99,6 +107,18 @@ void HookGui::updateDialog(QList<Hook*> hooks)
 HookGui::~HookGui()
 {
     delete m_dialog;
+}
+
+void HookGui::runCommand(QObject *obj) {
+    KPageWidgetItem *page = (KPageWidgetItem *)obj;
+    Hook *hook = (Hook *)qvariant_cast<QObject *>(page->property("hook"));
+    QWidget *widget = page->widget();
+
+    QPushButton *runButton = widget->findChild<QPushButton *>("runButton");
+    runButton->setEnabled(false);
+
+    hook->runCommand();
+    hook->setFinished();
 }
 
 void HookGui::closeDialog()

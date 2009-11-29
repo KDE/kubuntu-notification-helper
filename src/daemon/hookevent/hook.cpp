@@ -29,6 +29,9 @@
 // KDE includes
 #include <KProcess>
 #include <KToolInvocation>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KMD5>
 
 float getUptime()
 {
@@ -57,8 +60,10 @@ QString trimLeft(QString str, int start = 0)
 Hook::Hook(QObject* parent, const QString& hookPath)
         : QObject(parent)
         , m_hookPath(hookPath)
+        , m_finished(false)
 {
     m_fields = parse(hookPath);
+    loadConfig();
 }
 
 Hook::~Hook()
@@ -100,6 +105,61 @@ void Hook::runCommand()
         process->setShellCommand(command);
         process->startDetached();
     }
+}
+
+void Hook::setFinished()
+{
+    m_finished = true;
+    saveConfig();
+}
+
+void Hook::loadConfig()
+{
+    QString signature = calculateSignature();
+    KConfig config("notificationhelper", KConfig::NoGlobals);
+    KConfigGroup group(&config, "updateNotifications");
+
+    m_finished = group.readEntry(signature, false);
+    
+    // remain backward compatibile with update-notifier-kde
+    // so that after upgrade old notifications are not resurrected
+    if (!m_finished) {
+        KConfig oldconfig("update-notifier-kderc", KConfig::NoGlobals);
+        KConfigGroup oldgroup(&oldconfig, "updateNotifications");
+        QFileInfo fileinfo(m_hookPath);
+        QString oldsignature = fileinfo.fileName();
+        m_finished = oldgroup.readEntry(oldsignature, false);
+        if (m_finished)
+            saveConfig(); // copy over to new configuration
+    }
+}
+
+void Hook::saveConfig()
+{
+    QString signature = calculateSignature();
+    KConfig config("notificationhelper", KConfig::NoGlobals);
+    KConfigGroup group(&config, "updateNotifications");
+
+    group.writeEntry(signature, m_finished);
+    group.sync();
+}
+
+QString Hook::calculateSignature()
+{
+    // this is used to uniquely identify a hook so that
+    // it is not shown again after it has been executed
+
+    QFile file(m_hookPath);
+    QFileInfo fileinfo(m_hookPath);
+    QString timestamp = fileinfo.lastModified().toString(Qt::ISODate);
+    QString filename = fileinfo.fileName();
+
+    KMD5 md5;
+    md5.update(filename.toUtf8());
+    md5.update(timestamp.toUtf8());
+    md5.update(file);
+    QString digest = md5.hexDigest().data();
+    return digest;
 }
 
 QMap<QString, QString> Hook::parse(const QString &hookPath)
@@ -148,8 +208,9 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
 
 bool Hook::isNotificationRequired()
 {
-    // TODO: Check if already shown, keep track via KConfig
-    // TODO: Find a more sane way to get that information?
+    if (m_finished)
+        return false;
+
     if (getField("DontShowAfterReboot") == "True") {
         float uptime = getUptime();
         if (uptime > 0) {
