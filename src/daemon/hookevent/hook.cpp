@@ -79,7 +79,7 @@ QString Hook::getField(const QString &name)
 
 QString Hook::getField(const QString &name, const QString &language)
 {
-    QString key = name + "-" + language;
+    QString key = name + '-' + language;
     if (m_fields.contains(key)) {
         return m_fields[key];
     }
@@ -189,7 +189,7 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
                 return emptyMap; // not a valid upgrade hook
             QString value = fields[lastKey];
             if (!value.isEmpty())
-                value += " ";
+                value += ' ';
             fields[lastKey] = value + line;
         } else {
             int split = line.indexOf(':');
