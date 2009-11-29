@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright © 2009 by Jonathan Thomas <echidnaman@kubuntu.org>          *
+ *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
  *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
@@ -63,7 +63,7 @@ void HookGui::updateDialog(QList<Hook*> hooks)
         }
         m_pages.clear();
     }
-    
+
     // Take the parsed upgrade hook(s) and put them in pages
     const QString language =  KGlobal::locale()->language();
     QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
@@ -99,7 +99,7 @@ void HookGui::updateDialog(QList<Hook*> hooks)
     connect(signalMapper, SIGNAL(mapped(QObject *)),
             this, SLOT(runCommand(QObject *)));
 
-    m_dialog->showNormal();
+    m_dialog->show();
     m_dialog->raise();
     m_dialog->activateWindow();
 }
