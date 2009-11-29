@@ -26,6 +26,7 @@
 
 // // KDE includes
 #include <KDialog>
+#include <KPushButton>
 #include <KLocalizedString>
 #include <KNotification>
 #include <KToolInvocation>
@@ -46,6 +47,7 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
     m_dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
     connect(m_dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
     connect(m_dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
+    connect(m_dialog, SIGNAL(cancelClicked()), SLOT(cleanUpDialog()));
 
     QWidget* widget = new QWidget(m_dialog);
     QVBoxLayout* layout = new QVBoxLayout(widget);
@@ -83,11 +85,13 @@ InstallGui::~InstallGui()
 
 void InstallGui::packageToggled(QListWidgetItem *item)
 {
+    QString packageName = item->toolTip();
     if (item->checkState() == Qt::Checked) {
-        m_toInstallList << item->toolTip();
+        m_toInstallList << packageName;
     } else {
-        m_toInstallList.removeAt(m_toInstallList.indexOf(item->toolTip()));
+        m_toInstallList.removeOne(packageName);
     }
+    m_dialog->button(KDialog::Ok)->setDisabled(m_toInstallList.isEmpty());
 }
 
 void InstallGui::runPackageInstall()
