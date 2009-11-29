@@ -42,6 +42,7 @@ public slots:
 
 private slots:
     void run();
+    void addPackages(const QMap<QString, QString> &category);
 
 private:
     QString m_applicationName;

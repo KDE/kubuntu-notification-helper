@@ -64,27 +64,26 @@ void InstallEvent::show()
     Event::show(icon, text, actions);
 }
 
+void InstallEvent::addPackages(const QMap<QString, QString> &category)
+{
+    QMap<QString, QString>::const_iterator packageIter = category.constBegin();
+    while (packageIter != category.end()) {
+        if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
+            m_packageList[packageIter.key()] = packageIter.value();
+        }
+        ++packageIter;
+    }
+}
+
 void InstallEvent::getInfo(const QString application, const QString package)
 {
     m_applicationName = application;
     m_packageList.clear();
 
     if (m_multimediaCategory.contains(package)) {
-        QMap<QString, QString>::const_iterator packageIter = m_multimediaCategory.constBegin();
-        while (packageIter != m_multimediaCategory.end()) {
-            if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
-                m_packageList[packageIter.key()] = packageIter.value();
-            }
-            ++packageIter;
-        }
+        addPackages(m_multimediaCategory);
     } else if (m_semanticCategory.contains(package)) {
-        QMap<QString, QString>::const_iterator packageIter = m_semanticCategory.constBegin();
-        while (packageIter != m_semanticCategory.end()) {
-            if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
-                m_packageList[packageIter.key()] = packageIter.value();
-            }
-            ++packageIter;
-        }
+        addPackages(m_semanticCategory);
     }
 
     if (!m_packageList.isEmpty()) {
