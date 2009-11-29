@@ -36,10 +36,13 @@ public:
     virtual ~HookGui();
 
 public slots:
+    void showDialog(QList<Hook*> hooks);
+
+private slots:
     void createDialog();
     void updateDialog(QList<Hook*> hooks);
-    void showDialog(QList<Hook*> hooks);
     void closeDialog();
+    void runCommand(QObject *obj);
 
 private:
     KPageDialog* m_dialog;
