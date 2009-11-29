@@ -118,6 +118,7 @@ void HookGui::runCommand(QObject *obj) {
     runButton->setEnabled(false);
 
     hook->runCommand();
+    hook->setFinished();
 }
 
 void HookGui::closeDialog()
