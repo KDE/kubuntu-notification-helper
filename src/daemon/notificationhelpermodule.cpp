@@ -57,7 +57,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 {
     KAboutData aboutData("notificationhelper", "notificationhelper",
                          ki18n("Kubuntu Notification Helper"),
-                         "0.4.85", ki18n("A Notification Helper for Kubuntu"),
+                         "0.4.90", ki18n("A Notification Helper for Kubuntu"),
                          KAboutData::License_GPL,
                          ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
                          KLocalizedString(), "http://kubuntu.org",
