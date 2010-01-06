@@ -23,7 +23,6 @@
 #ifndef HOOKPARSER_H
 #define HOOKPARSER_H
 
-
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QMap>
