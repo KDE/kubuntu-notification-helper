@@ -24,7 +24,7 @@
 #include <QtGui/QLabel>
 #include <QtGui/QVBoxLayout>
 
-// // KDE includes
+// KDE includes
 #include <KDialog>
 #include <KPushButton>
 #include <KLocalizedString>

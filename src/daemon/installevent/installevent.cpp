@@ -29,16 +29,16 @@
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , m_applicationName(0)
-        , m_multimediaCategory()
+        , m_multimediaPackages()
         , m_packageList()
         , m_installGui(0)
 {
-    m_multimediaCategory["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
-    m_multimediaCategory["libxine1-ffmpeg"] = i18n("MPEG Plugins");
-    m_multimediaCategory["libavcodec-unstripped-52"] = i18n("Video Codecs");
-    m_multimediaCategory["libdvdread4"] = i18n("DVD Reading");
-    m_multimediaCategory["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
-    m_multimediaCategory["libmp3lame0"] = i18n("MP3 Encoding");
+    m_multimediaPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
+    m_multimediaPackages["libxine1-ffmpeg"] = i18n("MPEG Plugins");
+    m_multimediaPackages["libavcodec-unstripped-52"] = i18n("Video Codecs");
+    m_multimediaPackages["libdvdread4"] = i18n("DVD Reading");
+    m_multimediaPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
+    m_multimediaPackages["libmp3lame0"] = i18n("MP3 Encoding");
 }
 
 InstallEvent::~InstallEvent()
@@ -61,10 +61,10 @@ void InstallEvent::show()
     Event::show(icon, text, actions);
 }
 
-void InstallEvent::addPackages(const QMap<QString, QString> &category)
+void InstallEvent::addPackages()
 {
-    QMap<QString, QString>::const_iterator packageIter = category.constBegin();
-    while (packageIter != category.end()) {
+    QMap<QString, QString>::const_iterator packageIter = m_multimediaPackages.constBegin();
+    while (packageIter != m_multimediaPackages.end()) {
         if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
             m_packageList[packageIter.key()] = packageIter.value();
         }
@@ -77,8 +77,8 @@ void InstallEvent::getInfo(const QString application, const QString package)
     m_applicationName = application;
     m_packageList.clear();
 
-    if (m_multimediaCategory.contains(package)) {
-        addPackages(m_multimediaCategory);
+    if (m_multimediaPackages.contains(package)) {
+        addPackages();
     }
 
     if (!m_packageList.isEmpty()) {
