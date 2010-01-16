@@ -47,7 +47,6 @@ private slots:
 private:
     QString m_applicationName;
     QMap<QString, QString> m_multimediaCategory;
-    QMap<QString, QString> m_semanticCategory;
     QMap<QString, QString> m_packageList;
     InstallGui* m_installGui;
 };

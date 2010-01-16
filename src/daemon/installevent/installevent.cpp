@@ -30,7 +30,6 @@ InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , m_applicationName(0)
         , m_multimediaCategory()
-        , m_semanticCategory()
         , m_packageList()
         , m_installGui(0)
 {
@@ -40,8 +39,6 @@ InstallEvent::InstallEvent(QObject* parent, QString name)
     m_multimediaCategory["libdvdread4"] = i18n("DVD Reading");
     m_multimediaCategory["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
     m_multimediaCategory["libmp3lame0"] = i18n("MP3 Encoding");
-
-    m_semanticCategory["soprano-backend-sesame"] = i18n("Improved Semantic Desktop Plugin");
 }
 
 InstallEvent::~InstallEvent()
@@ -82,8 +79,6 @@ void InstallEvent::getInfo(const QString application, const QString package)
 
     if (m_multimediaCategory.contains(package)) {
         addPackages(m_multimediaCategory);
-    } else if (m_semanticCategory.contains(package)) {
-        addPackages(m_semanticCategory);
     }
 
     if (!m_packageList.isEmpty()) {
