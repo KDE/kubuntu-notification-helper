@@ -25,7 +25,6 @@
 
 import sys, time
 sys.path.insert(0, '/usr/lib/update-notifier')
-import apt_check
 
 from UpdateManager.Core.MetaRelease import MetaReleaseCore
 
