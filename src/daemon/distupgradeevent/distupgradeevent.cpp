@@ -50,7 +50,7 @@ void DistUpgradeEvent::show()
 
     QPixmap icon = KIcon("system-software-update").pixmap(NOTIFICATION_ICON_SIZE);
     QString text(i18nc("Notification when a new version of Kubuntu is available",
-                       "A new version of Kubuntu is availabel"));
+                       "A new version of Kubuntu is available"));
     QStringList actions;
     actions << i18nc("Start the upgrade", "Upgrade");
     actions << i18nc("Button to dismiss this notification once", "Ignore for now");
