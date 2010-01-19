@@ -1,0 +1,6 @@
+#!/usr/bin/make -f
+
+include /usr/lib/kubuntu-desktop-i18n/debhelper/kubuntu.mk
+
+%:
+	dh --dbg-package=kubuntu-notification-helper-dbg --with kde $@

@@ -1,0 +1,41 @@
+Source: kubuntu-notification-helper
+Section: kde
+Priority: optional
+Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
+XSBC-Original-Maintainer: Jonthan Thomas <echidnaman@kubuntu.org>
+Build-Depends: debhelper (>= 7), pkg-kde-tools, kdelibs5-dev
+Standards-Version: 3.8.3
+Homepage: https://launchpad.net/kubuntu-notification-helper
+
+Package: kubuntu-notification-helper
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, konsole | x-terminal-emulator,
+  install-package
+Recommends: apport-kde
+Description: Kubuntu system notification helper
+ Kubuntu Notification Helper is a daemon that presents various notifications
+ to the user. It uses the KDE Daemon system as a base and presents the
+ notifications using the KDE Notification system. It also includes a
+ System Settings module for configuring the daemon. Kubuntu Notification
+ Helper is lightweight and fully integrated with KDE.
+ .
+ Current features include:
+  - Notifications for Apport crashes.
+  - Notifications for upgrade information, when available.
+  - Notifications for the availability restrictively-licensed packages.
+  - Notifications for when upgrades require a reboot to complete.
+  - All notifications can be hidden temporarily or permanently.
+
+Package: kubuntu-notification-helper-dbg
+Section: debug
+Architecture: any
+Priority: extra
+Depends: ${misc:Depends}, kubuntu-notification-helper (= ${binary:Version})
+Recommends: kdelibs5-dbg
+Description: Kubuntu Notification Helper debugging symbols
+ This package contains debugging symbols for Kubuntu Notification Helpert.
+ When Kubuntu Notification Helper crashes, in most cases this package is
+ needed to get a backtrace that is useful for developers. If you have
+ experienced a Kubuntu Notification Helper crash without this package
+ installed, please install it, try to reproduce the problem and fill a bug
+ report with a new backtrace attached.

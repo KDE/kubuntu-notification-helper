@@ -1,0 +1,13 @@
+kubuntu-notification-helper (0.4.90ubuntu1) lucid; urgency=low
+
+  * New upstream beta release
+  * Include /usr/lib/kubuntu-desktop-i18n/debhelper/kubuntu.mk so that when
+    this gets to main it'll have translation support.
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Wed, 06 Jan 2010 12:28:15 -0500
+
+kubuntu-notification-helper (0.4.85ubuntu1) lucid; urgency=low
+
+  * Initial release.
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Mon, 23 Nov 2009 19:42:34 -0500
