@@ -19,46 +19,25 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPERMODULE_H
-#define NOTIFICATIONHELPERMODULE_H
+#ifndef DISTUPGRADEEVENT_H
+#define DISTUPGRADEEVENT_H
 
-// KDE includes
-#include <KDEDModule>
+#include "../event.h"
 
-class ApportEvent;
-class DistUpgradeEvent;
-class HookEvent;
-class InstallEvent;
-class RebootEvent;
-
-class ConfigWatcher;
-class InstallDBusWatcher;
-
-class NotificationHelperModule
-            : public KDEDModule
+class DistUpgradeEvent : public Event
 {
     Q_OBJECT
 public:
-    NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+    DistUpgradeEvent(QObject* parent, QString name);
 
-    virtual ~NotificationHelperModule();
+    virtual ~DistUpgradeEvent();
+
+public slots:
+    void show();
 
 private slots:
-    void apportEvent();
-    void distUpgradeEvent();
-    void hookEvent();
-    void rebootEvent();
-    void installEvent(const QString app, const QString package);
-
-private:
-    ApportEvent* m_apportEvent;
-    DistUpgradeEvent* m_distUpgradeEvent;
-    HookEvent* m_hookEvent;
-    InstallEvent* m_installEvent;
-    RebootEvent* m_rebootEvent;
-
-    ConfigWatcher* m_configWatcher;
-    InstallDBusWatcher* m_installWatcher;
+    void run();
+    bool upgradeAvailable();
 };
 
 #endif

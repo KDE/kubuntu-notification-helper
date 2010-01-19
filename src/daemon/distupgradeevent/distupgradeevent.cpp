@@ -1,6 +1,5 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,46 +18,53 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef NOTIFICATIONHELPERMODULE_H
-#define NOTIFICATIONHELPERMODULE_H
+#include "distupgradeevent.h"
 
-// KDE includes
-#include <KDEDModule>
+#include <KProcess>
+#include <KDebug>
 
-class ApportEvent;
-class DistUpgradeEvent;
-class HookEvent;
-class InstallEvent;
-class RebootEvent;
+DistUpgradeEvent::DistUpgradeEvent(QObject* parent, QString name)
+        : Event(parent, name)
+{}
 
-class ConfigWatcher;
-class InstallDBusWatcher;
+DistUpgradeEvent::~DistUpgradeEvent()
+{}
 
-class NotificationHelperModule
-            : public KDEDModule
+bool DistUpgradeEvent::upgradeAvailable()
 {
-    Q_OBJECT
-public:
-    NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+    KProcess *checkerProcess = new KProcess();
+    checkerProcess->setProgram(QStringList() << "/usr/bin/releasechecker");
 
-    virtual ~NotificationHelperModule();
+    if (checkerProcess->execute() == 0) {
+        return true;
+    }
+    return false;
+}
 
-private slots:
-    void apportEvent();
-    void distUpgradeEvent();
-    void hookEvent();
-    void rebootEvent();
-    void installEvent(const QString app, const QString package);
+void DistUpgradeEvent::show()
+{
+    if (!upgradeAvailable()) {
+        kDebug() << "No upgrade available";
+        return;
+    }
 
-private:
-    ApportEvent* m_apportEvent;
-    DistUpgradeEvent* m_distUpgradeEvent;
-    HookEvent* m_hookEvent;
-    InstallEvent* m_installEvent;
-    RebootEvent* m_rebootEvent;
+    QPixmap icon = KIcon("system-software-update").pixmap(NOTIFICATION_ICON_SIZE);
+    QString text(i18nc("Notification when a new version of Kubuntu is available",
+                       "A new version of Kubuntu is availabel"));
+    QStringList actions;
+    actions << i18nc("Start the upgrade", "Upgrade");
+    actions << i18nc("Button to dismiss this notification once", "Ignore for now");
+    actions << i18nc("Button to make this notification never show up again",
+                     "Never show again");
 
-    ConfigWatcher* m_configWatcher;
-    InstallDBusWatcher* m_installWatcher;
-};
+    Event::show(icon, text, actions);
+}
 
-#endif
+void DistUpgradeEvent::run()
+{
+    KProcess::startDetached(QStringList() << "python"
+                            << "/usr/share/pyshared/UpdateManager/DistUpgradeFetcherKDE.py");
+    Event::run();
+}
+
+#include "distupgradeevent.moc"

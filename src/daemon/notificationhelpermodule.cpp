@@ -33,6 +33,7 @@
 
 // Own includes
 #include "apportevent/apportevent.h"
+#include "distupgradeevent/distupgradeevent.h"
 #include "hookevent/hookevent.h"
 #include "installevent/installevent.h"
 #include "rebootevent/rebootevent.h"
@@ -49,6 +50,7 @@ K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
         : KDEDModule(parent)
         , m_apportEvent(0)
+        , m_distUpgradeEvent(0)
         , m_hookEvent(0)
         , m_installEvent(0)
         , m_rebootEvent(0)
@@ -66,6 +68,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     m_configWatcher = new ConfigWatcher(this);
 
     m_apportEvent = new ApportEvent(this, "Apport");
+    m_distUpgradeEvent = new DistUpgradeEvent(this, "Dist-Upgrade");
     m_hookEvent = new HookEvent(this, "Hook");
     m_installEvent = new InstallEvent(this, "Install" );
     m_rebootEvent = new RebootEvent(this, "Restart");
@@ -83,6 +86,15 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
         QTimer::singleShot(5000, this, SLOT(apportEvent()));
     }
 
+    if (!m_distUpgradeEvent->isHidden()) {
+        KDirWatch *aptDirWatch = new KDirWatch(this);
+        aptDirWatch->addDir("/var/lib/apt/lists/");
+        connect(aptDirWatch, SIGNAL(dirty(const QString &)),
+                this, SLOT(distUpgradeEvent()));
+        connect(m_configWatcher, SIGNAL(reloadConfigCalled()),
+                m_distUpgradeEvent, SLOT(reloadConfig()));
+    }
+
     if (!m_hookEvent->isHidden()) {
         KDirWatch *hooksDirWatch = new KDirWatch(this);
         hooksDirWatch->addDir("/var/lib/update-notifier/user.d/");
@@ -92,7 +104,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                 m_hookEvent, SLOT(reloadConfig()));
     }
 
-    if ( !m_installEvent->isHidden() )
+    if (!m_installEvent->isHidden())
     {
         m_installWatcher = new InstallDBusWatcher(this);
         connect(m_installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
@@ -116,6 +128,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 NotificationHelperModule::~NotificationHelperModule()
 {
     delete m_apportEvent;
+    delete m_distUpgradeEvent;
     delete m_hookEvent;
     delete m_installEvent;
     delete m_rebootEvent;
@@ -127,6 +140,11 @@ void NotificationHelperModule::apportEvent()
 {
     // We could be too fast for apport, so wait a bit before showing the notification
     QTimer::singleShot(2000, m_apportEvent, SLOT(show()));
+}
+
+void NotificationHelperModule::distUpgradeEvent()
+{
+    m_distUpgradeEvent->show();
 }
 
 void NotificationHelperModule::hookEvent()
