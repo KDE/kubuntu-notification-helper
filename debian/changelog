@@ -1,3 +1,17 @@
+kubuntu-notification-helper (0.4.95ubuntu1) UNRELEASED; urgency=low
+
+  * New upstream release:
+    - Add dependency on python-minimal for the dist-upgrade checker script
+    - Update description for new feature
+    - Update debian/copyright
+  * Bump debhelper build-depend to the lowest that supports source format 3.0
+  * Bump pkg-kde-tools build-depend version to 0.5.0 or greater; the kde
+    debhelper sequence requires it
+  * Add apport-gtk as an alternative to apport-kde for the Recommends field
+  * Fix typo in the -dbg package's long description
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Tue, 19 Jan 2010 15:10:57 -0500
+
 kubuntu-notification-helper (0.4.90ubuntu1) lucid; urgency=low
 
   * New upstream beta release
