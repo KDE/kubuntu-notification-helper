@@ -26,7 +26,6 @@
 #include <KDEDModule>
 
 class ApportEvent;
-class DistUpgradeEvent;
 class HookEvent;
 class InstallEvent;
 class RebootEvent;
@@ -45,14 +44,12 @@ public:
 
 private slots:
     void apportEvent();
-    void distUpgradeEvent();
     void hookEvent();
     void rebootEvent();
     void installEvent(const QString app, const QString package);
 
 private:
     ApportEvent* m_apportEvent;
-    DistUpgradeEvent* m_distUpgradeEvent;
     HookEvent* m_hookEvent;
     InstallEvent* m_installEvent;
     RebootEvent* m_rebootEvent;

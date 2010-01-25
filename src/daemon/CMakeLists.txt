@@ -3,7 +3,6 @@ set(notificationhelper_SRCS
     event.cpp
     configwatcher.cpp
     apportevent/apportevent.cpp
-    distupgradeevent/distupgradeevent.cpp
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
     hookevent/hook.cpp
@@ -23,7 +22,6 @@ kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})
 target_link_libraries(kded_notificationhelper ${KDE4_KIO_LIBS})
 
 install(TARGETS kded_notificationhelper DESTINATION ${PLUGIN_INSTALL_DIR})
-install(FILES distupgradeevent/releasechecker DESTINATION /usr/bin PERMISSIONS OWNER_READ OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE)
 
 install(FILES notificationhelper.notifyrc DESTINATION ${DATA_INSTALL_DIR}/notificationhelper)
 install(FILES notificationhelper.desktop  DESTINATION  ${SERVICES_INSTALL_DIR}/kded)

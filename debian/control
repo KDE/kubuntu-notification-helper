@@ -10,7 +10,7 @@ Homepage: https://launchpad.net/kubuntu-notification-helper
 Package: kubuntu-notification-helper
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, konsole | x-terminal-emulator,
-  install-package, python-minimal
+  install-package
 Recommends: apport-kde | apport-gtk
 Description: Kubuntu system notification helper
  Kubuntu Notification Helper is a daemon that presents various notifications
@@ -21,7 +21,6 @@ Description: Kubuntu system notification helper
  .
  Current features include:
   - Notifications for Apport crashes.
-  - Notifications for new Kubuntu releases.
   - Notifications for upgrade information, when available.
   - Notifications for the availability restrictively-licensed packages.
   - Notifications for when upgrades require a reboot to complete.
