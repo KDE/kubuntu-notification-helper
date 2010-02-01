@@ -25,6 +25,7 @@
 #include <QtDBus/QDBusMessage>
 #include <QtGui/QCheckBox>
 #include <QtGui/QGroupBox>
+#include <QtGui/QLabel>
 #include <QtGui/QVBoxLayout>
 
 // KDE includes
