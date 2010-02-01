@@ -68,8 +68,8 @@ void HookGui::updateDialog(QList<Hook*> hooks)
     // Take the parsed upgrade hook(s) and put them in pages
     const QString language =  KGlobal::locale()->language();
     QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
-    QList<Hook*>::iterator i;
-    for (i = hooks.begin(); i !=  hooks.end(); ++i) {
+    QList<Hook*>::const_iterator i;
+    for (i = hooks.constBegin(); i !=  hooks.end(); ++i) {
         Hook *hook = *i;
 
         KVBox *vbox = new KVBox();
