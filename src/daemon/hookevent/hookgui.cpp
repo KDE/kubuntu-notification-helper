@@ -25,12 +25,13 @@
 // Qt includes
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
-#include <QSignalMapper>
+#include <QtCore/QSignalMapper>
 
 // KDE includes
 #include <KGlobal>
 #include <KIcon>
 #include <KLocale>
+#include <KPageDialog>
 #include <KVBox>
 
 HookGui::HookGui(QObject* parent)
@@ -40,8 +41,9 @@ HookGui::HookGui(QObject* parent)
 
 void HookGui::showDialog(QList<Hook*> hooks)
 {
-    if (!m_dialog)
+    if (!m_dialog) {
         createDialog();
+    }
     updateDialog(hooks);
 }
 

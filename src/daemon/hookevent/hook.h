@@ -42,13 +42,13 @@ public slots:
     QString getField(const QString& name);
     void runCommand();
     void setFinished();
-    
+
 private:
     QMap<QString, QString> parse(const QString &hookPath);
     QString calculateSignature();
     void loadConfig();
     void saveConfig();
-    
+
     QString m_hookPath;
     QMap<QString, QString> m_fields;
     bool m_finished;

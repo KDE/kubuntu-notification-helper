@@ -23,7 +23,6 @@
 #define HOOKEVENT_H
 
 #include "../event.h"
-#include "hook.h"
 
 #include <QtCore/QList>
 
