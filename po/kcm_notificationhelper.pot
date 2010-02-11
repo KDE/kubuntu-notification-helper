@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-25 12:50-0500\n"
+"POT-Creation-Date: 2010-02-11 14:09-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,42 +16,46 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:47
+#: src/kcmodule/notificationhelperconfigmodule.cpp:48
 msgid "kcmnotificationhelper"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:48
+#: src/kcmodule/notificationhelperconfigmodule.cpp:49
 msgid "Kubuntu Notification Helper Configuration"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:50
+#: src/kcmodule/notificationhelperconfigmodule.cpp:51
 msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:53
+#: src/kcmodule/notificationhelperconfigmodule.cpp:54
 msgid "Jonathan Thomas"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:54
+#: src/kcmodule/notificationhelperconfigmodule.cpp:55
 msgid "Harald Sitter"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:57
+#: src/kcmodule/notificationhelperconfigmodule.cpp:58
 msgid "Configure the behavior of Kubuntu Notification Helper"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:63
-msgid "Show Apport crash notifications"
-msgstr ""
-
-#: src/kcmodule/notificationhelperconfigmodule.cpp:64
-msgid "Show upgrade information notifications"
-msgstr ""
-
 #: src/kcmodule/notificationhelperconfigmodule.cpp:65
-msgid "Show restricted codec availability notifications"
+msgid "Show notifications for:"
 msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:66
-msgid "Show reboot required notifications"
+#: src/kcmodule/notificationhelperconfigmodule.cpp:67
+msgid "Application crashes"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:68
+msgid "Upgrade information"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:69
+msgid "Restricted codec availability"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:70
+msgid "Required reboots"
 msgstr ""
