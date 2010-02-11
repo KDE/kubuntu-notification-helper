@@ -1,4 +1,4 @@
-kubuntu-notification-helper (0.4.95ubuntu1) UNRELEASED; urgency=low
+kubuntu-notification-helper (0.4.95ubuntu1) lucid; urgency=low
 
   * New upstream release:
     - Minor optimizations/code cleanup
