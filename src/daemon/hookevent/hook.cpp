@@ -75,7 +75,7 @@ QString Hook::getField(const QString &name)
     if (m_fields.contains(name)) {
         return m_fields[name];
     }
-    return QString("");
+    return QString();
 }
 
 QString Hook::getField(const QString &name, const QString &language)

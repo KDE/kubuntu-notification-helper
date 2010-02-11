@@ -44,14 +44,15 @@ public slots:
     void setFinished();
 
 private:
+    QString m_hookPath;
+    QMap<QString, QString> m_fields;
+    bool m_finished;
+
+private slots:
     QMap<QString, QString> parse(const QString &hookPath);
     QString calculateSignature();
     void loadConfig();
     void saveConfig();
-
-    QString m_hookPath;
-    QMap<QString, QString> m_fields;
-    bool m_finished;
 };
 
 #endif

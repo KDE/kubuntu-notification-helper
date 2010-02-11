@@ -1,7 +1,26 @@
+# Header entry was created by KBabel!
+#
+#: apportevent.cpp:36
+# , 2010.
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Mime-Version: 1.0"
+"Last-Translator: \n"
+"PO-Revision-Date: 2010-02-11 13:38+0100\n"
+"Project-Id-Version: \n"
+"Language-Team: es <kde-i18n-doc@kde.org>\n"
+"X-Generator: Lokalize 1.0\n"
+"MIME-Version: 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: apportevent.cpp:36
 msgctxt "Notification when apport detects a crash"
 msgid "An application has crashed on your system (now or in the past)"
 msgstr ""
+"Una aplicación ha dejado de funcionar en su sistema (ahora o en el "
+"pasado)"
 
 #: apportevent.cpp:38 hookevent.cpp:84
 msgctxt "Opens a dialog with more details"
@@ -16,24 +35,24 @@ msgstr "Ignorar"
 #: apportevent.cpp:40 hookevent.cpp:86
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Never show again"
-msgstr ""
+msgstr "No volver a mostrar"
 
 #: hookevent.cpp:82
 msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
-msgstr ""
+msgstr "Hay actualizaciones de software disponibles"
 
 #: hookevent.cpp:252
 msgid "Run this action now"
-msgstr ""
+msgstr "Ejecutar acción ahora"
 
 #: notificationhelper.cpp:45
 msgid "Kubuntu Notification Helper"
-msgstr ""
+msgstr "Ayudante de Notificaciones de Kubuntu"
 
 #: notificationhelper.cpp:46
 msgid "A Notification Helper for kubuntu"
-msgstr ""
+msgstr "Un Ayudante de Notificaciones para Kubuntu"
 
 #: notificationhelper.cpp:47
 msgid "(C) 2009 Jonathan Thomas"
@@ -42,17 +61,17 @@ msgstr "(C) 2009 Jonathan Thomas"
 #: rc.cpp:1
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Jonathan Thomas"
+msgstr "Sus nombres"
 
 #: rc.cpp:2
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "echidnaman@kubuntu.org"
+msgstr "Sus e-mails"
 
 #: rebootevent.cpp:36
 msgctxt "Notification when the upgrade requires a restart"
 msgid "A system restart is required"
-msgstr ""
+msgstr "Se necesita reiniciar el sistema"
 
 #: rebootevent.cpp:38
 msgctxt "Restart the computer"
@@ -62,4 +81,5 @@ msgstr "Reiniciar"
 #: rebootevent.cpp:40
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Ignore forever"
-msgstr "Ignorar por siempre"
+msgstr "Ignorar para siempre"
+
