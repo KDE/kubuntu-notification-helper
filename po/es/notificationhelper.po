@@ -1,85 +1,165 @@
-# Header entry was created by KBabel!
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
 #
-#: apportevent.cpp:36
-# , 2010.
+# Rafael Belmonte <EagleScreen@gmail.com>, 2010.
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2010-02-11 14:09-0500\n"
+"PO-Revision-Date: 2010-02-12 17:27+0100\n"
+"Last-Translator: Rafael Belmonte <EagleScreen@gmail.com>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Mime-Version: 1.0"
-"Last-Translator: \n"
-"PO-Revision-Date: 2010-02-11 13:38+0100\n"
-"Project-Id-Version: \n"
-"Language-Team: es <kde-i18n-doc@kde.org>\n"
 "X-Generator: Lokalize 1.0\n"
-"MIME-Version: 1.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: apportevent.cpp:36
-msgctxt "Notification when apport detects a crash"
-msgid "An application has crashed on your system (now or in the past)"
-msgstr ""
-"Una aplicación ha dejado de funcionar en su sistema (ahora o en el "
-"pasado)"
-
-#: apportevent.cpp:38 hookevent.cpp:84
-msgctxt "Opens a dialog with more details"
-msgid "Details"
-msgstr "Detalles"
-
-#: apportevent.cpp:39 hookevent.cpp:85 rebootevent.cpp:39
-msgctxt "User declines an action"
-msgid "Ignore"
-msgstr "Ignorar"
-
-#: apportevent.cpp:40 hookevent.cpp:86
-msgctxt "User indicates he never wants to see this notification again"
-msgid "Never show again"
-msgstr "No volver a mostrar"
-
-#: hookevent.cpp:82
+#: src/daemon/hookevent/hookevent.cpp:57
 msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
 msgstr "Hay actualizaciones de software disponibles"
 
-#: hookevent.cpp:252
-msgid "Run this action now"
-msgstr "Ejecutar acción ahora"
+#: src/daemon/hookevent/hookevent.cpp:59
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/installevent/installevent.cpp:56
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Detalles"
 
-#: notificationhelper.cpp:45
+#: src/daemon/hookevent/hookevent.cpp:60
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Ignorar"
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "No volver a mostrar"
+
+#: src/daemon/hookevent/hookgui.cpp:53
+msgid "Update Information"
+msgstr "Información de actualización"
+
+#: src/daemon/hookevent/hookgui.cpp:91
+msgid "Run this action now"
+msgstr "Ejecutar esta acción ahora"
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:53
+msgctxt "Notification when a new version of Kubuntu is available"
+msgid "A new version of Kubuntu is available"
+msgstr "Una nueva versión de Kubuntu está disponible"
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:55
+msgctxt "Start the upgrade"
+msgid "Upgrade"
+msgstr "Actualizar"
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:56
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/rebootevent/rebootevent.cpp:40
+#: src/daemon/installevent/installevent.cpp:57
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Ignorar por ahora"
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:58
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/rebootevent/rebootevent.cpp:42
+#: src/daemon/installevent/installevent.cpp:59
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "No volver a mostrar"
+
+#: src/daemon/apportevent/apportevent.cpp:56
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+"Una aplicación ha dejado de funcionar en su sistema (ahora o en el pasado)"
+
+#: src/daemon/notificationhelpermodule.cpp:59
 msgid "Kubuntu Notification Helper"
 msgstr "Ayudante de Notificaciones de Kubuntu"
 
-#: notificationhelper.cpp:46
-msgid "A Notification Helper for kubuntu"
+#: src/daemon/notificationhelpermodule.cpp:60
+msgid "A Notification Helper for Kubuntu"
 msgstr "Un Ayudante de Notificaciones para Kubuntu"
 
-#: notificationhelper.cpp:47
-msgid "(C) 2009 Jonathan Thomas"
-msgstr "(C) 2009 Jonathan Thomas"
+#: src/daemon/notificationhelpermodule.cpp:62
+msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
 
-#: rc.cpp:1
-msgctxt "NAME OF TRANSLATORS"
-msgid "Your names"
-msgstr "Sus nombres"
-
-#: rc.cpp:2
-msgctxt "EMAIL OF TRANSLATORS"
-msgid "Your emails"
-msgstr "Sus e-mails"
-
-#: rebootevent.cpp:36
+#: src/daemon/rebootevent/rebootevent.cpp:37
 msgctxt "Notification when the upgrade requires a restart"
-msgid "A system restart is required"
-msgstr "Se necesita reiniciar el sistema"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+"Se necesita reiniciar el sistema para completar el proceso de actualización"
 
-#: rebootevent.cpp:38
+#: src/daemon/rebootevent/rebootevent.cpp:39
 msgctxt "Restart the computer"
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: rebootevent.cpp:40
-msgctxt "User indicates he never wants to see this notification again"
-msgid "Ignore forever"
-msgstr "Ignorar para siempre"
+#: src/daemon/installevent/installgui.cpp:45
+msgid "Install Packages"
+msgstr "Instalar los paquetes"
+
+#: src/daemon/installevent/installgui.cpp:47
+msgid "Install Selected"
+msgstr "Instalar seleccionados"
+
+#: src/daemon/installevent/installgui.cpp:58
+msgid ""
+"For extra multimedia functionality, select packages to be installed. These "
+"packages are not installed by default due to either patent issues or "
+"restrictive licensing."
+msgstr ""
+"Para una funcionalidad multimedia extra, seleccione los paquetes a ser "
+"instalados. "
+"Estos paquetes no están instalados por defecto por cuestiones de patentes "
+"o "
+"licencias restrictivas."
+
+#: src/daemon/installevent/installgui.cpp:106
+#, kde-format
+msgid ""
+"Once the install is finished, you will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+"Una vez haya finalizado la instalación, necesitará reiniciar %1 para poder "
+"usar las nuevas funcionalidades"
+
+#: src/daemon/installevent/installevent.cpp:36
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Flash"
+
+#: src/daemon/installevent/installevent.cpp:37
+msgid "MPEG Plugins"
+msgstr "Plugins para MPEG"
+
+#: src/daemon/installevent/installevent.cpp:38
+msgid "Video Codecs"
+msgstr "Códecs de vídeo"
+
+#: src/daemon/installevent/installevent.cpp:39
+msgid "DVD Reading"
+msgstr "Lectura de DVD's"
+
+#: src/daemon/installevent/installevent.cpp:40
+msgid "K3b CD Codecs"
+msgstr "Códecs para CD de K3b"
+
+#: src/daemon/installevent/installevent.cpp:41
+msgid "MP3 Encoding"
+msgstr "Codificación en MP3"
+
+#: src/daemon/installevent/installevent.cpp:53
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr ""
+"Algunos paquetes extra pueden ser instalados para ampliar "
+"la funcionalidad de %1"
 
