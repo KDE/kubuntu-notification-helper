@@ -26,6 +26,17 @@ Description: Kubuntu system notification helper
   - Notifications for when upgrades require a reboot to complete.
   - All notifications can be hidden temporarily or permanently.
 
+Package: update-notifier-kde
+Section: kde
+Architecture: any
+Depends: ${misc:Depends}, kubuntu-notification-helper
+Description: Apt status applet
+ An applet to show a systray icon when apt has software updates to be
+ installed, when Apport has crash reports, for reboot notification and
+ for upgrade hook messages.
+ .
+ This is a dummy package to help with upgrades, and can be safely removed.
+
 Package: kubuntu-notification-helper-dbg
 Section: debug
 Architecture: any

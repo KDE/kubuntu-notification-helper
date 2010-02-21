@@ -1,3 +1,10 @@
+kubuntu-notification-helper (10.04ubuntu1) lucid; urgency=low
+
+  * Add transitional package for upgrades from update-notifier-kde
+  * Change versioning scheme for the above
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Sun, 21 Feb 2010 10:34:34 -0500
+
 kubuntu-notification-helper (0.4.95ubuntu1) lucid; urgency=low
 
   * New upstream release:
