@@ -28,7 +28,7 @@ Description: Kubuntu system notification helper
 
 Package: update-notifier-kde
 Section: kde
-Architecture: any
+Architecture: all
 Depends: ${misc:Depends}, kubuntu-notification-helper
 Description: Apt status applet
  An applet to show a systray icon when apt has software updates to be
