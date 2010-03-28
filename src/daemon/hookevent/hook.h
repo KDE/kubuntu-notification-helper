@@ -26,6 +26,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QMap>
+#include <KLocale>
 
 class Hook : public QObject
 {
@@ -38,7 +39,7 @@ public:
 public slots:
     bool isValid();
     bool isNotificationRequired();
-    QString getField(const QString& name, const QString &language);
+    QString getField(const QString& name, const KLocale *locale);
     QString getField(const QString& name);
     void runCommand();
     void setFinished();

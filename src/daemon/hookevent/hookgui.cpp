@@ -68,25 +68,25 @@ void HookGui::updateDialog(QList<Hook*> hooks)
     }
 
     // Take the parsed upgrade hook(s) and put them in pages
-    const QString language =  KGlobal::locale()->language();
+    const KLocale *locale = KGlobal::locale();
     QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
     QList<Hook*>::const_iterator i;
     for (i = hooks.constBegin(); i != hooks.constEnd(); ++i) {
         Hook *hook = *i;
 
         KVBox *vbox = new KVBox();
-        QString name = hook->getField("Name", language);
+        QString name = hook->getField("Name", locale);
         KPageWidgetItem *page = new KPageWidgetItem(vbox, name);
         page->setIcon(KIcon("help-hint"));
         page->setProperty("hook", qVariantFromValue((QObject *)hook));
 
-        QString desc = hook->getField("Description", language);
+        QString desc = hook->getField("Description", locale);
         QLabel *descLabel = new QLabel(vbox);
         descLabel->setWordWrap(true);
         descLabel->setText(desc);
 
         if (!hook->getField("Command").isEmpty()) {
-            QString label = hook->getField("ButtonText", language);
+            QString label = hook->getField("ButtonText", locale);
             if (label.isEmpty())
                 label = i18n("Run this action now");
             QPushButton *runButton = new QPushButton(KIcon("system-run"), label, vbox);

@@ -78,13 +78,26 @@ QString Hook::getField(const QString &name)
     return QString();
 }
 
-QString Hook::getField(const QString &name, const QString &language)
+QString Hook::getField(const QString &name, const KLocale *locale)
 {
-    QString key = name + '-' + language;
-    if (m_fields.contains(key)) {
-        return m_fields[key];
+    QString lang = '-' + locale->language(); // e.g. "-en_US" or "-en" 
+    QString charset = '.' + locale->encoding(); // e.g. ".UTF-8"
+    // try locale combinations from most specific to most generic
+    QString value = getField(name + lang + charset);
+    if (value.isEmpty()) {
+        value = getField(name + lang);
+        if (value.isEmpty()) {
+            lang.truncate(3); // e.g. "-en"
+            value = getField(name + lang + charset);
+            if (value.isEmpty()) {
+                value = getField(name + lang);
+                if (value.isEmpty()) {
+                    value = getField(name);
+                }
+            }
+        }
     }
-    return getField(name);
+    return value;
 }
 
 bool Hook::isValid()
@@ -175,6 +188,8 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
     // See https://wiki.kubuntu.org/InteractiveUpgradeHooks for details on the hook format
     QMap<QString, QString> fields;
     QTextStream stream(&file);
+    stream.setCodec("UTF-8"); // as required by spec
+    stream.setAutoDetectUnicode(true); // just in case
 
     QString lastKey;
     QString line;

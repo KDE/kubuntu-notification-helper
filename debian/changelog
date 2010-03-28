@@ -5,8 +5,9 @@ kubuntu-notification-helper (10.04ubuntu2) UNRELEASED; urgency=low
 
   [ Amichai Rothman ]
   * Fix update notification crashes
+  * Fix update notification i18n support
 
- -- Amichai Rothman <amichai2@amichais.net>  Sun, 28 Mar 2010 21:28:00 +0300
+ -- Amichai Rothman <amichai2@amichais.net>  Sun, 28 Mar 2010 22:56:45 +0300
 
 kubuntu-notification-helper (10.04ubuntu1) lucid; urgency=low
 
