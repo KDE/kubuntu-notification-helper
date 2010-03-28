@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
+ *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -19,46 +19,25 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef EVENT_H
-#define EVENT_H
+#ifndef DISTUPGRADEEVENT_H
+#define DISTUPGRADEEVENT_H
 
-#include <QtCore/QObject>
+#include "../event.h"
 
-// #include <KDebug>
-#include <KLocalizedString>
-
-// for implementing classes
-#include <KIcon>
-
-#define NOTIFICATION_ICON_SIZE 22,22
-
-class Event
-            : public QObject
+class DistUpgradeEvent : public Event
 {
     Q_OBJECT
 public:
-    Event(QObject* parent, QString name);
+    DistUpgradeEvent(QObject* parent, QString name);
 
-    virtual ~Event();
+    virtual ~DistUpgradeEvent();
 
 public slots:
-    bool isHidden();
-    void show(QPixmap icon, QString text, QStringList actions);
-    void run();
-    void reloadConfig();
+    void show();
 
 private slots:
-    bool readHiddenConfig();
-    void writeHiddenConfig(bool value);
-    void ignore();
-    void hide();
-    void notifyClosed();
-
-private:
-    QString m_cfgstring;
-    const QString m_name;
-    bool m_hidden;
-    bool m_active;
+    void run();
+    bool upgradeAvailable();
 };
 
 #endif

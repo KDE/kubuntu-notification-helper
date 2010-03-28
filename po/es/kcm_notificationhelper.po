@@ -1,61 +1,63 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Rafael Belmonte <EagleScreen@gmail.com>, 2010.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2010-02-11 14:09-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2010-02-12 16:46+0100\n"
+"Last-Translator: Rafael Belmonte <EagleScreen@gmail.com>\n"
+"Language-Team: Spanish <kde-i18n-doc@kde.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 1.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:48
 msgid "kcmnotificationhelper"
-msgstr ""
+msgstr "kcmnotificationhelper"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:49
 msgid "Kubuntu Notification Helper Configuration"
-msgstr ""
+msgstr "Configuración del Ayudante de Notificaciones de Kubuntu"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:51
 msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
-msgstr ""
+msgstr "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:54
 msgid "Jonathan Thomas"
-msgstr ""
+msgstr "Jonathan Thomas"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:55
 msgid "Harald Sitter"
-msgstr ""
+msgstr "Harald Sitter"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:58
 msgid "Configure the behavior of Kubuntu Notification Helper"
-msgstr ""
+msgstr "Configurar el comportamiento del Ayudante de Notificaciones de Kubuntu"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:65
 msgid "Show notifications for:"
-msgstr ""
+msgstr "Mostrar notificaciones para:"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:67
+#, fuzzy
 msgid "Application crashes"
-msgstr ""
+msgstr "Mal funcionamiento de aplicaciones"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:68
 msgid "Upgrade information"
-msgstr ""
+msgstr "Información de actualizaciones"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:69
 msgid "Restricted codec availability"
-msgstr ""
+msgstr "Disponibilidad de códecs restringidos"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:70
 msgid "Required reboots"
-msgstr ""
+msgstr "Reinicios necesarios"
+

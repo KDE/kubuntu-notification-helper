@@ -1,0 +1,4 @@
+#!/usr/bin/make -f
+
+%:
+	dh --dbg-package=kubuntu-notification-helper-dbg --with kde $@

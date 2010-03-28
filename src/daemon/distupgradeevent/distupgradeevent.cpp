@@ -1,5 +1,4 @@
 /***************************************************************************
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
@@ -19,46 +18,53 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef EVENT_H
-#define EVENT_H
+#include "distupgradeevent.h"
 
-#include <QtCore/QObject>
+#include <KProcess>
+#include <KDebug>
 
-// #include <KDebug>
-#include <KLocalizedString>
+DistUpgradeEvent::DistUpgradeEvent(QObject* parent, QString name)
+        : Event(parent, name)
+{}
 
-// for implementing classes
-#include <KIcon>
+DistUpgradeEvent::~DistUpgradeEvent()
+{}
 
-#define NOTIFICATION_ICON_SIZE 22,22
-
-class Event
-            : public QObject
+bool DistUpgradeEvent::upgradeAvailable()
 {
-    Q_OBJECT
-public:
-    Event(QObject* parent, QString name);
+    KProcess *checkerProcess = new KProcess();
+    checkerProcess->setProgram(QStringList() << "/usr/bin/releasechecker");
 
-    virtual ~Event();
+    if (checkerProcess->execute() == 0) {
+        return true;
+    }
+    return false;
+}
 
-public slots:
-    bool isHidden();
-    void show(QPixmap icon, QString text, QStringList actions);
-    void run();
-    void reloadConfig();
+void DistUpgradeEvent::show()
+{
+    if (!upgradeAvailable()) {
+        kDebug() << "No upgrade available";
+        return;
+    }
 
-private slots:
-    bool readHiddenConfig();
-    void writeHiddenConfig(bool value);
-    void ignore();
-    void hide();
-    void notifyClosed();
+    QPixmap icon = KIcon("system-software-update").pixmap(NOTIFICATION_ICON_SIZE);
+    QString text(i18nc("Notification when a new version of Kubuntu is available",
+                       "A new version of Kubuntu is available"));
+    QStringList actions;
+    actions << i18nc("Start the upgrade", "Upgrade");
+    actions << i18nc("Button to dismiss this notification once", "Ignore for now");
+    actions << i18nc("Button to make this notification never show up again",
+                     "Never show again");
 
-private:
-    QString m_cfgstring;
-    const QString m_name;
-    bool m_hidden;
-    bool m_active;
-};
+    Event::show(icon, text, actions);
+}
 
-#endif
+void DistUpgradeEvent::run()
+{
+    KProcess::startDetached(QStringList() << "python"
+                            << "/usr/share/pyshared/UpdateManager/DistUpgradeFetcherKDE.py");
+    Event::run();
+}
+
+#include "distupgradeevent.moc"

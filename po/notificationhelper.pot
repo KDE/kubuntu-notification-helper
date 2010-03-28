@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2009-11-25 12:50-0500\n"
+"POT-Creation-Date: 2010-02-11 14:09-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,28 +16,58 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/daemon/rebootevent/rebootevent.cpp:37
-msgctxt "Notification when the upgrade requires a restart"
-msgid "A system restart is needed to complete the update process"
+#: src/daemon/hookevent/hookevent.cpp:57
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
 msgstr ""
 
-#: src/daemon/rebootevent/rebootevent.cpp:39
-msgctxt "Restart the computer"
-msgid "Restart"
+#: src/daemon/hookevent/hookevent.cpp:59
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/installevent/installevent.cpp:56
+msgctxt "Opens a dialog with more details"
+msgid "Details"
 msgstr ""
 
-#: src/daemon/rebootevent/rebootevent.cpp:40
+#: src/daemon/hookevent/hookevent.cpp:60
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr ""
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr ""
+
+#: src/daemon/hookevent/hookgui.cpp:53
+msgid "Update Information"
+msgstr ""
+
+#: src/daemon/hookevent/hookgui.cpp:91
+msgid "Run this action now"
+msgstr ""
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:53
+msgctxt "Notification when a new version of Kubuntu is available"
+msgid "A new version of Kubuntu is available"
+msgstr ""
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:55
+msgctxt "Start the upgrade"
+msgid "Upgrade"
+msgstr ""
+
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:56
 #: src/daemon/apportevent/apportevent.cpp:59
-#: src/daemon/hookevent/hookevent.cpp:66
-#: src/daemon/installevent/installevent.cpp:60
+#: src/daemon/rebootevent/rebootevent.cpp:40
+#: src/daemon/installevent/installevent.cpp:57
 msgctxt "Button to dismiss this notification once"
 msgid "Ignore for now"
 msgstr ""
 
-#: src/daemon/rebootevent/rebootevent.cpp:42
+#: src/daemon/distupgradeevent/distupgradeevent.cpp:58
 #: src/daemon/apportevent/apportevent.cpp:61
-#: src/daemon/hookevent/hookevent.cpp:68
-#: src/daemon/installevent/installevent.cpp:62
+#: src/daemon/rebootevent/rebootevent.cpp:42
+#: src/daemon/installevent/installevent.cpp:59
 msgctxt "Button to make this notification never show up again"
 msgid "Never show again"
 msgstr ""
@@ -45,83 +75,6 @@ msgstr ""
 #: src/daemon/apportevent/apportevent.cpp:56
 msgctxt "Notification when apport detects a crash"
 msgid "An application has crashed on your system (now or in the past)"
-msgstr ""
-
-#: src/daemon/apportevent/apportevent.cpp:58
-#: src/daemon/hookevent/hookevent.cpp:65
-#: src/daemon/installevent/installevent.cpp:59
-msgctxt "Opens a dialog with more details"
-msgid "Details"
-msgstr ""
-
-#: src/daemon/hookevent/hookgui.cpp:43
-msgid "Update Information"
-msgstr ""
-
-#: src/daemon/hookevent/hookgui.cpp:102
-msgid "Run this action now"
-msgstr ""
-
-#: src/daemon/hookevent/hookevent.cpp:63
-msgctxt "Notification when an upgrade requires the user to do something"
-msgid "Software upgrade notifications are available"
-msgstr ""
-
-#: src/daemon/installevent/installgui.cpp:44
-msgid "Install Packages"
-msgstr ""
-
-#: src/daemon/installevent/installgui.cpp:46
-msgid "Install Selected"
-msgstr ""
-
-#: src/daemon/installevent/installgui.cpp:56
-msgid ""
-"For extra multimedia functionality, select packages to be installed. These "
-"packages are not installed by default due to either patent issues or "
-"restrictive licensing."
-msgstr ""
-
-#: src/daemon/installevent/installgui.cpp:102
-#, kde-format
-msgid ""
-"Once the install is finished, you will need to restart %1 to use the new "
-"functionality"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:37
-msgctxt "The name of the Adobe Flash plugin"
-msgid "Flash"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:38
-msgid "MPEG Plugins"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:39
-msgid "Video Codecs"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:40
-msgid "DVD Reading"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:41
-msgid "K3b CD Codecs"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:42
-msgid "MP3 Encoding"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:44
-msgid "Improved Semantic Desktop Plugin"
-msgstr ""
-
-#: src/daemon/installevent/installevent.cpp:56
-#, kde-format
-msgctxt "Notification when a package wants to install extra software"
-msgid "Extra packages can be installed to enhance functionality for %1"
 msgstr ""
 
 #: src/daemon/notificationhelpermodule.cpp:59
@@ -134,4 +87,67 @@ msgstr ""
 
 #: src/daemon/notificationhelpermodule.cpp:62
 msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:37
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:39
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:45
+msgid "Install Packages"
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:47
+msgid "Install Selected"
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:58
+msgid ""
+"For extra multimedia functionality, select packages to be installed. These "
+"packages are not installed by default due to either patent issues or "
+"restrictive licensing."
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:106
+#, kde-format
+msgid ""
+"Once the install is finished, you will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:36
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:37
+msgid "MPEG Plugins"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:38
+msgid "Video Codecs"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:39
+msgid "DVD Reading"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:40
+msgid "K3b CD Codecs"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:41
+msgid "MP3 Encoding"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:53
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
 msgstr ""

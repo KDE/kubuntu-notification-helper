@@ -23,7 +23,6 @@
 #ifndef HOOKPARSER_H
 #define HOOKPARSER_H
 
-
 #include <QtCore/QObject>
 #include <QtCore/QString>
 #include <QtCore/QMap>
@@ -43,16 +42,17 @@ public slots:
     QString getField(const QString& name);
     void runCommand();
     void setFinished();
-    
+
 private:
+    QString m_hookPath;
+    QMap<QString, QString> m_fields;
+    bool m_finished;
+
+private slots:
     QMap<QString, QString> parse(const QString &hookPath);
     QString calculateSignature();
     void loadConfig();
     void saveConfig();
-    
-    QString m_hookPath;
-    QMap<QString, QString> m_fields;
-    bool m_finished;
 };
 
 #endif

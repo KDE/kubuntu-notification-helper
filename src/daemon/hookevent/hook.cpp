@@ -75,7 +75,7 @@ QString Hook::getField(const QString &name)
     if (m_fields.contains(name)) {
         return m_fields[name];
     }
-    return QString("");
+    return QString();
 }
 
 QString Hook::getField(const QString &name, const QString &language)
@@ -121,7 +121,7 @@ void Hook::loadConfig()
     KConfigGroup group(&config, "updateNotifications");
 
     m_finished = group.readEntry(signature, false);
-    
+
     // remain backward compatibile with update-notifier-kde
     // so that after upgrade old notifications are not resurrected
     if (!m_finished) {

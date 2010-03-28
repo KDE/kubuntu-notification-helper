@@ -23,10 +23,12 @@
 #ifndef HOOKGUI_H
 #define HOOKGUI_H
 
-#include <KPageDialog>
 #include "hook.h"
 
 class Hook;
+
+class KPageDialog;
+class KPageWidgetItem;
 
 class HookGui : public QObject
 {

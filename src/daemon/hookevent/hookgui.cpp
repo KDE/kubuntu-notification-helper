@@ -25,12 +25,13 @@
 // Qt includes
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
-#include <QSignalMapper>
+#include <QtCore/QSignalMapper>
 
 // KDE includes
 #include <KGlobal>
 #include <KIcon>
 #include <KLocale>
+#include <KPageDialog>
 #include <KVBox>
 
 HookGui::HookGui(QObject* parent)
@@ -40,8 +41,9 @@ HookGui::HookGui(QObject* parent)
 
 void HookGui::showDialog(QList<Hook*> hooks)
 {
-    if (!m_dialog)
+    if (!m_dialog) {
         createDialog();
+    }
     updateDialog(hooks);
 }
 
@@ -68,8 +70,8 @@ void HookGui::updateDialog(QList<Hook*> hooks)
     // Take the parsed upgrade hook(s) and put them in pages
     const QString language =  KGlobal::locale()->language();
     QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
-    QList<Hook*>::iterator i;
-    for (i = hooks.begin(); i !=  hooks.end(); ++i) {
+    QList<Hook*>::const_iterator i;
+    for (i = hooks.constBegin(); i !=  hooks.end(); ++i) {
         Hook *hook = *i;
 
         KVBox *vbox = new KVBox();
