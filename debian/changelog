@@ -1,8 +1,12 @@
 kubuntu-notification-helper (10.04ubuntu2) UNRELEASED; urgency=low
 
+  [ Harald Sitter ]
   * update-notifier-kde is arch all, not any
 
- -- Harald Sitter <apachelogger@ubuntu.com>  Mon, 22 Feb 2010 11:27:59 +0100
+  [ Amichai Rothman ]
+  * Fix update notification crashes
+
+ -- Amichai Rothman <amichai2@amichais.net>  Sun, 28 Mar 2010 21:28:00 +0300
 
 kubuntu-notification-helper (10.04ubuntu1) lucid; urgency=low
 
