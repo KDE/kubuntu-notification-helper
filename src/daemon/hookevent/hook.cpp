@@ -209,8 +209,9 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
 
 bool Hook::isNotificationRequired()
 {
-    if (m_finished)
+    if (m_finished) {
         return false;
+    }
 
     if (getField("DontShowAfterReboot") == "True") {
         float uptime = getUptime();
