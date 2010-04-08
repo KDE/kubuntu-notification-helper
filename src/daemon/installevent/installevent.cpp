@@ -30,6 +30,7 @@ InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
         , m_applicationName(0)
         , m_multimediaPackages()
+        , m_screensaverPackages()
         , m_packageList()
         , m_installGui(0)
 {
@@ -39,6 +40,8 @@ InstallEvent::InstallEvent(QObject* parent, QString name)
     m_multimediaPackages["libdvdread4"] = i18n("DVD Reading");
     m_multimediaPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
     m_multimediaPackages["libmp3lame0"] = i18n("MP3 Encoding");
+
+    m_screensaverPackages["kscreensaver"] = i18n("Set of default screensavers");
 }
 
 InstallEvent::~InstallEvent()
@@ -61,10 +64,10 @@ void InstallEvent::show()
     Event::show(icon, text, actions);
 }
 
-void InstallEvent::addPackages()
+void InstallEvent::addPackages(QMap<QString, QString>* packageList)
 {
-    QMap<QString, QString>::const_iterator packageIter = m_multimediaPackages.constBegin();
-    while (packageIter != m_multimediaPackages.end()) {
+    QMap<QString, QString>::const_iterator packageIter = packageList->constBegin();
+    while (packageIter != packageList->end()) {
         if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
             m_packageList[packageIter.key()] = packageIter.value();
         }
@@ -78,7 +81,9 @@ void InstallEvent::getInfo(const QString application, const QString package)
     m_packageList.clear();
 
     if (m_multimediaPackages.contains(package)) {
-        addPackages();
+        addPackages(&m_multimediaPackages);
+    } else if (m_screensaverPackages.contains(package)) {
+        addPackages(&m_screensaverPackages);
     }
 
     if (!m_packageList.isEmpty()) {

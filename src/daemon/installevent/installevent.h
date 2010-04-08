@@ -42,11 +42,12 @@ public slots:
 
 private slots:
     void run();
-    void addPackages();
+    void addPackages(QMap<QString, QString>* packageList);
 
 private:
     QString m_applicationName;
     QMap<QString, QString> m_multimediaPackages;
+    QMap<QString, QString> m_screensaverPackages;
     QMap<QString, QString> m_packageList;
     InstallGui* m_installGui;
 };
