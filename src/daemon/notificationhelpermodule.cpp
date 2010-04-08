@@ -90,6 +90,9 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                 this, SLOT(hookEvent()));
         connect(m_configWatcher, SIGNAL(reloadConfigCalled()),
                 m_hookEvent, SLOT(reloadConfig()));
+
+        // Sometimes hooks are for the first boot, so force a check
+        QTimer::singleShot(5000, this, SLOT(hookEvent()));
     }
 
     if (!m_installEvent->isHidden())

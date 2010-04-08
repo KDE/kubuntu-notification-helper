@@ -1,6 +1,11 @@
 kubuntu-notification-helper (10.04ubuntu3) UNRELEASED; urgency=low
 
+  [ Harald Sitter ]
   * Add screensaver support to the installerevent (LP: #558333)
+
+  [ Jonathan Thomas ]
+  * Do a one-time check for hooks on startup, so that hooks meant for the
+    first boot actually show up. (LP: #557217)
 
  -- Harald Sitter <apachelogger@ubuntu.com>  Thu, 08 Apr 2010 12:29:38 +0200
 
