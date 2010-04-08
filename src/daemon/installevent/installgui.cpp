@@ -65,13 +65,13 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
     layout->addWidget(listWidget);
 
     QMap<QString, QString>::const_iterator nameIter = packageList.constBegin();
-    while (nameIter != packageList.end()) {
+    QMap<QString, QString>::const_iterator end = packageList.constEnd();
+    for ( ; nameIter != end; ++nameIter) {
         QListWidgetItem* item = new QListWidgetItem(nameIter.value());
         item->setToolTip(nameIter.key());
         m_toInstallList << nameIter.key();
         item->setCheckState(Qt::Checked);
         listWidget->addItem(item);
-        ++nameIter;
     }
 
     m_dialog->setMainWidget(widget);
