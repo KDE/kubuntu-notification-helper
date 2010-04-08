@@ -1,4 +1,4 @@
-kubuntu-notification-helper (10.04ubuntu3) UNRELEASED; urgency=low
+kubuntu-notification-helper (10.04ubuntu3) lucid; urgency=low
 
   [ Harald Sitter ]
   * Add screensaver support to the installerevent (LP: #558333)
