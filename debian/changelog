@@ -1,4 +1,4 @@
-kubuntu-notification-helper (10.04ubuntu2) UNRELEASED; urgency=low
+kubuntu-notification-helper (10.04ubuntu2) lucid; urgency=low
 
   [ Harald Sitter ]
   * update-notifier-kde is arch all, not any
