@@ -67,11 +67,11 @@ void InstallEvent::show()
 void InstallEvent::addPackages(QMap<QString, QString>* packageList)
 {
     QMap<QString, QString>::const_iterator packageIter = packageList->constBegin();
-    while (packageIter != packageList->end()) {
+    QMap<QString, QString>::const_iterator end = packageList->constEnd();
+    for ( ; packageIter != end; ++packageIter) {
         if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
             m_packageList[packageIter.key()] = packageIter.value();
         }
-        ++packageIter;
     }
 }
 
