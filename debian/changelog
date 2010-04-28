@@ -1,3 +1,10 @@
+kubuntu-notification-helper (10.04ubuntu4) lucid; urgency=low
+
+  [ Amichai Rothman ]
+  * Correctify iterators for stability and optimization
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Wed, 14 Apr 2010 21:40:48 -0400
+
 kubuntu-notification-helper (10.04ubuntu3) lucid; urgency=low
 
   [ Harald Sitter ]
