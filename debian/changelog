@@ -1,3 +1,9 @@
+kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
+
+  * Add explicit build-depend on cmake since kdelibs5-dev no longer does
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Tue, 18 May 2010 19:42:38 -0400
+
 kubuntu-notification-helper (10.04ubuntu4) lucid; urgency=low
 
   [ Amichai Rothman ]
