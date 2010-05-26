@@ -28,7 +28,7 @@
 
 InstallEvent::InstallEvent(QObject* parent, QString name)
         : Event(parent, name)
-        , m_applicationName(0)
+        , m_applicationName()
         , m_multimediaPackages()
         , m_screensaverPackages()
         , m_packageList()

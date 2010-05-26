@@ -34,7 +34,7 @@
 InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QString, QString> packageList)
         : QObject(parent)
         , m_dialog(0)
-        , m_applicationName(0)
+        , m_applicationName()
         , m_toInstallList(0)
 {
     m_toInstallList.clear();

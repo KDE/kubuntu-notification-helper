@@ -8,7 +8,7 @@ X-KDE-Library=kcm_notificationhelper
 X-KDE-ParentApp=kcontrol
 
 X-KDE-Keywords=Notify,Alerts,Notification,popups
-X-KDE-System-Settings-Parent-Category=notifications
+X-KDE-System-Settings-Parent-Category=application-and-system-notifications
 X-KDE-Weight=60
 
 Name=Other Notifications
