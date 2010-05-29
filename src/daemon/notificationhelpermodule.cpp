@@ -63,7 +63,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                          KLocalizedString(), "http://kubuntu.org",
                          "https://bugs.launchpad.net/ubuntu");
 
-    QTimer::singleShot(5000, this, SLOT(init()));
+    QTimer::singleShot(0, this, SLOT(init()));
 }
 
 NotificationHelperModule::~NotificationHelperModule()

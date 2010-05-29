@@ -7,3 +7,4 @@ X-KDE-Library=notificationhelper
 X-KDE-FactoryName=notificationhelper
 X-KDE-DBus-ModuleName=notificationhelper
 X-KDE-Kded-autoload=true
+X-KDE-Kded-phase=2
