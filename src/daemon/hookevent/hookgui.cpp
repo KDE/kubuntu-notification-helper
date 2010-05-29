@@ -33,6 +33,7 @@
 #include <KLocale>
 #include <KPageDialog>
 #include <KVBox>
+#include <KWindowSystem>
 
 HookGui::HookGui(QObject* parent)
         : QObject(parent)
@@ -104,8 +105,7 @@ void HookGui::updateDialog(QList<Hook*> hooks)
             this, SLOT(runCommand(QObject *)));
 
     m_dialog->show();
-    m_dialog->raise();
-    m_dialog->activateWindow();
+    KWindowSystem::forceActiveWindow(m_dialog->winId());
 }
 
 HookGui::~HookGui()
