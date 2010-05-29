@@ -63,6 +63,21 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                          KLocalizedString(), "http://kubuntu.org",
                          "https://bugs.launchpad.net/ubuntu");
 
+    QTimer::singleShot(5000, this, SLOT(init()));
+}
+
+NotificationHelperModule::~NotificationHelperModule()
+{
+    delete m_apportEvent;
+    delete m_hookEvent;
+    delete m_installEvent;
+    delete m_rebootEvent;
+    delete m_installWatcher;
+    delete m_configWatcher;
+}
+
+void NotificationHelperModule::init()
+{
     m_configWatcher = new ConfigWatcher(this);
 
     m_apportEvent = new ApportEvent(this, "Apport");
@@ -80,7 +95,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                 m_apportEvent, SLOT(reloadConfig()));
 
         // Force check, we just started up and there might have been crashes on reboot
-        QTimer::singleShot(5000, this, SLOT(apportEvent()));
+        apportEvent();
     }
 
     if (!m_hookEvent->isHidden()) {
@@ -92,7 +107,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                 m_hookEvent, SLOT(reloadConfig()));
 
         // Sometimes hooks are for the first boot, so force a check
-        QTimer::singleShot(5000, this, SLOT(hookEvent()));
+        hookEvent();
     }
 
     if (!m_installEvent->isHidden())
@@ -116,20 +131,9 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     }
 }
 
-NotificationHelperModule::~NotificationHelperModule()
-{
-    delete m_apportEvent;
-    delete m_hookEvent;
-    delete m_installEvent;
-    delete m_rebootEvent;
-    delete m_installWatcher;
-    delete m_configWatcher;
-}
-
 void NotificationHelperModule::apportEvent()
 {
-    // We could be too fast for apport, so wait a bit before showing the notification
-    QTimer::singleShot(2000, m_apportEvent, SLOT(show()));
+    m_apportEvent->show();
 }
 
 void NotificationHelperModule::hookEvent()

@@ -43,6 +43,7 @@ public:
     virtual ~NotificationHelperModule();
 
 private slots:
+    void init();
     void apportEvent();
     void hookEvent();
     void rebootEvent();
