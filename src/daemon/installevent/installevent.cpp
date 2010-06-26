@@ -26,7 +26,7 @@
 // Own includes
 #include "installgui.h"
 
-InstallEvent::InstallEvent(QObject* parent, QString name)
+InstallEvent::InstallEvent(QObject* parent, const QString &name)
         : Event(parent, name)
         , m_applicationName()
         , m_multimediaPackages()
