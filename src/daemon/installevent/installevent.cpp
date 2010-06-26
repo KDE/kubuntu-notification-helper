@@ -36,7 +36,7 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
 {
     m_multimediaPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
     m_multimediaPackages["libxine1-ffmpeg"] = i18n("MPEG Plugins");
-    m_multimediaPackages["libavcodec-unstripped-52"] = i18n("Video Codecs");
+    m_multimediaPackages["libavcodec-extra-52"] = i18n("Video Codecs");
     m_multimediaPackages["libdvdread4"] = i18n("DVD Reading");
     m_multimediaPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
     m_multimediaPackages["libmp3lame0"] = i18n("MP3 Encoding");

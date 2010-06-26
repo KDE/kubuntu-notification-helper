@@ -1,3 +1,9 @@
+kubuntu-notification-helper (10.10ubuntu2) UNRELEASED; urgency=low
+
+  * Install libavcodec-extra-52 instead of a transitional package (LP: #571139)
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 15 Jun 2010 16:57:52 +0200
+
 kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
 
   * Add explicit build-depend on cmake since kdelibs5-dev no longer does
