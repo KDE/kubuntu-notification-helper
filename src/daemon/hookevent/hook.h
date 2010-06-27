@@ -32,15 +32,15 @@ class Hook : public QObject
 {
     Q_OBJECT
 public:
-    Hook(QObject* parent, const QString& hookPath);
+    Hook(QObject* parent, const QString &hookPath);
 
     virtual ~Hook();
 
-public slots:
-    bool isValid();
-    bool isNotificationRequired();
-    QString getField(const QString& name, const KLocale *locale);
-    QString getField(const QString& name);
+public Q_SLOTS:
+    bool isValid() const;
+    bool isNotificationRequired() const;
+    QString getField(const QString &name, const KLocale *locale) const;
+    QString getField(const QString &name) const ;
     void runCommand();
     void setFinished();
 
@@ -49,9 +49,9 @@ private:
     QMap<QString, QString> m_fields;
     bool m_finished;
 
-private slots:
+private Q_SLOTS:
     QMap<QString, QString> parse(const QString &hookPath);
-    QString calculateSignature();
+    QString calculateSignature() const;
     void loadConfig();
     void saveConfig();
 };

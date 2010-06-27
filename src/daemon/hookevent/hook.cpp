@@ -26,6 +26,7 @@
 #include <QtCore/QFileInfo>
 #include <QtCore/QTextStream>
 #include <QtCore/QDateTime>
+#include <QtCore/QStringBuilder>
 
 // KDE includes
 #include <KProcess>
@@ -58,7 +59,7 @@ QString trimLeft(QString str, int start = 0)
     return str.mid(start);
 }
 
-Hook::Hook(QObject* parent, const QString& hookPath)
+Hook::Hook(QObject *parent, const QString &hookPath)
         : QObject(parent)
         , m_hookPath(hookPath)
         , m_finished(false)
@@ -70,7 +71,7 @@ Hook::Hook(QObject* parent, const QString& hookPath)
 Hook::~Hook()
 {}
 
-QString Hook::getField(const QString &name)
+QString Hook::getField(const QString &name) const
 {
     if (m_fields.contains(name)) {
         return m_fields[name];
@@ -78,12 +79,12 @@ QString Hook::getField(const QString &name)
     return QString();
 }
 
-QString Hook::getField(const QString &name, const KLocale *locale)
+QString Hook::getField(const QString &name, const KLocale *locale) const
 {
     QString lang = '-' + locale->language(); // e.g. "-en_US" or "-en" 
     QString charset = '.' + locale->encoding(); // e.g. ".UTF-8"
     // try locale combinations from most specific to most generic
-    QString value = getField(name + lang + charset);
+    QString value = getField(name % lang % charset);
     if (value.isEmpty()) {
         value = getField(name + lang);
         if (value.isEmpty()) {
@@ -100,7 +101,7 @@ QString Hook::getField(const QString &name, const KLocale *locale)
     return value;
 }
 
-bool Hook::isValid()
+bool Hook::isValid() const
 {
     return !m_fields.isEmpty();
 }
@@ -158,11 +159,10 @@ void Hook::saveConfig()
     group.sync();
 }
 
-QString Hook::calculateSignature()
+QString Hook::calculateSignature() const
 {
     // this is used to uniquely identify a hook so that
     // it is not shown again after it has been executed
-
     QFile file(m_hookPath);
     QFileInfo fileinfo(m_hookPath);
     QString timestamp = fileinfo.lastModified().toString(Qt::ISODate);
@@ -197,7 +197,7 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
         line = stream.readLine();
         if (line.isEmpty()) {
             continue; // skip empty lines, e.g. at end of file
-        } else if (line[0].isSpace()) {
+        } else if (line.at(0).isSpace()) {
             line = trimLeft(line);
             if (line.isEmpty())
                 continue; // treat it like empty line (lenient)
@@ -222,7 +222,7 @@ QMap<QString, QString> Hook::parse(const QString &hookPath)
     return fields;
 }
 
-bool Hook::isNotificationRequired()
+bool Hook::isNotificationRequired() const
 {
     if (m_finished) {
         return false;
@@ -241,9 +241,9 @@ bool Hook::isNotificationRequired()
 
     QString condition = getField("DisplayIf");
     if (!condition.isEmpty()) {
-        KProcess *displayIfProcess = new KProcess();
-        displayIfProcess->setProgram(condition);
-        int programResult = displayIfProcess->execute();
+        KProcess displayIfProcess;
+        displayIfProcess.setProgram(condition);
+        int programResult = displayIfProcess.execute();
         if (programResult != 0) {
             return false;
         }
