@@ -28,7 +28,7 @@
 #include "hook.h"
 #include "hookgui.h"
 
-HookEvent::HookEvent(QObject* parent, QString name)
+HookEvent::HookEvent(QObject* parent, const QString &name)
         : Event(parent, name)
         , m_hooks()
         , m_hookGui(0)
@@ -36,11 +36,11 @@ HookEvent::HookEvent(QObject* parent, QString name)
 
 HookEvent::~HookEvent()
 {
-    delete m_hookGui;
 }
 
 void HookEvent::show()
 {
+    qDeleteAll(m_hooks);
     m_hooks.clear();
     QDir hookDir("/var/lib/update-notifier/user.d/");
     QStringList fileList = hookDir.entryList(QDir::Files);
