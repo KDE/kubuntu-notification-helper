@@ -141,7 +141,7 @@ void NotificationHelperModule::hookEvent()
     m_hookEvent->show();
 }
 
-void NotificationHelperModule::installEvent(const QString app, const QString package)
+void NotificationHelperModule::installEvent(const QString &app, const QString &package)
 {
     m_installEvent->getInfo(app, package);
 }
