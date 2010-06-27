@@ -68,12 +68,6 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
 NotificationHelperModule::~NotificationHelperModule()
 {
-    delete m_apportEvent;
-    delete m_hookEvent;
-    delete m_installEvent;
-    delete m_rebootEvent;
-    delete m_installWatcher;
-    delete m_configWatcher;
 }
 
 void NotificationHelperModule::init()
