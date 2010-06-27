@@ -46,7 +46,6 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
 
 InstallEvent::~InstallEvent()
 {
-    delete m_installGui;
 }
 
 void InstallEvent::show()

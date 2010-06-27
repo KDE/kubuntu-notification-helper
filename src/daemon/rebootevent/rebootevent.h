@@ -28,7 +28,7 @@ class RebootEvent : public Event
 {
     Q_OBJECT
 public:
-    RebootEvent(QObject* parent, QString name);
+    RebootEvent(QObject* parent, const QString &name);
 
     virtual ~RebootEvent();
 

@@ -37,7 +37,7 @@ InstallDBusWatcher::InstallDBusWatcher(QObject* parent)
 InstallDBusWatcher::~InstallDBusWatcher()
 {}
 
-bool InstallDBusWatcher::installRestricted(QString application, QString package)
+bool InstallDBusWatcher::installRestricted(const QString &application, const QString &package)
 {
     emit installRestrictedCalled(application, package);
     return true;

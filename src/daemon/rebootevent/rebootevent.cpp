@@ -23,7 +23,7 @@
 
 #include <KProcess>
 
-RebootEvent::RebootEvent(QObject* parent, QString name)
+RebootEvent::RebootEvent(QObject* parent, const QString &name)
         : Event(parent, name)
 {}
 

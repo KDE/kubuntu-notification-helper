@@ -34,10 +34,10 @@ public:
     virtual ~InstallDBusWatcher();
 
 public Q_SLOTS:
-    bool installRestricted(QString application, QString package);
+    bool installRestricted(const QString &application, const QString &package);
 
 signals:
-    void installRestrictedCalled(QString application, QString package);
+    void installRestrictedCalled(const QString &application, const QString &package);
 };
 
 #endif
