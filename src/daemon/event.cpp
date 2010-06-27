@@ -21,16 +21,18 @@
 
 #include "event.h"
 
+#include <QStringBuilder>
+
 #include <KConfigGroup>
 #include <KNotification>
 
-Event::Event(QObject* parent, QString name)
+Event::Event(QObject* parent, const QString &name)
         : QObject(parent)
         , m_name(name)
         , m_hidden(false)
         , m_active(false)
 {
-    m_cfgstring = "hide" + m_name + "Notifier";
+    m_cfgstring = QString("hide" % m_name % "Notifier");
     m_hidden = readHiddenConfig();
 }
 
@@ -53,12 +55,12 @@ void Event::writeHiddenConfig(bool value)
     notifyGroup.config()->sync();
 }
 
-bool Event::isHidden()
+bool Event::isHidden() const
 {
     return m_hidden;
 }
 
-void Event::show(QPixmap icon, QString text, QStringList actions)
+void Event::show(const QPixmap &icon, const QString &text, const QStringList &actions)
 {
     if (m_active || m_hidden) {
         return;

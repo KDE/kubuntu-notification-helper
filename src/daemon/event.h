@@ -37,13 +37,13 @@ class Event
 {
     Q_OBJECT
 public:
-    Event(QObject* parent, QString name);
+    Event(QObject* parent, const QString &name);
 
     virtual ~Event();
 
 public slots:
-    bool isHidden();
-    void show(QPixmap icon, QString text, QStringList actions);
+    bool isHidden() const;
+    void show(const QPixmap &icon, const QString &text, const QStringList &actions);
     void run();
     void reloadConfig();
 
