@@ -1,8 +1,22 @@
-kubuntu-notification-helper (10.10ubuntu2) UNRELEASED; urgency=low
+kubuntu-notification-helper (10.10ubuntu2) maverick; urgency=low
 
+  [ Harald Sitter ]
   * Install libavcodec-extra-52 instead of a transitional package (LP: #571139)
 
- -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 15 Jun 2010 16:57:52 +0200
+  [ Jonathan Thomas ]
+  * Update the KCM's .desktop file for the new System Setting layout
+  * Use KWindowSystem::forceActivateWindow to bring the install and hook
+    dialogs on top when the user activates them
+  * Use lazy initialization techniques to minimize the impact we have on the
+    startup of kded
+  * Use QStringBuilder for some minor string construction optimizations
+  * Fix a memory leak where Hook objects would not get deleted until reboot
+  * Port InstallEvent from install-package to qapt-batch
+  * Add a dependency on qapt-batch, and remove the dependency on
+    install-package
+  * Remove now-unnecessary update-notifier-kde transitional package
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Tue, 20 Jul 2010 09:40:47 -0400
 
 kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
 

@@ -96,8 +96,8 @@ void InstallGui::packageToggled(QListWidgetItem *item)
 
 void InstallGui::runPackageInstall()
 {
-    int returnValue = KToolInvocation::kdeinitExec("/usr/lib/kde4/libexec/kdesu",
-                                                   QStringList() << "install-package --install" << m_toInstallList);
+    int returnValue = KToolInvocation::kdeinitExec("/usr/bin/qapt-batch",
+                                                   QStringList() << "--install" << m_toInstallList);
     if (returnValue == 0) {
         KNotification *notify = new KNotification("Install", 0);
         notify->setComponentData(KComponentData("notificationhelper"));
