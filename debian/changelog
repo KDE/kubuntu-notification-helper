@@ -18,8 +18,9 @@ kubuntu-notification-helper (10.10ubuntu2) maverick; urgency=low
 
   [ Felix Geyer ]
   * Change libavcodec-extra-52's description to "Video Encoding".
+  * Add Vcs-* control fields.
 
- -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 11:47:07 +0200
+ -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 12:22:03 +0200
 
 kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
 
