@@ -16,7 +16,10 @@ kubuntu-notification-helper (10.10ubuntu2) maverick; urgency=low
     install-package
   * Remove now-unnecessary update-notifier-kde transitional package
 
- -- Jonathan Thomas <echidnaman@kubuntu.org>  Tue, 20 Jul 2010 09:40:47 -0400
+  [ Felix Geyer ]
+  * Change libavcodec-extra-52's description to "Video Encoding".
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 11:47:07 +0200
 
 kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
 
