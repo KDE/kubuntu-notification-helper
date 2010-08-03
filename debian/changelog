@@ -21,8 +21,9 @@ kubuntu-notification-helper (10.10ubuntu2) maverick; urgency=low
   * Add Vcs-* control fields.
   * Bump Standards-Version to 3.9.1, no changes needed.
   * Enable parallel building.
+  * Fix treating removed (but not purged) packages as installed.
 
- -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 13:38:15 +0200
+ -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 14:36:29 +0200
 
 kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
 

@@ -68,7 +68,8 @@ void InstallEvent::addPackages(QMap<QString, QString>* packageList)
     QMap<QString, QString>::const_iterator packageIter = packageList->constBegin();
     QMap<QString, QString>::const_iterator end = packageList->constEnd();
     for ( ; packageIter != end; ++packageIter) {
-        if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".list")) {
+        // check for .md5sums as .list exists even when the package is removed (but not purged)
+        if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".md5sums")) {
             m_packageList[packageIter.key()] = packageIter.value();
         }
     }
