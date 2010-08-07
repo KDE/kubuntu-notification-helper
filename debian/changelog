@@ -1,3 +1,12 @@
+kubuntu-notification-helper (10.10ubuntu3) maverick; urgency=low
+
+  * Change libavcodec-extra-52's description to "Video Encoding".
+  * Add Vcs-* control fields.
+  * Enable parallel building.
+  * Fix treating removed (but not purged) packages as installed.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 14:36:29 +0200
+
 kubuntu-notification-helper (10.10ubuntu2) maverick; urgency=low
 
   [ Harald Sitter ]
@@ -15,15 +24,9 @@ kubuntu-notification-helper (10.10ubuntu2) maverick; urgency=low
   * Add a dependency on qapt-batch, and remove the dependency on
     install-package
   * Remove now-unnecessary update-notifier-kde transitional package
+  * Bump Standards-Version to 3.9.1
 
-  [ Felix Geyer ]
-  * Change libavcodec-extra-52's description to "Video Encoding".
-  * Add Vcs-* control fields.
-  * Bump Standards-Version to 3.9.1, no changes needed.
-  * Enable parallel building.
-  * Fix treating removed (but not purged) packages as installed.
-
- -- Felix Geyer <debfx-pkg@fobos.de>  Tue, 03 Aug 2010 14:36:29 +0200
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Tue, 20 Jul 2010 09:40:47 -0400
 
 kubuntu-notification-helper (10.10ubuntu1) maverick; urgency=low
 
