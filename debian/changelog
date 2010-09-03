@@ -1,3 +1,11 @@
+kubuntu-notification-helper (10.10ubuntu4) maverick; urgency=low
+
+  * Code style fixes
+  * Add support for kopete-gcall to InstallEvent, since kopete-gcall depends
+    on nonfree libs
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Fri, 03 Sep 2010 14:01:00 -0400
+
 kubuntu-notification-helper (10.10ubuntu3) maverick; urgency=low
 
   * Change libavcodec-extra-52's description to "Video Encoding".
