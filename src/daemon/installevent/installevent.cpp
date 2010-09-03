@@ -31,6 +31,7 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
         , m_applicationName()
         , m_multimediaPackages()
         , m_screensaverPackages()
+        , m_kopetePackages()
         , m_packageList()
         , m_installGui(0)
 {
@@ -42,6 +43,8 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
     m_multimediaPackages["libmp3lame0"] = i18n("MP3 Encoding");
 
     m_screensaverPackages["kscreensaver"] = i18n("Set of default screensavers");
+
+    m_kopetePackages["kopete-gcall"] = i18n("Google Talk support for Kopete");
 }
 
 InstallEvent::~InstallEvent()
@@ -71,7 +74,7 @@ void InstallEvent::addPackages(QMap<QString, QString> *packageList)
         if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".md5sums")) {
             m_packageList[packageIter.key()] = packageIter.value();
         }
-        ++packageIter
+        ++packageIter;
     }
 }
 
@@ -84,6 +87,8 @@ void InstallEvent::getInfo(const QString application, const QString package)
         addPackages(&m_multimediaPackages);
     } else if (m_screensaverPackages.contains(package)) {
         addPackages(&m_screensaverPackages);
+    } else if (m_kopetePackages.contains(package)) {
+        addPackages(&m_kopetePackages);
     }
 
     if (!m_packageList.isEmpty()) {

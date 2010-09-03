@@ -39,7 +39,7 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
 {
     m_applicationName = application;
 
-    m_dialog = new KDialog(this);
+    m_dialog = new KDialog();
     m_dialog->setWindowIcon(KIcon("download"));
     m_dialog->setCaption(i18n("Install Packages"));
     m_dialog->setButtons(KDialog::Ok | KDialog::Cancel);
@@ -79,6 +79,7 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
 
 InstallGui::~InstallGui()
 {
+    delete m_dialog;
 }
 
 void InstallGui::packageToggled(QListWidgetItem *item)

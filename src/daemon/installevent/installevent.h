@@ -48,6 +48,7 @@ private:
     QString m_applicationName;
     QMap<QString, QString> m_multimediaPackages;
     QMap<QString, QString> m_screensaverPackages;
+    QMap<QString, QString> m_kopetePackages;
     QMap<QString, QString> m_packageList;
     InstallGui* m_installGui;
 };
