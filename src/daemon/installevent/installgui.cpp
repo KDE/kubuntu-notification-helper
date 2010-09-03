@@ -37,10 +37,9 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
         , m_applicationName()
         , m_toInstallList(0)
 {
-    m_toInstallList.clear();
     m_applicationName = application;
 
-    m_dialog = new KDialog;
+    m_dialog = new KDialog(this);
     m_dialog->setWindowIcon(KIcon("download"));
     m_dialog->setCaption(i18n("Install Packages"));
     m_dialog->setButtons(KDialog::Ok | KDialog::Cancel);
@@ -49,29 +48,29 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
     connect(m_dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
     connect(m_dialog, SIGNAL(cancelClicked()), SLOT(cleanUpDialog()));
 
-    QWidget* widget = new QWidget(m_dialog);
-    QVBoxLayout* layout = new QVBoxLayout(widget);
+    QWidget *widget = new QWidget(m_dialog);
+    QVBoxLayout *layout = new QVBoxLayout(widget);
     widget->setLayout(layout);
 
-    QLabel* label = new QLabel(widget);
+    QLabel *label = new QLabel(widget);
     label->setWordWrap(true);
     label->setText(i18n("For extra multimedia functionality, select packages to be installed."
                         " These packages are not installed by default due to either patent"
                         " issues or restrictive licensing."));
     layout->addWidget(label);
 
-    QListWidget* listWidget = new QListWidget(widget);
+    QListWidget *listWidget = new QListWidget(widget);
     connect(listWidget, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(packageToggled(QListWidgetItem *)));
     layout->addWidget(listWidget);
 
     QMap<QString, QString>::const_iterator nameIter = packageList.constBegin();
-    QMap<QString, QString>::const_iterator end = packageList.constEnd();
-    for ( ; nameIter != end; ++nameIter) {
-        QListWidgetItem* item = new QListWidgetItem(nameIter.value());
+    while (nameIter != packageList.constEnd()) {
+        QListWidgetItem *item = new QListWidgetItem(nameIter.value());
         item->setToolTip(nameIter.key());
         m_toInstallList << nameIter.key();
         item->setCheckState(Qt::Checked);
         listWidget->addItem(item);
+        ++nameIter;
     }
 
     m_dialog->setMainWidget(widget);
@@ -80,7 +79,6 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
 
 InstallGui::~InstallGui()
 {
-    delete m_dialog;
 }
 
 void InstallGui::packageToggled(QListWidgetItem *item)
