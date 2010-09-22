@@ -1,4 +1,4 @@
-kubuntu-notification-helper (10.10ubuntu5) UNRELEASED; urgency=low
+kubuntu-notification-helper (10.10ubuntu5) maverick; urgency=low
 
   * Fix InstallEvent not being able to install packages as it passes
     an empty string as the first argument to qapt-batch. (LP: #644947)
