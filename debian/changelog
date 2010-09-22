@@ -1,3 +1,11 @@
+kubuntu-notification-helper (10.10ubuntu5) UNRELEASED; urgency=low
+
+  * Fix InstallEvent not being able to install packages as it passes
+    an empty string as the first argument to qapt-batch. (LP: #644947)
+  * Add a bzr-builddeb config to make it build a native package.
+
+ -- Felix Geyer <debfx-pkg@fobos.de>  Wed, 22 Sep 2010 14:19:19 +0200
+
 kubuntu-notification-helper (10.10ubuntu4) maverick; urgency=low
 
   * Code style fixes
