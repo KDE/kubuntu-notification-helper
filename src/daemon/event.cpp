@@ -21,7 +21,7 @@
 
 #include "event.h"
 
-#include <QStringBuilder>
+#include <QtCore/QStringBuilder>
 
 #include <KActionCollection>
 #include <KConfigGroup>
