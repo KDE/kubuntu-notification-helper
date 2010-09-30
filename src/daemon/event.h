@@ -30,6 +30,8 @@
 // for implementing classes
 #include <KIcon>
 
+class KStatusNotifierItem;
+
 #define NOTIFICATION_ICON_SIZE 22,22
 
 class Event
@@ -50,15 +52,20 @@ public slots:
 private slots:
     bool readHiddenConfig();
     void writeHiddenConfig(bool value);
+    void readKNotifyConfig();
     void ignore();
     void hide();
     void notifyClosed();
 
 private:
-    QString m_cfgstring;
+    QString m_hiddenCfgString;
     const QString m_name;
     bool m_hidden;
+    bool m_useKNotify;
+    bool m_knotifyPersistant;
     bool m_active;
+
+    KStatusNotifierItem *m_notifierItem;
 };
 
 #endif
