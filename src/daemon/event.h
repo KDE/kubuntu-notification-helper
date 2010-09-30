@@ -52,7 +52,7 @@ public slots:
 private slots:
     bool readHiddenConfig();
     void writeHiddenConfig(bool value);
-    void readKNotifyConfig();
+    void readNotifyConfig();
     void ignore();
     void hide();
     void notifyClosed();
@@ -62,6 +62,7 @@ private:
     const QString m_name;
     bool m_hidden;
     bool m_useKNotify;
+    bool m_useTrayIcon;
     bool m_knotifyPersistant;
     bool m_active;
 

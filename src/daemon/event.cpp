@@ -37,7 +37,7 @@ Event::Event(QObject* parent, const QString &name)
 {
     m_hiddenCfgString = QString("hide" % m_name % "Notifier");
     m_hidden = readHiddenConfig();
-    readKNotifyConfig();
+    readNotifyConfig();
 }
 
 Event::~Event()
@@ -59,10 +59,11 @@ void Event::writeHiddenConfig(bool value)
     notifyGroup.config()->sync();
 }
 
-void Event::readKNotifyConfig()
+void Event::readNotifyConfig()
 {
     KConfig cfg("notificationhelper");
     KConfigGroup notifyGroup(&cfg, "Global");
+    m_useTrayIcon = notifyGroup.readEntry("useTrayIcon", true);
     m_useKNotify = notifyGroup.readEntry("useKNotify", true);
     m_knotifyPersistant = notifyGroup.readEntry("persistantKNotify", false);
 }
@@ -93,9 +94,11 @@ void Event::show(const QPixmap &icon, const QString &text, const QStringList &ac
         notify->setText(text);
         notify->setActions(actions);
 
-        connect(notify, SIGNAL(action1Activated()), this, SLOT(run()));
-        connect(notify, SIGNAL(action2Activated()), this, SLOT(ignore()));
-        connect(notify, SIGNAL(action3Activated()), this, SLOT(hide()));
+        if (!m_useTrayIcon) {
+            connect(notify, SIGNAL(action1Activated()), this, SLOT(run()));
+            connect(notify, SIGNAL(action2Activated()), this, SLOT(ignore()));
+            connect(notify, SIGNAL(action3Activated()), this, SLOT(hide()));
+        }
 
         connect(notify, SIGNAL(closed()), this, SLOT(notifyClosed()));
 
