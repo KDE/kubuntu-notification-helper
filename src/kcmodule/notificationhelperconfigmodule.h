@@ -25,6 +25,7 @@
 #include <KCModule>
 
 class QCheckBox;
+class QRadioButton;
 
 class NotificationHelperConfigModule
             : public KCModule
@@ -46,6 +47,9 @@ private:
     QCheckBox* m_hookCheckBox;
     QCheckBox* m_installCheckBox;
     QCheckBox* m_rebootCheckBox;
+    QRadioButton *m_comboRadio;
+    QRadioButton *m_disableKNotifyRadio;
+    QRadioButton *m_disableTrayIconRadio;
 };
 
 #endif

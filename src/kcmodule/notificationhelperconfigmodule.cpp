@@ -23,9 +23,11 @@
 // Qt includes
 #include <QtDBus/QDBusConnection>
 #include <QtDBus/QDBusMessage>
+#include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
 #include <QtGui/QGroupBox>
 #include <QtGui/QLabel>
+#include <QtGui/QRadioButton>
 #include <QtGui/QVBoxLayout>
 
 // KDE includes
@@ -47,8 +49,8 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     KAboutData *about =
     new KAboutData(I18N_NOOP("kcmnotificationhelper"), 0,
             ki18n("Kubuntu Notification Helper Configuration"),
-            "0.4.90", KLocalizedString(), KAboutData::License_GPL,
-            ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"), KLocalizedString(),
+            "0.5.0", KLocalizedString(), KAboutData::License_GPL,
+            ki18n("(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"), KLocalizedString(),
             "http://kubuntu.org", "https://bugs.launchpad.net/ubuntu");
 
     about->addAuthor(ki18n("Jonathan Thomas"), KLocalizedString(), "echidnaman@kubuntu.org");
@@ -74,11 +76,37 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     connect(m_installCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_rebootCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
 
+    QWidget *spacer = new QWidget(this);
+
+    QLabel *label2 = new QLabel(this);
+    label2->setText(i18n("Notification type:"));
+
+    QButtonGroup *notifyTypeGroup = new QButtonGroup(this);
+    m_comboRadio = new QRadioButton(this);
+    m_comboRadio->setText(i18n("Use both popups and tray icons"));
+    m_disableKNotifyRadio = new QRadioButton(this);
+    m_disableKNotifyRadio->setText(i18n("Disable popup notifications"));
+    m_disableTrayIconRadio = new QRadioButton(this);
+    m_disableTrayIconRadio->setText(i18n("Disable tray icons"));
+
+    notifyTypeGroup->addButton(m_comboRadio);
+    notifyTypeGroup->addButton(m_disableKNotifyRadio);
+    notifyTypeGroup->addButton(m_disableTrayIconRadio);
+
+    connect(m_comboRadio, SIGNAL(clicked()), this, SLOT(configChanged()));
+    connect(m_disableKNotifyRadio, SIGNAL(clicked()), this, SLOT(configChanged()));
+    connect(m_disableTrayIconRadio, SIGNAL(clicked()), this, SLOT(configChanged()));
+
     lay->addWidget(label);
     lay->addWidget(m_apportCheckBox);
     lay->addWidget(m_hookCheckBox);
     lay->addWidget(m_installCheckBox);
     lay->addWidget(m_rebootCheckBox);
+    lay->addWidget(spacer);
+    lay->addWidget(label2);
+    lay->addWidget(m_comboRadio);
+    lay->addWidget(m_disableKNotifyRadio);
+    lay->addWidget(m_disableTrayIconRadio);
     lay->addStretch();
 }
 
@@ -95,6 +123,17 @@ void NotificationHelperConfigModule::load()
     m_hookCheckBox->setChecked(!notifyGroup.readEntry("hideHookNotifier", false));
     m_installCheckBox->setChecked(!notifyGroup.readEntry("hideInstallNotifier", false));
     m_rebootCheckBox->setChecked(!notifyGroup.readEntry("hideRestartNotifier", false));
+
+    KConfigGroup notifyTypeGroup(&cfg, "NotificationType");
+    QString notifyType = notifyTypeGroup.readEntry("NotifyType", "Combo");
+
+    if (notifyType == "Combo") {
+        m_comboRadio->setChecked(true);
+    } else if (notifyType == "TrayOnly") {
+        m_disableKNotifyRadio->setChecked(true);
+    } else {
+        m_disableTrayIconRadio->setChecked(true);
+    }
 }
 
 void NotificationHelperConfigModule::save()
@@ -106,6 +145,12 @@ void NotificationHelperConfigModule::save()
     notifyGroup.writeEntry("hideHookNotifier", !m_hookCheckBox->isChecked());
     notifyGroup.writeEntry("hideInstallNotifier", !m_installCheckBox->isChecked());
     notifyGroup.writeEntry("hideRestartNotifier", !m_rebootCheckBox->isChecked());
+
+    KConfigGroup notifyTypeGroup(&cfg, "NotificationType");
+    notifyTypeGroup.writeEntry("NotifyType", m_comboRadio->isChecked() ? "Combo" :
+                               m_disableKNotifyRadio->isChecked() ? "TrayOnly" :
+                               m_disableTrayIconRadio->isChecked() ? "KNotifyOnly" :
+                               "Combo");
 
     cfg.sync();
     notifyGroup.sync();
