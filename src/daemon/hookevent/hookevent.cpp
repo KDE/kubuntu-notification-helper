@@ -52,7 +52,7 @@ void HookEvent::show()
     }
 
     if (!m_hooks.isEmpty()) {
-        QPixmap icon = KIcon("help-hint").pixmap(NOTIFICATION_ICON_SIZE);
+        QString icon = QString("help-hint");
         QString text(i18nc("Notification when an upgrade requires the user to do something",
                            "Software upgrade notifications are available"));
         QStringList actions;

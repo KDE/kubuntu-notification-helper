@@ -32,7 +32,7 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
-    QPixmap icon = KIcon("system-reboot").pixmap(NOTIFICATION_ICON_SIZE);
+    QString icon = QString("system-reboot");
     QString text(i18nc("Notification when the upgrade requires a restart",
                        "A system restart is needed to complete the update process"));
     QStringList actions;

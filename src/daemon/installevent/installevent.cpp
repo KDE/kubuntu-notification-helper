@@ -53,7 +53,7 @@ InstallEvent::~InstallEvent()
 
 void InstallEvent::show()
 {
-    QPixmap icon = KIcon("download").pixmap(NOTIFICATION_ICON_SIZE);
+    QString icon = QString("download");
     QString text(i18nc("Notification when a package wants to install extra software",
                        "Extra packages can be installed to enhance functionality for %1",
                        m_applicationName));
