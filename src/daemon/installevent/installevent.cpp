@@ -28,11 +28,7 @@
 
 InstallEvent::InstallEvent(QObject* parent, const QString &name)
         : Event(parent, name)
-        , m_applicationName()
-        , m_multimediaPackages()
-        , m_screensaverPackages()
-        , m_kopetePackages()
-        , m_packageList()
+        , m_applicationName(name)
         , m_installGui(0)
 {
     m_multimediaPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
