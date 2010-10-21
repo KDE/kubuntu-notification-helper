@@ -24,6 +24,7 @@
 #include "../event.h"
 
 // Qt includes
+#include <QtCore/QList>
 #include <QtCore/QMap>
 
 class InstallGui;
@@ -37,20 +38,23 @@ public:
     virtual ~InstallEvent();
 
 public slots:
-    void getInfo(const QString application, const QString package);
+    void getInfo(const QString &application, const QString &package);
     void show();
 
 private slots:
     void run();
-    void addPackages(QMap<QString, QString>* packageList);
+    void addPackages(const QMap<QString, QString> &packageList);
 
 private:
     QString m_applicationName;
-    QMap<QString, QString> m_multimediaPackages;
+    QList< QMap<QString, QString> > m_packageMapList;
+    QMap<QString, QString> m_webBrowserPackages;
+    QMap<QString, QString> m_multimediaDecodingPackages;
+    QMap<QString, QString> m_multimediaEncodingPackages;
     QMap<QString, QString> m_screensaverPackages;
     QMap<QString, QString> m_kopetePackages;
     QMap<QString, QString> m_packageList;
-    InstallGui* m_installGui;
+    InstallGui *m_installGui;
 };
 
 #endif

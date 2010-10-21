@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
+ *   Copyright © 2009-2010 Jonathan Thomas <echidnaman@kubuntu.org>        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -31,16 +31,24 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
         , m_applicationName(name)
         , m_installGui(0)
 {
-    m_multimediaPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
-    m_multimediaPackages["libxine1-ffmpeg"] = i18n("MPEG Plugins");
-    m_multimediaPackages["libavcodec-extra-52"] = i18n("Video Encoding");
-    m_multimediaPackages["libdvdread4"] = i18n("DVD Reading");
-    m_multimediaPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
-    m_multimediaPackages["libmp3lame0"] = i18n("MP3 Encoding");
+    m_webBrowserPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
+
+    m_multimediaDecodingPackages["libxine1-ffmpeg"] = i18n("MPEG Plugins");
+    m_multimediaDecodingPackages["libdvdread4"] = i18n("DVD Reading");
+    m_multimediaDecodingPackages["libavcodec-extra-52"] = i18n("Video Codecs");
+
+    m_multimediaEncodingPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
+    m_multimediaEncodingPackages["libmp3lame0"] = i18n("MP3 Encoding");
 
     m_screensaverPackages["kscreensaver"] = i18n("Set of default screensavers");
 
     m_kopetePackages["kopete-gcall"] = i18n("Google Talk support for Kopete");
+
+    m_packageMapList.append(m_webBrowserPackages);
+    m_packageMapList.append(m_multimediaEncodingPackages);
+    m_packageMapList.append(m_multimediaDecodingPackages);
+    m_packageMapList.append(m_screensaverPackages);
+    m_packageMapList.append(m_kopetePackages);
 }
 
 InstallEvent::~InstallEvent()
@@ -62,10 +70,10 @@ void InstallEvent::show()
     Event::show(icon, text, actions);
 }
 
-void InstallEvent::addPackages(QMap<QString, QString> *packageList)
+void InstallEvent::addPackages(const QMap<QString, QString> &packageList)
 {
-    QMap<QString, QString>::const_iterator packageIter = packageList->constBegin();
-    while (packageIter != packageList->constEnd()) {
+    QMap<QString, QString>::const_iterator packageIter = packageList.constBegin();
+    while (packageIter != packageList.constEnd()) {
         // check for .md5sums as .list exists even when the package is removed (but not purged)
         if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".md5sums")) {
             m_packageList[packageIter.key()] = packageIter.value();
@@ -74,17 +82,19 @@ void InstallEvent::addPackages(QMap<QString, QString> *packageList)
     }
 }
 
-void InstallEvent::getInfo(const QString application, const QString package)
+void InstallEvent::getInfo(const QString &application, const QString &package)
 {
     m_applicationName = application;
     m_packageList.clear();
 
-    if (m_multimediaPackages.contains(package)) {
-        addPackages(&m_multimediaPackages);
-    } else if (m_screensaverPackages.contains(package)) {
-        addPackages(&m_screensaverPackages);
-    } else if (m_kopetePackages.contains(package)) {
-        addPackages(&m_kopetePackages);
+    QList<QMap<QString, QString> >::const_iterator packageMapIter = m_packageMapList.constBegin();
+    while (packageMapIter != m_packageMapList.constEnd()) {
+        if ((*packageMapIter).contains(package)) {
+            addPackages(*packageMapIter);
+            break;
+        }
+
+        ++packageMapIter;
     }
 
     if (!m_packageList.isEmpty()) {
