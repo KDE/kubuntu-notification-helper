@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
+ *   Copyright © 2009-2010 Jonathan Thomas <echidnaman@kubuntu.org>        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
