@@ -31,7 +31,7 @@
 #include <KNotification>
 #include <KToolInvocation>
 
-InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QString, QString> packageList)
+InstallGui::InstallGui(QObject* parent, const QString &application, const QMap<QString, QString> packageList)
         : QObject(parent)
         , m_dialog(0)
         , m_applicationName(application)

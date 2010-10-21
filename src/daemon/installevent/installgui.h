@@ -32,7 +32,7 @@ class InstallGui : public QObject
 {
     Q_OBJECT
 public:
-    InstallGui(QObject* parent, const QString application,
+    InstallGui(QObject* parent, const QString &application,
                const QMap<QString, QString> packageList);
 
     virtual ~InstallGui();
