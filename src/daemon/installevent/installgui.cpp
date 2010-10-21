@@ -45,8 +45,7 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
     m_dialog->setButtons(KDialog::Ok | KDialog::Cancel);
     m_dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
     connect(m_dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
-    connect(m_dialog, SIGNAL(okClicked()), SLOT(cleanUpDialog()));
-    connect(m_dialog, SIGNAL(cancelClicked()), SLOT(cleanUpDialog()));
+    connect(m_dialog, SIGNAL(finished()), SLOT(cleanUpDialog()));
 
     QWidget *widget = new QWidget(m_dialog);
     QVBoxLayout *layout = new QVBoxLayout(widget);
