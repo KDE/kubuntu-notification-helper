@@ -102,10 +102,10 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
 
         notify->setPixmap(KIcon(icon).pixmap(NOTIFICATION_ICON_SIZE));
         notify->setText(text);
-        notify->setActions(actions);
 
         if (!m_useTrayIcon) {
             // Tray icon not in use to handle actions
+            notify->setActions(actions);
             connect(notify, SIGNAL(action1Activated()), this, SLOT(run()));
             connect(notify, SIGNAL(action2Activated()), this, SLOT(ignore()));
             connect(notify, SIGNAL(action3Activated()), this, SLOT(hide()));
