@@ -34,11 +34,8 @@
 InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QString, QString> packageList)
         : QObject(parent)
         , m_dialog(0)
-        , m_applicationName()
-        , m_toInstallList()
+        , m_applicationName(application)
 {
-    m_applicationName = application;
-
     m_dialog = new KDialog();
     m_dialog->setWindowIcon(KIcon("download"));
     m_dialog->setCaption(i18n("Install Packages"));
