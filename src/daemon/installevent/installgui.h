@@ -34,8 +34,7 @@ class InstallGui : public QObject
 public:
     InstallGui(QObject* parent, const QString &application,
                const QMap<QString, QString> packageList);
-
-    virtual ~InstallGui();
+    ~InstallGui();
 
 private slots:
     void cleanUpDialog();
