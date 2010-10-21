@@ -26,6 +26,7 @@
 #include <QtCore/QStringList>
 #include <QtGui/QListWidget>
 
+class QProcess;
 class KDialog;
 
 class InstallGui : public QObject
@@ -37,12 +38,14 @@ public:
     ~InstallGui();
 
 private slots:
-    void cleanUpDialog();
     void packageToggled(QListWidgetItem *item);
     void runPackageInstall();
+    void installFinished();
+    void cleanUpDialog();
 
 private:
-    KDialog* m_dialog;
+    KDialog *m_dialog;
+    QProcess *m_installProcess;
     QString m_applicationName;
     QStringList m_toInstallList;
 };

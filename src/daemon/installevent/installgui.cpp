@@ -21,6 +21,7 @@
 #include "installgui.h"
 
 // Qt includes
+#include <QtCore/QProcess>
 #include <QtGui/QLabel>
 #include <QtGui/QVBoxLayout>
 
@@ -29,11 +30,11 @@
 #include <KPushButton>
 #include <KLocalizedString>
 #include <KNotification>
-#include <KToolInvocation>
 
 InstallGui::InstallGui(QObject* parent, const QString &application, const QMap<QString, QString> packageList)
         : QObject(parent)
         , m_dialog(0)
+        , m_installProcess(0)
         , m_applicationName(application)
 {
     m_dialog = new KDialog();
@@ -92,17 +93,21 @@ void InstallGui::packageToggled(QListWidgetItem *item)
 
 void InstallGui::runPackageInstall()
 {
-    int returnValue = KToolInvocation::kdeinitExec("/usr/bin/qapt-batch",
-                                                   QStringList() << "--install" << m_toInstallList);
-    if (returnValue == 0) {
-        KNotification *notify = new KNotification("Install", 0);
-        notify->setComponentData(KComponentData("notificationhelper"));
+    m_installProcess = new QProcess(this);
+    connect(m_installProcess, SIGNAL(finished(int)), this, SLOT(installFinished()));
 
-        notify->setPixmap(KIcon("download").pixmap(22,22));
-        notify->setText(i18n("Once the install is finished, you will need to restart %1"
-                             " to use the new functionality", m_applicationName));
-        notify->sendEvent();
-    }
+    m_installProcess->start("qapt-batch", QStringList() << "--install" << m_toInstallList);
+}
+
+void InstallGui::installFinished()
+{
+    KNotification *notify = new KNotification("Install", 0);
+    notify->setComponentData(KComponentData("notificationhelper"));
+
+    notify->setPixmap(KIcon("download").pixmap(22,22));
+    notify->setText(i18n("Installation complete. You will need to restart %1"
+                         " to use the new functionality", m_applicationName));
+    notify->sendEvent();
 }
 
 void InstallGui::cleanUpDialog()
