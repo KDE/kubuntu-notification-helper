@@ -52,7 +52,8 @@ InstallGui::InstallGui(QObject* parent, const QString application, const QMap<QS
     label->setWordWrap(true);
     label->setText(i18n("Select packages to be installed for extra functionality."
                         " These packages are not installed by default due to either patent"
-                        " issues or restrictive licensing."));
+                        " issues, restrictive licensing or a lack of space on the installation"
+                        " media."));
     layout->addWidget(label);
 
     QListWidget *listWidget = new QListWidget(widget);
