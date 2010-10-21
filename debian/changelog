@@ -1,3 +1,24 @@
+kubuntu-notification-helper (11.04ubuntu1) UNRELEASED; urgency=low
+
+  * Add optional system tray notification option, as well as a tray icon/
+    KDE popup notification combo option. With this option, the popup does not
+    stay around forever, and does not have actions embedded in the popup.
+    The popup retains persistency and embedded action buttons in popup-only
+    mode.
+  * Fix a small memory leak where the install dialog was not deleted when
+    closed via the window decoration buttons.
+  * Several small optimizations by passing QStrings by reference, as well as
+    improved use of initializer lists.
+  * Clarify that packages suggested for installation by InstallEvent may not
+    always be suggested due to non-free-ness, but also due to Live CD size
+    constraints, as in the case of KScreensaver. Also remove the bit saying
+    that all packages suggested for installation are multimedia-related,
+    since some of them aren't.
+  * Split the packages suggested for installation into more groups, so that
+    web browsers don't suggest CD codecs when installing flash, and vice-versa
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 21 Oct 2010 15:55:42 -0400
+
 kubuntu-notification-helper (10.10ubuntu5) maverick; urgency=low
 
   * Fix InstallEvent not being able to install packages as it passes
