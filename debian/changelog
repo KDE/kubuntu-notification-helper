@@ -1,4 +1,4 @@
-kubuntu-notification-helper (11.04ubuntu1) UNRELEASED; urgency=low
+kubuntu-notification-helper (11.04ubuntu1) natty; urgency=low
 
   [ Jonathan Thomas ]
   * Add optional system tray notification option, as well as a tray icon/
