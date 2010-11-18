@@ -1,5 +1,6 @@
 kubuntu-notification-helper (11.04ubuntu1) UNRELEASED; urgency=low
 
+  [ Jonathan Thomas ]
   * Add optional system tray notification option, as well as a tray icon/
     KDE popup notification combo option. With this option, the popup does not
     stay around forever, and does not have actions embedded in the popup.
@@ -17,7 +18,11 @@ kubuntu-notification-helper (11.04ubuntu1) UNRELEASED; urgency=low
   * Split the packages suggested for installation into more groups, so that
     web browsers don't suggest CD codecs when installing flash, and vice-versa
 
- -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 21 Oct 2010 15:55:42 -0400
+  [ Jonathan Riddell ]
+  * In src/daemon/installevent/installevent.cpp replace Xine plugin with
+    GStreamer plugins
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 18 Nov 2010 16:38:48 +0000
 
 kubuntu-notification-helper (10.10ubuntu5) maverick; urgency=low
 

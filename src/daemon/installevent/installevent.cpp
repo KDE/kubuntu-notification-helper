@@ -33,7 +33,13 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
 {
     m_webBrowserPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
 
-    m_multimediaDecodingPackages["libxine1-ffmpeg"] = i18n("MPEG Plugins");
+    m_multimediaDecodingPackages["gstreamer0.10-plugins-bad"] = i18n("GStreamer Plugins (Bad)");
+    m_multimediaDecodingPackages["gstreamer0.10-plugins-ugly"] = i18n("GStreamer Plugins (Ugly)");
+    m_multimediaDecodingPackages["gstreamer0.10-ffmpeg"] = i18n("GStreamer Plugins (MPEG)");
+    m_multimediaDecodingPackages["gstreamer0.10-pitfdll"] = i18n("GStreamer Plugins (Win32)");
+    m_multimediaDecodingPackages["gstreamer0.10-fluendo-mp3"] = i18n("GStreamer Plugins (Fluendo MP3)");
+    m_multimediaDecodingPackages["gstreamer0.10-plugins-ugly-multiverse"] = i18n("GStreamer Plugins (Ugly Restricted)");
+    m_multimediaDecodingPackages["gstreamer0.10-plugins-bad-multiverse"] = i18n("GStreamer Plugins (Bad Restricted)");
     m_multimediaDecodingPackages["libdvdread4"] = i18n("DVD Reading");
     m_multimediaDecodingPackages["libavcodec-extra-52"] = i18n("Video Codecs");
 
