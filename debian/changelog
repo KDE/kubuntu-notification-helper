@@ -1,3 +1,10 @@
+kubuntu-notification-helper (11.04ubuntu2) natty; urgency=low
+
+  * Only set gstreamer0.10-pitfdll as a multimedia codec on i386. Thanks to
+    Alex Lowe for the patch (LP: #696184)
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Wed, 05 Jan 2011 11:30:59 -0500
+
 kubuntu-notification-helper (11.04ubuntu1) natty; urgency=low
 
   [ Jonathan Thomas ]
