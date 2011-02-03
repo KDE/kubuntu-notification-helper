@@ -1,3 +1,16 @@
+kubuntu-notification-helper (11.04ubuntu3) UNRELEASED; urgency=low
+
+  [ Jonathan Thomas ]
+  * Run apport-checkreports with python, otherwise KProcess leaves zombies
+
+  [ Aurelien Gateau ]
+  * Improve layout of hook dialog:
+    - Make it impossible to shrink the dialog beyond its minimum size
+    - Make the run button bigger, but centered instead of stretched
+    - Changed label of OK button to Close
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 03 Feb 2011 13:28:11 -0500
+
 kubuntu-notification-helper (11.04ubuntu2) natty; urgency=low
 
   * Only set gstreamer0.10-pitfdll as a multimedia codec on i386. Thanks to
