@@ -37,7 +37,7 @@ bool ApportEvent::reportsAvailable()
 //       that in an either-or combo... so question is why does that --system arg exist at
 //       all if we are supposed to either-or the results of two runs anyway?
     KProcess *apportProcess = new KProcess();
-    apportProcess->setProgram(QStringList() << "/usr/share/apport/apport-checkreports");
+    apportProcess->setProgram(QStringList() << "/usr/bin/python" << "/usr/share/apport/apport-checkreports");
 
     if (apportProcess->execute() == 0) {
         return true;
