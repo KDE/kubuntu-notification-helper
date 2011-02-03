@@ -25,6 +25,7 @@
 // Qt includes
 #include <QtGui/QLabel>
 #include <QtGui/QPushButton>
+#include <QtGui/QVBoxLayout>
 #include <QtCore/QSignalMapper>
 
 // KDE includes
@@ -32,7 +33,6 @@
 #include <KIcon>
 #include <KLocale>
 #include <KPageDialog>
-#include <KVBox>
 #include <KWindowSystem>
 
 HookGui::HookGui(QObject* parent)
@@ -53,7 +53,8 @@ void HookGui::createDialog()
     m_dialog = new KPageDialog;
     m_dialog->setCaption(i18n("Update Information"));
     m_dialog->setWindowIcon(KIcon("help-hint"));
-    m_dialog->setButtons(KDialog::Ok);
+    m_dialog->showButtonSeparator(true);
+    m_dialog->setButtons(KDialog::Close);
     connect(m_dialog, SIGNAL(okClicked()), SLOT(closeDialog()));
 }
 
@@ -72,23 +73,37 @@ void HookGui::updateDialog(QList<Hook*> hooks)
     const KLocale *locale = KGlobal::locale();
     QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
     foreach(const Hook *hook, hooks) {
-        KVBox *vbox = new KVBox();
+        QWidget *content = new QWidget();
+        content->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Minimum);
+        QVBoxLayout *layout = new QVBoxLayout(content);
+        layout->setMargin(0);
+
         QString name = hook->getField("Name", locale);
-        KPageWidgetItem *page = new KPageWidgetItem(vbox, name);
+        KPageWidgetItem *page = new KPageWidgetItem(content, name);
         page->setIcon(KIcon("help-hint"));
         page->setProperty("hook", qVariantFromValue((QObject *)hook));
 
         QString desc = hook->getField("Description", locale);
-        QLabel *descLabel = new QLabel(vbox);
+        QLabel *descLabel = new QLabel(content);
         descLabel->setWordWrap(true);
         descLabel->setText(desc);
+        layout->addWidget(descLabel);
 
         if (!hook->getField("Command").isEmpty()) {
+            layout->addSpacing(2 * KDialog::spacingHint());
             QString label = hook->getField("ButtonText", locale);
             if (label.isEmpty())
                 label = i18n("Run this action now");
-            QPushButton *runButton = new QPushButton(KIcon("system-run"), label, vbox);
+            QPushButton *runButton = new QPushButton(KIcon("system-run"), label, content);
+            runButton->setFixedHeight(runButton->sizeHint().height() * 2);
             runButton->setObjectName("runButton");
+
+            QHBoxLayout *buttonLayout = new QHBoxLayout();
+            buttonLayout->addStretch();
+            buttonLayout->addWidget(runButton);
+            buttonLayout->addStretch();
+            layout->addItem(buttonLayout);
+
             signalMapper->setMapping(runButton, page);
             connect(runButton, SIGNAL(clicked()), signalMapper, SLOT(map()));
         }
