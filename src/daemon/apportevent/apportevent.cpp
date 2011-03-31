@@ -66,6 +66,7 @@ void ApportEvent::show()
 void ApportEvent::run()
 {
     KToolInvocation::kdeinitExec("/usr/share/apport/apport-kde");
+    Event::run();
 }
 
 #include "apportevent.moc"

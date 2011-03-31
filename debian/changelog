@@ -9,7 +9,10 @@ kubuntu-notification-helper (11.04ubuntu3) natty; urgency=low
     - Make the run button bigger, but centered instead of stretched
     - Changed label of OK button to Close
 
- -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 03 Feb 2011 13:28:11 -0500
+  [ Jonathan Riddell ]
+  * Hide apportevent after it is activated
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 31 Mar 2011 17:31:41 +0100
 
 kubuntu-notification-helper (11.04ubuntu2) natty; urgency=low
 
