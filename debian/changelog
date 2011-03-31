@@ -1,4 +1,4 @@
-kubuntu-notification-helper (11.04ubuntu3) UNRELEASED; urgency=low
+kubuntu-notification-helper (11.04ubuntu3) natty; urgency=low
 
   [ Jonathan Thomas ]
   * Run apport-checkreports with python, otherwise KProcess leaves zombies
