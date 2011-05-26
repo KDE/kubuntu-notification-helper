@@ -1,4 +1,4 @@
-kubuntu-notification-helper (11.10ubuntu1) oneiric; urgency=low
+kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
 
   * Check the result of QApt Batch in InstallEvent before we triumphantly
     declare success. (LP: #745133)
