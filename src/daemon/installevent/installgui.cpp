@@ -94,13 +94,18 @@ void InstallGui::packageToggled(QListWidgetItem *item)
 void InstallGui::runPackageInstall()
 {
     m_installProcess = new QProcess(this);
-    connect(m_installProcess, SIGNAL(finished(int)), this, SLOT(installFinished()));
+    connect(m_installProcess, SIGNAL(finished(int)), this, SLOT(installFinished(int result)));
 
     m_installProcess->start("qapt-batch", QStringList() << "--install" << m_toInstallList);
 }
 
-void InstallGui::installFinished()
+void InstallGui::installFinished(int result)
 {
+    if (result == 1) {
+        // QApt Batch will handle error notification, we just need to know to shut up
+        return;
+    }
+
     KNotification *notify = new KNotification("Install", 0);
     notify->setComponentData(KComponentData("notificationhelper"));
 

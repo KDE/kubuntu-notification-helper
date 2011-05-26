@@ -1,3 +1,10 @@
+kubuntu-notification-helper (11.10ubuntu1) oneiric; urgency=low
+
+  * Check the result of QApt Batch in InstallEvent before we triumphantly
+    declare success. (LP: #745133)
+
+ -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 26 May 2011 14:58:06 -0400
+
 kubuntu-notification-helper (11.04ubuntu3) natty; urgency=low
 
   [ Jonathan Thomas ]

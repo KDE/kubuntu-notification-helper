@@ -40,7 +40,7 @@ public:
 private slots:
     void packageToggled(QListWidgetItem *item);
     void runPackageInstall();
-    void installFinished();
+    void installFinished(int result);
     void cleanUpDialog();
 
 private:
