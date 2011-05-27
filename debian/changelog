@@ -2,6 +2,10 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
 
   * Check the result of QApt Batch in InstallEvent before we triumphantly
     declare success. (LP: #745133)
+  * Make sure to initialize the KStatusNotifierItem object's pointer with 0,
+    otherwise crashes will occur when trying to delete it due to the undefinied
+    behavior of accessing an un-initialized pointer. Fixes a crash that occurs
+    when k-n-h is configured to show only popup icons. (LP: #780718)
 
  -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 26 May 2011 14:58:06 -0400
 
