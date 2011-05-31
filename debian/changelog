@@ -6,6 +6,7 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
     otherwise crashes will occur when trying to delete it due to the undefinied
     behavior of accessing an un-initialized pointer. Fixes a crash that occurs
     when k-n-h is configured to show only popup icons. (LP: #780718)
+  * Use HIG-compliant labels for radio buttons. (No double negatives)
 
  -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 26 May 2011 14:58:06 -0400
 
