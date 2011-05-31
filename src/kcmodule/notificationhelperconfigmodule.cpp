@@ -85,9 +85,9 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     m_comboRadio = new QRadioButton(this);
     m_comboRadio->setText(i18n("Use both popups and tray icons"));
     m_disableKNotifyRadio = new QRadioButton(this);
-    m_disableKNotifyRadio->setText(i18n("Disable popup notifications"));
+    m_disableKNotifyRadio->setText(i18n("Tray icons only"));
     m_disableTrayIconRadio = new QRadioButton(this);
-    m_disableTrayIconRadio->setText(i18n("Disable tray icons"));
+    m_disableTrayIconRadio->setText(i18n("Popup notifications only"));
 
     notifyTypeGroup->addButton(m_comboRadio);
     notifyTypeGroup->addButton(m_disableKNotifyRadio);
