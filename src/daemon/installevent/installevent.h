@@ -49,7 +49,6 @@ private:
     QString m_applicationName;
     QList< QMap<QString, QString> > m_packageMapList;
     QMap<QString, QString> m_webBrowserPackages;
-    QMap<QString, QString> m_multimediaDecodingPackages;
     QMap<QString, QString> m_multimediaEncodingPackages;
     QMap<QString, QString> m_screensaverPackages;
     QMap<QString, QString> m_kopetePackages;

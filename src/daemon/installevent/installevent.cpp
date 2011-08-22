@@ -33,19 +33,6 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
 {
     m_webBrowserPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
 
-    m_multimediaDecodingPackages["gstreamer0.10-plugins-bad"] = i18n("GStreamer Plugins (Bad)");
-    m_multimediaDecodingPackages["gstreamer0.10-plugins-ugly"] = i18n("GStreamer Plugins (Ugly)");
-    m_multimediaDecodingPackages["gstreamer0.10-ffmpeg"] = i18n("GStreamer Plugins (MPEG)");
-#ifdef __i386__
-    // Pitfdll only exists in the repositories on i386.
-    m_multimediaDecodingPackages["gstreamer0.10-pitfdll"] = i18n("GStreamer Plugins (Win32)");
-#endif
-    m_multimediaDecodingPackages["gstreamer0.10-fluendo-mp3"] = i18n("GStreamer Plugins (Fluendo MP3)");
-    m_multimediaDecodingPackages["gstreamer0.10-plugins-ugly-multiverse"] = i18n("GStreamer Plugins (Ugly Restricted)");
-    m_multimediaDecodingPackages["gstreamer0.10-plugins-bad-multiverse"] = i18n("GStreamer Plugins (Bad Restricted)");
-    m_multimediaDecodingPackages["libdvdread4"] = i18n("DVD Reading");
-    m_multimediaDecodingPackages["libavcodec-extra-52"] = i18n("Video Codecs");
-
     m_multimediaEncodingPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
     m_multimediaEncodingPackages["libmp3lame0"] = i18n("MP3 Encoding");
 
@@ -55,7 +42,6 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
 
     m_packageMapList.append(m_webBrowserPackages);
     m_packageMapList.append(m_multimediaEncodingPackages);
-    m_packageMapList.append(m_multimediaDecodingPackages);
     m_packageMapList.append(m_screensaverPackages);
     m_packageMapList.append(m_kopetePackages);
 }
