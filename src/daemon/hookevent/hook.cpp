@@ -242,7 +242,10 @@ bool Hook::isNotificationRequired() const
     QString condition = getField("DisplayIf");
     if (!condition.isEmpty()) {
         KProcess displayIfProcess;
-        displayIfProcess.setProgram(condition);
+        // Do not ever try to use a program call here. The spec defines that
+        // DisplayIf is a shell command, if one tries to evaluate a somewhat
+        // complex shell command as a program KProcess will die a horrible death.
+        displayIfProcess.setShellCommand(condition);
         int programResult = displayIfProcess.execute();
         if (programResult != 0) {
             return false;

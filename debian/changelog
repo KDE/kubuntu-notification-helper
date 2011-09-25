@@ -1,5 +1,6 @@
 kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
 
+  [ Jonathan Thomas ]
   * Check the result of QApt Batch in InstallEvent before we triumphantly
     declare success. (LP: #745133)
   * Make sure to initialize the KStatusNotifierItem object's pointer with 0,
@@ -8,7 +9,12 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
     when k-n-h is configured to show only popup icons. (LP: #780718)
   * Use HIG-compliant labels for radio buttons. (No double negatives)
 
- -- Jonathan Thomas <echidnaman@kubuntu.org>  Thu, 26 May 2011 14:58:06 -0400
+  [ Harald Sitter ]
+  * Properly KProcess DisplayIf hook conditions as shell commands.
+    Trying to evaluate a complex expression as program will make the process
+    die and return as zombie! OMG! (LP: #515138)
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 25 Sep 2011 19:51:26 +0200
 
 kubuntu-notification-helper (11.04ubuntu3) natty; urgency=low
 
