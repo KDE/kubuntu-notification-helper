@@ -15,6 +15,7 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
     die and return as zombie! OMG! (LP: #515138)
   * If a hook is not valid and a notification is not required schedule the
     hook for deletion via event loop to save memory.
+  * Use QLatin1String when useful in HookEvent 
 
  -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 25 Sep 2011 19:51:26 +0200
 

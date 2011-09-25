@@ -42,7 +42,7 @@ void HookEvent::show()
 {
     qDeleteAll(m_hooks);
     m_hooks.clear();
-    QDir hookDir("/var/lib/update-notifier/user.d/");
+    QDir hookDir(QLatin1String("/var/lib/update-notifier/user.d/"));
     QStringList fileList = hookDir.entryList(QDir::Files);
     foreach(const QString &fileName, fileList) {
         Hook *hook = new Hook(this, hookDir.filePath(fileName));
@@ -54,7 +54,7 @@ void HookEvent::show()
     }
 
     if (!m_hooks.isEmpty()) {
-        QString icon = QString("help-hint");
+        QString icon = QLatin1String("help-hint");
         QString text(i18nc("Notification when an upgrade requires the user to do something",
                            "Software upgrade notifications are available"));
         QStringList actions;
