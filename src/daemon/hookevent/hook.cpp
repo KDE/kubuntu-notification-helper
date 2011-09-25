@@ -116,9 +116,9 @@ void Hook::runCommand()
         }
         KToolInvocation::invokeTerminal(command);
     } else {
-        KProcess *process = new KProcess();
-        process->setShellCommand(command);
-        process->startDetached();
+        KProcess process;
+        process.setShellCommand(command);
+        process.startDetached();
     }
 }
 
