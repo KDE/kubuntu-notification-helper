@@ -32,10 +32,10 @@ DistUpgradeEvent::~DistUpgradeEvent()
 
 bool DistUpgradeEvent::upgradeAvailable()
 {
-    KProcess *checkerProcess = new KProcess();
-    checkerProcess->setProgram(QStringList() << "/usr/bin/releasechecker");
+    KProcess checkerProcess;
+    checkerProcess.setProgram(QStringList() << "/usr/bin/releasechecker");
 
-    if (checkerProcess->execute() == 0) {
+    if (checkerProcess.execute() == 0) {
         return true;
     }
     return false;

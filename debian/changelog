@@ -16,6 +16,7 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
   * If a hook is not valid and a notification is not required schedule the
     hook for deletion via event loop to save memory.
   * Use QLatin1String when useful in HookEvent 
+  * In unused distupgradevent do not leak KProcess on availability checks.
 
  -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 25 Sep 2011 19:51:26 +0200
 
