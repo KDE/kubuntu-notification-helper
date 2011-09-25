@@ -13,6 +13,8 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
   * Properly KProcess DisplayIf hook conditions as shell commands.
     Trying to evaluate a complex expression as program will make the process
     die and return as zombie! OMG! (LP: #515138)
+  * If a hook is not valid and a notification is not required schedule the
+    hook for deletion via event loop to save memory.
 
  -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 25 Sep 2011 19:51:26 +0200
 

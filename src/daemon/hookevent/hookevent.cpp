@@ -48,6 +48,8 @@ void HookEvent::show()
         Hook *hook = new Hook(this, hookDir.filePath(fileName));
         if (hook->isValid() && hook->isNotificationRequired()) {
             m_hooks << hook;
+        } else {
+            hook->deleteLater();
         }
     }
 
