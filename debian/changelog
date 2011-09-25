@@ -1,4 +1,4 @@
-kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
+kubuntu-notification-helper (11.10ubuntu2) UNRELEASED; urgency=low
 
   [ Jonathan Thomas ]
   * Check the result of QApt Batch in InstallEvent before we triumphantly
@@ -20,8 +20,9 @@ kubuntu-notification-helper (11.10ubuntu1) UNRELEASED; urgency=low
   * Nice fact about KProcess... when starting detached you can actually
     throw away the KProcess right away (or reuse it). Consequently do not
     heap the KProcess for terminal Hook invocation, but keep it on the stack.
+  * Bump standards version to 3.9.2
 
- -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 25 Sep 2011 19:51:26 +0200
+ -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 25 Sep 2011 20:09:02 +0200
 
 kubuntu-notification-helper (11.04ubuntu3) natty; urgency=low
 
