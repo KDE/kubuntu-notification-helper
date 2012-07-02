@@ -62,8 +62,7 @@ void DistUpgradeEvent::show()
 
 void DistUpgradeEvent::run()
 {
-    KProcess::startDetached(QStringList() << "python"
-                            << "/usr/share/pyshared/UpdateManager/DistUpgradeFetcherKDE.py");
+    KProcess::startDetached(QStringList() << "/usr/bin/kubuntu-devel-release-upgrade");
     Event::run();
 }
 

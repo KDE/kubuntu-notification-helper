@@ -1,3 +1,15 @@
+kubuntu-notification-helper (12.10ubuntu1) quantal; urgency=low
+
+  * src/daemon/distupgradeevent/distupgradeevent.cpp:
+    - Call kubuntu-devel-release-upgrade instead of directly running a
+      python file out of a module, as python paths are subject to change
+  * debian/control:
+    - Update Vcs-Bzr lines to ~kubuntu-packagers
+    - Depend on new package ubuntu-release-upgrader-qt (just a split of
+      release upgrader code out of update-manager-kde)
+
+ -- Michael Terry <mterry@ubuntu.com>  Mon, 02 Jul 2012 10:40:38 -0400
+
 kubuntu-notification-helper (11.10ubuntu1) oneiric; urgency=low
 
   [ Jonathan Thomas ]

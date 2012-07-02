@@ -6,13 +6,13 @@ XSBC-Original-Maintainer: Jonathan Thomas <echidnaman@kubuntu.org>
 Build-Depends: debhelper (>= 7.3.16), pkg-kde-tools (>= 0.5.0), cmake, kdelibs5-dev
 Standards-Version: 3.9.2
 Homepage: https://launchpad.net/kubuntu-notification-helper
-Vcs-Browser: http://bazaar.launchpad.net/~kubuntu-members/kubuntu-notification-helper/trunk
-Vcs-Bzr: https://code.launchpad.net/~kubuntu-members/kubuntu-notification-helper/trunk
+Vcs-Browser: http://bazaar.launchpad.net/~kubuntu-packagers/kubuntu-notification-helper/trunk
+Vcs-Bzr: https://code.launchpad.net/~kubuntu-packagers/kubuntu-notification-helper/trunk
 
 Package: kubuntu-notification-helper
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, konsole | x-terminal-emulator,
-  qapt-batch
+  qapt-batch, ubuntu-release-upgrader-qt
 Recommends: apport-kde | apport-gtk
 Description: Kubuntu system notification helper
  Kubuntu Notification Helper is a daemon that presents various notifications
