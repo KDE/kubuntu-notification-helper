@@ -70,7 +70,9 @@ void InstallEvent::addPackages(const QMap<QString, QString> &packageList)
     QMap<QString, QString>::const_iterator packageIter = packageList.constBegin();
     while (packageIter != packageList.constEnd()) {
         // check for .md5sums as .list exists even when the package is removed (but not purged)
-        if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".md5sums")) {
+        if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".md5sums")
+            !QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ":i386.md5sums")
+            !QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ":amd64.md5sums")) {
             m_packageList[packageIter.key()] = packageIter.value();
         }
         ++packageIter;
