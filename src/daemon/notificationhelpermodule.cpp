@@ -142,10 +142,6 @@ void NotificationHelperModule::installEvent(const QString &app, const QString &p
 
 void NotificationHelperModule::rebootEvent()
 {
-    if (!QFile::exists("/var/run/reboot-required")) {
-        return;
-    }
-
     m_rebootEvent->show();
 }
 

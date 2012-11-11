@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2012 Harald Sitter <apachelogger@ubuntu.com>         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -21,7 +21,10 @@
 
 #include "rebootevent.h"
 
+#include <QtCore/QFile>
+
 #include <KProcess>
+#include <kdeversion.h>
 
 RebootEvent::RebootEvent(QObject* parent, const QString &name)
         : Event(parent, name)
@@ -32,6 +35,29 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
+    // There are two scenarios which can trigger a reboot notification.
+    // a) /var/run/reboot-required: straight forward notification
+    // b) /var/run/reboot-required-kdelibs: created by kdelibs-bin's postinst
+    //    whenver it gets invoked. This file contains the upstream version of
+    //    the packaged that was installed. If the version in there is different
+    //    from the one reported to us we show the notification.
+    //    This can fail iff the kded is restarted after the installation of the
+    //    new kdelibs which hopefully enough was due to a logout which then is
+    //    just as good as reboot from a kdelibs perspective.
+    bool kdelibsChanged = false;
+    QFile file("/var/run/reboot-required-kdelibs");
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
+        if (!file.atEnd()) {
+            QString installedVersion = file.readLine().trimmed();
+            if (installedVersion != QLatin1String(KDE::versionString()))
+                kdelibsChanged = true;
+        }
+        file.close();
+    }
+
+    if (!QFile::exists("/var/run/reboot-required") && !kdelibsChanged)
+        return;
+
     QString icon = QString("system-reboot");
     QString text(i18nc("Notification when the upgrade requires a restart",
                        "A system restart is needed to complete the update process"));

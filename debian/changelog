@@ -1,3 +1,13 @@
+kubuntu-notification-helper (13.04ubuntu1) raring; urgency=low
+
+  * Implement reboot on kdelibs upstream version changes (LP: #553182)
+    kdelibs-bin is supposed to create /var/run/reboot-required-kdelibs in
+    its postinst, containing the installed upstream version. If the version
+    is different from the one the module was started with a reboot event
+    is shown. 
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Sun, 11 Nov 2012 17:17:31 +0100
+
 kubuntu-notification-helper (12.10ubuntu3) quantal; urgency=low
 
   * src/daemon/installevent/installevent.cpp

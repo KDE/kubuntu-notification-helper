@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2012 Harald Sitter <apachelogger@ubuntu.com>         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -28,7 +28,7 @@ class RebootEvent : public Event
 {
     Q_OBJECT
 public:
-    RebootEvent(QObject* parent, const QString &name);
+    RebootEvent(QObject *parent, const QString &name);
 
     virtual ~RebootEvent();
 
