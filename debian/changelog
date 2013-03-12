@@ -1,3 +1,16 @@
+kubuntu-notification-helper (13.04ubuntu2) UNRELEASED; urgency=low
+
+  * Set X-Ubuntu-Use-Langpack: yes in control to enable pot generation
+  * Build depend on pkg-kde-tools >= 0.15.3ubuntu5 to ensure l10n creation works
+  * General package changes/updaes:
+    + Add debian/source/options to compress with xz/9
+    + Bump standards version to 3.9.4
+    + Build depend on debhelper >= 9 and set compat to 9
+  * Fix sequence call order in rules (first $@ for target, then sequence args)
+  * Convert copyright to dep5
+
+ -- Harald Sitter <apachelogger@ubuntu.com>  Tue, 12 Mar 2013 00:03:47 +0100
+
 kubuntu-notification-helper (13.04ubuntu1) raring; urgency=low
 
   * Implement reboot on kdelibs upstream version changes (LP: #553182)

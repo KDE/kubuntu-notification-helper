@@ -3,8 +3,10 @@ Section: kde
 Priority: optional
 Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
 XSBC-Original-Maintainer: Jonathan Thomas <echidnaman@kubuntu.org>
-Build-Depends: debhelper (>= 7.3.16), pkg-kde-tools (>= 0.5.0), cmake, kdelibs5-dev
-Standards-Version: 3.9.3
+Build-Depends: debhelper (>= 9), pkg-kde-tools (>= 0.15.3ubuntu5), cmake,
+ kdelibs5-dev
+Standards-Version: 3.9.4
+X-Ubuntu-Use-Langpack: yes
 Homepage: https://launchpad.net/kubuntu-notification-helper
 Vcs-Browser: http://bazaar.launchpad.net/~kubuntu-packagers/kubuntu-notification-helper/trunk
 Vcs-Bzr: https://code.launchpad.net/~kubuntu-packagers/kubuntu-notification-helper/trunk
