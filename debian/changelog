@@ -1,4 +1,4 @@
-kubuntu-notification-helper (13.04ubuntu2) UNRELEASED; urgency=low
+kubuntu-notification-helper (13.04ubuntu2) raring; urgency=low
 
   * Set X-Ubuntu-Use-Langpack: yes in control to enable pot generation
   * Build depend on pkg-kde-tools >= 0.15.3ubuntu5 to ensure l10n creation works
