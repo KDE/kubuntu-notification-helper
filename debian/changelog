@@ -1,3 +1,11 @@
+kubuntu-notification-helper (13.04ubuntu3) raring; urgency=low
+
+  * Build-dep on pkg-kde-tools (>= 0.15.3ubuntu7)
+    + Previous versions were missing the python dep for msgsplit, so
+      desktop file pot creation was supposedly not correct.
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 18 Mar 2013 14:20:03 +0100
+
 kubuntu-notification-helper (13.04ubuntu2) raring; urgency=low
 
   * Set X-Ubuntu-Use-Langpack: yes in control to enable pot generation

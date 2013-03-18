@@ -3,7 +3,7 @@ Section: kde
 Priority: optional
 Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
 XSBC-Original-Maintainer: Jonathan Thomas <echidnaman@kubuntu.org>
-Build-Depends: debhelper (>= 9), pkg-kde-tools (>= 0.15.3ubuntu5), cmake,
+Build-Depends: debhelper (>= 9), pkg-kde-tools (>= 0.15.3ubuntu7), cmake,
  kdelibs5-dev
 Standards-Version: 3.9.4
 X-Ubuntu-Use-Langpack: yes
