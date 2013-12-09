@@ -1,0 +1,87 @@
+# Luxembourgish translation for kubuntu-notification-helper
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2013-04-09 07:39+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Luxembourgish <lb@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/notificationhelper.desktop:2
+msgctxt "Name"
+msgid "Notification Helper"
+msgstr "Benoriichtegungs Hëllefsprogramm"
+
+#: src/daemon/notificationhelper.notifyrc:3
+msgctxt "Comment"
+msgid "System Notification Helper"
+msgstr "System Benoriichtegungs Hëllefsprogramm"
+
+#: src/daemon/notificationhelper.notifyrc:6
+msgctxt "Name"
+msgid "Reboot Required"
+msgstr "Neistart benéidegt"
+
+#: src/daemon/notificationhelper.notifyrc:7
+msgctxt "Comment"
+msgid "A system restart is required"
+msgstr "Ee System Neistart ass néideg"
+
+#: src/daemon/notificationhelper.notifyrc:11
+msgctxt "Name"
+msgid "Apport Crash"
+msgstr "Apport Crash"
+
+#: src/daemon/notificationhelper.notifyrc:12
+msgctxt "Comment"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+"Eng Applikatioun op dengem System ass ofgestierzt (elo oder an der "
+"Vergaangenheet)"
+
+#: src/daemon/notificationhelper.notifyrc:16
+msgctxt "Name"
+msgid "Upgrade Hook"
+msgstr "Upgrade Hoken"
+
+#: src/daemon/notificationhelper.notifyrc:17
+msgctxt "Comment"
+msgid "Software upgrade notifications are available"
+msgstr "Software Upgrade Benoriichtegunge si verfügbar"
+
+#: src/daemon/notificationhelper.notifyrc:21
+msgctxt "Name"
+msgid "Restricted Install"
+msgstr "Ageschränkten Installatioun"
+
+#: src/daemon/notificationhelper.notifyrc:22
+msgctxt "Comment"
+msgid "Extra packages can be installed to enhance application functionality"
+msgstr ""
+"Extra Päck kënnen installéiert ginn fir d'Applikatiouns Funktionalitéiten ze "
+"erweideren"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:10
+msgctxt "X-KDE-Keywords"
+msgid "Notify,Alerts,Notification,popups"
+msgstr ""
+
+#: src/kcmodule/kcm_notificationhelper.desktop:14
+msgctxt "Name"
+msgid "Other Notifications"
+msgstr "Aner Benoriichtegungen"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:15
+msgctxt "Comment"
+msgid "Control the notifications for system helpers"
+msgstr "Kontrolléier d'Benoriichtegungen fir System Hëllefs Programmer"

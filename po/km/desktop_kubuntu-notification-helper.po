@@ -1,0 +1,86 @@
+# Khmer translation for kubuntu-notification-helper
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2013-04-09 07:39+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Khmer <km@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/notificationhelper.desktop:2
+msgctxt "Name"
+msgid "Notification Helper"
+msgstr "កម្មវិធី​​ជំនួយ​ការ​ជូន​ដំណឹង"
+
+#: src/daemon/notificationhelper.notifyrc:3
+msgctxt "Comment"
+msgid "System Notification Helper"
+msgstr "កម្មវិធី​ជំនួយ​ការ​ជូនដំណឹង​ប្រព័ន្ធ"
+
+#: src/daemon/notificationhelper.notifyrc:6
+msgctxt "Name"
+msgid "Reboot Required"
+msgstr "បាន​ទាម​ទារ​​ចាប់​ផ្តើមឡើង​វិញ"
+
+#: src/daemon/notificationhelper.notifyrc:7
+msgctxt "Comment"
+msgid "A system restart is required"
+msgstr "ចាប់​​ផ្តើម​ប្រព័ន្ធ​ឡើង​វិញ​ត្រូវ​បាន​ទាមទារ"
+
+#: src/daemon/notificationhelper.notifyrc:11
+msgctxt "Name"
+msgid "Apport Crash"
+msgstr "គាំង Apport"
+
+#: src/daemon/notificationhelper.notifyrc:12
+msgctxt "Comment"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+"កម្មវិធី​​ត្រូវ​បាន​គាំង​​លើ​ប្រព័ន្ធ​របស់​អ្នក​​ (បច្ចុប្បន្ន​ ឬ​ "
+"ក្នុងពេល​អតីតកាល​​​)"
+
+#: src/daemon/notificationhelper.notifyrc:16
+msgctxt "Name"
+msgid "Upgrade Hook"
+msgstr "ធ្វើ​ឲ្យ​ Hook ប្រសើរ"
+
+#: src/daemon/notificationhelper.notifyrc:17
+msgctxt "Comment"
+msgid "Software upgrade notifications are available"
+msgstr "ការជួន​ដំណឹង​ធ្វើ​ឲ្យ​ផ្នែក​ទន់​ប្រើ​សើរ​ដែល​មាន"
+
+#: src/daemon/notificationhelper.notifyrc:21
+msgctxt "Name"
+msgid "Restricted Install"
+msgstr "ដំឡើង​ដែល​ត្រូវ​បាន​កម្រិត"
+
+#: src/daemon/notificationhelper.notifyrc:22
+msgctxt "Comment"
+msgid "Extra packages can be installed to enhance application functionality"
+msgstr ""
+"កញ្ចប់​ខាង​ក្រៅ​អាច​ត្រូវ​បានដំឡើង​​ ដើម្បី​​បន្ថែម​កម្មវិធីនៃ​មុខងារ"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:10
+msgctxt "X-KDE-Keywords"
+msgid "Notify,Alerts,Notification,popups"
+msgstr ""
+
+#: src/kcmodule/kcm_notificationhelper.desktop:14
+msgctxt "Name"
+msgid "Other Notifications"
+msgstr "ការ​ជួន​ដំណឹង​ផ្សេង​ៗ"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:15
+msgctxt "Comment"
+msgid "Control the notifications for system helpers"
+msgstr "ត្រួតត្រា​ការ​ជួនដំណឹង​ សម្រាប់​កម្មវិធី​ជំនួយ​ប្រព័ន្ធ"

@@ -1,0 +1,78 @@
+# Burmese translation for kubuntu-notification-helper
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2011-10-30 08:36+0000\n"
+"Last-Translator: Bone Pyae Sone <bone.burma@gmail.com>\n"
+"Language-Team: Burmese <my@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:50
+msgid "kcmnotificationhelper"
+msgstr "kcmnotificationhelper"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:51
+msgid "Kubuntu Notification Helper Configuration"
+msgstr "Kubuntu သတိပေးချက် အကူအညီပေးခြင်းကို ပြင်ဆင်ခြင်း"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:53
+msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:56
+msgid "Jonathan Thomas"
+msgstr "Jonathan Thomas"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:57
+msgid "Harald Sitter"
+msgstr "Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:60
+msgid "Configure the behavior of Kubuntu Notification Helper"
+msgstr "Configure the behavior of Kubuntu Notification Helper"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:67
+msgid "Show notifications for:"
+msgstr "သတိပေးချက်များကို အောက်ပါအတွက်ပြမည်၊"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:69
+msgid "Application crashes"
+msgstr "အသုံးချဆော့ဝဲလ်များပျက်စီးခြင်း"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:70
+msgid "Upgrade information"
+msgstr "အဆင့်မြင့်တင်ခြင်းသတင်းအချက်အလက်များ"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:71
+msgid "Restricted codec availability"
+msgstr "ကန့်သတ်ထားသော Codec များရရှိခြင်း"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:72
+msgid "Required reboots"
+msgstr "ပြန်စခြင်းလိုအပ်ပါသည်။"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:82
+msgid "Notification type:"
+msgstr "အချက်ပေးခြင်း အမျိုးအစား"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:86
+msgid "Use both popups and tray icons"
+msgstr "Pop ups နှင့် အောက်တွင်ရှိသော Icons များ ကိုသုံးမည်။"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:88
+msgid "Tray icons only"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:90
+msgid "Popup notifications only"
+msgstr ""

@@ -1,0 +1,78 @@
+# Korean translation for kubuntu-notification-helper
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2012-01-03 10:24+0000\n"
+"Last-Translator: Park Shinjo <Unknown>\n"
+"Language-Team: Korean <ko@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:50
+msgid "kcmnotificationhelper"
+msgstr "kcmnotificationhelper"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:51
+msgid "Kubuntu Notification Helper Configuration"
+msgstr "쿠분투 알림 도우미 설정"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:53
+msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:56
+msgid "Jonathan Thomas"
+msgstr "Jonathan Thomas"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:57
+msgid "Harald Sitter"
+msgstr "Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:60
+msgid "Configure the behavior of Kubuntu Notification Helper"
+msgstr "쿠분투 알림 도우미 행동 설정"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:67
+msgid "Show notifications for:"
+msgstr "다음 항목 알리기:"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:69
+msgid "Application crashes"
+msgstr "프로그램 충돌"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:70
+msgid "Upgrade information"
+msgstr "업그레이드 정보"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:71
+msgid "Restricted codec availability"
+msgstr "제한된 코덱 사용 가능"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:72
+msgid "Required reboots"
+msgstr "다시 시작 필요"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:82
+msgid "Notification type:"
+msgstr "알림 종류:"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:86
+msgid "Use both popups and tray icons"
+msgstr "팝업과 트레이 아이콘 둘 다 사용하기"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:88
+msgid "Tray icons only"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:90
+msgid "Popup notifications only"
+msgstr ""

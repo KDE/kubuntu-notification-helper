@@ -1,3 +1,15 @@
+kubuntu-notification-helper (14.04ubuntu1) trusty; urgency=low
+
+  * Fix LP: #1258484 k-n-h does not launch apport
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Fri, 06 Dec 2013 11:42:58 +0000
+
+kubuntu-notification-helper (13.10ubuntu1) saucy; urgency=low
+
+  * Add translations from Launchpad
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Thu, 10 Oct 2013 13:07:12 +0100
+
 kubuntu-notification-helper (13.04ubuntu3) raring; urgency=low
 
   * Build-dep on pkg-kde-tools (>= 0.15.3ubuntu7)

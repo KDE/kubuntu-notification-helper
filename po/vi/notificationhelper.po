@@ -1,0 +1,151 @@
+# Vietnamese translation for kubuntu-notification-helper
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2011-12-20 07:27+0000\n"
+"Last-Translator: Lê Hoàng Phương <Unknown>\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/event.cpp:123 src/daemon/event.cpp:130
+msgid "System Notification Helper"
+msgstr "Trình trợ giúp thông báo hệ thống"
+
+#: src/daemon/event.cpp:144
+msgid "Hide"
+msgstr "Ẩn"
+
+#: src/daemon/apportevent/apportevent.cpp:56
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+"Một ứng dụng đã gặp sự cố trên hệ thống (ngay thời điểm hiện tại hoặc đã xảy "
+"ra)"
+
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/hookevent/hookevent.cpp:61
+#: src/daemon/installevent/installevent.cpp:60
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Chi tiết"
+
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/rebootevent/rebootevent.cpp:66
+#: src/daemon/installevent/installevent.cpp:61
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Bỏ qua lúc này"
+
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/rebootevent/rebootevent.cpp:68
+#: src/daemon/installevent/installevent.cpp:63
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "Không hiện lại lần nữa"
+
+#: src/daemon/hookevent/hookevent.cpp:59
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Đang có các thông báo nâng cấp phần mềm"
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Bỏ qua"
+
+#: src/daemon/hookevent/hookevent.cpp:64
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "Không hiển thị lại nữa"
+
+#: src/daemon/hookevent/hookgui.cpp:54
+msgid "Update Information"
+msgstr "Cập nhật thông tin"
+
+#: src/daemon/hookevent/hookgui.cpp:96
+msgid "Run this action now"
+msgstr "Thực hiện hoạt động này ngay"
+
+#: src/daemon/rebootevent/rebootevent.cpp:63
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr "Cần khởi động lại hệ thống để hoàn tất quá trình nâng cấp"
+
+#: src/daemon/rebootevent/rebootevent.cpp:65
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Khởi động lại"
+
+#: src/daemon/notificationhelpermodule.cpp:59
+msgid "Kubuntu Notification Helper"
+msgstr "Trình trợ giúp thông báo Kubuntu"
+
+#: src/daemon/notificationhelpermodule.cpp:60
+msgid "A Notification Helper for Kubuntu"
+msgstr "Một trình trợ giúp thông báo cho Kubuntu"
+
+#: src/daemon/notificationhelpermodule.cpp:62
+msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+
+#: src/daemon/installevent/installevent.cpp:34
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Flash"
+
+#: src/daemon/installevent/installevent.cpp:36
+msgid "K3b CD Codecs"
+msgstr "Bộ mã CD K3b"
+
+#: src/daemon/installevent/installevent.cpp:37
+msgid "MP3 Encoding"
+msgstr "Mã hoá MP3"
+
+#: src/daemon/installevent/installevent.cpp:39
+msgid "Set of default screensavers"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:41
+msgid "Google Talk support for Kopete"
+msgstr "Hỗ trợ Google Talk cho Kopete"
+
+#: src/daemon/installevent/installevent.cpp:57
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr "Cái gói bổ sung có thể được cài đặt để nâng cao chức năng cho %1"
+
+#: src/daemon/installevent/installgui.cpp:42
+msgid "Install Packages"
+msgstr "Cài đặt các gói"
+
+#: src/daemon/installevent/installgui.cpp:44
+msgid "Install Selected"
+msgstr "Cài đặt những thứ đã được chọn"
+
+#: src/daemon/installevent/installgui.cpp:54
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"Chọn cài đặt các gói để có thêm các tính năng phụ. Những gói này không được "
+"cài đặt mặc định vì vấn đề bản quyền, giấy phép giới hạn hay thiếu không "
+"gian trong thiết bị chứa bản cài đặt."
+
+#: src/daemon/installevent/installgui.cpp:113
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr "Đã cài đặt xong. Bạn cần khởi động lại %1 để sử dụng tính năng mới"

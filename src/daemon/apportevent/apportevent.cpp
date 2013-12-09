@@ -22,11 +22,13 @@
 #include "apportevent.h"
 
 #include <KProcess>
+#include <KDebug>
 #include <KToolInvocation>
 
 ApportEvent::ApportEvent(QObject* parent, const QString &name)
-        : Event(parent, name)
-{}
+        : Event(parent, name) {
+  kDebug() << "XXX ApportEvent::ApportEvent";
+}
 
 ApportEvent::~ApportEvent()
 {}
@@ -37,7 +39,7 @@ bool ApportEvent::reportsAvailable()
 //       that in an either-or combo... so question is why does that --system arg exist at
 //       all if we are supposed to either-or the results of two runs anyway?
     KProcess *apportProcess = new KProcess();
-    apportProcess->setProgram(QStringList() << "/usr/bin/python" << "/usr/share/apport/apport-checkreports");
+    apportProcess->setProgram(QStringList() << "/usr/share/apport/apport-checkreports");
 
     if (apportProcess->execute() == 0) {
         return true;

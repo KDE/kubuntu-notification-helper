@@ -1,0 +1,158 @@
+# French translation for kubuntu-notification-helper
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2011-03-20 09:25+0000\n"
+"Last-Translator: Bruno Patri <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/event.cpp:123 src/daemon/event.cpp:130
+msgid "System Notification Helper"
+msgstr "Assistant de notifications du système"
+
+#: src/daemon/event.cpp:144
+msgid "Hide"
+msgstr "Masquer"
+
+#: src/daemon/apportevent/apportevent.cpp:56
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+"Une application s'est arrêtée inopinément sur votre système (à l'instant ou "
+"antérieurement)"
+
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/hookevent/hookevent.cpp:61
+#: src/daemon/installevent/installevent.cpp:60
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Détails"
+
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/rebootevent/rebootevent.cpp:66
+#: src/daemon/installevent/installevent.cpp:61
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Ignorer pour l'instant"
+
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/rebootevent/rebootevent.cpp:68
+#: src/daemon/installevent/installevent.cpp:63
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "Ne plus afficher"
+
+#: src/daemon/hookevent/hookevent.cpp:59
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Des informations sur les mises à jour sont disponibles"
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Ignorer"
+
+#: src/daemon/hookevent/hookevent.cpp:64
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "Ne plus afficher"
+
+#: src/daemon/hookevent/hookgui.cpp:54
+msgid "Update Information"
+msgstr "Informations de mise à jour"
+
+#: src/daemon/hookevent/hookgui.cpp:96
+msgid "Run this action now"
+msgstr "Exécuter cette action maintenant"
+
+#: src/daemon/rebootevent/rebootevent.cpp:63
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+"Un redémarrage du système est nécessaire pour achever le processus de mise à "
+"jour"
+
+#: src/daemon/rebootevent/rebootevent.cpp:65
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Redémarrer"
+
+#: src/daemon/notificationhelpermodule.cpp:59
+msgid "Kubuntu Notification Helper"
+msgstr "Assistant de notifications Kubuntu"
+
+#: src/daemon/notificationhelpermodule.cpp:60
+msgid "A Notification Helper for Kubuntu"
+msgstr "Un assistant de notifications pour Kubuntu"
+
+#: src/daemon/notificationhelpermodule.cpp:62
+msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+
+#: src/daemon/installevent/installevent.cpp:34
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Flash"
+
+#: src/daemon/installevent/installevent.cpp:36
+msgid "K3b CD Codecs"
+msgstr "Codecs CD pour K3b"
+
+#: src/daemon/installevent/installevent.cpp:37
+msgid "MP3 Encoding"
+msgstr "Encodage MP3"
+
+#: src/daemon/installevent/installevent.cpp:39
+msgid "Set of default screensavers"
+msgstr "Ensemble des écrans de veille par défaut"
+
+#: src/daemon/installevent/installevent.cpp:41
+msgid "Google Talk support for Kopete"
+msgstr "Prise en charge de Google Talk pour Kopete"
+
+#: src/daemon/installevent/installevent.cpp:57
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr ""
+"Des paquets supplémentaires peuvent être installés pour améliorer les "
+"fonctionnalités de %1"
+
+#: src/daemon/installevent/installgui.cpp:42
+msgid "Install Packages"
+msgstr "Installer les paquets"
+
+#: src/daemon/installevent/installgui.cpp:44
+msgid "Install Selected"
+msgstr "Installer les paquets sélectionnés"
+
+#: src/daemon/installevent/installgui.cpp:54
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"Sélectionnez les paquets à installer pour des fonctionnalités "
+"supplémentaires. Ces paquets ne sont pas installés par défaut pour des "
+"problèmes de brevets, de licence restrictive ou par manque d'espace sur le "
+"disque d'installation."
+
+#: src/daemon/installevent/installgui.cpp:113
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+"Installation terminée. Vous devrez redémarrer %1 pour utiliser la nouvelle "
+"fonctionnalité"

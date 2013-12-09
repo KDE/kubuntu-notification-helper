@@ -1,0 +1,149 @@
+# Esperanto translation for kubuntu-notification-helper
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2012-02-11 16:13+0000\n"
+"Last-Translator: Michael Moroni <michael.moroni@mailoo.org>\n"
+"Language-Team: Esperanto <eo@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/event.cpp:123 src/daemon/event.cpp:130
+msgid "System Notification Helper"
+msgstr "Sistema atentighelpilo"
+
+#: src/daemon/event.cpp:144
+msgid "Hide"
+msgstr "Kaŝi"
+
+#: src/daemon/apportevent/apportevent.cpp:56
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "Aplikaĵo kolapsis en via sistemo (nun aŭ inte)"
+
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/hookevent/hookevent.cpp:61
+#: src/daemon/installevent/installevent.cpp:60
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Detaloj"
+
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/rebootevent/rebootevent.cpp:66
+#: src/daemon/installevent/installevent.cpp:61
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Ignori nur nun"
+
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/rebootevent/rebootevent.cpp:68
+#: src/daemon/installevent/installevent.cpp:63
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "Neniam plu montri ĝin"
+
+#: src/daemon/hookevent/hookevent.cpp:59
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Atentigoj pri programarĝisdatigoi disponeblas"
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Ignori"
+
+#: src/daemon/hookevent/hookevent.cpp:64
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "Neniam plu montri ĝin"
+
+#: src/daemon/hookevent/hookgui.cpp:54
+msgid "Update Information"
+msgstr "Informo pri ĝisdatigoj"
+
+#: src/daemon/hookevent/hookgui.cpp:96
+msgid "Run this action now"
+msgstr "Ruli ĉi tiun agon nun"
+
+#: src/daemon/rebootevent/rebootevent.cpp:63
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr "Restartigo de sistemo necesas por kompleti la ĝisdatigadon"
+
+#: src/daemon/rebootevent/rebootevent.cpp:65
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Restartigi"
+
+#: src/daemon/notificationhelpermodule.cpp:59
+msgid "Kubuntu Notification Helper"
+msgstr "Kubuntu-atentighelpilo"
+
+#: src/daemon/notificationhelpermodule.cpp:60
+msgid "A Notification Helper for Kubuntu"
+msgstr "Atentighelpilo por Kubuntu"
+
+#: src/daemon/notificationhelpermodule.cpp:62
+msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009 Jonathan THOMAS, (C) 2009 Harald SITTER"
+
+#: src/daemon/installevent/installevent.cpp:34
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Flaŝo"
+
+#: src/daemon/installevent/installevent.cpp:36
+msgid "K3b CD Codecs"
+msgstr "KD-kodekoj por K3b"
+
+#: src/daemon/installevent/installevent.cpp:37
+msgid "MP3 Encoding"
+msgstr "MP3-kodoprezento"
+
+#: src/daemon/installevent/installevent.cpp:39
+msgid "Set of default screensavers"
+msgstr "Aro da aprioraj ekrankurtenoj"
+
+#: src/daemon/installevent/installevent.cpp:41
+msgid "Google Talk support for Kopete"
+msgstr "Subteno de Google Talk por Kopete"
+
+#: src/daemon/installevent/installevent.cpp:57
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr "Pliaj pakaĵoj instaleblas por plibonigi trajtojn por %1"
+
+#: src/daemon/installevent/installgui.cpp:42
+msgid "Install Packages"
+msgstr "Instali pakaĵojn"
+
+#: src/daemon/installevent/installgui.cpp:44
+msgid "Install Selected"
+msgstr "Instali elektitajn"
+
+#: src/daemon/installevent/installgui.cpp:54
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"Elekti instalotajn pakaĵojn por pliaj trajtoj. Ĉi tiuj pakaĵoj ne estas "
+"instalitaj apriore, kaŭze de permesilproblemoj aŭ manko da spaco en la "
+"instaladdisko."
+
+#: src/daemon/installevent/installgui.cpp:113
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr "Instalado finiĝis. Vi necesos restartigi %1 por uzi novajn trajtojn"

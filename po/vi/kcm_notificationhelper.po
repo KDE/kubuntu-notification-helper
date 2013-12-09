@@ -1,0 +1,78 @@
+# Vietnamese translation for kubuntu-notification-helper
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2011-12-20 04:34+0000\n"
+"Last-Translator: Lê Hoàng Phương <Unknown>\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:50
+msgid "kcmnotificationhelper"
+msgstr "kcmnotificationhelper"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:51
+msgid "Kubuntu Notification Helper Configuration"
+msgstr "Cấu hình trợ giúp thông báo cho Kubuntu"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:53
+msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:56
+msgid "Jonathan Thomas"
+msgstr "Jonathan Thomas"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:57
+msgid "Harald Sitter"
+msgstr "Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:60
+msgid "Configure the behavior of Kubuntu Notification Helper"
+msgstr "Cấu hình hoạt động của Trợ giúp thông báo Kubuntu"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:67
+msgid "Show notifications for:"
+msgstr "Hiện thông báo cho:"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:69
+msgid "Application crashes"
+msgstr "Ứng dụng sụp đổ"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:70
+msgid "Upgrade information"
+msgstr "Thông tin nâng cấp"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:71
+msgid "Restricted codec availability"
+msgstr "Sẵn có các bộ mã bị hạn chế"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:72
+msgid "Required reboots"
+msgstr "Yêu cầu khởi động lại"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:82
+msgid "Notification type:"
+msgstr "Kiểu thông báo"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:86
+msgid "Use both popups and tray icons"
+msgstr "Sử dụng cả cửa sổ bật lên và biểu tượng khay hệ thống"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:88
+msgid "Tray icons only"
+msgstr ""
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:90
+msgid "Popup notifications only"
+msgstr ""

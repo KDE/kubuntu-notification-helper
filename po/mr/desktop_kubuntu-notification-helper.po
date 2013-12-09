@@ -1,0 +1,86 @@
+# Marathi translation for kubuntu-notification-helper
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2013-04-09 07:52+0000\n"
+"Last-Translator: Chetan Khona <chetan@sumconcepts.com>\n"
+"Language-Team: Marathi <mr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/notificationhelper.desktop:2
+msgctxt "Name"
+msgid "Notification Helper"
+msgstr "सूचना मदतकर्ता"
+
+#: src/daemon/notificationhelper.notifyrc:3
+msgctxt "Comment"
+msgid "System Notification Helper"
+msgstr "प्रणाली सूचना मदतकर्ता"
+
+#: src/daemon/notificationhelper.notifyrc:6
+msgctxt "Name"
+msgid "Reboot Required"
+msgstr "पुन्हा सुरु करणे गरजेचे आहे"
+
+#: src/daemon/notificationhelper.notifyrc:7
+msgctxt "Comment"
+msgid "A system restart is required"
+msgstr "प्रणाली पुन्हा सुरु करणे गरजेचे आहे"
+
+#: src/daemon/notificationhelper.notifyrc:11
+msgctxt "Name"
+msgid "Apport Crash"
+msgstr "एप्पोर्ट चालू असताना बंद पडला"
+
+#: src/daemon/notificationhelper.notifyrc:12
+msgctxt "Comment"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+"तुमच्या प्रणालीवरील एक अनुप्रयोग चालताना बंद पडला (आता किंवा भूतकाळात)"
+
+#: src/daemon/notificationhelper.notifyrc:16
+msgctxt "Name"
+msgid "Upgrade Hook"
+msgstr "अद्ययावतता हूक"
+
+#: src/daemon/notificationhelper.notifyrc:17
+msgctxt "Comment"
+msgid "Software upgrade notifications are available"
+msgstr "सॉफ्टवेअर अद्ययावतता सूचना उपलब्ध आहेत"
+
+#: src/daemon/notificationhelper.notifyrc:21
+msgctxt "Name"
+msgid "Restricted Install"
+msgstr "प्रतिबंधीत प्रतिष्ठापना"
+
+#: src/daemon/notificationhelper.notifyrc:22
+msgctxt "Comment"
+msgid "Extra packages can be installed to enhance application functionality"
+msgstr ""
+"अनुप्रयोगाची कार्यक्षमता वाढविण्याकरिता अतिरिक्त पॅकेजेस प्रतिष्ठापीत करता "
+"येउ शकतात"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:10
+msgctxt "X-KDE-Keywords"
+msgid "Notify,Alerts,Notification,popups"
+msgstr "सूचना,चेतावणी,सूचना,पोपअप"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:14
+msgctxt "Name"
+msgid "Other Notifications"
+msgstr "इतर सूचना"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:15
+msgctxt "Comment"
+msgid "Control the notifications for system helpers"
+msgstr "प्रणाली मदतकर्त्यांकरिता सूचना नियंत्रीत करा"

@@ -1,0 +1,148 @@
+# Korean translation for kubuntu-notification-helper
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-03-18 13:42+0000\n"
+"PO-Revision-Date: 2012-01-03 10:30+0000\n"
+"Last-Translator: Park Shinjo <Unknown>\n"
+"Language-Team: Korean <ko@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
+"X-Generator: Launchpad (build 16799)\n"
+
+#: src/daemon/event.cpp:123 src/daemon/event.cpp:130
+msgid "System Notification Helper"
+msgstr "시스템 알림 도우미"
+
+#: src/daemon/event.cpp:144
+msgid "Hide"
+msgstr "숨기기"
+
+#: src/daemon/apportevent/apportevent.cpp:56
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "프로그램이 시스템을 충돌시켰습니다 (현재 혹은 과거에)"
+
+#: src/daemon/apportevent/apportevent.cpp:58
+#: src/daemon/hookevent/hookevent.cpp:61
+#: src/daemon/installevent/installevent.cpp:60
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "자세히"
+
+#: src/daemon/apportevent/apportevent.cpp:59
+#: src/daemon/rebootevent/rebootevent.cpp:66
+#: src/daemon/installevent/installevent.cpp:61
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "지금 무시"
+
+#: src/daemon/apportevent/apportevent.cpp:61
+#: src/daemon/rebootevent/rebootevent.cpp:68
+#: src/daemon/installevent/installevent.cpp:63
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "다시 보이지 않기"
+
+#: src/daemon/hookevent/hookevent.cpp:59
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "소프트웨어 업그레이드 알림 사용 가능"
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "무시"
+
+#: src/daemon/hookevent/hookevent.cpp:64
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "다시 보이지 않기"
+
+#: src/daemon/hookevent/hookgui.cpp:54
+msgid "Update Information"
+msgstr "업데이트 정보"
+
+#: src/daemon/hookevent/hookgui.cpp:96
+msgid "Run this action now"
+msgstr "지금 이 동작 실행하기"
+
+#: src/daemon/rebootevent/rebootevent.cpp:63
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr "업데이트 과정을 완료하려면 시스템을 다시 시작해야 합니다"
+
+#: src/daemon/rebootevent/rebootevent.cpp:65
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "다시 시작"
+
+#: src/daemon/notificationhelpermodule.cpp:59
+msgid "Kubuntu Notification Helper"
+msgstr "쿠분투 알림 도우미"
+
+#: src/daemon/notificationhelpermodule.cpp:60
+msgid "A Notification Helper for Kubuntu"
+msgstr "쿠분투를 위한 알림 도우미"
+
+#: src/daemon/notificationhelpermodule.cpp:62
+msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+msgstr "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+
+#: src/daemon/installevent/installevent.cpp:34
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Flash"
+
+#: src/daemon/installevent/installevent.cpp:36
+msgid "K3b CD Codecs"
+msgstr "K3b CD 코덱"
+
+#: src/daemon/installevent/installevent.cpp:37
+msgid "MP3 Encoding"
+msgstr "MP3 인코딩"
+
+#: src/daemon/installevent/installevent.cpp:39
+msgid "Set of default screensavers"
+msgstr "기본 화면 보호기 모음"
+
+#: src/daemon/installevent/installevent.cpp:41
+msgid "Google Talk support for Kopete"
+msgstr "Kopete 구글 토크 지원"
+
+#: src/daemon/installevent/installevent.cpp:57
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr "%1에 더 많은 기능을 제공하는 외부 패키지 설치 가능"
+
+#: src/daemon/installevent/installgui.cpp:42
+msgid "Install Packages"
+msgstr "패키지 설치"
+
+#: src/daemon/installevent/installgui.cpp:44
+msgid "Install Selected"
+msgstr "선택한 것 설치"
+
+#: src/daemon/installevent/installgui.cpp:54
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"추가 기능을 지원하는 패키지 중 설치할 패키지를 선택하십시오. 특허 문제, 제한된 라이선싱, 설치 미디어 공간 제약 때문에 기본적으로 "
+"설치되지 않는 패키지입니다."
+
+#: src/daemon/installevent/installgui.cpp:113
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr "설치가 완료되었습니다. %1을(를) 다시 시작하면 새로운 기능을 사용할 수 있습니다"
