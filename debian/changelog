@@ -1,3 +1,13 @@
+kubuntu-notification-helper (14.04ubuntu2) UNRELEASED; urgency=low
+
+  * Only display apport events for *.crash files.
+  * Change the apportEvent slot to accept a file argument for atomic file name
+    checks.
+  * Introduce apport crash file validity check (must end in .crash and must
+    be readable by the user).
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 09 Dec 2013 10:25:05 +0100
+
 kubuntu-notification-helper (14.04ubuntu1) trusty; urgency=low
 
   * Fix LP: #1258484 k-n-h does not launch apport

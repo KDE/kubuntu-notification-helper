@@ -44,7 +44,7 @@ public:
 
 private slots:
     void init();
-    void apportEvent();
+    void apportEvent(const QString &path);
     void hookEvent();
     void rebootEvent();
     void installEvent(const QString &app, const QString &package);

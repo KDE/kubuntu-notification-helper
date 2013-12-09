@@ -22,7 +22,9 @@
 #include "notificationhelpermodule.h"
 
 // Qt includes
+#include <QtCore/QDir>
 #include <QtCore/QFile>
+#include <QtCore/QFileInfo>
 #include <QtCore/QTimer>
 
 // KDE includes
@@ -84,12 +86,12 @@ void NotificationHelperModule::init()
         KDirWatch *apportDirWatch =  new KDirWatch(this);
         apportDirWatch->addDir("/var/crash/");
         connect(apportDirWatch, SIGNAL(dirty(const QString &)),
-                this, SLOT(apportEvent()));
+                this, SLOT(apportEvent(QString)));
         connect(m_configWatcher, SIGNAL(reloadConfigCalled()),
                 m_apportEvent, SLOT(reloadConfig()));
 
         // Force check, we just started up and there might have been crashes on reboot
-        apportEvent();
+        apportEvent(QString());
     }
 
     if (!m_hookEvent->isHidden()) {
@@ -125,9 +127,29 @@ void NotificationHelperModule::init()
     }
 }
 
-void NotificationHelperModule::apportEvent()
+static bool isCrashFileValid(const QFileInfo &fileInfo)
 {
-    m_apportEvent->show();
+    return (fileInfo.suffix() == QLatin1String("crash")) &&
+            (fileInfo.permission(QFile::ReadUser));
+}
+
+void NotificationHelperModule::apportEvent(const QString &path)
+{
+    if (path.isEmpty()) { // Check whole directory for possible crash files.
+        QDir dir(QLatin1String("/var/crash"));
+        dir.setNameFilters(QStringList() << QLatin1String("*.crash"));
+        bool foundCrashFile = false;
+        foreach (const QFileInfo &fileInfo, dir.entryInfoList()) {
+            foundCrashFile |= isCrashFileValid(fileInfo);
+        }
+        if (foundCrashFile)
+            m_apportEvent->show();
+        return;
+    }
+
+    // Check file for validity.
+    if (isCrashFileValid(QFileInfo(path)))
+        m_apportEvent->show();
 }
 
 void NotificationHelperModule::hookEvent()
