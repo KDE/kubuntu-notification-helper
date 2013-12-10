@@ -1,4 +1,9 @@
 #!/usr/bin/make -f
 
+version := $(shell dpkg-parsechangelog | sed -n 's/^Version: //p')
+
 %:
 	dh $@ --parallel --dbg-package=kubuntu-notification-helper-dbg --with kde
+
+override_dh_auto_configure:
+	dh_auto_configure -- -DVERSION_STRING=$(version)

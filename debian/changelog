@@ -3,10 +3,32 @@ kubuntu-notification-helper (14.04ubuntu2) UNRELEASED; urgency=low
   * Only display apport events for *.crash files.
   * Change the apportEvent slot to accept a file argument for atomic file name
     checks.
-  * Introduce apport crash file validity check (must end in .crash and must
-    be readable by the user).
+  * Introduce apport crash file validity check (must end in .crash & must
+    be readable by the user & must not have .upload file & must not have
+    .uploaded file).
+    This greatly reduces pointless notification triggers.
+  * Set VERSION_STRING via debian/rules, passed as define through cmake.
+  * Use VERSION_STRING define instead of hardcoding versions.
+  * Rename CMake project from notificationhelper to kubuntu-notification-helper
+  * whoopsie-integration-set:
+    + Add new class CrashFile to apportevent.h
+      This class has the properties validity and autouploadallowed. Former
+      is representing regular validity as mentioned above and latter checks
+      for the presence of a .drkonq-accept file allowing upload via whoopsie
+      without going through apport-kde.
+    + Add new function to the module ::apportDirEvent() isolating directory
+      batch checking when param path isEmpty.
+    + Add new function to ApportEvent ::batchUploadAllowed() uploading
+      all crashes that have been cleared by drkonqi without going through
+      apport-kde.
+    + For each file, regardless of processed in ::apportDirEvent (dir) or
+      ::apportEvent (single file), a CrashFile instance is created and if
+      autoUploadAllowed is true a script is invoked to batch upload all
+      reports without GUI confirmation through whoopsie.
+    + Add script whoopsie-upload-all (derived from apport's version) which
+      will auto-upload all crashes with a .drkonqi-accept file. 
 
- -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 09 Dec 2013 10:25:05 +0100
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 09 Dec 2013 13:41:20 +0100
 
 kubuntu-notification-helper (14.04ubuntu1) trusty; urgency=low
 

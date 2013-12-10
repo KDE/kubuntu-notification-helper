@@ -23,15 +23,17 @@
 
 #include <KProcess>
 #include <KDebug>
+#include <KStandardDirs>
 #include <KToolInvocation>
 
 ApportEvent::ApportEvent(QObject* parent, const QString &name)
-        : Event(parent, name) {
-  kDebug() << "XXX ApportEvent::ApportEvent";
+        : Event(parent, name)
+{
 }
 
 ApportEvent::~ApportEvent()
-{}
+{
+}
 
 bool ApportEvent::reportsAvailable()
 {
@@ -63,6 +65,15 @@ void ApportEvent::show()
                      "Never show again");
 
     Event::show(icon, text, actions);
+}
+
+void ApportEvent::batchUploadAllowed()
+{
+    const QString script = KStandardDirs::locate("data", "kubuntu-notification-helper/whoopsie-upload-all");
+    if (script.isEmpty()) {
+        return;
+    }
+    KToolInvocation::kdeinitExec(script);
 }
 
 void ApportEvent::run()

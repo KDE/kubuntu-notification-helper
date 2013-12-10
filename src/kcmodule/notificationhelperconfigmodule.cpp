@@ -49,7 +49,7 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     KAboutData *about =
     new KAboutData(I18N_NOOP("kcmnotificationhelper"), 0,
             ki18n("Kubuntu Notification Helper Configuration"),
-            "0.5.0", KLocalizedString(), KAboutData::License_GPL,
+            VERSION_STRING, KLocalizedString(), KAboutData::License_GPL,
             ki18n("(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"), KLocalizedString(),
             "http://kubuntu.org", "https://bugs.launchpad.net/ubuntu");
 

@@ -33,17 +33,16 @@ class RebootEvent;
 class ConfigWatcher;
 class InstallDBusWatcher;
 
-class NotificationHelperModule
-            : public KDEDModule
+class NotificationHelperModule : public KDEDModule
 {
     Q_OBJECT
 public:
     NotificationHelperModule(QObject* parent, const QList<QVariant>&);
-
     virtual ~NotificationHelperModule();
 
 private slots:
     void init();
+    void apportDirEvent();
     void apportEvent(const QString &path);
     void hookEvent();
     void rebootEvent();

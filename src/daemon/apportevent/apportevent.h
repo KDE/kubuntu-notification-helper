@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2013 Harald Sitter <apachelogger@kubuntu.org>        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -24,6 +24,45 @@
 
 #include "../event.h"
 
+#include <QtCore/QFileInfo>
+
+class CrashFile
+{
+public:
+    CrashFile(const QString &path)
+        : m_path(path)
+        , m_info(QFileInfo(path))
+    {
+    }
+
+    CrashFile(const QFileInfo &info)
+        : m_path(info.absoluteFilePath())
+        , m_info(info)
+    {
+    }
+
+    bool isAutoUploadAllowed() const {
+        QString acceptPath = m_path;
+        acceptPath.replace(QLatin1String(".crash"), QLatin1String(".drkonqi-accept"));
+        return QFile(acceptPath).exists();
+    }
+
+    bool isValid() const {
+        QString uploadPath = m_path; // Marked for upload -> ignore.
+        uploadPath.replace(QLatin1String(".crash"), QLatin1String(".upload"));
+        QString uploadedPath = m_path; // Alraedy uploaded -> ignore even more.
+        uploadedPath.replace(QLatin1String(".crash"), QLatin1String(".uploaded"));
+        return (!QFile(uploadPath).exists() &&
+                !QFile(uploadedPath).exists() &&
+                ((m_info.suffix() == QLatin1String("crash")) &&
+                 (m_info.permission(QFile::ReadUser))));
+    }
+
+private:
+    QString m_path;
+    QFileInfo m_info;
+};
+
 class ApportEvent : public Event
 {
     Q_OBJECT
@@ -34,6 +73,7 @@ public:
 
 public slots:
     void show();
+    void batchUploadAllowed();
 
 private slots:
     bool reportsAvailable();

@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2013 Harald Sitter <apachelogger@kubuntu.org>        *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -59,13 +59,15 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 {
     KAboutData aboutData("notificationhelper", "notificationhelper",
                          ki18n("Kubuntu Notification Helper"),
-                         "0.4.90", ki18n("A Notification Helper for Kubuntu"),
+                         VERSION_STRING, ki18n("A Notification Helper for Kubuntu"),
                          KAboutData::License_GPL,
-                         ki18n("(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"),
+                         ki18n("(C) 2009 Jonathan Thomas, (C) 2009-2013 Harald Sitter"),
                          KLocalizedString(), "http://kubuntu.org",
                          "https://bugs.launchpad.net/ubuntu");
 
-    QTimer::singleShot(0, this, SLOT(init()));
+    // Delay init by 3 minutes to speed up start of kded and prevent a notification
+    // wall on login.
+    QTimer::singleShot(3*60*1000, this, SLOT(init()));
 }
 
 NotificationHelperModule::~NotificationHelperModule()
@@ -127,29 +129,47 @@ void NotificationHelperModule::init()
     }
 }
 
-static bool isCrashFileValid(const QFileInfo &fileInfo)
+void NotificationHelperModule::apportDirEvent()
 {
-    return (fileInfo.suffix() == QLatin1String("crash")) &&
-            (fileInfo.permission(QFile::ReadUser));
+    QDir dir(QLatin1String("/var/crash"));
+    dir.setNameFilters(QStringList() << QLatin1String("*.crash"));
+
+    bool foundCrashFile = false;
+    bool foundAutoUpload = false;
+    foreach (const QFileInfo &fileInfo, dir.entryInfoList()) {
+        CrashFile f(fileInfo);
+        if (f.isAutoUploadAllowed())
+            foundAutoUpload = true;
+            continue;
+        if (f.isValid()) {
+            foundCrashFile = true;
+            continue;
+        }
+    }
+
+    if (foundAutoUpload) {
+        m_apportEvent->batchUploadAllowed();
+    }
+
+    if (foundCrashFile) {
+        m_apportEvent->show();
+    }
 }
 
 void NotificationHelperModule::apportEvent(const QString &path)
 {
     if (path.isEmpty()) { // Check whole directory for possible crash files.
-        QDir dir(QLatin1String("/var/crash"));
-        dir.setNameFilters(QStringList() << QLatin1String("*.crash"));
-        bool foundCrashFile = false;
-        foreach (const QFileInfo &fileInfo, dir.entryInfoList()) {
-            foundCrashFile |= isCrashFileValid(fileInfo);
-        }
-        if (foundCrashFile)
-            m_apportEvent->show();
+        apportDirEvent();
         return;
     }
 
-    // Check file for validity.
-    if (isCrashFileValid(QFileInfo(path)))
+    // Check param path for validity.
+    CrashFile f(path);
+    if (f.isAutoUploadAllowed()) {
+        m_apportEvent->batchUploadAllowed();
+    } else if (f.isValid()) {
         m_apportEvent->show();
+    }
 }
 
 void NotificationHelperModule::hookEvent()
