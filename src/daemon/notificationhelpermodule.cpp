@@ -29,6 +29,7 @@
 
 // KDE includes
 #include <KAboutData>
+#include <KDebug>
 #include <KDirWatch>
 #include <KLocalizedString>
 #include <KPluginFactory>
@@ -83,8 +84,16 @@ void NotificationHelperModule::init()
     m_installEvent = new InstallEvent(this, "Install" );
     m_rebootEvent = new RebootEvent(this, "Restart");
 
-    if (!m_apportEvent->isHidden() && (QFile::exists("/usr/share/apport/apport-kde")
-        || QFile::exists("/usr/share/apport/apport-gtk"))) {
+    const bool apportHidden = m_apportEvent->isHidden();
+    const bool apportKde = QFile::exists("/usr/share/apport/apport-kde");
+    const bool apportGtk = QFile::exists("/usr/share/apport/apport-gtk");
+    kDebug() << "ApportEvent ::"
+             << "hidden=" << apportHidden
+             << "apport-kde=" << apportKde
+             << "apport-gtk=" << apportGtk;
+    if (!apportHidden && (apportKde || apportGtk)) {
+        kDebug() << "Using ApportEvent";
+
         KDirWatch *apportDirWatch =  new KDirWatch(this);
         apportDirWatch->addDir("/var/crash/");
         connect(apportDirWatch, SIGNAL(dirty(const QString &)),
@@ -131,6 +140,8 @@ void NotificationHelperModule::init()
 
 void NotificationHelperModule::apportDirEvent()
 {
+    kDebug();
+
     QDir dir(QLatin1String("/var/crash"));
     dir.setNameFilters(QStringList() << QLatin1String("*.crash"));
 
@@ -147,6 +158,9 @@ void NotificationHelperModule::apportDirEvent()
         }
     }
 
+    kDebug() << "foundCrashFile" << foundCrashFile
+             << "foundAutoUpload" << foundAutoUpload;
+
     if (foundAutoUpload) {
         m_apportEvent->batchUploadAllowed();
     }
@@ -158,6 +172,7 @@ void NotificationHelperModule::apportDirEvent()
 
 void NotificationHelperModule::apportEvent(const QString &path)
 {
+    kDebug() << path;
     if (path.isEmpty()) { // Check whole directory for possible crash files.
         apportDirEvent();
         return;

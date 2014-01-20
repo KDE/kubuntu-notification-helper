@@ -52,6 +52,7 @@ bool ApportEvent::reportsAvailable()
 void ApportEvent::show()
 {
     if (!reportsAvailable()) {
+        kDebug() << "no reports available, aborting";
         return;
     }
 
@@ -71,8 +72,10 @@ void ApportEvent::batchUploadAllowed()
 {
     const QString script = KStandardDirs::locate("data", "kubuntu-notification-helper/whoopsie-upload-all");
     if (script.isEmpty()) {
+        kWarning() << "ApportEvent: whoopsie-upload-all not found";
         return;
     }
+    kDebug() << "running" << script;
     KToolInvocation::kdeinitExec(script);
 }
 

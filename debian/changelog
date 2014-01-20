@@ -1,3 +1,9 @@
+kubuntu-notification-helper (14.04ubuntu3) UNRELEASED; urgency=low
+
+  * Add more useful debug output regarding the apport event.
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 20 Jan 2014 13:17:29 +0100
+
 kubuntu-notification-helper (14.04ubuntu2) trusty; urgency=low
 
   * Only display apport events for *.crash files.
