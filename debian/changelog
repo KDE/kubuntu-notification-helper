@@ -1,6 +1,8 @@
-kubuntu-notification-helper (14.04ubuntu3) UNRELEASED; urgency=low
+kubuntu-notification-helper (14.04ubuntu3) trusty; urgency=low
 
   * Add more useful debug output regarding the apport event.
+  * Install whoopsie-upload-all as PROGRAMS, otherwise cmake won't set
+    the executable flags and execution won't work.
 
  -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 20 Jan 2014 13:17:29 +0100
 
