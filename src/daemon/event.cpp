@@ -116,7 +116,7 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         notify->sendEvent();
     }
 
-    if (m_useTrayIcon) {
+    if (m_useTrayIcon && !m_notifierItem) { // Only create item when there is none.
         m_notifierItem = new KStatusNotifierItem(this);
         m_notifierItem->setIconByName(icon);
         m_notifierItem->setToolTipIconByName(icon);

@@ -1,3 +1,11 @@
+kubuntu-notification-helper (14.04ubuntu4) UNRELEASED; urgency=low
+
+  * Prevent events from spwaning more than one notifier item at a time.
+    Notifications are still issued whenever show() is called as they serve
+    a reminding purpose. LP: #1275427
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 03 Feb 2014 11:29:01 +0100
+
 kubuntu-notification-helper (14.04ubuntu3) trusty; urgency=low
 
   * Add more useful debug output regarding the apport event.
