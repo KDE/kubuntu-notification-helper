@@ -21,3 +21,8 @@ Action=Popup
 Name=Restricted Install
 Comment=Extra packages can be installed to enhance application functionality
 Action=Popup
+
+[Event/L10n]
+Name=Localization Enhancement
+Comment=Extra packages can be installed to enhance system localization
+Action=Popup

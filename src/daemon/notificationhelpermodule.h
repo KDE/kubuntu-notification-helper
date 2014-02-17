@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2014 Harald Sitter <apachelogger@ubuntu.com>         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -28,6 +28,7 @@
 class ApportEvent;
 class HookEvent;
 class InstallEvent;
+class L10nEvent;
 class RebootEvent;
 
 class ConfigWatcher;
@@ -37,7 +38,7 @@ class NotificationHelperModule : public KDEDModule
 {
     Q_OBJECT
 public:
-    NotificationHelperModule(QObject* parent, const QList<QVariant>&);
+    NotificationHelperModule(QObject *parent, const QList<QVariant>&);
     virtual ~NotificationHelperModule();
 
 private slots:
@@ -49,13 +50,14 @@ private slots:
     void installEvent(const QString &app, const QString &package);
 
 private:
-    ApportEvent* m_apportEvent;
-    HookEvent* m_hookEvent;
-    InstallEvent* m_installEvent;
+    ApportEvent *m_apportEvent;
+    HookEvent *m_hookEvent;
+    InstallEvent *m_installEvent;
+    L10nEvent *m_l10nEvent;
     RebootEvent* m_rebootEvent;
 
-    ConfigWatcher* m_configWatcher;
-    InstallDBusWatcher* m_installWatcher;
+    ConfigWatcher *m_configWatcher;
+    InstallDBusWatcher *m_installWatcher;
 };
 
 #endif

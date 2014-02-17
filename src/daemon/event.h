@@ -34,8 +34,7 @@ class KStatusNotifierItem;
 
 #define NOTIFICATION_ICON_SIZE 22,22
 
-class Event
-            : public QObject
+class Event : public QObject
 {
     Q_OBJECT
 public:

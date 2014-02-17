@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009-2013 Harald Sitter <apachelogger@kubuntu.org>        *
+ *   Copyright © 2009-2014 Harald Sitter <apachelogger@ubuntu.com>         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -38,6 +38,7 @@
 #include "apportevent/apportevent.h"
 #include "hookevent/hookevent.h"
 #include "installevent/installevent.h"
+#include "l10nevent/l10nevent.h"
 #include "rebootevent/rebootevent.h"
 
 #include "configwatcher.h"
@@ -68,7 +69,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
     // Delay init by 3 minutes to speed up start of kded and prevent a notification
     // wall on login.
-    QTimer::singleShot(3*60*1000, this, SLOT(init()));
+    QTimer::singleShot(5*1000, this, SLOT(init()));
 }
 
 NotificationHelperModule::~NotificationHelperModule()
@@ -81,7 +82,8 @@ void NotificationHelperModule::init()
 
     m_apportEvent = new ApportEvent(this, "Apport");
     m_hookEvent = new HookEvent(this, "Hook");
-    m_installEvent = new InstallEvent(this, "Install" );
+    m_installEvent = new InstallEvent(this, "Install");
+    m_l10nEvent = new L10nEvent(this, "L10n");
     m_rebootEvent = new RebootEvent(this, "Restart");
 
     const bool apportHidden = m_apportEvent->isHidden();
@@ -117,13 +119,21 @@ void NotificationHelperModule::init()
         hookEvent();
     }
 
-    if (!m_installEvent->isHidden())
-    {
+    if (!m_installEvent->isHidden()) {
         m_installWatcher = new InstallDBusWatcher(this);
         connect(m_installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
                 this, SLOT(installEvent(const QString &, const QString &)));
         connect(m_configWatcher, SIGNAL(reloadConfigCalled()),
                 m_installEvent, SLOT(reloadConfig()));
+    }
+
+
+    if (!m_l10nEvent->isHidden()) {
+        // We only want this notification once for now.
+        // NOTE: might be viable to watch the config and apt lock to
+        //       issue a notification when the user installs software that
+        //       requires additional language support packages.
+        m_l10nEvent->show();
     }
 
     if (!m_rebootEvent->isHidden()) {

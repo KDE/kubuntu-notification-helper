@@ -43,10 +43,11 @@ protected Q_SLOTS:
     void configChanged();
 
 private:
-    QCheckBox* m_apportCheckBox;
-    QCheckBox* m_hookCheckBox;
-    QCheckBox* m_installCheckBox;
-    QCheckBox* m_rebootCheckBox;
+    QCheckBox *m_apportCheckBox;
+    QCheckBox *m_hookCheckBox;
+    QCheckBox *m_installCheckBox;
+    QCheckBox *m_l10nCheckBox;
+    QCheckBox *m_rebootCheckBox;
     QRadioButton *m_comboRadio;
     QRadioButton *m_disableKNotifyRadio;
     QRadioButton *m_disableTrayIconRadio;

@@ -9,6 +9,7 @@ set(notificationhelper_SRCS
     installevent/installdbuswatcher.cpp
     installevent/installevent.cpp
     installevent/installgui.cpp
+    l10nevent/l10nevent.cpp
     rebootevent/rebootevent.cpp
 )
 
@@ -19,7 +20,7 @@ QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restricted
 
 kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})
 
-target_link_libraries(kded_notificationhelper ${KDE4_KIO_LIBS})
+target_link_libraries(kded_notificationhelper ${KDE4_KIO_LIBS} ${KUBUNTU_LIBRARY})
 
 install(TARGETS kded_notificationhelper DESTINATION ${PLUGIN_INSTALL_DIR})
 

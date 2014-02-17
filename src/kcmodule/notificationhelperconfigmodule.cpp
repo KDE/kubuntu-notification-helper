@@ -41,10 +41,11 @@ K_EXPORT_PLUGIN(NotificationHelperConfigFactory("notificationhelperconfigmodule"
 
 NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, const QVariantList&)
     : KCModule(NotificationHelperConfigFactory::componentData(), parent)
-    , m_apportCheckBox(0)
-    , m_hookCheckBox(0)
-    , m_installCheckBox(0)
-    , m_rebootCheckBox(0)
+    , m_apportCheckBox(nullptr)
+    , m_hookCheckBox(nullptr)
+    , m_installCheckBox(nullptr)
+    , m_l10nCheckBox(nullptr)
+    , m_rebootCheckBox(nullptr)
 {
     KAboutData *about =
     new KAboutData(I18N_NOOP("kcmnotificationhelper"), 0,
@@ -69,11 +70,13 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     m_apportCheckBox = new QCheckBox(i18n("Application crashes"), this);
     m_hookCheckBox = new QCheckBox(i18n("Upgrade information"), this);
     m_installCheckBox = new QCheckBox(i18n("Restricted codec availability"), this);
+    m_l10nCheckBox = new QCheckBox(i18n("Incomplete language support"), this);
     m_rebootCheckBox = new QCheckBox(i18n("Required reboots"), this);
 
     connect(m_apportCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_hookCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_installCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
+    connect(m_l10nCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_rebootCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
 
     QWidget *spacer = new QWidget(this);
@@ -101,6 +104,7 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     lay->addWidget(m_apportCheckBox);
     lay->addWidget(m_hookCheckBox);
     lay->addWidget(m_installCheckBox);
+    lay->addWidget(m_l10nCheckBox);
     lay->addWidget(m_rebootCheckBox);
     lay->addWidget(spacer);
     lay->addWidget(label2);
@@ -122,6 +126,7 @@ void NotificationHelperConfigModule::load()
     m_apportCheckBox->setChecked(!notifyGroup.readEntry("hideApportNotifier", false));
     m_hookCheckBox->setChecked(!notifyGroup.readEntry("hideHookNotifier", false));
     m_installCheckBox->setChecked(!notifyGroup.readEntry("hideInstallNotifier", false));
+    m_l10nCheckBox->setChecked(!notifyGroup.readEntry("hideL10nNotifier", false));
     m_rebootCheckBox->setChecked(!notifyGroup.readEntry("hideRestartNotifier", false));
 
     KConfigGroup notifyTypeGroup(&cfg, "NotificationType");
@@ -144,6 +149,7 @@ void NotificationHelperConfigModule::save()
     notifyGroup.writeEntry("hideApportNotifier", !m_apportCheckBox->isChecked());
     notifyGroup.writeEntry("hideHookNotifier", !m_hookCheckBox->isChecked());
     notifyGroup.writeEntry("hideInstallNotifier", !m_installCheckBox->isChecked());
+    notifyGroup.writeEntry("hideL10nNotifier", !m_l10nCheckBox->isChecked());
     notifyGroup.writeEntry("hideRestartNotifier", !m_rebootCheckBox->isChecked());
 
     KConfigGroup notifyTypeGroup(&cfg, "NotificationType");
@@ -167,6 +173,7 @@ void NotificationHelperConfigModule::defaults()
     m_apportCheckBox->setChecked(true);
     m_hookCheckBox->setChecked(true);
     m_installCheckBox->setChecked(true);
+    m_l10nCheckBox->setChecked(true);
     m_rebootCheckBox->setChecked(true);
 }
 
