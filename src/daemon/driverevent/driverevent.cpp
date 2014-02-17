@@ -22,11 +22,7 @@
 #include "driverevent.h"
 #include <drivermanager_interface.h>
 
-#include <QTimer>
 #include <QDBusConnection>
-
-#include <KAboutData>
-#include <KNotification>
 
 #include <LibQApt/Backend>
 
