@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
 XSBC-Original-Maintainer: Jonathan Thomas <echidnaman@kubuntu.org>
 Build-Depends: debhelper (>= 9), pkg-kde-tools (>= 0.15.3ubuntu7), cmake,
- kdelibs5-dev, libkubuntu-dev (>= 14.04ubuntu3)
+ kdelibs5-dev, libkubuntu-dev (>= 14.04ubuntu3), libqapt-dev
 Standards-Version: 3.9.4
 X-Ubuntu-Use-Langpack: yes
 Homepage: https://launchpad.net/kubuntu-notification-helper
