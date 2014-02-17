@@ -33,24 +33,6 @@
 DriverWatcher::DriverWatcher(QObject* parent, QString name)
 : Event(parent, name)
 {
-    KAboutData aboutData("drivermanager-notifier", "drivermanager-notifier",
-                         ki18n("Driver Manager Notification Daemon"),
-                         global_s_versionStringFull, ki18n("A Notification Daemon for the Driver Manager KCM"),
-                         KAboutData::License_GPL,
-                         ki18n("(C) 2014 Rohan Garg"),
-                         KLocalizedString(), "http://kubuntu.org");
-    
-    // Lazy init to not cause excessive load when starting kded.
-    // Also wait 2 minutes before actually starting the init as update
-    // notifications are not immediately relevant after login and there is already
-    // enough stuff going on without us. 2 minutes seems like a fair time as
-    // the system should have calmed down by then.
-    QTimer::singleShot(1000*60*2 /* 2 minutes to start */, this, SLOT(init()));
-    
-}
-
-void DriverWatcher::init()
-{
     m_aptBackend = new QApt::Backend(this);
     if (m_aptBackend->init()) {
         m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());

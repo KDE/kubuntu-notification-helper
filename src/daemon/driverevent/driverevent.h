@@ -42,7 +42,6 @@ public Q_SLOTS:
     void show();
 
 private:
-    void init();
     QApt::Backend* m_aptBackend;
     OrgKubuntuDriverManagerInterface* m_manager;
     bool m_showNotification;
