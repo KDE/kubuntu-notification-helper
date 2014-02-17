@@ -21,14 +21,13 @@ QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restricted
 QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
                      configwatcher.h ConfigWatcher)
 
-set(drivermanagerobject_xml org.kubuntu.DriverManager.xml)
-set_source_files_properties(${drivermanagerobject_xml} PROPERTIES INCLUDE drivermanagerdbustypes.h)
-QT4_ADD_DBUS_INTERFACE(notificationhelper_SRCS ${drivermanagerobject_xml}
+set_source_files_properties(notificationhelper_SRCS PROPERTIES INCLUDE drivermanagerdbustypes.h)
+QT4_ADD_DBUS_INTERFACE(notificationhelper_SRCS org.kubuntu.DriverManager.xml
                        drivermanager_interface)
 
 kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})
 
-target_link_libraries(kded_notificationhelper ${KDE4_KIO_LIBS} ${KUBUNTU_LIBRARY})
+target_link_libraries(kded_notificationhelper ${KDE4_KIO_LIBS} ${KUBUNTU_LIBRARY} ${QAPT_LIBRARY})
 
 install(TARGETS kded_notificationhelper DESTINATION ${PLUGIN_INSTALL_DIR})
 

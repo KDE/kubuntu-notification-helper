@@ -40,6 +40,7 @@
 #include "installevent/installevent.h"
 #include "l10nevent/l10nevent.h"
 #include "rebootevent/rebootevent.h"
+#include "driverevent/driverevent.h"
 
 #include "configwatcher.h"
 #include "installevent/installdbuswatcher.h"
@@ -85,6 +86,7 @@ void NotificationHelperModule::init()
     m_installEvent = new InstallEvent(this, "Install");
     m_l10nEvent = new L10nEvent(this, "L10n");
     m_rebootEvent = new RebootEvent(this, "Restart");
+    m_driverEvent = new DriverEvent(this, "Driver");
 
     const bool apportHidden = m_apportEvent->isHidden();
     const bool apportKde = QFile::exists("/usr/share/apport/apport-kde");
@@ -134,6 +136,10 @@ void NotificationHelperModule::init()
         //       issue a notification when the user installs software that
         //       requires additional language support packages.
         m_l10nEvent->show();
+    }
+
+    if (!m_driverEvent->isHidden()) {
+        m_driverEvent->show();
     }
 
     if (!m_rebootEvent->isHidden()) {

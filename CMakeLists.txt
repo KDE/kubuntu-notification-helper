@@ -4,6 +4,8 @@ project(kubuntu-notification-helper)
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 
+find_package(QApt)
+
 find_package(Kubuntu QUIET CONFIG)
 set_package_properties(Kubuntu
     PROPERTIES DESCRIPTION "Kubuntu Platform Integration"

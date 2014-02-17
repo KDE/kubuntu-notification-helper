@@ -30,6 +30,7 @@ class HookEvent;
 class InstallEvent;
 class L10nEvent;
 class RebootEvent;
+class DriverEvent;
 
 class ConfigWatcher;
 class InstallDBusWatcher;
@@ -58,6 +59,7 @@ private:
 
     ConfigWatcher *m_configWatcher;
     InstallDBusWatcher *m_installWatcher;
+    DriverEvent* m_driverEvent;
 };
 
 #endif

@@ -60,8 +60,8 @@ void DriverEvent::driverMapFinished(QDBusPendingCallWatcher* data)
     if (!data->isError()) {
         QDBusPendingReply<QVariantMapMap> mapReply = *data;
         QVariantMapMap map = mapReply.value();
-        Q_ASSERT(map);
-        Q_FOREACH (const QString &key, map) {
+
+        Q_FOREACH (const QString &key, map.keys()) {
             QApt::Package *pkg = m_aptBackend->package(key);
             if (pkg) {
                 if (!pkg->isInstalled() && map[key]["recommended"].toBool()) {
