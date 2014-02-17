@@ -33,10 +33,10 @@ class OrgKubuntuDriverManagerInterface;
 class QVariantMapMap;
 class QDBusPendingCallWatcher;
 
-class DriverWatcher : public Event
+class DriverEvent : public Event
 {
 public:
-    DriverWatcher(QObject* parent, QString name);
+    DriverEvent(QObject* parent, QString name);
 
 public Q_SLOTS:
     void show();
@@ -45,10 +45,12 @@ private:
     QApt::Backend* m_aptBackend;
     OrgKubuntuDriverManagerInterface* m_manager;
     bool m_showNotification;
+    QList<QLatin1String> m_missingPackages;
 
 private Q_SLOTS:
     void driverDictFinished(QVariantMapMap);
     void driverMapFinished(QDBusPendingCallWatcher*);
+    void run();
 
 };
 

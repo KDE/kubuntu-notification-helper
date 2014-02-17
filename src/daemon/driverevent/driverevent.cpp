@@ -26,7 +26,10 @@
 
 #include <LibQApt/Backend>
 
-DriverWatcher::DriverWatcher(QObject* parent, QString name)
+#include <KDebug>
+#include <KToolInvocation>
+
+DriverEvent::DriverEvent(QObject* parent, QString name)
 : Event(parent, name)
 {
     m_aptBackend = new QApt::Backend(this);
@@ -39,12 +42,12 @@ DriverWatcher::DriverWatcher(QObject* parent, QString name)
     }
 }
 
-void DriverWatcher::driverDictFinished(QVariantMapMap data)
+void DriverEvent::driverDictFinished(QVariantMapMap data)
 {
     if (data.isEmpty()) {
         return;
     }
-    
+
     Q_FOREACH(const QString &key,data.keys()) {
         QDBusPendingReply<QVariantMapMap> driverForDeviceMap = m_manager->getDriverMapForDevice(key);
         QDBusPendingCallWatcher *async = new QDBusPendingCallWatcher(driverForDeviceMap, this);
@@ -52,7 +55,7 @@ void DriverWatcher::driverDictFinished(QVariantMapMap data)
     }
 }
 
-void DriverWatcher::driverMapFinished(QDBusPendingCallWatcher* data)
+void DriverEvent::driverMapFinished(QDBusPendingCallWatcher* data)
 {
     if (!data->isError()) {
         QDBusPendingReply<QVariantMapMap> mapReply = *data;
@@ -62,16 +65,38 @@ void DriverWatcher::driverMapFinished(QDBusPendingCallWatcher* data)
             QApt::Package *pkg = m_aptBackend->package(key);
             if (pkg) {
                 if (!pkg->isInstalled() && map[key]["recommended"].toBool()) {
+                    m_missingPackages.append(pkg->name());
                     m_showNotification = true;
                 }
             }
         }
     }
-    
-    m_showNotification = true;
+}
+
+void DriverEvent::show()
+{
     if (m_showNotification) {
-        KNotification notify;
-        notify.setComponentData(KComponentData("drivermanager-notifier"));
-        notify.sendEvent();
+        QString icon = QString("hwinfo");
+        QString text(i18nc("Notification when additional packages are required for activating proprietary hardware",
+                           "Hardware support is incomplete, additional packages are required"));
+        QStringList actions;
+        actions << i18nc("Installs additional proprietary packages", "Install");
+        actions << i18nc("Button to dismiss this notification once", "Ignore for now");
+        actions << i18nc("Button to make this notification never show up again",
+                         "Never show again");
+        Event::show(icon, text, actions);
     }
 }
+
+void DriverEvent::run()
+{
+    kDebug() << m_missingPackages;
+    if (!m_missingPackages.isEmpty()) {
+        QStringList args;
+        args.append("--install");
+        args.append(m_missingPackages);
+        KToolInvocation::kdeinitExec("qapt-batch", args);
+    }
+    Event::run();
+}
+
