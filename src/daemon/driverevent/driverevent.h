@@ -23,14 +23,13 @@
 #define DRIVEREVENT_H
 
 #include "../event.h"
-
+#include "../drivermanagerdbustypes.h"
 
 namespace QApt {
     class Backend;
 }
 
 class OrgKubuntuDriverManagerInterface;
-class QVariantMapMap;
 class QDBusPendingCallWatcher;
 
 class DriverEvent : public Event
@@ -45,7 +44,7 @@ private:
     QApt::Backend* m_aptBackend;
     OrgKubuntuDriverManagerInterface* m_manager;
     bool m_showNotification;
-    QList<QLatin1String> m_missingPackages;
+    QStringList m_missingPackages;
 
 private Q_SLOTS:
     void driverDictFinished(QVariantMapMap);
