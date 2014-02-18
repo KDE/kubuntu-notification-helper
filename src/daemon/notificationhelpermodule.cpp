@@ -70,7 +70,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
     // Delay init by 3 minutes to speed up start of kded and prevent a notification
     // wall on login.
-    QTimer::singleShot(5*1000, this, SLOT(init()));
+    QTimer::singleShot(3*60*1000, this, SLOT(init()));
 }
 
 NotificationHelperModule::~NotificationHelperModule()
