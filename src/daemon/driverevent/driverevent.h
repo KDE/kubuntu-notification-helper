@@ -34,6 +34,7 @@ class QDBusPendingCallWatcher;
 
 class DriverEvent : public Event
 {
+    Q_OBJECT
 public:
     DriverEvent(QObject* parent, QString name);
 

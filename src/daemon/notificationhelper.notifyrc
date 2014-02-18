@@ -26,3 +26,8 @@ Action=Popup
 Name=Localization Enhancement
 Comment=Extra packages can be installed to enhance system localization
 Action=Popup
+
+[Event/Driver]
+Name=Driver Enhancement
+Comment=Additional drivers can be installed
+Action=Popup

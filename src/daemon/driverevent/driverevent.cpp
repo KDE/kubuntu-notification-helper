@@ -26,8 +26,8 @@
 
 #include <LibQApt/Backend>
 
-#include <KDebug>
 #include <KToolInvocation>
+
 
 DriverEvent::DriverEvent(QObject* parent, QString name)
 : Event(parent, name)
@@ -65,7 +65,6 @@ void DriverEvent::driverMapFinished(QDBusPendingCallWatcher* data)
             QApt::Package *pkg = m_aptBackend->package(key);
             if (pkg) {
                 if (!pkg->isInstalled() && map[key]["recommended"].toBool()) {
-                    m_missingPackages.append(pkg->name());
                     m_showNotification = true;
                 }
             }
@@ -80,7 +79,7 @@ void DriverEvent::show()
         QString text(i18nc("Notification when additional packages are required for activating proprietary hardware",
                            "Hardware support is incomplete, additional packages are required"));
         QStringList actions;
-        actions << i18nc("Installs additional proprietary packages", "Install");
+        actions << i18nc("Launches KDE Control Module to manage drivers", "Manage Drivers");
         actions << i18nc("Button to dismiss this notification once", "Ignore for now");
         actions << i18nc("Button to make this notification never show up again",
                          "Never show again");
@@ -90,13 +89,7 @@ void DriverEvent::show()
 
 void DriverEvent::run()
 {
-    kDebug() << m_missingPackages;
-    if (!m_missingPackages.isEmpty()) {
-        QStringList args;
-        args.append("--install");
-        args.append(m_missingPackages);
-        KToolInvocation::kdeinitExec("qapt-batch", args);
-    }
+    KToolInvocation::kdeinitExec("kcmshell4", QStringList() << "kcm_driver_manager");
     Event::run();
 }
 
