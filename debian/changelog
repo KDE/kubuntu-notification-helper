@@ -7,6 +7,13 @@ kubuntu-notification-helper (14.04ubuntu4) UNRELEASED; urgency=low
   * Implement L10nEvent notifying the user once (after login) if the language
     support is incomplete and uses qapt-batch to complete it.
     + Add new build dep on libkubuntu to do completeness checks.
+  * Event::show now only manually dispatches a KNotification iff tray icons
+    are deactivated. KSNI has a dedicated showMessage function that handles
+    issuing a notification for a present KSNI, this also avoids pixmap passing
+    in default installation giving an overall better quality.
+  * Bump KNotification pixmap size to 32x32 (from 22x22) to reduce amount of
+    ugly scaling artifacts (going up or down from 32 is more reasonable than
+    for example 22 to 64 - as would be the case with a plasma notification).
 
  -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 03 Feb 2014 11:29:01 +0100
 

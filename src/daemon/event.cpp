@@ -89,7 +89,9 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         return;
     }
 
-    if (m_useKNotify) {
+    // Only manually compose a notification if notifications are enabled AND
+    // we don't have a tray icon, otherwise the tray icon will issue the notification.
+    if (m_useKNotify && !m_useTrayIcon) {
         KNotification::NotificationFlag flag;
 
         if (!m_useTrayIcon) {
@@ -100,18 +102,15 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         m_active = true;
         KNotification *notify = new KNotification(m_name, 0, flag);
         notify->setComponentData(KComponentData("notificationhelper"));
-
         notify->setPixmap(KIcon(icon).pixmap(NOTIFICATION_ICON_SIZE));
         notify->setText(text);
 
-        if (!m_useTrayIcon) {
-            // Tray icon not in use to handle actions
-            notify->setActions(actions);
-            connect(notify, SIGNAL(action1Activated()), this, SLOT(run()));
-            connect(notify, SIGNAL(action2Activated()), this, SLOT(ignore()));
-            connect(notify, SIGNAL(action3Activated()), this, SLOT(hide()));
-            connect(notify, SIGNAL(closed()), this, SLOT(notifyClosed()));
-        }
+        // Tray icon not in use to handle actions
+        notify->setActions(actions);
+        connect(notify, SIGNAL(action1Activated()), this, SLOT(run()));
+        connect(notify, SIGNAL(action2Activated()), this, SLOT(ignore()));
+        connect(notify, SIGNAL(action3Activated()), this, SLOT(hide()));
+        connect(notify, SIGNAL(closed()), this, SLOT(notifyClosed()));
 
         notify->sendEvent();
     }
@@ -150,6 +149,12 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         m_notifierItem->setAssociatedWidget(NULL);
 
         connect(m_notifierItem, SIGNAL(activateRequested(bool, const QPoint &)), this, SLOT(run()));
+    }
+
+    // Ask the KSNI to show a notification whenver show() is called.
+    if (m_useTrayIcon && m_notifierItem) {
+        m_notifierItem->showMessage(i18nc("notification title", "System Notification Helper"),
+                                    text, icon);
     }
 }
 
