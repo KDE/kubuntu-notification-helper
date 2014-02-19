@@ -42,8 +42,8 @@ public Q_SLOTS:
     void show();
 
 private:
-    QApt::Backend* m_aptBackend;
-    OrgKubuntuDriverManagerInterface* m_manager;
+    QApt::Backend *m_aptBackend;
+    OrgKubuntuDriverManagerInterface *m_manager;
     bool m_showNotification;
     QStringList m_missingPackages;
 
@@ -51,6 +51,7 @@ private Q_SLOTS:
     void driverDictFinished(QVariantMapMap);
     void driverMapFinished(QDBusPendingCallWatcher*);
     void run();
+    void updateFinished();
 
 };
 

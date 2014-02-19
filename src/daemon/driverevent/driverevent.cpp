@@ -29,18 +29,30 @@
 #include <KToolInvocation>
 
 
-DriverEvent::DriverEvent(QObject* parent, QString name)
-: Event(parent, name)
+DriverEvent::DriverEvent(QObject *parent, QString name)
+    : Event(parent, name)
+    , m_showNotification(false)
 {
     m_aptBackend = new QApt::Backend(this);
     if (m_aptBackend->init()) {
-        m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());
-        if (m_manager->isValid()) {
-            m_manager->getDriverDict(false);
-            connect(m_manager, SIGNAL(dataReady(QVariantMapMap)), SLOT(driverDictFinished(QVariantMapMap)), Qt::UniqueConnection);
+        if(m_aptBackend->xapianIndexNeedsUpdate()) {
+            m_aptBackend->updateXapianIndex();
+            connect(m_aptBackend, SIGNAL(xapianUpdateFinished()), SLOT(updateFinished()));
+        } else {
+            updateFinished();
         }
     }
 }
+void DriverEvent::updateFinished()
+{
+    m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());
+
+    if (m_manager->isValid()) {
+        m_manager->getDriverDict(false);
+        connect(m_manager, SIGNAL(dataReady(QVariantMapMap)), SLOT(driverDictFinished(QVariantMapMap)), Qt::UniqueConnection);
+    }
+}
+
 
 void DriverEvent::driverDictFinished(QVariantMapMap data)
 {
@@ -55,20 +67,27 @@ void DriverEvent::driverDictFinished(QVariantMapMap data)
     }
 }
 
-void DriverEvent::driverMapFinished(QDBusPendingCallWatcher* data)
+void DriverEvent::driverMapFinished(QDBusPendingCallWatcher *data)
 {
     if (!data->isError()) {
         QDBusPendingReply<QVariantMapMap> mapReply = *data;
         QVariantMapMap map = mapReply.value();
 
         Q_FOREACH (const QString &key, map.keys()) {
-            QApt::Package *pkg = m_aptBackend->package(key);
-            if (pkg) {
-                if (!pkg->isInstalled() && map[key]["recommended"].toBool()) {
-                    m_showNotification = true;
+            if (map[key]["recommended"].toBool()) {
+                QApt::Package *pkg = m_aptBackend->package(key);
+                if (pkg) {
+                    if (!pkg->isInstalled()) {
+                        m_showNotification = true;
+                        break;
+                    }
                 }
             }
         }
+    }
+
+    if (m_showNotification) {
+        show();
     }
 }
 
