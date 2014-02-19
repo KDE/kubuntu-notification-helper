@@ -7,7 +7,6 @@ kubuntu-notification-helper (14.04ubuntu4) UNRELEASED; urgency=low
   * Implement L10nEvent notifying the user once (after login) if the language
     support is incomplete and uses qapt-batch to complete it.
     + Add new build dep on libkubuntu to do completeness checks.
-    + Currently this does not
 
  -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 03 Feb 2014 11:29:01 +0100
 

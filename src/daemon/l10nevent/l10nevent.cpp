@@ -54,27 +54,57 @@ void L10nEvent::show()
 
 void L10nEvent::showOnLanguageCollectionUpdated()
 {
-    const KSharedConfig::Ptr userConfig = KSharedConfig::openConfig("kcmlocale-user", KConfig::IncludeGlobals);
+    const KSharedConfig::Ptr userConfig = KSharedConfig::openConfig("kdeglobals", KConfig::IncludeGlobals);
     const KConfigGroup userSettings = KConfigGroup(userConfig, "Locale");
     const QString languageConfigString = userSettings.readEntry("Language", QString());
-    const QStringList languageList = languageConfigString.split(QLatin1Char(':'),
-                                                                QString::SkipEmptyParts);
-    kDebug() << languageList;
+    const QStringList kdeLanguageList = languageConfigString.split(QLatin1Char(':'),
+                                                                   QString::SkipEmptyParts);
+    kDebug() << "KDE Languages:" << kdeLanguageList;
 
     m_missingPackages.clear();
-    int incompleteLanguages = 0;
-    foreach (Kubuntu::Language *language, m_languageCollection->languages()) {
-        if (languageList.contains(language->kdeLanguageCode())) {
-            kDebug() << language->kdeLanguageCode() << "is complete:" << language->isSupportComplete();
-            if (!language->isSupportComplete()) {
-                m_missingPackages.append(language->missingPackages());
-                ++incompleteLanguages;
+
+    // languages() at the time of writing has no caching capability, so make sure
+    // that it is not called more than necessary.
+    const QSet<Kubuntu::Language *> languages = m_languageCollection->languages();
+
+    // Check if we can find the kde languages and if they are complete.
+    foreach (const QString &kdeLanguage, kdeLanguageList) {
+        foreach (Kubuntu::Language *language, languages) {
+            if (kdeLanguage == language->kdeLanguageCode()) {
+                kDebug() << "matched" << kdeLanguage;
+                checkForMissingPackages(language);
             }
         }
     }
+
+    // Additionally check the system locale.
+    // This is necessary because
+    //   - after installation there won't be a KCM config, but a possibly
+    //     incomplete language support.
+    //   - if the user mangles his locale manually or through other tools
+    //     we still want him to complete his language support.
+    const QStringList matchables = systemLocaleMatchables();
+    kDebug() << "System Language Matchables:" << matchables;
+    bool matched = false;
+    foreach (const QString &matchable, matchables) {
+        foreach (Kubuntu::Language *language, languages) {
+            if (matchable == language->kdeLanguageCode()) {
+                kDebug() << "matched" << matchable;
+                checkForMissingPackages(language);
+                // If we had a match we abort as we only want the most generic
+                // match.
+                // e.g. we want 'ca@valencia' but not 'ca'.
+                matched = true;
+            }
+        }
+        if (matched) {
+            continue;
+        }
+    }
+
     m_missingPackages.removeDuplicates();
 
-    if (incompleteLanguages == 0) {
+    if (m_missingPackages.isEmpty()) {
         return;
     }
 
@@ -99,4 +129,58 @@ void L10nEvent::run()
         KToolInvocation::kdeinitExec("qapt-batch", args);
     }
     Event::run();
+}
+
+bool L10nEvent::checkForMissingPackages(Kubuntu::Language *language)
+{
+    // Not cached, so cache here.
+    const bool isSupportComplete = language->isSupportComplete();
+    kDebug() << "  completeness:" << isSupportComplete;
+    if (!isSupportComplete) {
+        m_missingPackages.append(language->missingPackages());
+        return true;
+    }
+    return false;
+}
+
+QStringList L10nEvent::systemLocaleMatchables() const
+{
+    const QString systemLocale = qgetenv("LANG");
+
+    // Valid locales may be C or LANGUAGE followed by country and/or encoding
+    // and/or variant. Leading to the following regex:
+    // Please note that the regex is a bit blown up because greedy matching
+    // requires us to except the seperator characters to get the intended result.
+    //                   v language exactly once
+    //                   .            v country one match at the most
+    //                   .            .               v encoding one match at the most
+    //                   .            .               .              v variant one match at the most
+    QRegExp localeRegex("([^_\\.\\@]+)(_([^\\.\\@]+))?(\\.([^\\@]+))?(\\@(.+))?");
+    if (localeRegex.indexIn(systemLocale) == -1) {
+        return QStringList();
+    }
+    kDebug() << localeRegex.capturedTexts();
+
+    const QString language = localeRegex.capturedTexts().at(1);
+    const QString country = localeRegex.capturedTexts().at(3);
+    // Not useful for language resolution:
+    // const QString encoding = localeRegex.capturedTexts().at(5);
+    const QString variant = localeRegex.capturedTexts().at(7);
+
+    QStringList matchables;
+    matchables.reserve(4); // We can only ever match 4.
+
+    if (!language.isEmpty()) { // Language cannot really be empty, but oh well.
+        matchables.prepend(language);
+    }
+    if (!language.isEmpty() && !country.isEmpty()) {
+        matchables.prepend(QString::fromLatin1("%1_%2").arg(language, country));
+    }
+    if (!language.isEmpty() && !variant.isEmpty()) {
+        matchables.prepend(QString::fromLatin1("%1@%2").arg(language, variant));
+    }
+    if (!language.isEmpty() && !country.isEmpty() && !variant.isEmpty()) {
+        matchables.prepend(QString::fromLatin1("%1_%2@%3").arg(language, country, variant));
+    }
+    return matchables;
 }

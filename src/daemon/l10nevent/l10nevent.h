@@ -24,6 +24,7 @@
 #include "../event.h"
 
 namespace Kubuntu {
+class Language;
 class LanguageCollection;
 }
 
@@ -43,6 +44,9 @@ private slots:
     void run();
 
 private:
+    bool checkForMissingPackages(Kubuntu::Language *languages);
+    QStringList systemLocaleMatchables() const;
+
     Kubuntu::LanguageCollection *m_languageCollection;
     QStringList m_missingPackages;
 };
