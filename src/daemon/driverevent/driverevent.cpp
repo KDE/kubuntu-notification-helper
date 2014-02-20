@@ -27,14 +27,26 @@
 #include <LibQApt/Backend>
 
 #include <KToolInvocation>
+#include <KDebug>
 
 
 DriverEvent::DriverEvent(QObject *parent, QString name)
     : Event(parent, name)
     , m_showNotification(false)
+    , m_aptBackendInitialized(false)
 {
     m_aptBackend = new QApt::Backend(this);
-    if (m_aptBackend->init()) {
+    if (!m_aptBackend->init()) {
+        kWarning() << m_aptBackend->initErrorMessage();
+        m_aptBackendInitialized = false;
+    }
+    m_aptBackendInitialized = true;
+}
+
+
+void DriverEvent::show()
+{
+    if (m_aptBackendInitialized) {
         if(m_aptBackend->xapianIndexNeedsUpdate()) {
             m_aptBackend->updateXapianIndex();
             connect(m_aptBackend, SIGNAL(xapianUpdateFinished()), SLOT(updateFinished()));
@@ -43,6 +55,7 @@ DriverEvent::DriverEvent(QObject *parent, QString name)
         }
     }
 }
+
 void DriverEvent::updateFinished()
 {
     if (!m_aptBackend->openXapianIndex()) {
@@ -89,13 +102,6 @@ void DriverEvent::driverMapFinished(QDBusPendingCallWatcher *data)
         }
     }
 
-    if (m_showNotification) {
-        show();
-    }
-}
-
-void DriverEvent::show()
-{
     if (m_showNotification) {
         QString icon = QString("hwinfo");
         QString text(i18nc("Notification when additional packages are required for activating proprietary hardware",

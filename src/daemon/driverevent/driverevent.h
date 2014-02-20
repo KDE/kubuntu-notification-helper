@@ -46,6 +46,7 @@ private:
     OrgKubuntuDriverManagerInterface *m_manager;
     bool m_showNotification;
     QStringList m_missingPackages;
+    bool m_aptBackendInitialized;
 
 private Q_SLOTS:
     void driverDictFinished(QVariantMapMap);
