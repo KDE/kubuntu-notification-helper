@@ -53,12 +53,12 @@ K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
         : KDEDModule(parent)
-        , m_apportEvent(0)
-        , m_hookEvent(0)
-        , m_installEvent(0)
-        , m_rebootEvent(0)
-        , m_configWatcher(0)
-        , m_installWatcher(0)
+        , m_apportEvent(nullptr)
+        , m_hookEvent(nullptr)
+        , m_installEvent(nullptr)
+        , m_rebootEvent(nullptr)
+        , m_configWatcher(nullptr)
+        , m_installWatcher(nullptr)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper",
                          ki18n("Kubuntu Notification Helper"),
