@@ -59,6 +59,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     , m_rebootEvent(nullptr)
     , m_configWatcher(nullptr)
     , m_installWatcher(nullptr)
+    , m_driverEvent(nullptr)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper",
                          ki18n("Kubuntu Notification Helper"),
