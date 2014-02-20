@@ -1,5 +1,6 @@
 kubuntu-notification-helper (14.04ubuntu6) UNRELEASED; urgency=low
 
+  [ Harald Sitter ]
   * Prevent events from spwaning more than one notifier item at a time.
     Notifications are still issued whenever show() is called as they serve
     a reminding purpose. LP: #1275427
@@ -17,7 +18,12 @@ kubuntu-notification-helper (14.04ubuntu6) UNRELEASED; urgency=low
   * Drop unused kcm_notificationhelper-es.po (supposedly the export from
     launchpad went wrong in 13.10)
   * Change module.cpp init list to c++11 'nullptr' and fix indention level
-  * 
+
+  [ Rohan Garg ]
+  * Add a DriverEvent class to show notifications when the system has extra
+    drivers that can be installed.
+    + Misc. bug fixes 
+      - LP: #128208 , LP: #1282082 , LP: #1282085 , LP: #1282471
 
  -- Harald Sitter <apachelogger@kubuntu.org>  Thu, 20 Feb 2014 10:23:59 +0100
 
