@@ -14,7 +14,7 @@ Vcs-Bzr: https://code.launchpad.net/~kubuntu-packagers/kubuntu-notification-help
 Package: kubuntu-notification-helper
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, konsole | x-terminal-emulator,
-  qapt-batch
+  qapt-batch, kubuntu-driver-manager
 Recommends: apport-kde | apport-gtk
 Description: Kubuntu system notification helper
  Kubuntu Notification Helper is a daemon that presents various notifications

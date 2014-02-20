@@ -45,6 +45,9 @@ DriverEvent::DriverEvent(QObject *parent, QString name)
 }
 void DriverEvent::updateFinished()
 {
+    if (!m_aptBackend->openXapianIndex()) {
+        return;
+    }
     m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());
 
     if (m_manager->isValid()) {
@@ -96,7 +99,7 @@ void DriverEvent::show()
     if (m_showNotification) {
         QString icon = QString("hwinfo");
         QString text(i18nc("Notification when additional packages are required for activating proprietary hardware",
-                           "Hardware support is incomplete, additional packages are required"));
+                           "Proprietary drivers might be required to enable additional features"));
         QStringList actions;
         actions << i18nc("Launches KDE Control Module to manage drivers", "Manage Drivers");
         actions << i18nc("Button to dismiss this notification once", "Ignore for now");
