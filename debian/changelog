@@ -14,6 +14,8 @@ kubuntu-notification-helper (14.04ubuntu4) UNRELEASED; urgency=low
   * Bump KNotification pixmap size to 32x32 (from 22x22) to reduce amount of
     ugly scaling artifacts (going up or down from 32 is more reasonable than
     for example 22 to 64 - as would be the case with a plasma notification).
+  * Drop unused kcm_notificationhelper-es.po (supposedly the export from
+    launchpad went wrong in 13.10)
 
  -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 03 Feb 2014 11:29:01 +0100
 
