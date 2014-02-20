@@ -37,8 +37,7 @@ DriverEvent::DriverEvent(QObject *parent, QString name)
     if (m_aptBackend->init()) {
         if(m_aptBackend->xapianIndexNeedsUpdate()) {
             m_aptBackend->updateXapianIndex();
-            connect(m_aptBackend, SIGNAL(xapianUpdateFinished()),
-                    SLOT(updateFinished()));
+            connect(m_aptBackend, SIGNAL(xapianUpdateFinished()), SLOT(updateFinished()));
         } else {
             updateFinished();
         }

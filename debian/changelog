@@ -1,4 +1,4 @@
-kubuntu-notification-helper (14.04ubuntu5) UNRELEASED; urgency=low
+kubuntu-notification-helper (14.04ubuntu6) UNRELEASED; urgency=low
 
   * Prevent events from spwaning more than one notifier item at a time.
     Notifications are still issued whenever show() is called as they serve
@@ -16,9 +16,10 @@ kubuntu-notification-helper (14.04ubuntu5) UNRELEASED; urgency=low
     for example 22 to 64 - as would be the case with a plasma notification).
   * Drop unused kcm_notificationhelper-es.po (supposedly the export from
     launchpad went wrong in 13.10)
-  * Change module.cpp init list to c++11 'nullptr'
+  * Change module.cpp init list to c++11 'nullptr' and fix indention level
+  * 
 
- -- Harald Sitter <apachelogger@kubuntu.org>  Thu, 20 Feb 2014 10:22:58 +0100
+ -- Harald Sitter <apachelogger@kubuntu.org>  Thu, 20 Feb 2014 10:23:59 +0100
 
 kubuntu-notification-helper (14.04ubuntu3) trusty; urgency=low
 
