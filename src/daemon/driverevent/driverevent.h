@@ -23,7 +23,7 @@
 #define DRIVEREVENT_H
 
 #include "../event.h"
-#include "../drivermanagerdbustypes.h"
+#include "drivermanagerdbustypes.h"
 
 namespace QApt {
     class Backend;

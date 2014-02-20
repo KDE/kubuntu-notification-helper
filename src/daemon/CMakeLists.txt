@@ -21,8 +21,8 @@ QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restricted
 QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
                      configwatcher.h ConfigWatcher)
 
-set(drivermanagerobject_xml org.kubuntu.DriverManager.xml)
-set_source_files_properties(${drivermanagerobject_xml} PROPERTIES INCLUDE drivermanagerdbustypes.h)
+set(drivermanagerobject_xml driverevent/org.kubuntu.DriverManager.xml)
+set_source_files_properties(${drivermanagerobject_xml} PROPERTIES INCLUDE driverevent/drivermanagerdbustypes.h)
 QT4_ADD_DBUS_INTERFACE(notificationhelper_SRCS ${drivermanagerobject_xml}
                        drivermanager_interface)
 
