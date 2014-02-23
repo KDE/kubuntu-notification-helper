@@ -1,8 +1,13 @@
-kubuntu-notification-helper (14.04ubuntu7) UNRELEASED; urgency=medium
+kubuntu-notification-helper (14.04ubuntu7) trusty; urgency=medium
 
+  [ Rohan Garg ]
   * Really fix LP: #1282074
 
- -- Rohan Garg <rohangarg@kubuntu.org>  Thu, 20 Feb 2014 18:08:06 +0100
+  [ Harald Sitter ]
+  * Catch PermissionError in whoopsie-upload-all open()
+  * Bump standards version from 3.9.4 to 3.9.5
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Sun, 23 Feb 2014 17:40:42 +0100
 
 kubuntu-notification-helper (14.04ubuntu6) trusty; urgency=low
 

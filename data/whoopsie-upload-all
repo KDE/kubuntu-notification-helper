@@ -47,7 +47,7 @@ def process_report(report):
     try:
         with open(report, 'rb') as f:
             r.load(f, binary='compressed')
-    except Exception as e:
+    except (PermissionError, Exception) as e:
         sys.stderr.write('ERROR: cannot load %s: %s\n' % (report, str(e)))
         return None
     if r.get('ProblemType', '') != 'Crash' or 'ExecutablePath' not in r:
