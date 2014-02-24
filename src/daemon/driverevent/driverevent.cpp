@@ -28,6 +28,8 @@
 
 #include <KToolInvocation>
 #include <KDebug>
+#include <KConfig>
+#include <KConfigGroup>
 
 
 DriverEvent::DriverEvent(QObject *parent, QString name)
@@ -61,30 +63,38 @@ void DriverEvent::updateFinished()
     if (!m_aptBackend->openXapianIndex()) {
         return;
     }
-    m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());
 
-    if (m_manager->isValid()) {
-        m_manager->getDriverDict(false);
-        connect(m_manager, SIGNAL(dataReady(QVariantMapMap)), SLOT(driverDictFinished(QVariantMapMap)), Qt::UniqueConnection);
-    }
+    m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());
+    m_manager->getDriverDict(false);
+    connect(m_manager, SIGNAL(dataReady(QVariantMapMap)), SLOT(driverDictFinished(QVariantMapMap)), Qt::UniqueConnection);
+
 }
 
 
 void DriverEvent::driverDictFinished(QVariantMapMap data)
 {
+    kDebug();
     if (data.isEmpty()) {
         return;
     }
 
+    KConfig driver_manager("kcmdrivermanagerrc");
+    KConfigGroup pciGroup( &driver_manager, "PCI" );
+
     Q_FOREACH(const QString &key,data.keys()) {
-        QDBusPendingReply<QVariantMapMap> driverForDeviceMap = m_manager->getDriverMapForDevice(key);
-        QDBusPendingCallWatcher *async = new QDBusPendingCallWatcher(driverForDeviceMap, this);
-        connect(async, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(driverMapFinished(QDBusPendingCallWatcher*)));
+        if (pciGroup.readEntry(key) != QLatin1String("true")) {
+            QDBusPendingReply<QVariantMapMap> driverForDeviceMap = m_manager->getDriverMapForDevice(key);
+            QDBusPendingCallWatcher *async = new QDBusPendingCallWatcher(driverForDeviceMap, this);
+            connect(async, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(driverMapFinished(QDBusPendingCallWatcher*)));
+        } else {
+            kDebug() << key << "has already been processed by the KCM";
+        }
     }
 }
 
 void DriverEvent::driverMapFinished(QDBusPendingCallWatcher *data)
 {
+    kDebug();
     if (!data->isError()) {
         QDBusPendingReply<QVariantMapMap> mapReply = *data;
         QVariantMapMap map = mapReply.value();

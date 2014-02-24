@@ -42,6 +42,7 @@ K_EXPORT_PLUGIN(NotificationHelperConfigFactory("notificationhelperconfigmodule"
 NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, const QVariantList&)
     : KCModule(NotificationHelperConfigFactory::componentData(), parent)
     , m_apportCheckBox(nullptr)
+    , m_driverCheckBox(nullptr)
     , m_hookCheckBox(nullptr)
     , m_installCheckBox(nullptr)
     , m_l10nCheckBox(nullptr)
@@ -68,12 +69,14 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     label->setText(i18n("Show notifications for:"));
 
     m_apportCheckBox = new QCheckBox(i18n("Application crashes"), this);
+    m_driverCheckBox = new QCheckBox(i18n("Proprietary Driver availability"), this);
     m_hookCheckBox = new QCheckBox(i18n("Upgrade information"), this);
     m_installCheckBox = new QCheckBox(i18n("Restricted codec availability"), this);
     m_l10nCheckBox = new QCheckBox(i18n("Incomplete language support"), this);
     m_rebootCheckBox = new QCheckBox(i18n("Required reboots"), this);
 
     connect(m_apportCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
+    connect(m_driverCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_hookCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_installCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
     connect(m_l10nCheckBox, SIGNAL(clicked()), this, SLOT(configChanged()));
@@ -102,6 +105,7 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
 
     lay->addWidget(label);
     lay->addWidget(m_apportCheckBox);
+    lay->addWidget(m_driverCheckBox);
     lay->addWidget(m_hookCheckBox);
     lay->addWidget(m_installCheckBox);
     lay->addWidget(m_l10nCheckBox);
@@ -124,6 +128,7 @@ void NotificationHelperConfigModule::load()
     KConfigGroup notifyGroup(&cfg, "Event");
 
     m_apportCheckBox->setChecked(!notifyGroup.readEntry("hideApportNotifier", false));
+    m_driverCheckBox->setChecked(!notifyGroup.readEntry("hideDriverNotifier", false));
     m_hookCheckBox->setChecked(!notifyGroup.readEntry("hideHookNotifier", false));
     m_installCheckBox->setChecked(!notifyGroup.readEntry("hideInstallNotifier", false));
     m_l10nCheckBox->setChecked(!notifyGroup.readEntry("hideL10nNotifier", false));
@@ -147,6 +152,7 @@ void NotificationHelperConfigModule::save()
     KConfigGroup notifyGroup(&cfg, "Event");
 
     notifyGroup.writeEntry("hideApportNotifier", !m_apportCheckBox->isChecked());
+    notifyGroup.writeEntry("hideDriverNotifier", !m_driverCheckBox->isChecked());
     notifyGroup.writeEntry("hideHookNotifier", !m_hookCheckBox->isChecked());
     notifyGroup.writeEntry("hideInstallNotifier", !m_installCheckBox->isChecked());
     notifyGroup.writeEntry("hideL10nNotifier", !m_l10nCheckBox->isChecked());
@@ -171,6 +177,7 @@ void NotificationHelperConfigModule::save()
 void NotificationHelperConfigModule::defaults()
 {
     m_apportCheckBox->setChecked(true);
+    m_driverCheckBox->setChecked(true);
     m_hookCheckBox->setChecked(true);
     m_installCheckBox->setChecked(true);
     m_l10nCheckBox->setChecked(true);

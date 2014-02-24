@@ -44,6 +44,7 @@ protected Q_SLOTS:
 
 private:
     QCheckBox *m_apportCheckBox;
+    QCheckBox *m_driverCheckBox;
     QCheckBox *m_hookCheckBox;
     QCheckBox *m_installCheckBox;
     QCheckBox *m_l10nCheckBox;

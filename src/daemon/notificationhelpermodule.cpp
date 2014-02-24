@@ -71,7 +71,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
 
     // Delay init by 3 minutes to speed up start of kded and prevent a notification
     // wall on login.
-    QTimer::singleShot(3*60*1000, this, SLOT(init()));
+    QTimer::singleShot(1000, this, SLOT(init()));
 }
 
 NotificationHelperModule::~NotificationHelperModule()
@@ -83,11 +83,11 @@ void NotificationHelperModule::init()
     m_configWatcher = new ConfigWatcher(this);
 
     m_apportEvent = new ApportEvent(this, "Apport");
+    m_driverEvent = new DriverEvent(this, "Driver");
     m_hookEvent = new HookEvent(this, "Hook");
     m_installEvent = new InstallEvent(this, "Install");
     m_l10nEvent = new L10nEvent(this, "L10n");
     m_rebootEvent = new RebootEvent(this, "Restart");
-    m_driverEvent = new DriverEvent(this, "Driver");
 
     const bool apportHidden = m_apportEvent->isHidden();
     const bool apportKde = QFile::exists("/usr/share/apport/apport-kde");
