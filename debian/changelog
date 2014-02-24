@@ -2,6 +2,10 @@ kubuntu-notification-helper (14.04ubuntu7) trusty; urgency=medium
 
   [ Rohan Garg ]
   * Really fix LP: #1282074
+  * Fix LP: #1282107 by making the kcm write PCI values
+    and the kded module reading them.
+  * Implement enabling/disabling notifications for
+    Driver Events (LP: #1282107)
 
   [ Harald Sitter ]
   * Catch PermissionError in whoopsie-upload-all open()
