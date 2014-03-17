@@ -1,3 +1,22 @@
+kubuntu-notification-helper (14.04ubuntu8) trusty; urgency=medium
+
+  * Catch another source of PermissionError in whoopsie-upload-all,
+    this should now handle all sources of permission errors LP: #1281884
+  * Implement simple unique application tracking by registering on dbus,
+    this prevents multiple invocation triggers. Also, the long
+    upload timeout is less concerning with a unique application.
+    + Depends on python3-dbus
+  * Upload timeout reduced from 30 minutes to 15 minutes. This is just as
+    arbitrary a value, but really 15 minutes should be more than enough time
+    for most systems. With a 30 minute timeout and a bad connection one
+    can easily get into a situation where upload-all is running 24/7, reducing
+    the timeout improves this at least slightly.
+  * Try apport report add_*() and except (OSError, SystemError, ValueError) to
+    prevent unhandled exceptions when the system runs out of disk space for
+    example LP: #1292766
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 17 Mar 2014 13:06:34 +0100
+
 kubuntu-notification-helper (14.04ubuntu7) trusty; urgency=medium
 
   [ Rohan Garg ]

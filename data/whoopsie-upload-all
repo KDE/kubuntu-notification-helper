@@ -18,6 +18,8 @@ import sys
 import time
 import subprocess
 import argparse
+import dbus
+import dbus.service
 
 import apport.fileutils
 import apport
@@ -57,20 +59,24 @@ def process_report(report):
         print('%s already has info collected' % report)
     else:
         print('Collecting info for %s...' % report)
-        r.add_os_info()
-        r.add_gdb_info()
         try:
+            r.add_os_info()
+            r.add_gdb_info()
             r.add_package_info()
-        except (SystemError, ValueError) as e:
-            sys.stderr.write('ERROR: cannot add package info on %s: %s\n' %
+        except (OSError, SystemError, ValueError) as e:
+            sys.stderr.write('ERROR: cannot add apport info on %s: %s\n' %
                              (report, str(e)))
             return None
 
         # write updated report
-        with open(report, 'ab') as f:
-            os.chmod(report, 0)
-            r.write(f, only_new=True)
-            os.chmod(report, 0o640)
+        try:
+            with open(report, 'ab') as f:
+                os.chmod(report, 0)
+                r.write(f, only_new=True)
+                os.chmod(report, 0o640)
+        except (PermissionError, Exception) as e:
+            sys.stderr.write('ERROR: cannot update %s: %s\n' % (report, str(e)))
+            return None
 
     # now tell whoopsie to upload the report
     print('Marking %s for whoopsie upload' % report)
@@ -123,13 +129,22 @@ def wait_uploaded(stamps, timeout):
 
     return False
 
+session_bus = dbus.SessionBus()
+try:
+    session_bus.get_object("org.kubuntu.whoopsie_upload_all", "/UniqueApplication")
+    print("INFO: whoopsie-upload-all already running")
+    sys.exit(0)
+except dbus.DBusException:
+    # This will 'take' the DBUS name
+    bus_name = dbus.service.BusName("org.kubuntu.whoopsie_upload_all", bus=session_bus)
+
 #
 # main
 #
 parser = argparse.ArgumentParser(description='Noninteractively upload all '
                                  'Apport crash reports to errors.ubuntu.com')
-parser.add_argument('-t', '--timeout', default=1800, type=int,
-                    help='seconds to wait for whoopsie to upload the reports (default: 1800s)')
+parser.add_argument('-t', '--timeout', default=900, type=int,
+                    help='seconds to wait for whoopsie to upload the reports (default: 900s)')
 opts = parser.parse_args()
 
 # parse args
