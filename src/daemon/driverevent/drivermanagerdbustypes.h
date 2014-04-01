@@ -25,8 +25,7 @@
 #include <QVariantMap>
 #include <QDBusObjectPath>
 
-typedef QMap<QString, QVariantMap> QVariantMapMap;
-Q_DECLARE_METATYPE(QVariantMapMap)
+#include "Device.h"
 
 #endif // dbustypes_H
 

@@ -11,6 +11,7 @@ set(notificationhelper_SRCS
     installevent/installgui.cpp
     l10nevent/l10nevent.cpp
     rebootevent/rebootevent.cpp
+    driverevent/Device.cpp
     driverevent/driverevent.cpp
 )
 

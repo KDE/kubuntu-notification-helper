@@ -49,8 +49,7 @@ private:
     bool m_aptBackendInitialized;
 
 private Q_SLOTS:
-    void driverDictFinished(QVariantMapMap);
-    void driverMapFinished(QDBusPendingCallWatcher*);
+    void onDevicesReady(QDBusPendingCallWatcher *call);
     void run();
     void updateFinished();
 

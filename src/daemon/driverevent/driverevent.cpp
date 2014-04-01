@@ -31,12 +31,13 @@
 #include <KConfig>
 #include <KConfigGroup>
 
-
 DriverEvent::DriverEvent(QObject *parent, QString name)
     : Event(parent, name)
     , m_showNotification(false)
     , m_aptBackendInitialized(false)
 {
+    qDBusRegisterMetaType<DeviceList>();
+
     m_aptBackend = new QApt::Backend(this);
     if (!m_aptBackend->init()) {
         kWarning() << m_aptBackend->initErrorMessage();
@@ -61,54 +62,55 @@ void DriverEvent::show()
 void DriverEvent::updateFinished()
 {
     if (!m_aptBackend->openXapianIndex()) {
+        kDebug() << "Xapian update could not be opened, probably broken.";
         return;
     }
 
     m_manager = new OrgKubuntuDriverManagerInterface("org.kubuntu.DriverManager", "/DriverManager", QDBusConnection::sessionBus());
-    m_manager->getDriverDict(false);
-    connect(m_manager, SIGNAL(dataReady(QVariantMapMap)), SLOT(driverDictFinished(QVariantMapMap)), Qt::UniqueConnection);
 
+    QDBusPendingReply<DeviceList> reply = m_manager->devices();
+    QDBusPendingCallWatcher *watcher = new QDBusPendingCallWatcher(reply, this);
+    connect(watcher, SIGNAL(finished(QDBusPendingCallWatcher*)),
+            this, SLOT(onDevicesReady(QDBusPendingCallWatcher*)));
 }
 
-
-void DriverEvent::driverDictFinished(QVariantMapMap data)
+void DriverEvent::onDevicesReady(QDBusPendingCallWatcher *call)
 {
-    kDebug();
-    if (data.isEmpty()) {
+    QDBusPendingReply<DeviceList> reply = *call;
+
+    if (reply.isError()) {
+        kDebug() << "got dbus error; abort";
         return;
     }
+
+    DeviceList devices = reply.value();
+    call->deleteLater(); // deep copy, delete caller
+
+    kDebug() << "data " << devices;
 
     KConfig driver_manager("kcmdrivermanagerrc");
     KConfigGroup pciGroup( &driver_manager, "PCI" );
 
-    Q_FOREACH(const QString &key,data.keys()) {
-        if (pciGroup.readEntry(key) != QLatin1String("true")) {
-            QDBusPendingReply<QVariantMapMap> driverForDeviceMap = m_manager->getDriverMapForDevice(key);
-            QDBusPendingCallWatcher *async = new QDBusPendingCallWatcher(driverForDeviceMap, this);
-            connect(async, SIGNAL(finished(QDBusPendingCallWatcher*)), SLOT(driverMapFinished(QDBusPendingCallWatcher*)));
-        } else {
-            kDebug() << key << "has already been processed by the KCM";
-        }
-    }
-}
-
-void DriverEvent::driverMapFinished(QDBusPendingCallWatcher *data)
-{
-    kDebug();
-    if (!data->isError()) {
-        QDBusPendingReply<QVariantMapMap> mapReply = *data;
-        QVariantMapMap map = mapReply.value();
-
-        Q_FOREACH (const QString &key, map.keys()) {
-            if (map[key]["recommended"].toBool()) {
-                QApt::Package *pkg = m_aptBackend->package(key);
-                if (pkg) {
-                    if (!pkg->isInstalled()) {
-                        m_showNotification = true;
-                        break;
+    foreach (Device device, devices) {
+        if (pciGroup.readEntry(device.id) != QLatin1String("true")) {
+            // Not seen before, check whether we have recommended drivers.
+            for (int i = 0; i < device.drivers.length(); ++i) {
+                // Supposedly Driver is not a pod due to ctor, so it can't
+                // be fully used by QList :'<
+                // Manually iter instead.
+                Driver driver = device.drivers.at(i);
+                if (driver.recommended) {
+                    QApt::Package *package = m_aptBackend->package(driver.packageName);
+                    if (package) {
+                        if (!package->isInstalled()) {
+                            m_showNotification = true;
+                            break;
+                        }
                     }
                 }
             }
+        } else {
+            kDebug() << device.id << "has already been processed by the KCM";
         }
     }
 

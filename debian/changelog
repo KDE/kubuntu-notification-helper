@@ -1,3 +1,16 @@
+kubuntu-notification-helper (14.04ubuntu9) trusty; urgency=medium
+
+  * Port driverevent to new dbus API, needs some code copy for marshalling
+    as doing an automarshall to variant types somehow does not work
+    as expected.
+    + This repairs driver availability notification
+  * Instead of harcoding the init delay, allow definition through cmake,
+    debian/rules now defines the standard 3 minute delay while manual builds
+    will default to 1second. This removes the need to manually twiddle the
+    value when one wants to test changes.
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Tue, 01 Apr 2014 13:28:16 +0200
+
 kubuntu-notification-helper (14.04ubuntu8) trusty; urgency=medium
 
   * Catch another source of PermissionError in whoopsie-upload-all,

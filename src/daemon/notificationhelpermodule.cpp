@@ -50,6 +50,9 @@ K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                 )
 K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 
+#ifndef START_TIMEOUT
+#define START_TIMEOUT 1000
+#endif
 
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
     : KDEDModule(parent)
@@ -69,9 +72,7 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
                          KLocalizedString(), "http://kubuntu.org",
                          "https://bugs.launchpad.net/ubuntu");
 
-    // Delay init by 3 minutes to speed up start of kded and prevent a notification
-    // wall on login.
-    QTimer::singleShot(1000, this, SLOT(init()));
+    QTimer::singleShot(START_TIMEOUT, this, SLOT(init()));
 }
 
 NotificationHelperModule::~NotificationHelperModule()
