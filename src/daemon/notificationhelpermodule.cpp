@@ -81,6 +81,7 @@ NotificationHelperModule::~NotificationHelperModule()
 
 void NotificationHelperModule::init()
 {
+    kDebug();
     m_configWatcher = new ConfigWatcher(this);
 
     m_apportEvent = new ApportEvent(this, "Apport");

@@ -1,3 +1,15 @@
+kubuntu-notification-helper (14.04ubuntu10) trusty; urgency=medium
+
+  * Work around a bug in ubuntu-drivers-common not reporting the vbox
+    dkms driver as recommended. Previously recommended && !installed were the
+    primary requirements for a driver notification. Now we will also consider
+    the possible-driver-list-length. If the list only has one entry we will
+    show a notification even if that one entry is not recommended.
+  * Add a kDebug to the module's ::init to see when the lazy init timer 
+    actually runs out.
+ 
+ -- Harald Sitter <apachelogger@kubuntu.org>  Wed, 02 Apr 2014 11:52:05 +0200
+
 kubuntu-notification-helper (14.04ubuntu9) trusty; urgency=medium
 
   * Port driverevent to new dbus API, needs some code copy for marshalling

@@ -99,13 +99,21 @@ void DriverEvent::onDevicesReady(QDBusPendingCallWatcher *call)
                 // be fully used by QList :'<
                 // Manually iter instead.
                 Driver driver = device.drivers.at(i);
-                if (driver.recommended) {
+                // If there is only one driver listed, we consider it an option.
+                // This works around an issue with virtualbox where the one and
+                // only driver is not marked as recommended. However, from
+                // a notification point of view it makes sense to notify about
+                // single-option drivers all the same as even if not considered
+                // recommended they probably should be looked at by the user.
+                if (driver.recommended || device.drivers.length() == 1) {
                     QApt::Package *package = m_aptBackend->package(driver.packageName);
                     if (package) {
                         if (!package->isInstalled()) {
                             m_showNotification = true;
                             break;
                         }
+                    } else {
+                        kDebug() << "package" << driver.packageName << "could not be found";
                     }
                 }
             }
