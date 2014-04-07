@@ -1,3 +1,10 @@
+kubuntu-notification-helper (14.04ubuntu11) trusty; urgency=medium
+
+  * Set dbusinterface timeout to highest possible value to prevent timeouts
+    when the dbus helper is tediously slow (LP: #1303209)
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Mon, 07 Apr 2014 14:55:41 +0200
+
 kubuntu-notification-helper (14.04ubuntu10) trusty; urgency=medium
 
   * Work around a bug in ubuntu-drivers-common not reporting the vbox
