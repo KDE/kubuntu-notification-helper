@@ -52,6 +52,7 @@ private slots:
 
 private:
     ApportEvent *m_apportEvent;
+    DriverEvent* m_driverEvent;
     HookEvent *m_hookEvent;
     InstallEvent *m_installEvent;
     L10nEvent *m_l10nEvent;
@@ -59,7 +60,6 @@ private:
 
     ConfigWatcher *m_configWatcher;
     InstallDBusWatcher *m_installWatcher;
-    DriverEvent* m_driverEvent;
 };
 
 #endif

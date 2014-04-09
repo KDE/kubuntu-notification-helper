@@ -1,3 +1,9 @@
+kubuntu-notification-helper (14.04ubuntu12) UNRELEASED; urgency=medium
+
+  * Order driverevent LP: #1282470
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Wed, 09 Apr 2014 11:34:16 +0200
+
 kubuntu-notification-helper (14.04ubuntu11) trusty; urgency=medium
 
   * Set dbusinterface timeout to highest possible value to prevent timeouts

@@ -57,12 +57,12 @@ K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<QVariant>&)
     : KDEDModule(parent)
     , m_apportEvent(nullptr)
+    , m_driverEvent(nullptr)
     , m_hookEvent(nullptr)
     , m_installEvent(nullptr)
     , m_rebootEvent(nullptr)
     , m_configWatcher(nullptr)
     , m_installWatcher(nullptr)
-    , m_driverEvent(nullptr)
 {
     KAboutData aboutData("notificationhelper", "notificationhelper",
                          ki18n("Kubuntu Notification Helper"),
@@ -112,6 +112,10 @@ void NotificationHelperModule::init()
         apportEvent(QString());
     }
 
+    if (!m_driverEvent->isHidden()) {
+        m_driverEvent->show();
+    }
+
     if (!m_hookEvent->isHidden()) {
         KDirWatch *hooksDirWatch = new KDirWatch(this);
         hooksDirWatch->addDir("/var/lib/update-notifier/user.d/");
@@ -139,10 +143,6 @@ void NotificationHelperModule::init()
         //       issue a notification when the user installs software that
         //       requires additional language support packages.
         m_l10nEvent->show();
-    }
-
-    if (!m_driverEvent->isHidden()) {
-        m_driverEvent->show();
     }
 
     if (!m_rebootEvent->isHidden()) {
