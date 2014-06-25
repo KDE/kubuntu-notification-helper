@@ -1,6 +1,16 @@
-kubuntu-notification-helper (14.04ubuntu12) UNRELEASED; urgency=medium
+kubuntu-notification-helper (14.10ubuntu2) utopic; urgency=medium
+
+  * Fix a logic error with init handling -> explicitly set the init bool to
+    true/false, previously it would always be true as a return was missing
+
+ -- Harald Sitter <apachelogger@kubuntu.org>  Wed, 25 Jun 2014 10:46:45 +0200
+
+kubuntu-notification-helper (14.10ubuntu1) utopic; urgency=medium
 
   * Order driverevent LP: #1282470
+  * Fix cmake based lazy timeout setting
+  * Move driverevent apt init to show() to make object construction cheaper
+    and take advantage of lazy init
 
  -- Harald Sitter <apachelogger@kubuntu.org>  Wed, 09 Apr 2014 11:34:16 +0200
 

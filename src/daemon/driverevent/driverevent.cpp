@@ -37,18 +37,19 @@ DriverEvent::DriverEvent(QObject *parent, QString name)
     , m_aptBackendInitialized(false)
 {
     qDBusRegisterMetaType<DeviceList>();
-
-    m_aptBackend = new QApt::Backend(this);
-    if (!m_aptBackend->init()) {
-        kWarning() << m_aptBackend->initErrorMessage();
-        m_aptBackendInitialized = false;
-    }
-    m_aptBackendInitialized = true;
 }
-
 
 void DriverEvent::show()
 {
+    if (!m_aptBackendInitialized) {
+        m_aptBackend = new QApt::Backend(this);
+        if (!m_aptBackend->init()) {
+            kWarning() << m_aptBackend->initErrorMessage();
+            m_aptBackendInitialized = false;
+        } else {
+            m_aptBackendInitialized = true;
+        }
+    }
     if (m_aptBackendInitialized) {
         if(m_aptBackend->xapianIndexNeedsUpdate()) {
             m_aptBackend->updateXapianIndex();
