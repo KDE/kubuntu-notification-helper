@@ -22,7 +22,7 @@
 #include "hookevent.h"
 
 // Qt includes
-#include <QtCore/QDir>
+#include <QDir>
 
 // Own includes
 #include "hook.h"
@@ -74,5 +74,3 @@ void HookEvent::run()
     m_hookGui->showDialog(m_hooks);
     Event::run();
 }
-
-#include "hookevent.moc"

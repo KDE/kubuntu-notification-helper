@@ -22,12 +22,12 @@
 #define INSTALLGUI_H
 
 // Qt includes
-#include <QtCore/QMap>
-#include <QtCore/QStringList>
-#include <QtGui/QListWidget>
+#include <QListWidget>
+#include <QMap>
+#include <QStringList>
 
 class QProcess;
-class KDialog;
+class QDialog;
 
 class InstallGui : public QObject
 {
@@ -44,7 +44,7 @@ private slots:
     void cleanUpDialog();
 
 private:
-    KDialog *m_dialog;
+    QDialog *m_dialog;
     QProcess *m_installProcess;
     QString m_applicationName;
     QStringList m_toInstallList;

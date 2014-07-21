@@ -41,5 +41,3 @@ void ConfigWatcher::reloadConfig()
 {
     emit reloadConfigCalled();
 }
-
-#include "configwatcher.moc"

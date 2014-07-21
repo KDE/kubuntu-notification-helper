@@ -1,12 +1,31 @@
 project(kubuntu-notification-helper)
 
-# Find the required Libaries
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
+cmake_minimum_required(VERSION 2.8.12)
 
-find_package(QApt)
+find_package(ECM 0.0.14 REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-find_package(Kubuntu QUIET CONFIG)
+include(FeatureSummary)
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+
+find_package(Qt5 5.0.0 CONFIG REQUIRED DBus)
+
+find_package(KF5 5.0.0 REQUIRED COMPONENTS
+    Config
+    CoreAddons
+    DBusAddons
+    KIO
+    I18n
+    Notifications
+    Service
+    WindowSystem
+    XmlGui)
+
+find_package(QApt REQUIRED)
+
+find_package(Kubuntu REQUIRED QUIET CONFIG)
 set_package_properties(Kubuntu
     PROPERTIES DESCRIPTION "Kubuntu Platform Integration"
 #    URL ""
@@ -14,9 +33,7 @@ set_package_properties(Kubuntu
     PURPOSE "Kubuntu specific l10n bits."
 )
 
-include_directories(${QT_INCLUDES} ${KDE4_INCLUDES} ${KUBUNTU_INCLUDE_DIR})
-add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS} -DVERSION_STRING=\\"${VERSION_STRING}\\")
-add_definitions(-std=c++11)
+add_definitions(-DVERSION_STRING=\"${VERSION_STRING}\")
 
 if(START_TIMEOUT)
     message(STATUS "timeout ${START_TIMEOUT}")
@@ -27,5 +44,6 @@ add_subdirectory(data)
 add_subdirectory(src)
 
 # Add translations
-include(MacroOptionalAddSubdirectory)
-macro_optional_add_subdirectory(po)
+# ecm_optional_add_subdirectory(po)
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

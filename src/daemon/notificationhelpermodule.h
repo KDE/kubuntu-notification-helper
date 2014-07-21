@@ -22,7 +22,6 @@
 #ifndef NOTIFICATIONHELPERMODULE_H
 #define NOTIFICATIONHELPERMODULE_H
 
-// KDE includes
 #include <KDEDModule>
 
 class ApportEvent;

@@ -21,11 +21,13 @@
 
 #include "event.h"
 
-#include <QtCore/QStringBuilder>
+#include <QIcon>
+#include <QMenu>
+#include <QStringBuilder>
 
 #include <KActionCollection>
+#include <KConfig>
 #include <KConfigGroup>
-#include <KMenu>
 #include <KNotification>
 #include <KStatusNotifierItem>
 
@@ -95,14 +97,14 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         KNotification::NotificationFlag flag;
 
         if (!m_useTrayIcon) {
-            // Tray icon not in use, so be persistant
-            flag = KNotification::Persistant;
+            // Tray icon not in use, so be persistent
+            flag = KNotification::Persistent;
         }
 
         m_active = true;
         KNotification *notify = new KNotification(m_name, 0, flag);
-        notify->setComponentData(KComponentData("notificationhelper"));
-        notify->setPixmap(KIcon(icon).pixmap(NOTIFICATION_ICON_SIZE));
+        notify->setComponentName("notificationhelper");
+        notify->setPixmap(QIcon::fromTheme(icon).pixmap(NOTIFICATION_ICON_SIZE));
         notify->setText(text);
 
         // Tray icon not in use to handle actions
@@ -125,12 +127,15 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         m_notifierItem->setCategory(KStatusNotifierItem::SystemServices);
         m_notifierItem->setStandardActionsEnabled(false);
 
-        KMenu *contextMenu = new KMenu(0);
-        contextMenu->addTitle(KIcon("applications-system"), i18n("System Notification Helper"));
+        QMenu *contextMenu = new QMenu(0);
+        // FIXME: addtitle does a whole pile of madness, I am not sure that should
+        //        be reused *at all* as the lack of frameworks continuity will
+        //        make for shitty UX
+//         contextMenu->addTitle(QIcon::fromTheme("applications-system"), i18n("System Notification Helper"));
 
         QAction *runAction = contextMenu->addAction(actions.at(0));
-        // FIXME: DBusmenu doesn't support pixmap icons yet. Change function to take KIcon
-        runAction->setIcon(KIcon(icon));
+        // FIXME: DBusmenu doesn't support pixmap icons yet. Change function to take QIcon::fromTheme
+        runAction->setIcon(QIcon::fromTheme(icon));
         connect(runAction, SIGNAL(triggered()), this, SLOT(run()));
         contextMenu->addAction(runAction);
 
@@ -141,7 +146,7 @@ void Event::show(const QString &icon, const QString &text, const QStringList &ac
         contextMenu->addSeparator();
 
         QAction *hideAction = contextMenu->addAction(i18n("Hide"));
-        hideAction->setIcon(KIcon("application-exit"));
+        hideAction->setIcon(QIcon::fromTheme("application-exit"));
         connect(hideAction, SIGNAL(triggered()), this, SLOT(ignore()));
         contextMenu->addAction(hideAction);
 
@@ -188,5 +193,3 @@ void Event::reloadConfig()
 {
     m_hidden = readHiddenConfig();
 }
-
-#include "event.moc"

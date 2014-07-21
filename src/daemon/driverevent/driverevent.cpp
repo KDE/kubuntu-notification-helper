@@ -23,11 +23,11 @@
 #include <drivermanager_interface.h>
 
 #include <QDBusConnection>
+#include <QDebug>
 
-#include <LibQApt/Backend>
+#include <QApt/Backend>
 
 #include <KToolInvocation>
-#include <KDebug>
 #include <KConfig>
 #include <KConfigGroup>
 
@@ -44,7 +44,7 @@ void DriverEvent::show()
     if (!m_aptBackendInitialized) {
         m_aptBackend = new QApt::Backend(this);
         if (!m_aptBackend->init()) {
-            kWarning() << m_aptBackend->initErrorMessage();
+            qWarning() << m_aptBackend->initErrorMessage();
             m_aptBackendInitialized = false;
         } else {
             m_aptBackendInitialized = true;
@@ -63,7 +63,7 @@ void DriverEvent::show()
 void DriverEvent::updateFinished()
 {
     if (!m_aptBackend->openXapianIndex()) {
-        kDebug() << "Xapian update could not be opened, probably broken.";
+        qDebug() << "Xapian update could not be opened, probably broken.";
         return;
     }
 
@@ -91,14 +91,14 @@ void DriverEvent::onDevicesReady(QDBusPendingCallWatcher *call)
     QDBusPendingReply<DeviceList> reply = *call;
 
     if (reply.isError()) {
-        kDebug() << "got dbus error; abort";
+        qDebug() << "got dbus error; abort";
         return;
     }
 
     DeviceList devices = reply.value();
     call->deleteLater(); // deep copy, delete caller
 
-    kDebug() << "data " << devices;
+    qDebug() << "data " << devices;
 
     KConfig driver_manager("kcmdrivermanagerrc");
     KConfigGroup pciGroup( &driver_manager, "PCI" );
@@ -125,12 +125,12 @@ void DriverEvent::onDevicesReady(QDBusPendingCallWatcher *call)
                             break;
                         }
                     } else {
-                        kDebug() << "package" << driver.packageName << "could not be found";
+                        qDebug() << "package" << driver.packageName << "could not be found";
                     }
                 }
             }
         } else {
-            kDebug() << device.id << "has already been processed by the KCM";
+            qDebug() << device.id << "has already been processed by the KCM";
         }
     }
 

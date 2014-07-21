@@ -23,15 +23,14 @@
 #include "hookgui.h"
 
 // Qt includes
-#include <QtGui/QLabel>
-#include <QtGui/QPushButton>
-#include <QtGui/QVBoxLayout>
-#include <QtCore/QSignalMapper>
+#include <QIcon>
+#include <QLabel>
+#include <QPushButton>
+#include <QSignalMapper>
+#include <QVBoxLayout>
 
 // KDE includes
-#include <KGlobal>
-#include <KIcon>
-#include <KLocale>
+#include <KLocalizedString>
 #include <KPageDialog>
 #include <KWindowSystem>
 
@@ -51,11 +50,9 @@ void HookGui::showDialog(QList<Hook*> hooks)
 void HookGui::createDialog()
 {
     m_dialog = new KPageDialog;
-    m_dialog->setCaption(i18n("Update Information"));
-    m_dialog->setWindowIcon(KIcon("help-hint"));
-    m_dialog->showButtonSeparator(true);
-    m_dialog->setButtons(KDialog::Close);
-    connect(m_dialog, SIGNAL(okClicked()), SLOT(closeDialog()));
+    m_dialog->setWindowTitle(i18n("Update Information"));
+    m_dialog->setWindowIcon(QIcon::fromTheme("help-hint"));
+    m_dialog->setStandardButtons(QDialogButtonBox::Close);
 }
 
 void HookGui::updateDialog(QList<Hook*> hooks)
@@ -70,7 +67,6 @@ void HookGui::updateDialog(QList<Hook*> hooks)
     }
 
     // Take the parsed upgrade hook(s) and put them in pages
-    const KLocale *locale = KGlobal::locale();
     QSignalMapper *signalMapper = new QSignalMapper(m_dialog);
     foreach(const Hook *hook, hooks) {
         QWidget *content = new QWidget();
@@ -78,23 +74,24 @@ void HookGui::updateDialog(QList<Hook*> hooks)
         QVBoxLayout *layout = new QVBoxLayout(content);
         layout->setMargin(0);
 
-        QString name = hook->getField("Name", locale);
+        QString name = hook->getField("Name");
         KPageWidgetItem *page = new KPageWidgetItem(content, name);
-        page->setIcon(KIcon("help-hint"));
+        page->setIcon(QIcon::fromTheme("help-hint"));
         page->setProperty("hook", qVariantFromValue((QObject *)hook));
 
-        QString desc = hook->getField("Description", locale);
+        QString desc = hook->getField("Description");
         QLabel *descLabel = new QLabel(content);
         descLabel->setWordWrap(true);
         descLabel->setText(desc);
         layout->addWidget(descLabel);
 
         if (!hook->getField("Command").isEmpty()) {
-            layout->addSpacing(2 * KDialog::spacingHint());
-            QString label = hook->getField("ButtonText", locale);
+#warning fixme do we need this?
+//             layout->addSpacing(2 * KDialog::spacingHint());
+            QString label = hook->getField("ButtonText");
             if (label.isEmpty())
                 label = i18n("Run this action now");
-            QPushButton *runButton = new QPushButton(KIcon("system-run"), label, content);
+            QPushButton *runButton = new QPushButton(QIcon::fromTheme("system-run"), label, content);
             runButton->setFixedHeight(runButton->sizeHint().height() * 2);
             runButton->setObjectName("runButton");
 
@@ -142,5 +139,3 @@ void HookGui::closeDialog()
     m_dialog = 0;
     m_pages.clear();
 }
-
-#include "hookgui.moc"

@@ -21,13 +21,13 @@
 #include "installgui.h"
 
 // Qt includes
-#include <QtCore/QProcess>
-#include <QtGui/QLabel>
-#include <QtGui/QVBoxLayout>
+#include <QDialog>
+#include <QLabel>
+#include <QProcess>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 // KDE includes
-#include <KDialog>
-#include <KPushButton>
 #include <KLocalizedString>
 #include <KNotification>
 
@@ -37,13 +37,14 @@ InstallGui::InstallGui(QObject* parent, const QString &application, const QMap<Q
         , m_installProcess(0)
         , m_applicationName(application)
 {
-    m_dialog = new KDialog();
-    m_dialog->setWindowIcon(KIcon("download"));
-    m_dialog->setCaption(i18n("Install Packages"));
-    m_dialog->setButtons(KDialog::Ok | KDialog::Cancel);
-    m_dialog->setButtonText(KDialog::Ok, i18n("Install Selected"));
-    connect(m_dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
-    connect(m_dialog, SIGNAL(finished()), SLOT(cleanUpDialog()));
+    m_dialog = new QDialog();
+    m_dialog->setWindowIcon(QIcon::fromTheme("download"));
+    m_dialog->setWindowTitle(i18n("Install Packages"));
+#warning fixme
+//     m_dialog->setButtons(QDialog::Ok | QDialog::Cancel);
+//     m_dialog->setButtonText(QDialog::Ok, i18n("Install Selected"));
+//     connect(m_dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
+//     connect(m_dialog, SIGNAL(finished()), SLOT(cleanUpDialog()));
 
     QWidget *widget = new QWidget(m_dialog);
     QVBoxLayout *layout = new QVBoxLayout(widget);
@@ -71,7 +72,6 @@ InstallGui::InstallGui(QObject* parent, const QString &application, const QMap<Q
         ++nameIter;
     }
 
-    m_dialog->setMainWidget(widget);
     m_dialog->show();
 }
 
@@ -88,7 +88,8 @@ void InstallGui::packageToggled(QListWidgetItem *item)
     } else {
         m_toInstallList.removeOne(packageName);
     }
-    m_dialog->button(KDialog::Ok)->setDisabled(m_toInstallList.isEmpty());
+#warning fixme
+//     m_dialog->button(QDialog::Ok)->setDisabled(m_toInstallList.isEmpty());
 }
 
 void InstallGui::runPackageInstall()
@@ -107,9 +108,9 @@ void InstallGui::installFinished(int result)
     }
 
     KNotification *notify = new KNotification("Install", 0);
-    notify->setComponentData(KComponentData("notificationhelper"));
+    notify->setComponentName("notificationhelper");
 
-    notify->setPixmap(KIcon("download").pixmap(22,22));
+    notify->setPixmap(QIcon::fromTheme("download").pixmap(22,22));
     notify->setText(i18n("Installation complete. You will need to restart %1"
                          " to use the new functionality", m_applicationName));
     notify->sendEvent();

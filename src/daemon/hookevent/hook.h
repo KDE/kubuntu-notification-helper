@@ -23,10 +23,9 @@
 #ifndef HOOKPARSER_H
 #define HOOKPARSER_H
 
-#include <QtCore/QObject>
-#include <QtCore/QString>
-#include <QtCore/QMap>
-#include <KLocale>
+#include <QObject>
+#include <QString>
+#include <QMap>
 
 class Hook : public QObject
 {
@@ -39,8 +38,7 @@ public:
 public Q_SLOTS:
     bool isValid() const;
     bool isNotificationRequired() const;
-    QString getField(const QString &name, const KLocale *locale) const;
-    QString getField(const QString &name) const ;
+    QString getField(const QString &name) const;
     void runCommand();
     void setFinished();
 

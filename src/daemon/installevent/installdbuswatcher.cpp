@@ -42,5 +42,3 @@ bool InstallDBusWatcher::installRestricted(const QString &application, const QSt
     emit installRestrictedCalled(application, package);
     return true;
 }
-
-#include "installdbuswatcher.moc"

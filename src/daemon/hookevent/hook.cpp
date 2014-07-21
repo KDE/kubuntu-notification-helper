@@ -1,6 +1,7 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
  *   Copyright © 2009 Amichai Rothman <amichai2@amichais.net>              *
+ *   Copyright © 2014 Harald Sitter <apachelogger@kubuntu.org>             *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -22,18 +23,18 @@
 #include "hook.h"
 
 // Qt includes
-#include <QtCore/QDir>
-#include <QtCore/QFileInfo>
-#include <QtCore/QTextStream>
-#include <QtCore/QDateTime>
-#include <QtCore/QStringBuilder>
+#include <QCryptographicHash>
+#include <QDir>
+#include <QFileInfo>
+#include <QTextStream>
+#include <QDateTime>
+#include <QStringBuilder>
 
 // KDE includes
 #include <KProcess>
 #include <KToolInvocation>
 #include <KConfig>
 #include <KConfigGroup>
-#include <KMD5>
 
 float getUptime()
 {
@@ -60,9 +61,9 @@ QString trimLeft(QString str, int start = 0)
 }
 
 Hook::Hook(QObject *parent, const QString &hookPath)
-        : QObject(parent)
-        , m_hookPath(hookPath)
-        , m_finished(false)
+    : QObject(parent)
+    , m_hookPath(hookPath)
+    , m_finished(false)
 {
     m_fields = parse(hookPath);
     loadConfig();
@@ -73,30 +74,17 @@ Hook::~Hook()
 
 QString Hook::getField(const QString &name) const
 {
-    if (m_fields.contains(name)) {
-        return m_fields[name];
-    }
-    return QString();
-}
-
-QString Hook::getField(const QString &name, const KLocale *locale) const
-{
-    QString lang = '-' + locale->language(); // e.g. "-en_US" or "-en" 
-    QString charset = '.' + locale->encoding(); // e.g. ".UTF-8"
-    // try locale combinations from most specific to most generic
-    QString value = getField(name % lang % charset);
+    // Try to lookup the field with -LOCALE appended, then -LANGUAGE then without
+    // suffix.
+    QString locale = setlocale(LC_ALL, NULL);
+    locale = locale.section(QChar('.'), 0, -2); // Ditch encoding, not used.
+    QString value = getField(name % QChar('-') % locale);
     if (value.isEmpty()) {
-        value = getField(name + lang);
-        if (value.isEmpty()) {
-            lang.truncate(3); // e.g. "-en"
-            value = getField(name + lang + charset);
-            if (value.isEmpty()) {
-                value = getField(name + lang);
-                if (value.isEmpty()) {
-                    value = getField(name);
-                }
-            }
-        }
+        locale = locale.section(QChar('_'), 0, -2); // Ditch country.
+        value = getField(name % QChar('-') % locale);
+    }
+    if (value.isEmpty()) {
+        value = getField(name);
     }
     return value;
 }
@@ -168,12 +156,11 @@ QString Hook::calculateSignature() const
     QString timestamp = fileinfo.lastModified().toString(Qt::ISODate);
     QString filename = fileinfo.fileName();
 
-    KMD5 md5;
-    md5.update(filename.toUtf8());
-    md5.update(timestamp.toUtf8());
-    md5.update(file);
-    QString digest = md5.hexDigest().data();
-    return digest;
+    QCryptographicHash hash(QCryptographicHash::Md5);
+    hash.addData(filename.toUtf8());
+    hash.addData(timestamp.toUtf8());
+    hash.addData(&file);
+    return hash.result();
 }
 
 QMap<QString, QString> Hook::parse(const QString &hookPath)
@@ -254,5 +241,3 @@ bool Hook::isNotificationRequired() const
 
     return true;
 }
-
-#include "hook.moc"

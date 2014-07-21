@@ -104,5 +104,3 @@ void InstallEvent::run()
     m_installGui = new InstallGui(this, m_applicationName, m_packageList);
     Event::run();
 }
-
-#include "installevent.moc"

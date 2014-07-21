@@ -22,14 +22,13 @@
 #include "notificationhelpermodule.h"
 
 // Qt includes
-#include <QtCore/QDir>
-#include <QtCore/QFile>
-#include <QtCore/QFileInfo>
-#include <QtCore/QTimer>
+#include <QDebug>
+#include <QDir>
+#include <QFile>
+#include <QFileInfo>
+#include <QTimer>
 
 // KDE includes
-#include <KAboutData>
-#include <KDebug>
 #include <KDirWatch>
 #include <KLocalizedString>
 #include <KPluginFactory>
@@ -48,7 +47,6 @@
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();
                 )
-K_EXPORT_PLUGIN(NotificationHelperModuleFactory("notificationhelper"))
 
 #ifndef START_TIMEOUT
 #define START_TIMEOUT 1000
@@ -64,14 +62,6 @@ NotificationHelperModule::NotificationHelperModule(QObject* parent, const QList<
     , m_configWatcher(nullptr)
     , m_installWatcher(nullptr)
 {
-    KAboutData aboutData("notificationhelper", "notificationhelper",
-                         ki18n("Kubuntu Notification Helper"),
-                         VERSION_STRING, ki18n("A Notification Helper for Kubuntu"),
-                         KAboutData::License_GPL,
-                         ki18n("(C) 2009 Jonathan Thomas, (C) 2009-2013 Harald Sitter"),
-                         KLocalizedString(), "http://kubuntu.org",
-                         "https://bugs.launchpad.net/ubuntu");
-
     QTimer::singleShot(START_TIMEOUT, this, SLOT(init()));
 }
 
@@ -81,7 +71,7 @@ NotificationHelperModule::~NotificationHelperModule()
 
 void NotificationHelperModule::init()
 {
-    kDebug();
+    qDebug();
     m_configWatcher = new ConfigWatcher(this);
 
     m_apportEvent = new ApportEvent(this, "Apport");
@@ -94,12 +84,12 @@ void NotificationHelperModule::init()
     const bool apportHidden = m_apportEvent->isHidden();
     const bool apportKde = QFile::exists("/usr/share/apport/apport-kde");
     const bool apportGtk = QFile::exists("/usr/share/apport/apport-gtk");
-    kDebug() << "ApportEvent ::"
+    qDebug() << "ApportEvent ::"
              << "hidden=" << apportHidden
              << "apport-kde=" << apportKde
              << "apport-gtk=" << apportGtk;
     if (!apportHidden && (apportKde || apportGtk)) {
-        kDebug() << "Using ApportEvent";
+        qDebug() << "Using ApportEvent";
 
         KDirWatch *apportDirWatch =  new KDirWatch(this);
         apportDirWatch->addDir("/var/crash/");
@@ -159,7 +149,7 @@ void NotificationHelperModule::init()
 
 void NotificationHelperModule::apportDirEvent()
 {
-    kDebug();
+    qDebug();
 
     QDir dir(QLatin1String("/var/crash"));
     dir.setNameFilters(QStringList() << QLatin1String("*.crash"));
@@ -177,7 +167,7 @@ void NotificationHelperModule::apportDirEvent()
         }
     }
 
-    kDebug() << "foundCrashFile" << foundCrashFile
+    qDebug() << "foundCrashFile" << foundCrashFile
              << "foundAutoUpload" << foundAutoUpload;
 
     if (foundAutoUpload) {
@@ -191,7 +181,7 @@ void NotificationHelperModule::apportDirEvent()
 
 void NotificationHelperModule::apportEvent(const QString &path)
 {
-    kDebug() << path;
+    qDebug() << path;
     if (path.isEmpty()) { // Check whole directory for possible crash files.
         apportDirEvent();
         return;

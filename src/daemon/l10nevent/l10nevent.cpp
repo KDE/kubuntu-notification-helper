@@ -20,8 +20,9 @@
 
 #include "l10nevent.h"
 
+#include <QDebug>
+
 #include <KConfigGroup>
-#include <KDebug>
 #include <KToolInvocation>
 #include <KSharedConfig>
 
@@ -59,7 +60,7 @@ void L10nEvent::showOnLanguageCollectionUpdated()
     const QString languageConfigString = userSettings.readEntry("Language", QString());
     const QStringList kdeLanguageList = languageConfigString.split(QLatin1Char(':'),
                                                                    QString::SkipEmptyParts);
-    kDebug() << "KDE Languages:" << kdeLanguageList;
+    qDebug() << "KDE Languages:" << kdeLanguageList;
 
     m_missingPackages.clear();
 
@@ -71,7 +72,7 @@ void L10nEvent::showOnLanguageCollectionUpdated()
     foreach (const QString &kdeLanguage, kdeLanguageList) {
         foreach (Kubuntu::Language *language, languages) {
             if (kdeLanguage == language->kdeLanguageCode()) {
-                kDebug() << "matched" << kdeLanguage;
+                qDebug() << "matched" << kdeLanguage;
                 checkForMissingPackages(language);
             }
         }
@@ -84,12 +85,12 @@ void L10nEvent::showOnLanguageCollectionUpdated()
     //   - if the user mangles his locale manually or through other tools
     //     we still want him to complete his language support.
     const QStringList matchables = systemLocaleMatchables();
-    kDebug() << "System Language Matchables:" << matchables;
+    qDebug() << "System Language Matchables:" << matchables;
     bool matched = false;
     foreach (const QString &matchable, matchables) {
         foreach (Kubuntu::Language *language, languages) {
             if (matchable == language->kdeLanguageCode()) {
-                kDebug() << "matched" << matchable;
+                qDebug() << "matched" << matchable;
                 checkForMissingPackages(language);
                 // If we had a match we abort as we only want the most generic
                 // match.
@@ -121,7 +122,7 @@ void L10nEvent::showOnLanguageCollectionUpdated()
 
 void L10nEvent::run()
 {
-    kDebug() << m_missingPackages;
+    qDebug() << m_missingPackages;
     if (!m_missingPackages.isEmpty()) {
         QStringList args;
         args.append("--install");
@@ -135,7 +136,7 @@ bool L10nEvent::checkForMissingPackages(Kubuntu::Language *language)
 {
     // Not cached, so cache here.
     const bool isSupportComplete = language->isSupportComplete();
-    kDebug() << "  completeness:" << isSupportComplete;
+    qDebug() << "  completeness:" << isSupportComplete;
     if (!isSupportComplete) {
         m_missingPackages.append(language->missingPackages());
         return true;
@@ -159,7 +160,7 @@ QStringList L10nEvent::systemLocaleMatchables() const
     if (localeRegex.indexIn(systemLocale) == -1) {
         return QStringList();
     }
-    kDebug() << localeRegex.capturedTexts();
+    qDebug() << localeRegex.capturedTexts();
 
     const QString language = localeRegex.capturedTexts().at(1);
     const QString country = localeRegex.capturedTexts().at(3);

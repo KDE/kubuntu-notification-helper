@@ -27,9 +27,6 @@
 // #include <KDebug>
 #include <KLocalizedString>
 
-// for implementing classes
-#include <KIcon>
-
 class KStatusNotifierItem;
 
 #define NOTIFICATION_ICON_SIZE 32,32

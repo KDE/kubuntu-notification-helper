@@ -21,9 +21,10 @@
 
 #include "apportevent.h"
 
+#include <QDebug>
+#include <QStandardPaths>
+
 #include <KProcess>
-#include <KDebug>
-#include <KStandardDirs>
 #include <KToolInvocation>
 
 ApportEvent::ApportEvent(QObject* parent, const QString &name)
@@ -52,7 +53,7 @@ bool ApportEvent::reportsAvailable()
 void ApportEvent::show()
 {
     if (!reportsAvailable()) {
-        kDebug() << "no reports available, aborting";
+        qDebug() << "no reports available, aborting";
         return;
     }
 
@@ -70,12 +71,13 @@ void ApportEvent::show()
 
 void ApportEvent::batchUploadAllowed()
 {
-    const QString script = KStandardDirs::locate("data", "kubuntu-notification-helper/whoopsie-upload-all");
+    const QString script = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                                  "kubuntu-notification-helper/whoopsie-upload-all");
     if (script.isEmpty()) {
-        kWarning() << "ApportEvent: whoopsie-upload-all not found";
+        qWarning() << "ApportEvent: whoopsie-upload-all not found";
         return;
     }
-    kDebug() << "running" << script;
+    qDebug() << "running" << script;
     KToolInvocation::kdeinitExec(script);
 }
 
@@ -84,5 +86,3 @@ void ApportEvent::run()
     KToolInvocation::kdeinitExec("/usr/share/apport/apport-kde");
     Event::run();
 }
-
-#include "apportevent.moc"

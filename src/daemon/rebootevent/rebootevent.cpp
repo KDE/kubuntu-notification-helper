@@ -24,7 +24,8 @@
 #include <QtCore/QFile>
 
 #include <KProcess>
-#include <kdeversion.h>
+#warning fixme reboot event has no kde version handling anymore
+// #include <kdeversion.h>
 
 RebootEvent::RebootEvent(QObject* parent, const QString &name)
         : Event(parent, name)
@@ -45,15 +46,15 @@ void RebootEvent::show()
     //    new kdelibs which hopefully enough was due to a logout which then is
     //    just as good as reboot from a kdelibs perspective.
     bool kdelibsChanged = false;
-    QFile file("/var/run/reboot-required-kdelibs");
-    if (file.open(QFile::ReadOnly | QFile::Text)) {
-        if (!file.atEnd()) {
-            QString installedVersion = file.readLine().trimmed();
-            if (installedVersion != QLatin1String(KDE::versionString()))
-                kdelibsChanged = true;
-        }
-        file.close();
-    }
+//     QFile file("/var/run/reboot-required-kdelibs");
+//     if (file.open(QFile::ReadOnly | QFile::Text)) {
+//         if (!file.atEnd()) {
+//             QString installedVersion = file.readLine().trimmed();
+//             if (installedVersion != QLatin1String(KDE::versionString()))
+//                 kdelibsChanged = true;
+//         }
+//         file.close();
+//     }
 
     if (!QFile::exists("/var/run/reboot-required") && !kdelibsChanged)
         return;
@@ -77,5 +78,3 @@ void RebootEvent::run()
                             << "org.kde.KSMServerInterface.logout" << "1" << "1" << "3");
     Event::run();
 }
-
-#include "rebootevent.moc"

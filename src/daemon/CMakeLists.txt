@@ -14,22 +14,34 @@ set(notificationhelper_SRCS
     driverevent/Device.cpp
     driverevent/driverevent.cpp
 )
+message(WARNING "hookevent is a pile of madness including locale....")
 
-QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
+QT5_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
                      configwatcher.h ConfigWatcher)
-QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restrictedInstall.xml
+QT5_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restrictedInstall.xml
                      installevent/installdbuswatcher.h InstallDBusWatcher)
-QT4_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
+QT5_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
                      configwatcher.h ConfigWatcher)
 
 set(drivermanagerobject_xml driverevent/org.kubuntu.DriverManager.xml)
-set_source_files_properties(${drivermanagerobject_xml} PROPERTIES INCLUDE driverevent/drivermanagerdbustypes.h)
-QT4_ADD_DBUS_INTERFACE(notificationhelper_SRCS ${drivermanagerobject_xml}
+set_source_files_properties(${drivermanagerobject_xml}
+    PROPERTIES INCLUDE driverevent/drivermanagerdbustypes.h)
+QT5_ADD_DBUS_INTERFACE(notificationhelper_SRCS ${drivermanagerobject_xml}
                        drivermanager_interface)
 
-kde4_add_plugin(kded_notificationhelper ${notificationhelper_SRCS})
+add_library(kded_notificationhelper MODULE ${notificationhelper_SRCS})
 
-target_link_libraries(kded_notificationhelper ${KDE4_KIO_LIBS} ${KUBUNTU_LIBRARY} ${QAPT_LIBRARY})
+target_link_libraries(kded_notificationhelper
+    KF5::ConfigCore
+    KF5::CoreAddons
+    KF5::DBusAddons
+    KF5::I18n
+    KF5::Notifications
+    KF5::Service
+    KF5::WindowSystem
+    KF5::XmlGui
+    Kubuntu::Main
+    QApt::Main)
 
 install(TARGETS kded_notificationhelper DESTINATION ${PLUGIN_INSTALL_DIR})
 
