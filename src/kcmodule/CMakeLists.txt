@@ -2,9 +2,12 @@ set(notificationhelperconfig_SRCS
     notificationhelperconfigmodule.cpp
 )
 
-kde4_add_plugin(kcm_notificationhelper ${notificationhelperconfig_SRCS})
+add_library(kcm_notificationhelper MODULE ${notificationhelperconfig_SRCS})
 
-target_link_libraries(kcm_notificationhelper ${KDE4_KDEUI_LIBRARY})
+target_link_libraries(kcm_notificationhelper
+    Qt5::DBus
+    KF5::ConfigWidgets
+    KF5::I18n)
 
 install(TARGETS kcm_notificationhelper DESTINATION ${PLUGIN_INSTALL_DIR})
 

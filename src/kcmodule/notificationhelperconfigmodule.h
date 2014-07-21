@@ -27,8 +27,7 @@
 class QCheckBox;
 class QRadioButton;
 
-class NotificationHelperConfigModule
-            : public KCModule
+class NotificationHelperConfigModule : public KCModule
 {
     Q_OBJECT
 public:

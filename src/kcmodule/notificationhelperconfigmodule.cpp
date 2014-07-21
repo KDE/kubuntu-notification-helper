@@ -21,26 +21,29 @@
 #include "notificationhelperconfigmodule.h"
 
 // Qt includes
-#include <QtDBus/QDBusConnection>
-#include <QtDBus/QDBusMessage>
-#include <QtGui/QButtonGroup>
-#include <QtGui/QCheckBox>
-#include <QtGui/QGroupBox>
-#include <QtGui/QLabel>
-#include <QtGui/QRadioButton>
-#include <QtGui/QVBoxLayout>
+#include <QButtonGroup>
+#include <QDBusConnection>
+#include <QDBusMessage>
+#include <QCheckBox>
+#include <QGroupBox>
+#include <QLabel>
+#include <QRadioButton>
+#include <QVBoxLayout>
 
 // KDE includes
 #include <KAboutData>
-#include <KDialog>
-#include <KGenericFactory>
+#include <KConfig>
+#include <KConfigGroup>
+#include <KLocalizedString>
+#include <KPluginFactory>
+
+#warning oh god the class name
 
 K_PLUGIN_FACTORY(NotificationHelperConfigFactory,
                  registerPlugin<NotificationHelperConfigModule>();)
-K_EXPORT_PLUGIN(NotificationHelperConfigFactory("notificationhelperconfigmodule"))
 
 NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, const QVariantList&)
-    : KCModule(NotificationHelperConfigFactory::componentData(), parent)
+    : KCModule(parent)
     , m_apportCheckBox(nullptr)
     , m_driverCheckBox(nullptr)
     , m_hookCheckBox(nullptr)
@@ -48,16 +51,18 @@ NotificationHelperConfigModule::NotificationHelperConfigModule(QWidget* parent, 
     , m_l10nCheckBox(nullptr)
     , m_rebootCheckBox(nullptr)
 {
-    KAboutData *about =
-    new KAboutData(I18N_NOOP("kcmnotificationhelper"), 0,
-            ki18n("Kubuntu Notification Helper Configuration"),
-            VERSION_STRING, KLocalizedString(), KAboutData::License_GPL,
-            ki18n("(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"), KLocalizedString(),
-            "http://kubuntu.org", "https://bugs.launchpad.net/ubuntu");
+    KAboutData *aboutData = new KAboutData("kcmnotificationhelper",
+                                        i18n("Kubuntu Notification Helper Configuration"),
+                                        VERSION_STRING,
+                                        QStringLiteral(""),
+                                        KAboutLicense::LicenseKey::GPL,
+                                        i18n("(C) 2009-2010 Jonathan Thomas, (C) 2009-2014 Harald Sitter"));
 
-    about->addAuthor(ki18n("Jonathan Thomas"), KLocalizedString(), "echidnaman@kubuntu.org");
-    about->addAuthor(ki18n("Harald Sitter"), KLocalizedString(), "apachelogger@ubuntu.com");
-    setAboutData(about);
+    aboutData->addAuthor(i18n("Jonathan Thomas"), QString(), "echidnaman@kubuntu.org");
+    aboutData->addAuthor(i18n("Harald Sitter"), QString(), "apachelogger@ubuntu.com");
+
+    setAboutData(aboutData);
+
     setButtons(Apply);
     setQuickHelp(i18n("Configure the behavior of Kubuntu Notification Helper"));
 

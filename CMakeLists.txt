@@ -14,6 +14,7 @@ find_package(Qt5 5.0.0 CONFIG REQUIRED DBus)
 
 find_package(KF5 5.0.0 REQUIRED COMPONENTS
     Config
+    ConfigWidgets
     CoreAddons
     DBusAddons
     KIO
