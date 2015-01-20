@@ -1,10 +1,10 @@
 Upstream-Name: kubuntu-notification-helper
-Upstream-Maintainer: Harald Sitter <apachelogger@ubuntu.com>
-Upstream-Source: https://launchpad.net/kubuntu-notification-helper
+Upstream-Maintainer: Harald Sitter <sitter@kde.org>
+Upstream-Source: http://quickgit.kde.org/?p=scratch%2Fsitter%2Fkubuntu-notification-helper.git
 
 Files: *
 Copyright: 2009-2010, Jonathan Thomas <echidaman@kubuntu.org>
-           2009, Harald Sitter <apachelogger@ubuntu.com>
+           2009-2014, Harald Sitter <sitter@kde.org>
            2009, Amichai Rothman <amichai2@amichais.net>
 License: GPL-2 or GPL-3
 
