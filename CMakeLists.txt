@@ -24,9 +24,9 @@ find_package(KF5 5.0.0 REQUIRED COMPONENTS
     WindowSystem
     XmlGui)
 
-find_package(QApt REQUIRED)
+find_package(QApt 3.0.0 REQUIRED)
 
-find_package(Kubuntu REQUIRED QUIET CONFIG)
+find_package(Kubuntu 1 REQUIRED QUIET CONFIG)
 set_package_properties(Kubuntu
     PROPERTIES DESCRIPTION "Kubuntu Platform Integration"
 #    URL ""
