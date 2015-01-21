@@ -51,7 +51,6 @@ Section: debug
 Architecture: any
 Priority: extra
 Depends: kubuntu-notification-helper (= ${binary:Version}), ${misc:Depends}
-Recommends: kdelibs5-dbg
 Description: Kubuntu Notification Helper debugging symbols
  This package contains debugging symbols for Kubuntu Notification Helper.
  When Kubuntu Notification Helper crashes, in most cases this package is
