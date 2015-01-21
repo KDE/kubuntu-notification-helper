@@ -17,7 +17,7 @@ Build-Depends: cmake,
                libkf5windowsystem-dev,
                libkf5xmlgui-dev,
                libkubuntu-dev (>= 15.04),
-               libqapt-dev (>= 0.0.0),
+               libqapt-dev (>= 3.0.0),
                pkg-kde-tools (>= 0.15.3ubuntu7)
 Standards-Version: 3.9.5
 X-Ubuntu-Use-Langpack: yes
