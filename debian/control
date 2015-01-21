@@ -3,16 +3,34 @@ Section: kde
 Priority: optional
 Maintainer: Kubuntu Developers <kubuntu-devel@lists.ubuntu.com>
 XSBC-Original-Maintainer: Jonathan Thomas <echidnaman@kubuntu.org>
-Build-Depends: debhelper (>= 9), pkg-kde-tools (>= 0.15.3ubuntu7), cmake,
- kdelibs5-dev, libkubuntu-dev (>= 14.04ubuntu3), libqapt-dev
+Build-Depends: cmake,
+               debhelper (>= 9),
+               extra-cmake-modules,
+               kio-dev,
+               libkf5config-dev,
+               libkf5configwidgets-dev,
+               libkf5coreaddons-dev,
+               libkf5dbusaddons-dev,
+               libkf5i18n-dev,
+               libkf5notifications-dev,
+               libkf5service-dev,
+               libkf5windowsystem-dev,
+               libkf5xmlgui-dev,
+               libkubuntu-dev (>= 15.04),
+               libqapt-dev (>= 0.0.0),
+               pkg-kde-tools (>= 0.15.3ubuntu7)
 Standards-Version: 3.9.5
 X-Ubuntu-Use-Langpack: yes
 Homepage: https://www.kubuntu.org
 
 Package: kubuntu-notification-helper
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, konsole | x-terminal-emulator,
-  qapt-batch, kubuntu-driver-manager, python3-dbus
+Depends: konsole | x-terminal-emulator,
+         kubuntu-driver-manager,
+         python3-dbus,
+         qapt-batch,
+         ${misc:Depends},
+         ${shlibs:Depends}
 Recommends: apport-kde | apport-gtk
 Description: Kubuntu system notification helper
  Kubuntu Notification Helper is a daemon that presents various notifications
