@@ -1,3 +1,9 @@
+kubuntu-notification-helper (15.04ubuntu1) vivid; urgency=medium
+
+  * KDE Frameworks 5 port
+
+ -- Harald Sitter <sitter@kde.org>  Wed, 21 Jan 2015 09:36:00 +0100
+
 kubuntu-notification-helper (14.10ubuntu2) utopic; urgency=medium
 
   * Fix a logic error with init handling -> explicitly set the init bool to
