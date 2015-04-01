@@ -149,7 +149,7 @@ void DriverEvent::onDevicesReady(QDBusPendingCallWatcher *call)
 
 void DriverEvent::run()
 {
-    KToolInvocation::kdeinitExec("kcmshell4", QStringList() << "kcm_driver_manager");
+    KToolInvocation::kdeinitExec("kcmshell5", QStringList() << "kcm_driver_manager");
     Event::run();
 }
 
