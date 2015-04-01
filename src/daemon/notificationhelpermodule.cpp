@@ -127,7 +127,7 @@ void NotificationHelperModule::init()
                 m_installEvent, SLOT(reloadConfig()));
 
         //but we can't/don't patch firefox so call it on start regardless
-        installEvent("firefox", "flashplugin-installer");
+        installEvent("Firefox", "flashplugin-installer");
     }
 
     if (!m_l10nEvent->isHidden()) {
