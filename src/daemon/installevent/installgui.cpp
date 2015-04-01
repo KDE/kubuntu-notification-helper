@@ -38,19 +38,12 @@ InstallGui::InstallGui(QObject* parent, const QString &application, const QMap<Q
         , m_applicationName(application)
 {
     m_dialog = new QDialog();
-    m_dialog->setWindowIcon(QIcon::fromTheme("download"));
+    m_dialog->setWindowIcon(QIcon::fromTheme("muondiscover"));
     m_dialog->setWindowTitle(i18n("Install Packages"));
-#warning fixme
-//     m_dialog->setButtons(QDialog::Ok | QDialog::Cancel);
-//     m_dialog->setButtonText(QDialog::Ok, i18n("Install Selected"));
-//     connect(m_dialog, SIGNAL(okClicked()), SLOT(runPackageInstall()));
-//     connect(m_dialog, SIGNAL(finished()), SLOT(cleanUpDialog()));
+    QVBoxLayout *layout = new QVBoxLayout(m_dialog);
+    m_dialog->setLayout(layout);
 
-    QWidget *widget = new QWidget(m_dialog);
-    QVBoxLayout *layout = new QVBoxLayout(widget);
-    widget->setLayout(layout);
-
-    QLabel *label = new QLabel(widget);
+    QLabel *label = new QLabel(m_dialog);
     label->setWordWrap(true);
     label->setText(i18n("Select packages to be installed for extra functionality."
                         " These packages are not installed by default due to either patent"
@@ -58,10 +51,15 @@ InstallGui::InstallGui(QObject* parent, const QString &application, const QMap<Q
                         " media."));
     layout->addWidget(label);
 
-    QListWidget *listWidget = new QListWidget(widget);
+    QListWidget *listWidget = new QListWidget(m_dialog);
     connect(listWidget, SIGNAL(itemChanged(QListWidgetItem *)), SLOT(packageToggled(QListWidgetItem *)));
     layout->addWidget(listWidget);
 
+    m_buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, m_dialog);
+    connect(m_buttonBox, SIGNAL(accepted()), this, SLOT(runPackageInstall()));
+    connect(m_buttonBox, SIGNAL(rejected()), this, SLOT(cleanUpDialog()));
+    layout->addWidget(m_buttonBox);
+    
     QMap<QString, QString>::const_iterator nameIter = packageList.constBegin();
     while (nameIter != packageList.constEnd()) {
         QListWidgetItem *item = new QListWidgetItem(nameIter.value());
@@ -90,10 +88,12 @@ void InstallGui::packageToggled(QListWidgetItem *item)
     }
 #warning fixme
 //     m_dialog->button(QDialog::Ok)->setDisabled(m_toInstallList.isEmpty());
+    m_buttonBox->button(QDialogButtonBox::Ok)->setDisabled(m_toInstallList.isEmpty());
 }
 
 void InstallGui::runPackageInstall()
 {
+    m_dialog->accept();
     m_installProcess = new QProcess(this);
     connect(m_installProcess, SIGNAL(finished(int)), this, SLOT(installFinished(int result)));
 

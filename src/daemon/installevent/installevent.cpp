@@ -22,6 +22,7 @@
 
 // Qt includes
 #include <QtCore/QFile>
+#include <QDebug>
 
 // Own includes
 #include "installgui.h"
@@ -31,6 +32,7 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
         , m_applicationName(name)
         , m_installGui(0)
 {
+    qDebug() << "XXX InstallEvent::InstallEvent()";
     m_webBrowserPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
 
     m_multimediaEncodingPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
@@ -52,6 +54,7 @@ InstallEvent::~InstallEvent()
 
 void InstallEvent::show()
 {
+    qDebug() << "XXX InstallEvent::show()";
     QString icon = QString("muondiscover");
     QString text(i18nc("Notification when a package wants to install extra software",
                        "Extra packages can be installed to enhance functionality for %1",
@@ -67,8 +70,10 @@ void InstallEvent::show()
 
 void InstallEvent::addPackages(const QMap<QString, QString> &packageList)
 {
+    qDebug() << "XXX InstallEvent::addPackages()";
     QMap<QString, QString>::const_iterator packageIter = packageList.constBegin();
     while (packageIter != packageList.constEnd()) {
+      qDebug() << "XXX InstallEvent::addPackages() + " << packageIter.key();
         // check for .md5sums as .list exists even when the package is removed (but not purged)
         if (!QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ".md5sums") &&
             !QFile::exists("/var/lib/dpkg/info/" + packageIter.key() + ":i386.md5sums") &&
@@ -81,6 +86,7 @@ void InstallEvent::addPackages(const QMap<QString, QString> &packageList)
 
 void InstallEvent::getInfo(const QString &application, const QString &package)
 {
+    qDebug() << "XXX InstallEvent::getInfo()";
     m_applicationName = application;
     m_packageList.clear();
 
@@ -101,6 +107,7 @@ void InstallEvent::getInfo(const QString &application, const QString &package)
 
 void InstallEvent::run()
 {
+    qDebug() << "XXX InstallEvent::run()";
     m_installGui = new InstallGui(this, m_applicationName, m_packageList);
     Event::run();
 }

@@ -25,6 +25,7 @@
 #include <QListWidget>
 #include <QMap>
 #include <QStringList>
+#include <QDialogButtonBox>
 
 class QProcess;
 class QDialog;
@@ -48,6 +49,7 @@ private:
     QProcess *m_installProcess;
     QString m_applicationName;
     QStringList m_toInstallList;
+    QDialogButtonBox *m_buttonBox;
 };
 
 #endif
