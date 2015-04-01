@@ -52,7 +52,7 @@ InstallEvent::~InstallEvent()
 
 void InstallEvent::show()
 {
-    QString icon = QString("download");
+    QString icon = QString("muondiscover");
     QString text(i18nc("Notification when a package wants to install extra software",
                        "Extra packages can be installed to enhance functionality for %1",
                        m_applicationName));
