@@ -1,3 +1,17 @@
+kubuntu-notification-helper (15.04ubuntu3) vivid; urgency=medium
+
+  * Fix install paths
+  * Fix .desktop file
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Tue, 31 Mar 2015 12:54:15 +0200
+
+kubuntu-notification-helper (15.04ubuntu2) vivid; urgency=medium
+
+  * Set library translation domain for kded and kcm so that translations are
+    actually loaded.
+
+ -- Harald Sitter <sitter@kde.org>  Thu, 26 Mar 2015 12:47:01 +0100
+
 kubuntu-notification-helper (15.04ubuntu1) vivid; urgency=medium
 
   * KDE Frameworks 5 port

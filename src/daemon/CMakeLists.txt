@@ -29,6 +29,9 @@ set_source_files_properties(${drivermanagerobject_xml}
 QT5_ADD_DBUS_INTERFACE(notificationhelper_SRCS ${drivermanagerobject_xml}
                        drivermanager_interface)
 
+# KI18N Translation Domain for this library
+add_definitions(-DTRANSLATION_DOMAIN=\"notificationhelper\")
+
 add_library(kded_notificationhelper MODULE ${notificationhelper_SRCS})
 
 target_link_libraries(kded_notificationhelper

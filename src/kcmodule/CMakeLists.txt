@@ -2,6 +2,9 @@ set(notificationhelperconfig_SRCS
     notificationhelperconfigmodule.cpp
 )
 
+# KI18N Translation Domain for this library
+add_definitions(-DTRANSLATION_DOMAIN=\"kcm_notificationhelper\")
+
 add_library(kcm_notificationhelper MODULE ${notificationhelperconfig_SRCS})
 
 target_link_libraries(kcm_notificationhelper

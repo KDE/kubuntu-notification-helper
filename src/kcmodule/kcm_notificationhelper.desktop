@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=kcmshell4 kcm_notificationhelper
+Exec=kcmshell5 kcm_notificationhelper
 Icon=preferences-desktop-notification
 Type=Service
 X-KDE-ServiceTypes=KCModule
@@ -8,7 +8,7 @@ X-KDE-Library=kcm_notificationhelper
 X-KDE-ParentApp=kcontrol
 
 X-KDE-Keywords=Notify,Alerts,Notification,popups
-X-KDE-System-Settings-Parent-Category=application-and-system-notifications
+X-KDE-System-Settings-Parent-Category=notification
 X-KDE-Weight=60
 
 Name=Other Notifications
