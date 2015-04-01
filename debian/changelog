@@ -1,3 +1,25 @@
+kubuntu-notification-helper (15.04ubuntu4) vivid; urgency=medium
+
+  * Fix infinite recursion and language lookup in hooks LP: #1434226
+    + New class Locale to rip apart an input locale and build possible
+      language value combinations from it. This is needed as some hooks use
+      the encoding as part of the language identifier, which the previous code
+      entirely disregarded.
+    + Fix inifinte recursion when reading hook fields that broke in the qt5
+      port as two functions differing by argument were folded into one causing
+      infinite recursion when trying to read the actual values out of the map.
+    + Defer the actual reading from the map to QMap#value which is really what
+      should have been used all along (use case: read value, but fall back to
+      default if key is not present).
+    + Introduce a simple test case for hook reading checking invalidity and
+      validity and actually reading fields along with 2 localized versions in
+      the formats I have seen in use.
+    + Introduce a test case for the new locale class ensuring that locale
+      parsing is working as well as combination construction is correct and
+      returns a list with correct order.
+
+ -- Harald Sitter <sitter@kde.org>  Wed, 01 Apr 2015 16:13:56 +0200
+
 kubuntu-notification-helper (15.04ubuntu3) vivid; urgency=medium
 
   * Fix install paths

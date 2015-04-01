@@ -1,0 +1,10 @@
+Name: apt-file update needed
+Name-de_DE: sauerkraut lederhosen
+Name-fr.UTF-8: Échec du téléchargement des données supplémentaires
+Priority: Medium
+Command: "/usr/share/apt-file/do-apt-file-update"
+Terminal: True
+DisplayIf: /usr/share/apt-file/is-cache-empty
+Description: description
+Description-de_DE: vieles sauerkraut lederhosen
+ 

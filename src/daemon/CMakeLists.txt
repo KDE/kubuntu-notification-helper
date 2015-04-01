@@ -6,6 +6,7 @@ set(notificationhelper_SRCS
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
     hookevent/hook.cpp
+    hookevent/locale.cpp
     installevent/installdbuswatcher.cpp
     installevent/installevent.cpp
     installevent/installgui.cpp

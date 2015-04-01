@@ -1,7 +1,7 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
  *   Copyright © 2009 Amichai Rothman <amichai2@amichais.net>              *
- *   Copyright © 2014 Harald Sitter <apachelogger@kubuntu.org>             *
+ *   Copyright © 2014-2015 Harald Sitter <sitter@kde.org>                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -36,6 +36,8 @@
 #include <KConfig>
 #include <KConfigGroup>
 
+#include "locale.h"
+
 float getUptime()
 {
     float uptime = 0;
@@ -64,6 +66,7 @@ Hook::Hook(QObject *parent, const QString &hookPath)
     : QObject(parent)
     , m_hookPath(hookPath)
     , m_finished(false)
+    , m_locale(QLatin1String(setlocale(LC_ALL, NULL)))
 {
     m_fields = parse(hookPath);
     loadConfig();
@@ -72,19 +75,31 @@ Hook::Hook(QObject *parent, const QString &hookPath)
 Hook::~Hook()
 {}
 
+QString Hook::locale()
+{
+    return m_locale;
+}
+
+void Hook::setLocale(const QString &locale)
+{
+    m_locale = locale;
+}
+
 QString Hook::getField(const QString &name) const
 {
     // Try to lookup the field with -LOCALE appended, then -LANGUAGE then without
     // suffix.
-    QString locale = setlocale(LC_ALL, NULL);
-    locale = locale.section(QChar('.'), 0, -2); // Ditch encoding, not used.
-    QString value = getField(name % QChar('-') % locale);
-    if (value.isEmpty()) {
-        locale = locale.section(QChar('_'), 0, -2); // Ditch country.
-        value = getField(name % QChar('-') % locale);
+    Locale locale(m_locale);
+    QString prefix = name % QChar('-');
+    QString value;
+    for (QString locale_combo: locale.combinations()) {
+        value = m_fields.value(prefix + locale_combo);
+        if (!value.isEmpty()) {
+            break;
+        }
     }
     if (value.isEmpty()) {
-        value = getField(name);
+        value = m_fields.value(name);
     }
     return value;
 }

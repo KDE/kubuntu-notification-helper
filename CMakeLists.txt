@@ -41,6 +41,7 @@ if(START_TIMEOUT)
     add_definitions(-DSTART_TIMEOUT=${START_TIMEOUT})
 endif()
 
+add_subdirectory(autotests)
 add_subdirectory(data)
 add_subdirectory(src)
 

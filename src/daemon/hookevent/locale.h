@@ -1,7 +1,5 @@
 /***************************************************************************
- *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2014-2015 Harald Sitter <sitter@kde.org>                  *
- *   Copyright © 2009 Amichai Rothman <amichai2@amichais.net>              *
+ *   Copyright © 2015 Harald Sitter <sitter@kde.org>                       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -20,44 +18,35 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>. *
  ***************************************************************************/
 
-#ifndef HOOKPARSER_H
-#define HOOKPARSER_H
+#ifndef LOCALE_H
+#define LOCALE_H
 
-#include <QObject>
-#include <QString>
 #include <QStringList>
-#include <QMap>
 
-class Hook : public QObject
+/**
+ * @brief Helper class dealing with hook locale strings
+ * Hook locale strings are somewhat random nonesense (e.g. they can be
+ *  language.encoding even though the string encoding always is utf-8 anyway).
+ * So, this class allows building all combinations off of a locale that could
+ * potentially be used for the locale identifier in a hook.
+ * This list is ordered by preference.
+ */
+class Locale
 {
-    Q_OBJECT
 public:
-    // FIXME: standard argument order is (stuff, QObject=nullptr)
-    Hook(QObject* parent, const QString &hookPath);
+    Locale(const QString &locale);
 
-    virtual ~Hook();
-
-    QString locale();
-    void setLocale(const QString &locale);
-
-public Q_SLOTS:
-    bool isValid() const;
-    bool isNotificationRequired() const;
-    QString getField(const QString &name) const;
-    void runCommand();
-    void setFinished();
+    QStringList combinations();
 
 private:
-    QString m_hookPath;
-    QMap<QString, QString> m_fields;
-    bool m_finished;
-    QString m_locale;
+    QString countryfy(const QString &str);
+    QString variantify(const QString &str);
+    QString encodify(const QString &str);
 
-private Q_SLOTS:
-    QMap<QString, QString> parse(const QString &hookPath);
-    QString calculateSignature() const;
-    void loadConfig();
-    void saveConfig();
+    QString m_language;
+    QString m_country;
+    QString m_variant;
+    QString m_encoding;
 };
 
-#endif
+#endif // LOCALE_H
