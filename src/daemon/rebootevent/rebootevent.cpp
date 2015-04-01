@@ -36,28 +36,9 @@ RebootEvent::~RebootEvent()
 
 void RebootEvent::show()
 {
-    // There are two scenarios which can trigger a reboot notification.
-    // a) /var/run/reboot-required: straight forward notification
-    // b) /var/run/reboot-required-kdelibs: created by kdelibs-bin's postinst
-    //    whenver it gets invoked. This file contains the upstream version of
-    //    the packaged that was installed. If the version in there is different
-    //    from the one reported to us we show the notification.
-    //    This can fail iff the kded is restarted after the installation of the
-    //    new kdelibs which hopefully enough was due to a logout which then is
-    //    just as good as reboot from a kdelibs perspective.
-    bool kdelibsChanged = false;
-//     QFile file("/var/run/reboot-required-kdelibs");
-//     if (file.open(QFile::ReadOnly | QFile::Text)) {
-//         if (!file.atEnd()) {
-//             QString installedVersion = file.readLine().trimmed();
-//             if (installedVersion != QLatin1String(KDE::versionString()))
-//                 kdelibsChanged = true;
-//         }
-//         file.close();
-//     }
-
-    if (!QFile::exists("/var/run/reboot-required") && !kdelibsChanged)
+    if (!QFile::exists("/var/run/reboot-required")) {
         return;
+    }
 
     QString icon = QString("system-reboot");
     QString text(i18nc("Notification when the upgrade requires a restart",
