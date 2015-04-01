@@ -1,101 +1,51 @@
 # Serbian translation for kubuntu-notification-helper
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the kubuntu-notification-helper package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-#
+# Мирослав Николић <miroslavnikolic@rocketmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-18 13:42+0000\n"
-"PO-Revision-Date: 2011-07-10 16:53+0000\n"
-"Last-Translator: Мирослав Николић <miroslavnikolic@rocketmail.com>\n"
-"Language-Team: Serbian <sr@li.org>\n"
+"POT-Creation-Date: 2015-03-31 11:07+0000\n"
+"PO-Revision-Date: 2014-06-25 22:56+0000\n"
+"Last-Translator: spiral <spiralciric@gmail.com>\n"
+"Language-Team: Serbian <gnom@prevod.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
-"X-Generator: Launchpad (build 16799)\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+"Language: sr\n"
 
-#: src/daemon/event.cpp:123 src/daemon/event.cpp:130
-msgid "System Notification Helper"
-msgstr "Помоћник обавештења система"
+#: src/daemon/l10nevent/l10nevent.cpp:114
+msgctxt ""
+"Notification when additional packages are required for complete system "
+"localization"
+msgid "Language support is incomplete, additional packages are required"
+msgstr "Језичка подршка је непотпуна, потребни су додатни пакети"
 
-#: src/daemon/event.cpp:144
-msgid "Hide"
-msgstr "Сакриј"
+#: src/daemon/l10nevent/l10nevent.cpp:116
+msgctxt "Installs additional localization packages"
+msgid "Install"
+msgstr "Инсталирај"
 
-#: src/daemon/apportevent/apportevent.cpp:56
-msgctxt "Notification when apport detects a crash"
-msgid "An application has crashed on your system (now or in the past)"
-msgstr "Апликација је пала на вашем систему (сада или у прошлости)"
-
-#: src/daemon/apportevent/apportevent.cpp:58
-#: src/daemon/hookevent/hookevent.cpp:61
-#: src/daemon/installevent/installevent.cpp:60
-msgctxt "Opens a dialog with more details"
-msgid "Details"
-msgstr "Детаљи"
-
-#: src/daemon/apportevent/apportevent.cpp:59
-#: src/daemon/rebootevent/rebootevent.cpp:66
+#: src/daemon/l10nevent/l10nevent.cpp:117
 #: src/daemon/installevent/installevent.cpp:61
+#: src/daemon/apportevent/apportevent.cpp:65
+#: src/daemon/rebootevent/rebootevent.cpp:67
+#: src/daemon/driverevent/driverevent.cpp:143
 msgctxt "Button to dismiss this notification once"
 msgid "Ignore for now"
 msgstr "Занемари за сада"
 
-#: src/daemon/apportevent/apportevent.cpp:61
-#: src/daemon/rebootevent/rebootevent.cpp:68
+#: src/daemon/l10nevent/l10nevent.cpp:119
 #: src/daemon/installevent/installevent.cpp:63
+#: src/daemon/apportevent/apportevent.cpp:67
+#: src/daemon/rebootevent/rebootevent.cpp:69
+#: src/daemon/driverevent/driverevent.cpp:145
 msgctxt "Button to make this notification never show up again"
 msgid "Never show again"
 msgstr "Не приказуј више"
-
-#: src/daemon/hookevent/hookevent.cpp:59
-msgctxt "Notification when an upgrade requires the user to do something"
-msgid "Software upgrade notifications are available"
-msgstr "Доступна су обавештења о надоградњи софтвера"
-
-#: src/daemon/hookevent/hookevent.cpp:62
-msgctxt "User declines an action"
-msgid "Ignore"
-msgstr "Занемари"
-
-#: src/daemon/hookevent/hookevent.cpp:64
-msgctxt "User indicates he never wants to see this notification again"
-msgid "Never show again"
-msgstr "Не приказуј више"
-
-#: src/daemon/hookevent/hookgui.cpp:54
-msgid "Update Information"
-msgstr "Информација о надоградњи"
-
-#: src/daemon/hookevent/hookgui.cpp:96
-msgid "Run this action now"
-msgstr "Покрени сада овај поступак"
-
-#: src/daemon/rebootevent/rebootevent.cpp:63
-msgctxt "Notification when the upgrade requires a restart"
-msgid "A system restart is needed to complete the update process"
-msgstr ""
-"Поновно покретање система је неопходно да би се завршио процес ажурирања"
-
-#: src/daemon/rebootevent/rebootevent.cpp:65
-msgctxt "Restart the computer"
-msgid "Restart"
-msgstr "Поново покрени"
-
-#: src/daemon/notificationhelpermodule.cpp:59
-msgid "Kubuntu Notification Helper"
-msgstr "Кубунтуов помоћник обавештења"
-
-#: src/daemon/notificationhelpermodule.cpp:60
-msgid "A Notification Helper for Kubuntu"
-msgstr "Помоћник Обавештења за Кубунту"
-
-#: src/daemon/notificationhelpermodule.cpp:62
-msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
-msgstr "(C) Џонатан Томас, (C) 2009 Хералд Ситер"
 
 #: src/daemon/installevent/installevent.cpp:34
 msgctxt "The name of the Adobe Flash plugin"
@@ -112,7 +62,7 @@ msgstr "МП3 кодирање"
 
 #: src/daemon/installevent/installevent.cpp:39
 msgid "Set of default screensavers"
-msgstr "Скуп предефинисаних чувара екрана"
+msgstr "Скуп основних чувара екрана"
 
 #: src/daemon/installevent/installevent.cpp:41
 msgid "Google Talk support for Kopete"
@@ -123,31 +73,115 @@ msgstr "Подршка Гугл разговора за Копете"
 msgctxt "Notification when a package wants to install extra software"
 msgid "Extra packages can be installed to enhance functionality for %1"
 msgstr ""
-"Додатни пакети могу бити инсталирани да би се побољшала функционалност %1 -а"
+"Додатни пакети могу бити инсталирани за побољшање функционалности %1-а"
+
+#: src/daemon/installevent/installevent.cpp:60
+#: src/daemon/hookevent/hookevent.cpp:61
+#: src/daemon/apportevent/apportevent.cpp:64
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Појединости"
 
 #: src/daemon/installevent/installgui.cpp:42
 msgid "Install Packages"
 msgstr "Инсталирај пакете"
 
-#: src/daemon/installevent/installgui.cpp:44
-msgid "Install Selected"
-msgstr "Инсталирај изабрано"
-
-#: src/daemon/installevent/installgui.cpp:54
+#: src/daemon/installevent/installgui.cpp:55
 msgid ""
 "Select packages to be installed for extra functionality. These packages are "
 "not installed by default due to either patent issues, restrictive licensing "
 "or a lack of space on the installation media."
 msgstr ""
 "Изаберите пакете који ће бити инсталирани зарад додатних могућности. Ти "
-"пакети нису унапред инсталирани због проблема са патентима, ограничених "
-"дозвола или због недостатка простора на инсталационим медијима."
+"пакети нису унапред инсталирани због проблема са патентима, ограниченим "
+"дозволама или због недостатка простора на инсталационим медијима."
 
-#: src/daemon/installevent/installgui.cpp:113
+#: src/daemon/installevent/installgui.cpp:114
 #, kde-format
 msgid ""
 "Installation complete. You will need to restart %1 to use the new "
 "functionality"
 msgstr ""
-"Инсталација је завршена. Мораћете поново да покренете „%1“, да бисте "
-"користили нове функције."
+"Инсталација је завршена. Морате поново да покренете „%1“, да бисте користили "
+"нове функције."
+
+#: src/daemon/hookevent/hookgui.cpp:53
+msgid "Update Information"
+msgstr "Информација о доградњи"
+
+#: src/daemon/hookevent/hookgui.cpp:93
+msgid "Run this action now"
+msgstr "Покрени сада ову радњу"
+
+#: src/daemon/hookevent/hookevent.cpp:59
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Доступна су обавештења о надоградњи софтвера"
+
+#: src/daemon/hookevent/hookevent.cpp:62
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Занемари"
+
+#: src/daemon/hookevent/hookevent.cpp:64
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "Не приказуј више"
+
+#: src/daemon/apportevent/apportevent.cpp:62
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "Неки програм се урушио на вашем систему (сада или у прошлости)"
+
+#: src/daemon/event.cpp:124
+msgid "System Notification Helper"
+msgstr "Помоћник обавештења система"
+
+#: src/daemon/event.cpp:148
+msgid "Hide"
+msgstr "Сакриј"
+
+#: src/daemon/event.cpp:161
+msgctxt "notification title"
+msgid "System Notification Helper"
+msgstr "Помоћник обавештења система"
+
+#: src/daemon/rebootevent/rebootevent.cpp:64
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+"Потребно је поново покренути систем да би се завршио процес ажурирања"
+
+#: src/daemon/rebootevent/rebootevent.cpp:66
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Поново покрени"
+
+#: src/daemon/driverevent/driverevent.cpp:140
+msgctxt ""
+"Notification when additional packages are required for activating "
+"proprietary hardware"
+msgid "Proprietary drivers might be required to enable additional features"
+msgstr ""
+"Могу бити потребни власнички управљачки програми за укључивање додатних "
+"функција"
+
+#: src/daemon/driverevent/driverevent.cpp:142
+msgctxt "Launches KDE Control Module to manage drivers"
+msgid "Manage Drivers"
+msgstr "Управљајте управљачким програмима"
+
+#~ msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+#~ msgstr "(C) Џонатан Томас, (C) 2009 Хералд Ситер"
+
+#~ msgid "Install Selected"
+#~ msgstr "Инсталирај изабрано"
+
+#~ msgid "Kubuntu Notification Helper"
+#~ msgstr "Кубунтуов помоћник обавештења"
+
+#~ msgid "A Notification Helper for Kubuntu"
+#~ msgstr "Помоћник обавештења за Кубунту"
+
+#~ msgid "(C) 2009 Jonathan Thomas, (C) 2009-2013 Harald Sitter"
+#~ msgstr "(C) 2009 Џонатан Томас, (C) 2009-2013 Хералд Ситер"

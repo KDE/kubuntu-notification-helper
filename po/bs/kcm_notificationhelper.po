@@ -7,72 +7,82 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-18 13:42+0000\n"
-"PO-Revision-Date: 2012-04-12 21:45+0000\n"
-"Last-Translator: Samir Ribić <Unknown>\n"
+"POT-Creation-Date: 2015-03-31 11:07+0000\n"
+"PO-Revision-Date: 2014-10-31 23:02+0000\n"
+"Last-Translator: Kenan Gutić <Unknown>\n"
 "Language-Team: Bosnian <bs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
-"X-Generator: Launchpad (build 16799)\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:50
-msgid "kcmnotificationhelper"
-msgstr "kcmnotificationhelper"
-
-#: src/kcmodule/notificationhelperconfigmodule.cpp:51
+#: src/kcmodule/notificationhelperconfigmodule.cpp:55
 msgid "Kubuntu Notification Helper Configuration"
 msgstr "Konfiguracija Kubuntu pomoćnika u obavještavanjima"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:53
-msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
-msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+#: src/kcmodule/notificationhelperconfigmodule.cpp:59
+msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009-2014 Harald Sitter"
+msgstr ""
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:56
+#: src/kcmodule/notificationhelperconfigmodule.cpp:61
 msgid "Jonathan Thomas"
 msgstr "Jonathan Thomas"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:57
+#: src/kcmodule/notificationhelperconfigmodule.cpp:62
 msgid "Harald Sitter"
 msgstr "Harald Sitter"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:60
+#: src/kcmodule/notificationhelperconfigmodule.cpp:67
 msgid "Configure the behavior of Kubuntu Notification Helper"
 msgstr "Konfiguriši ponašanje Kubuntu pomoćnika u obavještavanjima"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:67
+#: src/kcmodule/notificationhelperconfigmodule.cpp:74
 msgid "Show notifications for:"
 msgstr "Prikaži obavještenje kada"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:69
+#: src/kcmodule/notificationhelperconfigmodule.cpp:76
 msgid "Application crashes"
 msgstr "Program se sruši"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:70
+#: src/kcmodule/notificationhelperconfigmodule.cpp:77
+msgid "Proprietary Driver availability"
+msgstr "Upravljač zatvorenog koda dostupan"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:78
 msgid "Upgrade information"
 msgstr "Dođu informacije o nadogradnji"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:71
+#: src/kcmodule/notificationhelperconfigmodule.cpp:79
 msgid "Restricted codec availability"
 msgstr "Raspoloživi su ograničeni kodeci"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:72
+#: src/kcmodule/notificationhelperconfigmodule.cpp:80
+msgid "Incomplete language support"
+msgstr "Nepotpuna jezička podrška"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:81
 msgid "Required reboots"
 msgstr "Potrebnim ponovnim pokretanjem računara"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:82
+#: src/kcmodule/notificationhelperconfigmodule.cpp:93
 msgid "Notification type:"
 msgstr "Vrsta izvještavanja:"
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:86
+#: src/kcmodule/notificationhelperconfigmodule.cpp:97
 msgid "Use both popups and tray icons"
 msgstr "Koristi iskočne poruke i ikone u uglu ekrana."
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:88
+#: src/kcmodule/notificationhelperconfigmodule.cpp:99
 msgid "Tray icons only"
 msgstr "Samo ikone u uglu ekrana."
 
-#: src/kcmodule/notificationhelperconfigmodule.cpp:90
+#: src/kcmodule/notificationhelperconfigmodule.cpp:101
 msgid "Popup notifications only"
 msgstr "Samo iskočne poruke"
+
+#~ msgid "kcmnotificationhelper"
+#~ msgstr "kcmnotificationhelper"
+
+#~ msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"
+#~ msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009 Harald Sitter"

@@ -1,0 +1,103 @@
+# Korean translation for kubuntu-notification-helper
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2015-03-31 11:07+0000\n"
+"PO-Revision-Date: 2014-03-22 17:01+0000\n"
+"Last-Translator: Park Shinjo <Unknown>\n"
+"Language-Team: Korean <ko@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+
+#: src/daemon/notificationhelper.desktop:2
+msgctxt "Name"
+msgid "Notification Helper"
+msgstr "알림 도우미"
+
+#: src/daemon/notificationhelper.notifyrc:3
+msgctxt "Comment"
+msgid "System Notification Helper"
+msgstr "시스템 알림 도우미"
+
+#: src/daemon/notificationhelper.notifyrc:6
+msgctxt "Name"
+msgid "Reboot Required"
+msgstr "다시 시작 필요"
+
+#: src/daemon/notificationhelper.notifyrc:7
+msgctxt "Comment"
+msgid "A system restart is required"
+msgstr "시스템을 다시 시작해야 합니다"
+
+#: src/daemon/notificationhelper.notifyrc:11
+msgctxt "Name"
+msgid "Apport Crash"
+msgstr "Apport 충돌"
+
+#: src/daemon/notificationhelper.notifyrc:12
+msgctxt "Comment"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "프로그램이 시스템을 충돌시켰습니다 (현재 혹은 과거에)"
+
+#: src/daemon/notificationhelper.notifyrc:16
+msgctxt "Name"
+msgid "Upgrade Hook"
+msgstr "업그레이드 훅"
+
+#: src/daemon/notificationhelper.notifyrc:17
+msgctxt "Comment"
+msgid "Software upgrade notifications are available"
+msgstr "소프트웨어 업그레이드 알림 사용 가능"
+
+#: src/daemon/notificationhelper.notifyrc:21
+msgctxt "Name"
+msgid "Restricted Install"
+msgstr "제한된 설치"
+
+#: src/daemon/notificationhelper.notifyrc:22
+msgctxt "Comment"
+msgid "Extra packages can be installed to enhance application functionality"
+msgstr "프로그램 기능을 향상시키기 위한 추가 패키지를 설치할 수 있습니다"
+
+#: src/daemon/notificationhelper.notifyrc:26
+msgctxt "Name"
+msgid "Localization Enhancement"
+msgstr "번역 향상"
+
+#: src/daemon/notificationhelper.notifyrc:27
+msgctxt "Comment"
+msgid "Extra packages can be installed to enhance system localization"
+msgstr "시스템 번역을 향상시키기 위한 추가 패키지를 사용할 수 있습니다"
+
+#: src/daemon/notificationhelper.notifyrc:31
+msgctxt "Name"
+msgid "Driver Enhancement"
+msgstr "드라이버 향상"
+
+#: src/daemon/notificationhelper.notifyrc:32
+msgctxt "Comment"
+msgid "Additional drivers can be installed"
+msgstr "추가 드라이버를 설치할 수 있습니다"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:10
+msgctxt "X-KDE-Keywords"
+msgid "Notify,Alerts,Notification,popups"
+msgstr "Notify,Alerts,Notification,popups,알림,팝업"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:14
+msgctxt "Name"
+msgid "Other Notifications"
+msgstr "기타 알림"
+
+#: src/kcmodule/kcm_notificationhelper.desktop:15
+msgctxt "Comment"
+msgid "Control the notifications for system helpers"
+msgstr "시스템 도우미 알림 설정"

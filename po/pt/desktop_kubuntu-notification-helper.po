@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-03-18 13:42+0000\n"
-"PO-Revision-Date: 2013-09-28 23:15+0000\n"
-"Last-Translator: Nuno Rodrigues <Unknown>\n"
+"POT-Creation-Date: 2015-03-31 11:07+0000\n"
+"PO-Revision-Date: 2014-05-09 15:21+0000\n"
+"Last-Translator: Pedro Saraiva <pdro.saraiva@gmail.com>\n"
 "Language-Team: Portuguese <pt@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-10-10 11:24+0000\n"
-"X-Generator: Launchpad (build 16799)\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #: src/daemon/notificationhelper.desktop:2
 msgctxt "Name"
@@ -30,7 +30,7 @@ msgstr "Assistente de notificação do sistema"
 #: src/daemon/notificationhelper.notifyrc:6
 msgctxt "Name"
 msgid "Reboot Required"
-msgstr "Reinicialização necessária"
+msgstr "É Necessário Reiniciar"
 
 #: src/daemon/notificationhelper.notifyrc:7
 msgctxt "Comment"
@@ -40,7 +40,7 @@ msgstr "É necessário reiniciar o sistema"
 #: src/daemon/notificationhelper.notifyrc:11
 msgctxt "Name"
 msgid "Apport Crash"
-msgstr ""
+msgstr "Erro no Apport"
 
 #: src/daemon/notificationhelper.notifyrc:12
 msgctxt "Comment"
@@ -56,7 +56,7 @@ msgstr "Actualizar Hook"
 #: src/daemon/notificationhelper.notifyrc:17
 msgctxt "Comment"
 msgid "Software upgrade notifications are available"
-msgstr ""
+msgstr "Notificações de atualização de software estão disponíveis"
 
 #: src/daemon/notificationhelper.notifyrc:21
 msgctxt "Name"
@@ -70,10 +70,31 @@ msgstr ""
 "Pacotes extras podem ser instalados para aumentar a funcionalidade da "
 "aplicação"
 
+#: src/daemon/notificationhelper.notifyrc:26
+msgctxt "Name"
+msgid "Localization Enhancement"
+msgstr "Localization Enhancement"
+
+#: src/daemon/notificationhelper.notifyrc:27
+msgctxt "Comment"
+msgid "Extra packages can be installed to enhance system localization"
+msgstr ""
+"Pacotes extras podem ser instalados para melhorar a localização do sistema"
+
+#: src/daemon/notificationhelper.notifyrc:31
+msgctxt "Name"
+msgid "Driver Enhancement"
+msgstr "Driver Enhancement"
+
+#: src/daemon/notificationhelper.notifyrc:32
+msgctxt "Comment"
+msgid "Additional drivers can be installed"
+msgstr "Drivers adicionais podem ser instalados"
+
 #: src/kcmodule/kcm_notificationhelper.desktop:10
 msgctxt "X-KDE-Keywords"
 msgid "Notify,Alerts,Notification,popups"
-msgstr ""
+msgstr "Notifique,Alertas,notificação,popups"
 
 #: src/kcmodule/kcm_notificationhelper.desktop:14
 msgctxt "Name"
@@ -83,4 +104,4 @@ msgstr "Outras Notificações"
 #: src/kcmodule/kcm_notificationhelper.desktop:15
 msgctxt "Comment"
 msgid "Control the notifications for system helpers"
-msgstr ""
+msgstr "Controlo de notificações para sistema de ajudas"
