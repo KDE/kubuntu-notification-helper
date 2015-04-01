@@ -37,12 +37,18 @@ InstallEvent::InstallEvent(QObject* parent, const QString &name)
     m_multimediaEncodingPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
     m_multimediaEncodingPackages["libmp3lame0"] = i18n("MP3 Encoding");
 
+    m_multimediaDecodingPackages["gstreamer1.0-plugins-ugly"] = i18n("GStreamer Codecs (Ugly)");
+    m_multimediaDecodingPackages["gstreamer1.0-plugins-bad"] = i18n("GStreamer Codecs (Bad)");
+    m_multimediaDecodingPackages["gstreamer1.0-libav"] = i18n("GStreamer Codecs (libav)");
+    m_multimediaDecodingPackages["libdvdread4"] = i18n("DVD Reading (still needs /usr/share/doc/libdvdread4/install-css.sh to be run for DRM DVDs)");
+
     m_screensaverPackages["kscreensaver"] = i18n("Set of default screensavers");
 
     m_kopetePackages["kopete-gcall"] = i18n("Google Talk support for Kopete");
 
     m_packageMapList.append(m_webBrowserPackages);
     m_packageMapList.append(m_multimediaEncodingPackages);
+    m_packageMapList.append(m_multimediaDecodingPackages);
     m_packageMapList.append(m_screensaverPackages);
     m_packageMapList.append(m_kopetePackages);
 }
