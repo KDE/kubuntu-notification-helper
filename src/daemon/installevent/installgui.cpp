@@ -86,8 +86,6 @@ void InstallGui::packageToggled(QListWidgetItem *item)
     } else {
         m_toInstallList.removeOne(packageName);
     }
-#warning fixme
-//     m_dialog->button(QDialog::Ok)->setDisabled(m_toInstallList.isEmpty());
     m_buttonBox->button(QDialogButtonBox::Ok)->setDisabled(m_toInstallList.isEmpty());
 }
 
