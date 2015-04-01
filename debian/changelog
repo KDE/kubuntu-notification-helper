@@ -1,6 +1,7 @@
 kubuntu-notification-helper (15.04ubuntu5) vivid; urgency=medium
 
   * Fix up restricted install hook LP: #1439147
+  * Fix up reboot event LP: #1439141
 
  -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 01 Apr 2015 18:45:58 +0200
 
@@ -23,6 +24,8 @@ kubuntu-notification-helper (15.04ubuntu4) vivid; urgency=medium
     + Introduce a test case for the new locale class ensuring that locale
       parsing is working as well as combination construction is correct and
       returns a list with correct order.
+  * Import translations from launchpad.
+  * Fix kcmshell4 -> kcmshell5 call.
 
  -- Harald Sitter <sitter@kde.org>  Wed, 01 Apr 2015 16:13:56 +0200
 
