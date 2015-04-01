@@ -1,3 +1,9 @@
+kubuntu-notification-helper (15.04ubuntu5) vivid; urgency=medium
+
+  * Fix up restricted install hook LP: #1439147
+
+ -- Jonathan Riddell <jriddell@ubuntu.com>  Wed, 01 Apr 2015 18:45:58 +0200
+
 kubuntu-notification-helper (15.04ubuntu4) vivid; urgency=medium
 
   * Fix infinite recursion and language lookup in hooks LP: #1434226
