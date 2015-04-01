@@ -119,13 +119,16 @@ void NotificationHelperModule::init()
     }
 
     if (!m_installEvent->isHidden()) {
+        // this normally gets called by applications calling it through dbus when they start
         m_installWatcher = new InstallDBusWatcher(this);
         connect(m_installWatcher, SIGNAL(installRestrictedCalled(const QString &, const QString &)),
                 this, SLOT(installEvent(const QString &, const QString &)));
         connect(m_configWatcher, SIGNAL(reloadConfigCalled()),
                 m_installEvent, SLOT(reloadConfig()));
-    }
 
+        //but we can't/don't patch firefox so call it on start regardless
+        installEvent("firefox", "flashplugin-installer");
+    }
 
     if (!m_l10nEvent->isHidden()) {
         // We only want this notification once for now.
