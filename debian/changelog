@@ -1,3 +1,9 @@
+kubuntu-notification-helper (15.10ubuntu1) wily; urgency=medium
+
+  * New release for 15.10, updating translations
+
+ -- Harald Sitter <sitter@kde.org>  Tue, 22 Sep 2015 14:36:57 +0200
+
 kubuntu-notification-helper (15.04ubuntu5) vivid; urgency=medium
 
   * Fix up restricted install hook LP: #1439147
