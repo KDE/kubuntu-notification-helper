@@ -1,6 +1,7 @@
 [Global]
 IconName=applications-system
 Comment=System Notification Helper
+Comment[ast]=Ayudante d'avisos del sistema
 Comment[bg]=Помощник за системните уведомления
 Comment[bs]=Sistemski pomoćnik u napominjanju
 Comment[ca]=Auxiliar per a les notificacions del sistema
@@ -48,6 +49,7 @@ Comment[zh_TW]=系統通知輔助程式
 
 [Event/Restart]
 Name=Reboot Required
+Name[ast]=Reaniciu riquíu
 Name[bg]=Необходимо е рестартиране
 Name[bs]=Potrebno ponovno podizanje sistema
 Name[ca]=Cal reiniciar
@@ -95,6 +97,7 @@ Name[x-test]=xxReboot Requiredxx
 Name[zh_CN]=需要重启
 Name[zh_TW]=需要重新啟動
 Comment=A system restart is required
+Comment[ast]=Ríquese un reaniciu del sistema
 Comment[bg]=Необходимо е рестартиране на системата
 Comment[bs]=Potrebno ponovno podići sistem
 Comment[ca]=Cal reiniciar el sistema
