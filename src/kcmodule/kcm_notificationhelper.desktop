@@ -8,6 +8,7 @@ X-KDE-Library=kcm_notificationhelper
 X-KDE-ParentApp=kcontrol
 
 X-KDE-Keywords=Notify,Alerts,Notification,popups
+X-KDE-Keywords[ast]=Avisar,Avisu,emerxente,Alerta
 X-KDE-Keywords[bg]=Notify,Alerts,Notification,popups
 X-KDE-Keywords[bs]=Notify,Alerts,Notification,popups,Notifikacije, Alarmi
 X-KDE-Keywords[ca]=Notifica,Alertes,Notificació,finestres emergents
@@ -98,6 +99,7 @@ Name[x-test]=xxOther Notificationsxx
 Name[zh_CN]=其他通知
 Name[zh_TW]=其他通知
 Comment=Control the notifications for system helpers
+Comment[ast]=Controla los avisos pa los ayudantes del sistema
 Comment[bg]=Контрол на уведомленията за системните помощници
 Comment[bs]=Kontroliše napomene za sistemske pomagače
 Comment[ca]=Controleu les notificacions dels auxiliars del sistema

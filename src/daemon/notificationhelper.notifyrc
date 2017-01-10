@@ -193,6 +193,7 @@ Name[x-test]=xxApport Crashxx
 Name[zh_CN]=Apport Crash
 Name[zh_TW]=Apport 崩壞
 Comment=An application has crashed on your system (now or in the past)
+Comment[ast]=Una aplicación cascó nel to sistema (agora o nel pasáu)
 Comment[bg]=Имаше срив на програма (сега или по-рано)
 Comment[bs]=Program se srušio na vašem sistemu (sada ili ranije)
 Comment[ca]=Ha fallat una aplicació en aquest sistema (ara o anteriorment)
@@ -284,6 +285,7 @@ Name[x-test]=xxUpgrade Hookxx
 Name[zh_CN]=Upgrade Hook
 Name[zh_TW]=升級掛鉤
 Comment=Software upgrade notifications are available
+Comment[ast]=Tán disponibles avisos d'anovamientu de software
 Comment[bg]=Налични са уведомления за софтуерни надграждания
 Comment[bs]=Ima napomena za unaprjeđenja softvera
 Comment[ca]=Hi ha disponibles notificacions d'actualització de programari
@@ -332,6 +334,7 @@ Action=Popup
 
 [Event/Install]
 Name=Restricted Install
+Name[ast]=Instalación restrinxida
 Name[bg]=Ограничено инсталиране
 Name[bs]=Ograničena instalacija
 Name[ca]=Instal·lació restrictiva
@@ -377,6 +380,7 @@ Name[x-test]=xxRestricted Installxx
 Name[zh_CN]=受限的安装
 Name[zh_TW]=受限制安裝
 Comment=Extra packages can be installed to enhance application functionality
+Comment[ast]=Puen instalase paquetes estra p'ameyorar la funcionalidá l'aplicación
 Comment[bg]=За разширяване функционалността на приложението, могат да бъдат инсталирани допълнителни пакети
 Comment[bs]=Mogu se instalirati dodatni paketi da se popravi funkcionalnost programa
 Comment[ca]=Es poden instal·lar paquets addicionals per millorar com funcionen les aplicacions
@@ -424,6 +428,7 @@ Action=Popup
 
 [Event/L10n]
 Name=Localization Enhancement
+Name[ast]=Ameyora de llocalización
 Name[bg]=Подобряване на локализацията
 Name[ca]=Millora de localització
 Name[ca@valencia]=Millora de localització
@@ -463,6 +468,7 @@ Name[uk]=Покращення локалізації
 Name[x-test]=xxLocalization Enhancementxx
 Name[zh_CN]=本地化增强
 Comment=Extra packages can be installed to enhance system localization
+Comment[ast]=Puen instalase paquetes estra p'ameyorar la llocalización del sistema
 Comment[bg]=За подобряване на локализацията могат да бъдат инсталирани допълнителни пакети
 Comment[ca]=Podeu instal·lar paquets addicionals per millorar la localització del sistema
 Comment[ca@valencia]=Podeu instal·lar paquets addicionals per millorar la localització del sistema
@@ -504,6 +510,7 @@ Action=Popup
 
 [Event/Driver]
 Name=Driver Enhancement
+Name[ast]=Ameyora de controladores
 Name[bg]=Подобряване на драйверите
 Name[ca]=Millora de controladors
 Name[ca@valencia]=Millora de controladors
@@ -543,6 +550,7 @@ Name[uk]=Покращення драйверів
 Name[x-test]=xxDriver Enhancementxx
 Name[zh_CN]=驱动增强
 Comment=Additional drivers can be installed
+Comment[ast]=Pues instalase controladores adicionales
 Comment[bg]=Могат да бъдат инсталирани допълнитерни драйвери
 Comment[ca]=Podeu instal·lar controladors addicionals
 Comment[ca@valencia]=Podeu instal·lar controladors addicionals
