@@ -1,3 +1,10 @@
+kubuntu-notification-helper (18.04ubuntu1) bionic; urgency=medium
+
+  * In 2018, don't bug users to install flash plugin. (LP: #1579723)
+  * Automatic translation updates from KDE
+
+ -- Rik Mills <rikmills@kubuntu.org>  Sat, 30 Dec 2017 10:09:35 +0000
+
 kubuntu-notification-helper (15.10ubuntu2) wily; urgency=medium
 
   * Fix rules. "Make - Like Perl, but Worse"
