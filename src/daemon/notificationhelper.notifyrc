@@ -414,7 +414,7 @@ Comment[ug]=بۇ بوغچىنى ئورناتقاندا،قوللىنىشچان �
 Comment[uk]=Щоб розширити спектр можливостей програм, ви можете встановити додаткові пакунки
 Comment[x-test]=xxExtra packages can be installed to enhance application functionalityxx
 Comment[zh_CN]=可以安装额外的包，以增强应用程序的功能。
-Comment[zh_TW]=可以安裝額外套件以增強應用程式功能
+Comment[zh_TW]=可以安裝額外軟體包以增強應用程式功能
 Action=Popup
 
 [Event/L10n]
@@ -457,6 +457,7 @@ Name[ug]=يەرلىكلەشتۈرۈشنى يۇقۇرى كۆتۈرۈش
 Name[uk]=Покращення локалізації
 Name[x-test]=xxLocalization Enhancementxx
 Name[zh_CN]=本地化增强
+Name[zh_TW]=在地化增強
 Comment=Extra packages can be installed to enhance system localization
 Comment[ast]=Puen instalase paquetes estra p'ameyorar la llocalización del sistema
 Comment[bg]=За подобряване на локализацията могат да бъдат инсталирани допълнителни пакети
@@ -495,6 +496,7 @@ Comment[tr]=Sistem yerelleştirmesini iyileştirmek üzere ek paketler kurulabil
 Comment[uk]=Для покращення локалізації системи можуть бути встановлені додаткові пакунки
 Comment[x-test]=xxExtra packages can be installed to enhance system localizationxx
 Comment[zh_CN]=可以安装额外的软件包改进系统本地化
+Comment[zh_TW]=可以安裝額外軟體包以增強系統的在地化
 Action=Popup
 
 [Event/Driver]
@@ -537,6 +539,7 @@ Name[ug]=قوزغاتقۇچنى يۇقۇرى كۆتۈرۈش
 Name[uk]=Покращення драйверів
 Name[x-test]=xxDriver Enhancementxx
 Name[zh_CN]=驱动增强
+Name[zh_TW]=驅動程式增強
 Comment=Additional drivers can be installed
 Comment[ast]=Pues instalase controladores adicionales
 Comment[bg]=Могат да бъдат инсталирани допълнитерни драйвери
@@ -576,4 +579,5 @@ Comment[ug]=باشقا قوزغاتقۇچنى ئورنىتىشقا بولىدۇ
 Comment[uk]=Можуть бути встановлені додаткові драйвери
 Comment[x-test]=xxAdditional drivers can be installedxx
 Comment[zh_CN]=可以安装额外驱动
+Comment[zh_TW]=可以安裝額外的驅動程式
 Action=Popup
