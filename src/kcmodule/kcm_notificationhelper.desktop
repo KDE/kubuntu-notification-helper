@@ -50,8 +50,8 @@ X-KDE-Keywords[uk]=Notify,Alerts,Notification,popups,сповіщення,пов
 X-KDE-Keywords[x-test]=xxNotifyxx,xxAlertsxx,xxNotificationxx,xxpopupsxx
 X-KDE-Keywords[zh_CN]=Notify,Alerts,Notification,popups,通知,警告,报警,警报,弹出,提示
 X-KDE-Keywords[zh_TW]=Notify,Alerts,Notification,popups,通知,警告,彈出
-X-KDE-System-Settings-Parent-Category=notification
-X-KDE-Weight=60
+X-KDE-System-Settings-Parent-Category=personalization
+X-KDE-Weight=40
 
 Name=Other Notifications
 Name[bg]=Други уведомления

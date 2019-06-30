@@ -1,3 +1,10 @@
+kubuntu-notification-helper (19.10ubuntu1) eoan; urgency=medium
+
+  * Change KCM parent category to 'personalization'.
+  * Updated translations.
+
+ -- Rik Mills <rikmills@kubuntu.org>  Sun, 30 Jun 2019 11:23:29 +0100
+
 kubuntu-notification-helper (18.10ubuntu1) cosmic; urgency=medium
 
   * Update Kio build dependency: kio-dev -> libkf5kio-dev
