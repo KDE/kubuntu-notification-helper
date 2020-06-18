@@ -43,6 +43,7 @@ Name[sv]=Aviseringshjälpprogram
 Name[tr]=Bilgilendirme Yardımcısı
 Name[ug]=ئۇقتۇرۇش ياردەمچىسى
 Name[uk]=Допоміжні сповіщення
+Name[x-test]=xxNotification Helperxx
 Name[zh_CN]=通知助手
 Name[zh_TW]=通知輔助程式
 Type=Service
