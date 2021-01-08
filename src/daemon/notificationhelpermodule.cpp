@@ -28,6 +28,7 @@
 // KDE includes
 #include <KLocalizedString>
 #include <KPluginFactory>
+#include <KConfigWatcher>
 
 // Own includes
 #include "apportevent/apportevent.h"
@@ -36,8 +37,6 @@
 #include "l10nevent/l10nevent.h"
 #include "rebootevent/rebootevent.h"
 #include "driverevent/driverevent.h"
-
-#include "configwatcher.h"
 
 K_PLUGIN_FACTORY(NotificationHelperModuleFactory,
                  registerPlugin<NotificationHelperModule>();
@@ -70,9 +69,10 @@ void NotificationHelperModule::init()
         new RebootEvent(this),
     };
 
-    auto configWatcher = new ConfigWatcher(this);
-    connect(configWatcher, &ConfigWatcher::reloadConfigCalled, this, [&events] {
-        for (const auto &event : events) {
+    // Todo could hold a watcher in every event really.
+    m_configWatcher = KConfigWatcher::create(KSharedConfig::openConfig("notificationhelper"));
+    connect(m_configWatcher.get(), &KConfigWatcher::configChanged, this, [events] {
+        for (auto *event : events) {
             event->reloadConfig();
         }
     });

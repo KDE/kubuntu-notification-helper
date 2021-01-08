@@ -22,8 +22,6 @@
 
 // Qt includes
 #include <QButtonGroup>
-#include <QDBusConnection>
-#include <QDBusMessage>
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QLabel>
@@ -156,27 +154,21 @@ void NotificationHelperConfigModule::save()
     KConfig cfg("notificationhelper", KConfig::NoGlobals);
     KConfigGroup notifyGroup(&cfg, "Event");
 
-    notifyGroup.writeEntry("hideApportNotifier", !m_apportCheckBox->isChecked());
-    notifyGroup.writeEntry("hideDriverNotifier", !m_driverCheckBox->isChecked());
-    notifyGroup.writeEntry("hideHookNotifier", !m_hookCheckBox->isChecked());
-    notifyGroup.writeEntry("hideInstallNotifier", !m_installCheckBox->isChecked());
-    notifyGroup.writeEntry("hideL10nNotifier", !m_l10nCheckBox->isChecked());
-    notifyGroup.writeEntry("hideRestartNotifier", !m_rebootCheckBox->isChecked());
+    notifyGroup.writeEntry("hideApportNotifier", !m_apportCheckBox->isChecked(), KConfig::Notify);
+    notifyGroup.writeEntry("hideDriverNotifier", !m_driverCheckBox->isChecked(), KConfig::Notify);
+    notifyGroup.writeEntry("hideHookNotifier", !m_hookCheckBox->isChecked(), KConfig::Notify);
+    notifyGroup.writeEntry("hideInstallNotifier", !m_installCheckBox->isChecked(), KConfig::Notify);
+    notifyGroup.writeEntry("hideL10nNotifier", !m_l10nCheckBox->isChecked(), KConfig::Notify);
+    notifyGroup.writeEntry("hideRestartNotifier", !m_rebootCheckBox->isChecked(), KConfig::Notify);
 
     KConfigGroup notifyTypeGroup(&cfg, "NotificationType");
     notifyTypeGroup.writeEntry("NotifyType", m_comboRadio->isChecked() ? "Combo" :
                                m_disableKNotifyRadio->isChecked() ? "TrayOnly" :
                                m_disableTrayIconRadio->isChecked() ? "KNotifyOnly" :
-                               "Combo");
+                               "Combo", KConfig::Notify);
 
     cfg.sync();
     notifyGroup.sync();
-
-    QDBusMessage message = QDBusMessage::createMethodCall("org.kubuntu.NotificationHelper",
-                           "/NotificationHelper",
-                           "org.kubuntu.NotificationHelper",
-                           "reloadConfig");
-    QDBusConnection::sessionBus().send(message);
 }
 
 void NotificationHelperConfigModule::defaults()

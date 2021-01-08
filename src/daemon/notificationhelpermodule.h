@@ -23,6 +23,7 @@
 #define NOTIFICATIONHELPERMODULE_H
 
 #include <KDEDModule>
+#include <KConfigWatcher>
 
 class NotificationHelperModule : public KDEDModule
 {
@@ -33,6 +34,9 @@ public:
 
 private slots:
     void init();
+
+private:
+    KConfigWatcher::Ptr m_configWatcher;
 };
 
 #endif

@@ -1,7 +1,6 @@
 set(notificationhelper_SRCS
     notificationhelpermodule.cpp
     event.cpp
-    configwatcher.cpp
     apportevent/apportevent.cpp
     hookevent/hookevent.cpp
     hookevent/hookgui.cpp
@@ -17,12 +16,8 @@ set(notificationhelper_SRCS
 )
 message(WARNING "hookevent is a pile of madness including locale....")
 
-QT5_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
-                     configwatcher.h ConfigWatcher)
 QT5_ADD_DBUS_ADAPTOR(notificationhelper_SRCS installevent/org.kubuntu.restrictedInstall.xml
                      installevent/installdbuswatcher.h InstallDBusWatcher)
-QT5_ADD_DBUS_ADAPTOR(notificationhelper_SRCS org.kubuntu.NotificationHelper.xml
-                     configwatcher.h ConfigWatcher)
 
 set(drivermanagerobject_xml driverevent/org.kubuntu.DriverManager.xml)
 set_source_files_properties(${drivermanagerobject_xml}
