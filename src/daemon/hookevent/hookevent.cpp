@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2021 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -24,6 +24,8 @@
 // Qt includes
 #include <QDir>
 
+#include <KDirWatch>
+
 // Own includes
 #include "hook.h"
 #include "hookgui.h"
@@ -32,7 +34,14 @@ HookEvent::HookEvent(QObject* parent)
         : Event(parent, "Hook")
         , m_hooks()
         , m_hookGui(0)
-{}
+{
+    auto hooksDirWatch = new KDirWatch(this);
+    hooksDirWatch->addDir("/var/lib/update-notifier/user.d/");
+    connect(hooksDirWatch, &KDirWatch::dirty, this, &HookEvent::show);
+
+    // Sometimes hooks are for the first boot, so force a check
+    show(); // noop when not applicable
+}
 
 HookEvent::~HookEvent()
 {
@@ -40,6 +49,10 @@ HookEvent::~HookEvent()
 
 void HookEvent::show()
 {
+    if (isHidden()) {
+        return;
+    }
+
     qDeleteAll(m_hooks);
     m_hooks.clear();
     QDir hookDir(QLatin1String("/var/lib/update-notifier/user.d/"));

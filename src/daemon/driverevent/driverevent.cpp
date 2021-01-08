@@ -1,5 +1,6 @@
 /*
  * Copyright 2014  Rohan Garg <rohan@kde.org>
+ * Copyright 2021  Harald Sitter <sitter@kde.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,10 +38,16 @@ DriverEvent::DriverEvent(QObject *parent)
     , m_aptBackendInitialized(false)
 {
     qDBusRegisterMetaType<DeviceList>();
+
+    show();
 }
 
 void DriverEvent::show()
 {
+    if (isHidden()) {
+        return;
+    }
+
     if (!m_aptBackendInitialized) {
         m_aptBackend = new QApt::Backend(this);
         if (!m_aptBackend->init()) {

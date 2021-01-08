@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2014 Harald Sitter <apachelogger@kubuntu.org>
+  Copyright (C) 2014-2021 Harald Sitter <apachelogger@kubuntu.org>
 
   This program is free software; you can redistribute it and/or
   modify it under the terms of the GNU General Public License as
@@ -33,6 +33,11 @@ L10nEvent::L10nEvent(QObject *parent)
     : Event(parent, "L10n")
     , m_languageCollection(nullptr)
 {
+    // We only want this notification once for now.
+    // NOTE: might be viable to watch the config and apt lock to
+    //       issue a notification when the user installs software that
+    //       requires additional language support packages.
+    show(); // noop if nothing needs showing
 }
 
 L10nEvent::~L10nEvent()
@@ -41,6 +46,9 @@ L10nEvent::~L10nEvent()
 
 void L10nEvent::show()
 {
+    if (isHidden()) {
+        return;
+    }
     if (!m_languageCollection) {
         m_languageCollection = new Kubuntu::LanguageCollection(this);
         connect(m_languageCollection, SIGNAL(updated()),

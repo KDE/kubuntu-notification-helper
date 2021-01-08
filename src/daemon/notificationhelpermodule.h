@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009-2014 Harald Sitter <apachelogger@ubuntu.com>         *
+ *   Copyright © 2009-2021 Harald Sitter <apachelogger@ubuntu.com>         *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -24,16 +24,6 @@
 
 #include <KDEDModule>
 
-class ApportEvent;
-class HookEvent;
-class InstallEvent;
-class L10nEvent;
-class RebootEvent;
-class DriverEvent;
-
-class ConfigWatcher;
-class InstallDBusWatcher;
-
 class NotificationHelperModule : public KDEDModule
 {
     Q_OBJECT
@@ -43,22 +33,6 @@ public:
 
 private slots:
     void init();
-    void apportDirEvent();
-    void apportEvent(const QString &path);
-    void hookEvent();
-    void rebootEvent();
-    void installEvent(const QString &app, const QString &package);
-
-private:
-    ApportEvent *m_apportEvent;
-    DriverEvent* m_driverEvent;
-    HookEvent *m_hookEvent;
-    InstallEvent *m_installEvent;
-    L10nEvent *m_l10nEvent;
-    RebootEvent* m_rebootEvent;
-
-    ConfigWatcher *m_configWatcher;
-    InstallDBusWatcher *m_installWatcher;
 };
 
 #endif

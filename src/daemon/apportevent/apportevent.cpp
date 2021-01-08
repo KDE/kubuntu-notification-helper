@@ -1,6 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009 Jonathan Thomas <echidnaman@kubuntu.org>             *
- *   Copyright © 2009 Harald Sitter <apachelogger@ubuntu.com>              *
+ *   Copyright © 2009-2021 Harald Sitter <apachelogger@ubuntu.com>              *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -23,13 +23,31 @@
 
 #include <QDebug>
 #include <QStandardPaths>
+#include <QDir>
 
 #include <KProcess>
 #include <KToolInvocation>
+#include <KDirWatch>
 
 ApportEvent::ApportEvent(QObject* parent)
         : Event(parent, "Apport")
 {
+    const bool apportKde = QFile::exists("/usr/share/apport/apport-kde");
+    const bool apportGtk = QFile::exists("/usr/share/apport/apport-gtk");
+    qDebug() << "ApportEvent ::"
+             << "apport-kde=" << apportKde
+             << "apport-gtk=" << apportGtk;
+    if (!apportKde && !apportGtk) {
+        return;
+    }
+    qDebug() << "Using ApportEvent";
+
+    auto apportDirWatch =  new KDirWatch(this);
+    apportDirWatch->addDir("/var/crash/");
+    connect(apportDirWatch, &KDirWatch::dirty, this, &ApportEvent::onDirty);
+
+    // Force check, we just started up and there might have been crashes on reboot
+    show();
 }
 
 ApportEvent::~ApportEvent()
@@ -52,6 +70,10 @@ bool ApportEvent::reportsAvailable()
 
 void ApportEvent::show()
 {
+    if (isHidden()) {
+        return;
+    }
+
     if (!reportsAvailable()) {
         qDebug() << "no reports available, aborting";
         return;
@@ -85,4 +107,57 @@ void ApportEvent::run()
 {
     KToolInvocation::kdeinitExec("/usr/share/apport/apport-kde");
     Event::run();
+}
+
+void ApportEvent::apportDirEvent()
+{
+    qDebug();
+
+    QDir dir(QLatin1String("/var/crash"));
+    dir.setNameFilters(QStringList() << QLatin1String("*.crash"));
+
+    bool foundCrashFile = false;
+    bool foundAutoUpload = false;
+    foreach (const QFileInfo &fileInfo, dir.entryInfoList()) {
+        CrashFile f(fileInfo);
+        if (f.isAutoUploadAllowed())
+            foundAutoUpload = true;
+            continue;
+        if (f.isValid()) {
+            foundCrashFile = true;
+            continue;
+        }
+    }
+
+    qDebug() << "foundCrashFile" << foundCrashFile
+             << "foundAutoUpload" << foundAutoUpload;
+
+    if (foundAutoUpload) {
+        batchUploadAllowed();
+    }
+
+    if (foundCrashFile) {
+        show();
+    }
+}
+
+void ApportEvent::onDirty(const QString &path)
+{
+    if (isHidden()) {
+        return;
+    }
+
+    qDebug() << path;
+    if (path.isEmpty()) { // Check whole directory for possible crash files.
+        apportDirEvent();
+        return;
+    }
+
+    // Check param path for validity.
+    CrashFile f(path);
+    if (f.isAutoUploadAllowed()) {
+        batchUploadAllowed();
+    } else if (f.isValid()) {
+        show();
+    }
 }

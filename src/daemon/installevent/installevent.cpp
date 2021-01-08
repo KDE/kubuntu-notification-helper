@@ -1,5 +1,6 @@
 /***************************************************************************
  *   Copyright © 2009-2010 Jonathan Thomas <echidnaman@kubuntu.org>        *
+ *   Copyright © 2021 Harald Sitter <sitter@kde.org>                       *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or         *
  *   modify it under the terms of the GNU General Public License as        *
@@ -26,6 +27,7 @@
 
 // Own includes
 #include "installgui.h"
+#include "installdbuswatcher.h"
 
 InstallEvent::InstallEvent(QObject *parent)
     : Event(parent, "Install")
@@ -33,6 +35,13 @@ InstallEvent::InstallEvent(QObject *parent)
     , m_applicationName("Install")
     , m_installGui(0)
 {
+    // this normally gets called by applications calling it through dbus when they start
+    auto installWatcher = new InstallDBusWatcher(this);
+    connect(installWatcher,
+            &InstallDBusWatcher::installRestrictedCalled,
+            this,
+            [this](const QString &application, const QString &package) { getInfo(application, package); });
+
     m_webBrowserPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
 
     m_multimediaEncodingPackages["libk3b6-extracodecs"] = i18n("K3b CD Codecs");
@@ -48,6 +57,10 @@ InstallEvent::~InstallEvent()
 
 void InstallEvent::show()
 {
+    if (isHidden()) {
+        return;
+    }
+
     QString icon = QString("muondiscover");
     QString text(i18nc("Notification when a package wants to install extra software",
                        "Extra packages can be installed to enhance functionality for %1",
