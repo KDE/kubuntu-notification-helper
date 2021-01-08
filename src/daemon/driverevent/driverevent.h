@@ -36,7 +36,7 @@ class DriverEvent : public Event
 {
     Q_OBJECT
 public:
-    DriverEvent(QObject* parent, QString name);
+    DriverEvent(QObject* parent);
 
 public Q_SLOTS:
     void show();

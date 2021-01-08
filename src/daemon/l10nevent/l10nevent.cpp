@@ -29,8 +29,8 @@
 #include <Kubuntu/l10n_language.h>
 #include <Kubuntu/l10n_languagecollection.h>
 
-L10nEvent::L10nEvent(QObject *parent, const QString &name)
-    : Event(parent, name)
+L10nEvent::L10nEvent(QObject *parent)
+    : Event(parent, "L10n")
     , m_languageCollection(nullptr)
 {
 }

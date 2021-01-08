@@ -27,8 +27,8 @@
 #warning fixme reboot event has no kde version handling anymore
 // #include <kdeversion.h>
 
-RebootEvent::RebootEvent(QObject* parent, const QString &name)
-        : Event(parent, name)
+RebootEvent::RebootEvent(QObject* parent)
+        : Event(parent, "Restart")
 {}
 
 RebootEvent::~RebootEvent()

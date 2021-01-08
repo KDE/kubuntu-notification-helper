@@ -67,7 +67,7 @@ class ApportEvent : public Event
 {
     Q_OBJECT
 public:
-    ApportEvent(QObject* parent, const QString &name);
+    ApportEvent(QObject* parent);
 
     virtual ~ApportEvent();
 

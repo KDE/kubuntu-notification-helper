@@ -28,8 +28,8 @@
 #include "hook.h"
 #include "hookgui.h"
 
-HookEvent::HookEvent(QObject* parent, const QString &name)
-        : Event(parent, name)
+HookEvent::HookEvent(QObject* parent)
+        : Event(parent, "Hook")
         , m_hooks()
         , m_hookGui(0)
 {}

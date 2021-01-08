@@ -32,7 +32,7 @@ class L10nEvent : public Event
 {
     Q_OBJECT
 public:
-    L10nEvent(QObject *parent, const QString &name);
+    L10nEvent(QObject *parent);
 
     virtual ~L10nEvent();
 

@@ -33,7 +33,7 @@ class InstallEvent : public Event
 {
     Q_OBJECT
 public:
-    InstallEvent(QObject* parent, const QString &name);
+    InstallEvent(QObject* parent);
 
     virtual ~InstallEvent();
 

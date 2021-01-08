@@ -31,8 +31,8 @@
 #include <KConfig>
 #include <KConfigGroup>
 
-DriverEvent::DriverEvent(QObject *parent, QString name)
-    : Event(parent, name)
+DriverEvent::DriverEvent(QObject *parent)
+    : Event(parent, "Driver")
     , m_showNotification(false)
     , m_aptBackendInitialized(false)
 {

@@ -27,8 +27,8 @@
 #include <KProcess>
 #include <KToolInvocation>
 
-ApportEvent::ApportEvent(QObject* parent, const QString &name)
-        : Event(parent, name)
+ApportEvent::ApportEvent(QObject* parent)
+        : Event(parent, "Apport")
 {
 }
 

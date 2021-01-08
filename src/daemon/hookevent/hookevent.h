@@ -33,7 +33,7 @@ class HookEvent : public Event
 {
     Q_OBJECT
 public:
-    HookEvent(QObject* parent, const QString &name);
+    HookEvent(QObject* parent);
 
     virtual ~HookEvent();
 

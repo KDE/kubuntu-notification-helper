@@ -74,12 +74,12 @@ void NotificationHelperModule::init()
     qDebug();
     m_configWatcher = new ConfigWatcher(this);
 
-    m_apportEvent = new ApportEvent(this, "Apport");
-    m_driverEvent = new DriverEvent(this, "Driver");
-    m_hookEvent = new HookEvent(this, "Hook");
-    m_installEvent = new InstallEvent(this, "Install");
-    m_l10nEvent = new L10nEvent(this, "L10n");
-    m_rebootEvent = new RebootEvent(this, "Restart");
+    m_apportEvent = new ApportEvent(this);
+    m_driverEvent = new DriverEvent(this);
+    m_hookEvent = new HookEvent(this);
+    m_installEvent = new InstallEvent(this);
+    m_l10nEvent = new L10nEvent(this);
+    m_rebootEvent = new RebootEvent(this);
 
     const bool apportHidden = m_apportEvent->isHidden();
     const bool apportKde = QFile::exists("/usr/share/apport/apport-kde");

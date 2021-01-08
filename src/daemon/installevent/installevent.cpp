@@ -27,10 +27,11 @@
 // Own includes
 #include "installgui.h"
 
-InstallEvent::InstallEvent(QObject* parent, const QString &name)
-        : Event(parent, name)
-        , m_applicationName(name)
-        , m_installGui(0)
+InstallEvent::InstallEvent(QObject *parent)
+    : Event(parent, "Install")
+    #warning this isn't localized and makes no sense where it is used
+    , m_applicationName("Install")
+    , m_installGui(0)
 {
     m_webBrowserPackages["flashplugin-installer"] = i18nc("The name of the Adobe Flash plugin", "Flash");
 
