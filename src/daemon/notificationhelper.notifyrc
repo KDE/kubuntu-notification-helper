@@ -1,6 +1,7 @@
 [Global]
 IconName=applications-system
 Comment=System Notification Helper
+Comment[ar]=مساعد إخطارات النظام
 Comment[bg]=Помощник за системните уведомления
 Comment[bs]=Sistemski pomoćnik u napominjanju
 Comment[ca]=Auxiliar per a les notificacions del sistema
@@ -51,6 +52,7 @@ Comment[zh_TW]=系統通知輔助程式
 
 [Event/Restart]
 Name=Reboot Required
+Name[ar]=إعادة التشغيل مطلوبة
 Name[bg]=Необходимо е рестартиране
 Name[bs]=Potrebno ponovno podizanje sistema
 Name[ca]=Cal reiniciar
@@ -100,6 +102,7 @@ Name[x-test]=xxReboot Requiredxx
 Name[zh_CN]=需要重启
 Name[zh_TW]=需要重新啟動
 Comment=A system restart is required
+Comment[ar]=إعادة تشغيل النّظام مطلوبة
 Comment[bg]=Необходимо е рестартиране на системата
 Comment[bs]=Potrebno ponovno podići sistem
 Comment[ca]=Cal reiniciar el sistema
@@ -153,6 +156,7 @@ Action=Popup
 
 [Event/Apport]
 Name=Apport Crash
+Name[ar]=تبليغ عن انهيار بواسطة Apport
 Name[bg]=Срив на Apport
 Name[bs]=Apport krahirao
 Name[ca]=Fallada de l'Apport
@@ -201,6 +205,7 @@ Name[x-test]=xxApport Crashxx
 Name[zh_CN]=Apport Crash
 Name[zh_TW]=Apport 崩壞
 Comment=An application has crashed on your system (now or in the past)
+Comment[ar]=تعطل أحد التطبيقات على نظامك (الآن أو في الماضي)
 Comment[bg]=Имаше срив на програма (сега или по-рано)
 Comment[bs]=Program se srušio na vašem sistemu (sada ili ranije)
 Comment[ca]=Ha fallat una aplicació en aquest sistema (ara o anteriorment)
@@ -252,6 +257,7 @@ Action=Popup
 
 [Event/Hook]
 Name=Upgrade Hook
+Name[ar]=إشعار الترقية
 Name[bs]=Zakačka za unaprijeđenja
 Name[ca]=Sol·licitud d'actualització
 Name[ca@valencia]=Sol·licitud d'actualització
@@ -298,6 +304,7 @@ Name[x-test]=xxUpgrade Hookxx
 Name[zh_CN]=Upgrade Hook
 Name[zh_TW]=升級掛鉤
 Comment=Software upgrade notifications are available
+Comment[ar]=تتوفر إشعارات ترقية البرامج
 Comment[bg]=Налични са уведомления за софтуерни надграждания
 Comment[bs]=Ima napomena za unaprjeđenja softvera
 Comment[ca]=Hi ha disponibles notificacions d'actualització de programari
@@ -349,6 +356,7 @@ Action=Popup
 
 [Event/Install]
 Name=Restricted Install
+Name[ar]=تثبيت مقيد
 Name[bg]=Ограничено инсталиране
 Name[bs]=Ograničena instalacija
 Name[ca]=Instal·lació restrictiva
@@ -397,6 +405,7 @@ Name[x-test]=xxRestricted Installxx
 Name[zh_CN]=受限的安装
 Name[zh_TW]=受限制安裝
 Comment=Extra packages can be installed to enhance application functionality
+Comment[ar]=يمكن تثبيت حزم إضافية لتحسين الأداء الوظيفي للتطبيق
 Comment[bg]=За разширяване функционалността на приложението, могат да бъдат инсталирани допълнителни пакети
 Comment[bs]=Mogu se instalirati dodatni paketi da se popravi funkcionalnost programa
 Comment[ca]=Es poden instal·lar paquets addicionals per a millorar com funcionen les aplicacions
@@ -447,6 +456,7 @@ Action=Popup
 
 [Event/L10n]
 Name=Localization Enhancement
+Name[ar]=تحسين التوطين
 Name[bg]=Подобряване на локализацията
 Name[ca]=Millora de localització
 Name[ca@valencia]=Millora de localització
@@ -491,6 +501,7 @@ Name[x-test]=xxLocalization Enhancementxx
 Name[zh_CN]=本地化增强
 Name[zh_TW]=在地化增強
 Comment=Extra packages can be installed to enhance system localization
+Comment[ar]=يمكن تثبيت حزم إضافية لتحسين توطين النظام
 Comment[bg]=За подобряване на локализацията могат да бъдат инсталирани допълнителни пакети
 Comment[ca]=Podeu instal·lar paquets addicionals per a millorar la localització del sistema
 Comment[ca@valencia]=Podeu instal·lar paquets addicionals per a millorar la localització del sistema
@@ -537,6 +548,7 @@ Action=Popup
 
 [Event/Driver]
 Name=Driver Enhancement
+Name[ar]=تحسين المشغلات
 Name[bg]=Подобряване на драйверите
 Name[ca]=Controladors amb millores
 Name[ca@valencia]=Controladors amb millores
@@ -581,6 +593,7 @@ Name[x-test]=xxDriver Enhancementxx
 Name[zh_CN]=驱动增强
 Name[zh_TW]=驅動程式增強
 Comment=Additional drivers can be installed
+Comment[ar]=يمكن تثبيت مشغلات إضافية
 Comment[bg]=Могат да бъдат инсталирани допълнитерни драйвери
 Comment[ca]=Podeu instal·lar controladors addicionals
 Comment[ca@valencia]=Podeu instal·lar controladors addicionals
