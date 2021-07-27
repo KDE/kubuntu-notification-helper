@@ -52,7 +52,7 @@ X-KDE-Keywords[sv]=Avisera,Upplysningar,Avisering,popups
 X-KDE-Keywords[tr]=Bildir,Uyarılar,Bildirim,açılır pencereler
 X-KDE-Keywords[uk]=Notify,Alerts,Notification,popups,сповіщення,повідомлення,контекстні,вікна
 X-KDE-Keywords[x-test]=xxNotifyxx,xxAlertsxx,xxNotificationxx,xxpopupsxx
-X-KDE-Keywords[zh_CN]=Notify,Alerts,Notification,popups,通知,警告,报警,警报,弹出,提示
+X-KDE-Keywords[zh_CN]=Notify,Alerts,Notification,popups,通知,警告,报警,警报,弹出,弹窗,气泡,提示
 X-KDE-Keywords[zh_TW]=Notify,Alerts,Notification,popups,通知,警告,彈出
 X-KDE-System-Settings-Parent-Category=personalization
 X-KDE-Weight=40
@@ -153,7 +153,7 @@ Comment[tr]=Sistem yardımcıları için bildirimleri kontrol et
 Comment[ug]=سېستىما ياردەمچىسىنىڭ ئۇقتۇرۇشىنى چەكلە
 Comment[uk]=Керування сповіщеннями системи
 Comment[x-test]=xxControl the notifications for system helpersxx
-Comment[zh_CN]=控制系统助手的通知行为
+Comment[zh_CN]=控制系统辅助程序的通知行为
 Comment[zh_TW]=控制系統輔助程式的通知
 
 Categories=Qt;KDE;X-KDE-settings-sound;
