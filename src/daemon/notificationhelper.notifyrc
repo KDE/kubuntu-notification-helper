@@ -263,6 +263,7 @@ Action=Popup
 [Event/Hook]
 Name=Upgrade Hook
 Name[ar]=إشعار الترقية
+Name[bg]=Надграждане на Hook
 Name[bs]=Zakačka za unaprijeđenja
 Name[ca]=Sol·licitud d'actualització
 Name[ca@valencia]=Sol·licitud d'actualització
