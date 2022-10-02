@@ -1,0 +1,195 @@
+# Translation of notificationhelper.po to Catalan (Valencian)
+# Copyright (C) 2015-2021 This_file_is_part_of_KDE
+# Copyright (c) 2010-2014 Rosetta Contributors and Canonical Ltd
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# David Planella <david.planella@ubuntu.com>, 2014.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2015, 2020.
+# Josep M. Ferrer <txemaq@gmail.com>, 2015, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-09 03:00+0100\n"
+"PO-Revision-Date: 2021-09-06 19:19+0200\n"
+"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Lokalize 20.12.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#: src/daemon/apportevent/apportevent.cpp:84
+#, kde-format
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "Ha fallat una aplicació en este sistema (ara o anteriorment)"
+
+#: src/daemon/apportevent/apportevent.cpp:86
+#: src/daemon/hookevent/hookevent.cpp:74
+#: src/daemon/installevent/installevent.cpp:69
+#, kde-format
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Detalls"
+
+#: src/daemon/apportevent/apportevent.cpp:87
+#: src/daemon/driverevent/driverevent.cpp:150
+#: src/daemon/installevent/installevent.cpp:70
+#: src/daemon/l10nevent/l10nevent.cpp:125
+#: src/daemon/rebootevent/rebootevent.cpp:58
+#, kde-format
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Ignora-ho per ara"
+
+#: src/daemon/apportevent/apportevent.cpp:89
+#: src/daemon/driverevent/driverevent.cpp:152
+#: src/daemon/installevent/installevent.cpp:72
+#: src/daemon/l10nevent/l10nevent.cpp:127
+#: src/daemon/rebootevent/rebootevent.cpp:60
+#, kde-format
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "No ho tornes a mostrar"
+
+#: src/daemon/driverevent/driverevent.cpp:147
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for activating "
+"proprietary hardware"
+msgid "Proprietary drivers might be required to enable additional features"
+msgstr ""
+"Es podrien requerir controladors propietaris per a habilitar "
+"característiques addicionals"
+
+#: src/daemon/driverevent/driverevent.cpp:149
+#, kde-format
+msgctxt "Launches KDE Control Module to manage drivers"
+msgid "Manage Drivers"
+msgstr "Gestiona els controladors"
+
+#: src/daemon/event.cpp:124
+#, kde-format
+msgid "System Notification Helper"
+msgstr "Auxiliar per a les notificacions del sistema"
+
+#: src/daemon/event.cpp:148
+#, kde-format
+msgid "Hide"
+msgstr "Oculta"
+
+#: src/daemon/event.cpp:161
+#, kde-format
+msgctxt "notification title"
+msgid "System Notification Helper"
+msgstr "Auxiliar per a les notificacions del sistema"
+
+#: src/daemon/hookevent/hookevent.cpp:72
+#, kde-format
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Hi ha disponibles notificacions d'actualització de programari"
+
+#: src/daemon/hookevent/hookevent.cpp:75
+#, kde-format
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Ignora"
+
+#: src/daemon/hookevent/hookevent.cpp:77
+#, kde-format
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "No ho tornes a mostrar"
+
+#: src/daemon/hookevent/hookgui.cpp:53
+#, kde-format
+msgid "Update Information"
+msgstr "Informació sobre l'actualització"
+
+#: src/daemon/hookevent/hookgui.cpp:93
+#, kde-format
+msgid "Run this action now"
+msgstr "Executa ara esta acció"
+
+#: src/daemon/installevent/installevent.cpp:45
+#, kde-format
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Flash"
+
+#: src/daemon/installevent/installevent.cpp:47
+#, kde-format
+msgid "K3b CD Codecs"
+msgstr "Còdecs de CD de K3b"
+
+#: src/daemon/installevent/installevent.cpp:48
+#, kde-format
+msgid "MP3 Encoding"
+msgstr "Codificació MP3"
+
+#: src/daemon/installevent/installevent.cpp:66
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr ""
+"Es poden instal·lar paquets addicionals per a millorar la funcionalitat de %1"
+
+#: src/daemon/installevent/installgui.cpp:42
+#, kde-format
+msgid "Install Packages"
+msgstr "Instal·la els paquets"
+
+#: src/daemon/installevent/installgui.cpp:48
+#, kde-format
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"Seleccioneu els paquets que s'han d'instal·lar per a una funcionalitat "
+"addicional. De manera predeterminada estos paquets no s'instal·len a causa "
+"de temes de patents, llicències restrictives o falta d'espai al suport "
+"d'instal·lació."
+
+#: src/daemon/installevent/installgui.cpp:112
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+"Instal·lació enllestida. Heu de reiniciar %1 per a utilitzar la nova "
+"funcionalitat"
+
+#: src/daemon/l10nevent/l10nevent.cpp:122
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for complete system "
+"localization"
+msgid "Language support is incomplete, additional packages are required"
+msgstr ""
+"La implementació de l'idioma està incompleta, calen paquets addicionals"
+
+#: src/daemon/l10nevent/l10nevent.cpp:124
+#, kde-format
+msgctxt "Installs additional localization packages"
+msgid "Install"
+msgstr "Instal·la"
+
+#: src/daemon/rebootevent/rebootevent.cpp:55
+#, kde-format
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr "Cal reiniciar el sistema per a completar el procés d'actualització"
+
+#: src/daemon/rebootevent/rebootevent.cpp:57
+#, kde-format
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Reinicia"

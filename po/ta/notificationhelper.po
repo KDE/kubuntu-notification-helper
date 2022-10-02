@@ -1,0 +1,186 @@
+# Tamil translation for kubuntu-notification-helper
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-09 03:00+0100\n"
+"PO-Revision-Date: 2014-06-25 22:55+0000\n"
+"Last-Translator: Barneedhar <barneedhar@gmail.com>\n"
+"Language-Team: Tamil <ta@li.org>\n"
+"Language: ta\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+#: src/daemon/apportevent/apportevent.cpp:84
+#, kde-format
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr ""
+
+#: src/daemon/apportevent/apportevent.cpp:86
+#: src/daemon/hookevent/hookevent.cpp:74
+#: src/daemon/installevent/installevent.cpp:69
+#, kde-format
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "விவரங்கள்"
+
+#: src/daemon/apportevent/apportevent.cpp:87
+#: src/daemon/driverevent/driverevent.cpp:150
+#: src/daemon/installevent/installevent.cpp:70
+#: src/daemon/l10nevent/l10nevent.cpp:125
+#: src/daemon/rebootevent/rebootevent.cpp:58
+#, kde-format
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "இப்போதைக்குப் புறக்கணிக்கவும்"
+
+#: src/daemon/apportevent/apportevent.cpp:89
+#: src/daemon/driverevent/driverevent.cpp:152
+#: src/daemon/installevent/installevent.cpp:72
+#: src/daemon/l10nevent/l10nevent.cpp:127
+#: src/daemon/rebootevent/rebootevent.cpp:60
+#, kde-format
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "மீண்டும் காண்பிக்க வேண்டாம்"
+
+#: src/daemon/driverevent/driverevent.cpp:147
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for activating "
+"proprietary hardware"
+msgid "Proprietary drivers might be required to enable additional features"
+msgstr ""
+
+#: src/daemon/driverevent/driverevent.cpp:149
+#, kde-format
+msgctxt "Launches KDE Control Module to manage drivers"
+msgid "Manage Drivers"
+msgstr ""
+
+#: src/daemon/event.cpp:124
+#, kde-format
+msgid "System Notification Helper"
+msgstr ""
+
+#: src/daemon/event.cpp:148
+#, kde-format
+msgid "Hide"
+msgstr "மறை"
+
+#: src/daemon/event.cpp:161
+#, kde-format
+msgctxt "notification title"
+msgid "System Notification Helper"
+msgstr ""
+
+#: src/daemon/hookevent/hookevent.cpp:72
+#, kde-format
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr ""
+
+#: src/daemon/hookevent/hookevent.cpp:75
+#, kde-format
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "புறக்கணி"
+
+#: src/daemon/hookevent/hookevent.cpp:77
+#, kde-format
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "மீண்டும் காண்பிக்க வேண்டாம்"
+
+#: src/daemon/hookevent/hookgui.cpp:53
+#, kde-format
+msgid "Update Information"
+msgstr "தகவல்களை மேம்படுத்தவும்"
+
+#: src/daemon/hookevent/hookgui.cpp:93
+#, kde-format
+msgid "Run this action now"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:45
+#, kde-format
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "ஃப்ளாஷ்"
+
+#: src/daemon/installevent/installevent.cpp:47
+#, kde-format
+msgid "K3b CD Codecs"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:48
+#, kde-format
+msgid "MP3 Encoding"
+msgstr ""
+
+#: src/daemon/installevent/installevent.cpp:66
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:42
+#, kde-format
+msgid "Install Packages"
+msgstr "தொகுப்புகளை நிறுவுக"
+
+#: src/daemon/installevent/installgui.cpp:48
+#, kde-format
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+
+#: src/daemon/installevent/installgui.cpp:112
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+
+#: src/daemon/l10nevent/l10nevent.cpp:122
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for complete system "
+"localization"
+msgid "Language support is incomplete, additional packages are required"
+msgstr ""
+
+#: src/daemon/l10nevent/l10nevent.cpp:124
+#, kde-format
+msgctxt "Installs additional localization packages"
+msgid "Install"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:55
+#, kde-format
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:57
+#, kde-format
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "மீள்துவக்கு"
+
+#~ msgid "Install Selected"
+#~ msgstr "தேர்வு செய்யப்பட்டதை நிறுவுக"
+
+#~ msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+#~ msgstr "(ப) 2009 ஜோனத்தன் தாமஸ், (ப) 2009 ஹாரல்ட் சிட்டர்"

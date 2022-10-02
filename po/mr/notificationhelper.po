@@ -1,0 +1,200 @@
+# Marathi translation for kubuntu-notification-helper
+# Copyright (c) 2013 Rosetta Contributors and Canonical Ltd 2013
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-09 03:00+0100\n"
+"PO-Revision-Date: 2014-06-25 22:57+0000\n"
+"Last-Translator: Chetan Khona <chetan@sumconcepts.com>\n"
+"Language-Team: Marathi <mr@li.org>\n"
+"Language: mr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: src/daemon/apportevent/apportevent.cpp:84
+#, kde-format
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "तुमच्या प्रणालीवरील एक अनुप्रयोग चालताना बंद पडला (आता किंवा भूतकाळात)"
+
+#: src/daemon/apportevent/apportevent.cpp:86
+#: src/daemon/hookevent/hookevent.cpp:74
+#: src/daemon/installevent/installevent.cpp:69
+#, kde-format
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "तपशील"
+
+#: src/daemon/apportevent/apportevent.cpp:87
+#: src/daemon/driverevent/driverevent.cpp:150
+#: src/daemon/installevent/installevent.cpp:70
+#: src/daemon/l10nevent/l10nevent.cpp:125
+#: src/daemon/rebootevent/rebootevent.cpp:58
+#, kde-format
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "आता दुर्लक्ष करा"
+
+#: src/daemon/apportevent/apportevent.cpp:89
+#: src/daemon/driverevent/driverevent.cpp:152
+#: src/daemon/installevent/installevent.cpp:72
+#: src/daemon/l10nevent/l10nevent.cpp:127
+#: src/daemon/rebootevent/rebootevent.cpp:60
+#, kde-format
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "पुन्हा दर्शवू नका"
+
+#: src/daemon/driverevent/driverevent.cpp:147
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for activating "
+"proprietary hardware"
+msgid "Proprietary drivers might be required to enable additional features"
+msgstr ""
+
+#: src/daemon/driverevent/driverevent.cpp:149
+#, kde-format
+msgctxt "Launches KDE Control Module to manage drivers"
+msgid "Manage Drivers"
+msgstr ""
+
+#: src/daemon/event.cpp:124
+#, kde-format
+msgid "System Notification Helper"
+msgstr "प्रणाली सूचना मदतकर्ता"
+
+#: src/daemon/event.cpp:148
+#, kde-format
+msgid "Hide"
+msgstr "लपवा"
+
+#: src/daemon/event.cpp:161
+#, kde-format
+msgctxt "notification title"
+msgid "System Notification Helper"
+msgstr ""
+
+#: src/daemon/hookevent/hookevent.cpp:72
+#, kde-format
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "सॉफ्टवेअर अद्ययावतता सूचना उपलब्ध आहेत"
+
+#: src/daemon/hookevent/hookevent.cpp:75
+#, kde-format
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "दुर्लक्ष करा"
+
+#: src/daemon/hookevent/hookevent.cpp:77
+#, kde-format
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "पुन्हा दर्शवू नका"
+
+#: src/daemon/hookevent/hookgui.cpp:53
+#, kde-format
+msgid "Update Information"
+msgstr "अद्ययावतता माहिती"
+
+#: src/daemon/hookevent/hookgui.cpp:93
+#, kde-format
+msgid "Run this action now"
+msgstr "हि क्रिया आता चालवा"
+
+#: src/daemon/installevent/installevent.cpp:45
+#, kde-format
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "फ्लॅश"
+
+#: src/daemon/installevent/installevent.cpp:47
+#, kde-format
+msgid "K3b CD Codecs"
+msgstr "के३बी सीडी कोडेक्स"
+
+#: src/daemon/installevent/installevent.cpp:48
+#, kde-format
+msgid "MP3 Encoding"
+msgstr "एमपी३ एन्कोडिंग"
+
+#: src/daemon/installevent/installevent.cpp:66
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr "%1 याकरिता कार्यक्षमता वाढविण्याकरिता अतिरिक्त पॅकेजेस उपलब्ध आहेत"
+
+#: src/daemon/installevent/installgui.cpp:42
+#, kde-format
+msgid "Install Packages"
+msgstr "पॅकेजेस प्रतिष्ठापीत करा"
+
+#: src/daemon/installevent/installgui.cpp:48
+#, kde-format
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"अतिरिक्त कार्यक्षमतेकरिता प्रतिष्ठापीत करण्याचे  पॅकेजेस निवडा. पेटंट मुद्दे, प्रतिबंधीत परवाने "
+"किंवा प्रतिष्ठापन मीडियावरील कमी जागेमुळे हे  पॅकेजेस मूलभूतरित्या प्रतिष्ठापीत नसतात."
+
+#: src/daemon/installevent/installgui.cpp:112
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr "प्रतिष्ठापना पूर्ण. तुम्हाला नवीन कार्य वापरण्याकरिता %1 पुन्हा सुरु करावे लागेल"
+
+#: src/daemon/l10nevent/l10nevent.cpp:122
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for complete system "
+"localization"
+msgid "Language support is incomplete, additional packages are required"
+msgstr ""
+
+#: src/daemon/l10nevent/l10nevent.cpp:124
+#, kde-format
+msgctxt "Installs additional localization packages"
+msgid "Install"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:55
+#, kde-format
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr "अद्ययावतता प्रक्रिया पूर्ण करण्याकरिता प्रणाली पुन्हा सुरु करणे गरजेचे आहे"
+
+#: src/daemon/rebootevent/rebootevent.cpp:57
+#, kde-format
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "पुन्हा सुरू करा"
+
+#~ msgid "Set of default screensavers"
+#~ msgstr "मूलभूत स्क्रीनसेव्हर्सचा संच"
+
+#~ msgid "Google Talk support for Kopete"
+#~ msgstr "कोपेट करिता गूगल टोक समर्थन"
+
+#~ msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+#~ msgstr "(C) 2009 जोनाथन थोमस, (C) 2009 हेराल्ड सिट्टर"
+
+#~ msgid "Kubuntu Notification Helper"
+#~ msgstr "कुबुन्टु सूचना मदतकर्ता"
+
+#~ msgid "A Notification Helper for Kubuntu"
+#~ msgstr "कुबुन्टु करिता सूचना मदतकर्ता"
+
+#~ msgid "Install Selected"
+#~ msgstr "निवडलेले प्रतिष्ठापीत करा"

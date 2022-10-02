@@ -1,0 +1,205 @@
+# Bosnian translation (converted from Serbian) for kubuntu-notification-helper
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the kubuntu-notification-helper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-09 03:00+0100\n"
+"PO-Revision-Date: 2014-06-25 22:57+0000\n"
+"Last-Translator: Mirza <Unknown>\n"
+"Language-Team: Bosnian <bs@li.org>\n"
+"Language: bs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Launchpad (build 17413)\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+
+#: src/daemon/apportevent/apportevent.cpp:84
+#, kde-format
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "Aplikacija je pala na vašem sistemu (sada ili u prošlosti)"
+
+#: src/daemon/apportevent/apportevent.cpp:86
+#: src/daemon/hookevent/hookevent.cpp:74
+#: src/daemon/installevent/installevent.cpp:69
+#, kde-format
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Detalji"
+
+#: src/daemon/apportevent/apportevent.cpp:87
+#: src/daemon/driverevent/driverevent.cpp:150
+#: src/daemon/installevent/installevent.cpp:70
+#: src/daemon/l10nevent/l10nevent.cpp:125
+#: src/daemon/rebootevent/rebootevent.cpp:58
+#, kde-format
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Ignoriši za sada"
+
+#: src/daemon/apportevent/apportevent.cpp:89
+#: src/daemon/driverevent/driverevent.cpp:152
+#: src/daemon/installevent/installevent.cpp:72
+#: src/daemon/l10nevent/l10nevent.cpp:127
+#: src/daemon/rebootevent/rebootevent.cpp:60
+#, kde-format
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "Ne prikazuj više"
+
+#: src/daemon/driverevent/driverevent.cpp:147
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for activating "
+"proprietary hardware"
+msgid "Proprietary drivers might be required to enable additional features"
+msgstr ""
+
+#: src/daemon/driverevent/driverevent.cpp:149
+#, kde-format
+msgctxt "Launches KDE Control Module to manage drivers"
+msgid "Manage Drivers"
+msgstr ""
+
+#: src/daemon/event.cpp:124
+#, kde-format
+msgid "System Notification Helper"
+msgstr "Sistemski pomoćnik u napominjanju"
+
+#: src/daemon/event.cpp:148
+#, kde-format
+msgid "Hide"
+msgstr "Sakrij"
+
+#: src/daemon/event.cpp:161
+#, kde-format
+msgctxt "notification title"
+msgid "System Notification Helper"
+msgstr ""
+
+#: src/daemon/hookevent/hookevent.cpp:72
+#, kde-format
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Obavještenja o nadogradnji softver-a su omogućena"
+
+#: src/daemon/hookevent/hookevent.cpp:75
+#, kde-format
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Ignoriši"
+
+#: src/daemon/hookevent/hookevent.cpp:77
+#, kde-format
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "Ne prikazuj više"
+
+#: src/daemon/hookevent/hookgui.cpp:53
+#, kde-format
+msgid "Update Information"
+msgstr "Informacija o nadogradnji"
+
+#: src/daemon/hookevent/hookgui.cpp:93
+#, kde-format
+msgid "Run this action now"
+msgstr "Pokreni sada ovaj postupak"
+
+#: src/daemon/installevent/installevent.cpp:45
+#, kde-format
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Blic"
+
+#: src/daemon/installevent/installevent.cpp:47
+#, kde-format
+msgid "K3b CD Codecs"
+msgstr "K3b CD kodeci"
+
+#: src/daemon/installevent/installevent.cpp:48
+#, kde-format
+msgid "MP3 Encoding"
+msgstr "MP3 kodiranje"
+
+#: src/daemon/installevent/installevent.cpp:66
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr "Dodatni paketi se mogu instalirati da se poveća funkcionalnost za %1"
+
+#: src/daemon/installevent/installgui.cpp:42
+#, kde-format
+msgid "Install Packages"
+msgstr "Instaliraj Pakete"
+
+#: src/daemon/installevent/installgui.cpp:48
+#, kde-format
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"Izaberite pakete koji će biti instalirani za dodatnu funkcionalnost. Ovi "
+"paketi nisu instalirani u prvi mah zbog patenata,  restriktivne licence ili "
+"nedostatka prostora na instalacionom mediju."
+
+#: src/daemon/installevent/installgui.cpp:112
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+"Instalacija potpuna. Moraćete ponovo da pokrenete %1 da koristite nove "
+"funkcije"
+
+#: src/daemon/l10nevent/l10nevent.cpp:122
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for complete system "
+"localization"
+msgid "Language support is incomplete, additional packages are required"
+msgstr ""
+
+#: src/daemon/l10nevent/l10nevent.cpp:124
+#, kde-format
+msgctxt "Installs additional localization packages"
+msgid "Install"
+msgstr ""
+
+#: src/daemon/rebootevent/rebootevent.cpp:55
+#, kde-format
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr ""
+"Ponovno pokretanje sistema je neophodno da bi se završio proces ažuriranja"
+
+#: src/daemon/rebootevent/rebootevent.cpp:57
+#, kde-format
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Ponovo pokreni"
+
+#~ msgid "Set of default screensavers"
+#~ msgstr "Skup predefinisanih čuvara ekrana"
+
+#~ msgid "Google Talk support for Kopete"
+#~ msgstr "Google Talk podrška za Kopete"
+
+#~ msgid "Kubuntu Notification Helper"
+#~ msgstr "Kubuntu Pomoćnik Obavještenja"
+
+#~ msgid "A Notification Helper for Kubuntu"
+#~ msgstr "Pomoćnik Obavještenja za Kubuntu"
+
+#~ msgid "(C) 2009 Jonathan Thomas, (C) 2009 Harald Sitter"
+#~ msgstr "(C) Džonatan Tomas, (C) 2009 Herald Siter"
+
+#~ msgid "Install Selected"
+#~ msgstr "Instaliraj Obeleženo"

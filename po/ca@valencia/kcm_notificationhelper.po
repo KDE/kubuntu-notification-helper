@@ -1,0 +1,104 @@
+# Translation of kcm_notificationhelper.po to Catalan (Valencian)
+# Copyright (C) 2015-2017 This_file_is_part_of_KDE
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# David Planella <david.planella@ubuntu.com>, 2010.
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2015, 2017.
+msgid ""
+msgstr ""
+"Project-Id-Version: kubuntu-notification-helper\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-09 03:00+0100\n"
+"PO-Revision-Date: 2017-11-15 16:16+0100\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
+"Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
+"Language: ca@valencia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
+"X-Generator: Lokalize 2.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Accelerator-Marker: &\n"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:53
+#, kde-format
+msgid "Kubuntu Notification Helper Configuration"
+msgstr "Configuració de l'auxiliar de notificació de Kubuntu"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:57
+#, kde-format
+msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009-2014 Harald Sitter"
+msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009-2014 Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:59
+#, kde-format
+msgid "Jonathan Thomas"
+msgstr "Jonathan Thomas"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:60
+#, kde-format
+msgid "Harald Sitter"
+msgstr "Harald Sitter"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:65
+#, kde-format
+msgid "Configure the behavior of Kubuntu Notification Helper"
+msgstr "Configureu el comportament de l'auxiliar de notificació de Kubuntu"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:72
+#, kde-format
+msgid "Show notifications for:"
+msgstr "Mostra les notificacions per a:"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:74
+#, kde-format
+msgid "Application crashes"
+msgstr "Fallades de les aplicacions"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:75
+#, kde-format
+msgid "Proprietary Driver availability"
+msgstr "Disponibilitat del controlador propietari"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:76
+#, kde-format
+msgid "Upgrade information"
+msgstr "Informació sobre les actualitzacions"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:77
+#, kde-format
+msgid "Restricted codec availability"
+msgstr "Disponibilitat del còdec restrictiu"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:78
+#, kde-format
+msgid "Incomplete language support"
+msgstr "Implementació incompleta de l'idioma"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:79
+#, kde-format
+msgid "Required reboots"
+msgstr "Cal reiniciar"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:91
+#, kde-format
+msgid "Notification type:"
+msgstr "Tipus de notificació:"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:95
+#, kde-format
+msgid "Use both popups and tray icons"
+msgstr "Utilitza emergents i icones de la safata"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:97
+#, kde-format
+msgid "Tray icons only"
+msgstr "Només les icones de la safata"
+
+#: src/kcmodule/notificationhelperconfigmodule.cpp:99
+#, kde-format
+msgid "Popup notifications only"
+msgstr "Només les notificacions emergents"

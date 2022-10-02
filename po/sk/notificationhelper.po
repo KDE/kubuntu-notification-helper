@@ -1,0 +1,184 @@
+# translation of notificationhelper.po to Slovak
+# Roman Paholík <wizzardsk@gmail.com>, 2015.
+# Matej Mrenica <matejm98mthw@gmail.com>, 2020.
+msgid ""
+msgstr ""
+"Project-Id-Version: notificationhelper\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2021-01-09 03:00+0100\n"
+"PO-Revision-Date: 2020-09-08 19:06+0200\n"
+"Last-Translator: Matej Mrenica <matejm98mthw@gmail.com>\n"
+"Language-Team: Slovak <kde-i18n-doc@kde.org>\n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Lokalize 20.08.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: src/daemon/apportevent/apportevent.cpp:84
+#, kde-format
+msgctxt "Notification when apport detects a crash"
+msgid "An application has crashed on your system (now or in the past)"
+msgstr "Aplikácia vo vašom systéme spadla (teraz alebo v minulosti)"
+
+#: src/daemon/apportevent/apportevent.cpp:86
+#: src/daemon/hookevent/hookevent.cpp:74
+#: src/daemon/installevent/installevent.cpp:69
+#, kde-format
+msgctxt "Opens a dialog with more details"
+msgid "Details"
+msgstr "Podrobnosti"
+
+#: src/daemon/apportevent/apportevent.cpp:87
+#: src/daemon/driverevent/driverevent.cpp:150
+#: src/daemon/installevent/installevent.cpp:70
+#: src/daemon/l10nevent/l10nevent.cpp:125
+#: src/daemon/rebootevent/rebootevent.cpp:58
+#, kde-format
+msgctxt "Button to dismiss this notification once"
+msgid "Ignore for now"
+msgstr "Teraz ignorovať"
+
+#: src/daemon/apportevent/apportevent.cpp:89
+#: src/daemon/driverevent/driverevent.cpp:152
+#: src/daemon/installevent/installevent.cpp:72
+#: src/daemon/l10nevent/l10nevent.cpp:127
+#: src/daemon/rebootevent/rebootevent.cpp:60
+#, kde-format
+msgctxt "Button to make this notification never show up again"
+msgid "Never show again"
+msgstr "Nabudúce nezobrazovať"
+
+#: src/daemon/driverevent/driverevent.cpp:147
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for activating "
+"proprietary hardware"
+msgid "Proprietary drivers might be required to enable additional features"
+msgstr ""
+"Na povolenie dodatočných funkcií môžu byť potrebné proprietárne ovládače"
+
+#: src/daemon/driverevent/driverevent.cpp:149
+#, kde-format
+msgctxt "Launches KDE Control Module to manage drivers"
+msgid "Manage Drivers"
+msgstr "Spravovať ovládače"
+
+#: src/daemon/event.cpp:124
+#, kde-format
+msgid "System Notification Helper"
+msgstr "Pomocník systémových oznámení"
+
+#: src/daemon/event.cpp:148
+#, kde-format
+msgid "Hide"
+msgstr "Skryť"
+
+#: src/daemon/event.cpp:161
+#, kde-format
+msgctxt "notification title"
+msgid "System Notification Helper"
+msgstr "Pomocník systémových oznámení"
+
+#: src/daemon/hookevent/hookevent.cpp:72
+#, kde-format
+msgctxt "Notification when an upgrade requires the user to do something"
+msgid "Software upgrade notifications are available"
+msgstr "Sú k dispozícii oznámenia o inovácií systému"
+
+#: src/daemon/hookevent/hookevent.cpp:75
+#, kde-format
+msgctxt "User declines an action"
+msgid "Ignore"
+msgstr "Ignorovať"
+
+#: src/daemon/hookevent/hookevent.cpp:77
+#, kde-format
+msgctxt "User indicates he never wants to see this notification again"
+msgid "Never show again"
+msgstr "Nabudúce nezobrazovať"
+
+#: src/daemon/hookevent/hookgui.cpp:53
+#, kde-format
+msgid "Update Information"
+msgstr "Aktualizovať informácie"
+
+#: src/daemon/hookevent/hookgui.cpp:93
+#, kde-format
+msgid "Run this action now"
+msgstr "Spustiť akciu teraz"
+
+#: src/daemon/installevent/installevent.cpp:45
+#, kde-format
+msgctxt "The name of the Adobe Flash plugin"
+msgid "Flash"
+msgstr "Blesk"
+
+#: src/daemon/installevent/installevent.cpp:47
+#, kde-format
+msgid "K3b CD Codecs"
+msgstr "K3b CD kodeky"
+
+#: src/daemon/installevent/installevent.cpp:48
+#, kde-format
+msgid "MP3 Encoding"
+msgstr "MP3 kódovanie"
+
+#: src/daemon/installevent/installevent.cpp:66
+#, kde-format
+msgctxt "Notification when a package wants to install extra software"
+msgid "Extra packages can be installed to enhance functionality for %1"
+msgstr ""
+"Na rozšírenie funkcionality pre %1 je možné nainštalovať dodatočné balíky"
+
+#: src/daemon/installevent/installgui.cpp:42
+#, kde-format
+msgid "Install Packages"
+msgstr "Inštalovať balíky"
+
+#: src/daemon/installevent/installgui.cpp:48
+#, kde-format
+msgid ""
+"Select packages to be installed for extra functionality. These packages are "
+"not installed by default due to either patent issues, restrictive licensing "
+"or a lack of space on the installation media."
+msgstr ""
+"Vyberte balíky na inštaláciu pre dodatočnú funkcionality. Tieto balíky nie "
+"sú predvolene nainštalované kvôli patentovým právam, obmedzenému "
+"licencovaniu alebo nedostatku miesta na inštalačnom médiu."
+
+#: src/daemon/installevent/installgui.cpp:112
+#, kde-format
+msgid ""
+"Installation complete. You will need to restart %1 to use the new "
+"functionality"
+msgstr ""
+"Inštalácia je hotová. Bude potrebné reštartovať %1 na použitie novej "
+"funkcionality."
+
+#: src/daemon/l10nevent/l10nevent.cpp:122
+#, kde-format
+msgctxt ""
+"Notification when additional packages are required for complete system "
+"localization"
+msgid "Language support is incomplete, additional packages are required"
+msgstr "Jazyková podpora je neúplná, vyžadujú sa dodatočné balíky"
+
+#: src/daemon/l10nevent/l10nevent.cpp:124
+#, kde-format
+msgctxt "Installs additional localization packages"
+msgid "Install"
+msgstr "Nainštalovať"
+
+#: src/daemon/rebootevent/rebootevent.cpp:55
+#, kde-format
+msgctxt "Notification when the upgrade requires a restart"
+msgid "A system restart is needed to complete the update process"
+msgstr "Na ukončenie procesu aktualizácie je potrebný reštart systému"
+
+#: src/daemon/rebootevent/rebootevent.cpp:57
+#, kde-format
+msgctxt "Restart the computer"
+msgid "Restart"
+msgstr "Reštart"
