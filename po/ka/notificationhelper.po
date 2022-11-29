@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-01-09 03:00+0100\n"
-"PO-Revision-Date: 2022-10-06 19:56+0200\n"
+"PO-Revision-Date: 2022-11-28 09:26+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: src/daemon/apportevent/apportevent.cpp:84
 #, kde-format
 msgctxt "Notification when apport detects a crash"
 msgid "An application has crashed on your system (now or in the past)"
-msgstr ""
+msgstr "აპლიკაცია თქვენს სისტემაში ავარიულად დასრულდა (ახლა ან წარსულში"
 
 #: src/daemon/apportevent/apportevent.cpp:86
 #: src/daemon/hookevent/hookevent.cpp:74
@@ -40,7 +40,7 @@ msgstr "დეტალები"
 #, kde-format
 msgctxt "Button to dismiss this notification once"
 msgid "Ignore for now"
-msgstr ""
+msgstr "ჯერჯერობით იგნორირება"
 
 #: src/daemon/apportevent/apportevent.cpp:89
 #: src/daemon/driverevent/driverevent.cpp:152
@@ -59,6 +59,8 @@ msgctxt ""
 "proprietary hardware"
 msgid "Proprietary drivers might be required to enable additional features"
 msgstr ""
+"დამატებითი თვისებების ჩასართავად შეიძლება კომერციული დრაივერების დაყენება "
+"დაგჭირდეთ"
 
 #: src/daemon/driverevent/driverevent.cpp:149
 #, kde-format
@@ -86,7 +88,7 @@ msgstr "სისტემური გაფრთხილებების �
 #, kde-format
 msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
-msgstr ""
+msgstr "ხელმისაწვდომია პროგრამების განახლების შეტყობინებები"
 
 #: src/daemon/hookevent/hookevent.cpp:75
 #, kde-format
@@ -131,6 +133,7 @@ msgstr "MP3 კოდირება"
 msgctxt "Notification when a package wants to install extra software"
 msgid "Extra packages can be installed to enhance functionality for %1"
 msgstr ""
+"%1-ის ფუნქციონალის გაფართოებისთვის შეგიძლიათ დამატებითი პაკეტები დააყენოთ"
 
 #: src/daemon/installevent/installgui.cpp:42
 #, kde-format
@@ -144,6 +147,8 @@ msgid ""
 "not installed by default due to either patent issues, restrictive licensing "
 "or a lack of space on the installation media."
 msgstr ""
+"აირჩიეთ ექსტრა ფუნქციონალის პაკეტები. ეს პაკეტები პატენტების შეზღუდვების, "
+"ლიცენზიის ან დისკზე ადგილის გამო ნაგულისხმევად არ ყენდება."
 
 #: src/daemon/installevent/installgui.cpp:112
 #, kde-format
@@ -151,6 +156,8 @@ msgid ""
 "Installation complete. You will need to restart %1 to use the new "
 "functionality"
 msgstr ""
+"დაყენება დასრულდა. ახალი ფუნქციონალის გამოსაყენებლად %1-ის გადატვირთვაა "
+"საჭირო"
 
 #: src/daemon/l10nevent/l10nevent.cpp:122
 #, kde-format
@@ -158,7 +165,7 @@ msgctxt ""
 "Notification when additional packages are required for complete system "
 "localization"
 msgid "Language support is incomplete, additional packages are required"
-msgstr ""
+msgstr "ენის მხარდაჭერა დაუსრულებელია. საჭიროა დამატებითი პაკეტები"
 
 #: src/daemon/l10nevent/l10nevent.cpp:124
 #, kde-format
@@ -170,7 +177,7 @@ msgstr "დაყენება"
 #, kde-format
 msgctxt "Notification when the upgrade requires a restart"
 msgid "A system restart is needed to complete the update process"
-msgstr ""
+msgstr "განახლების დასასრულებლად გადატვირთეთ კომპიუტერი"
 
 #: src/daemon/rebootevent/rebootevent.cpp:57
 #, kde-format

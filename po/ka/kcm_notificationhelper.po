@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-01-09 03:00+0100\n"
-"PO-Revision-Date: 2022-10-06 19:54+0200\n"
+"PO-Revision-Date: 2022-11-28 09:22+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2\n"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:53
 #, kde-format
@@ -41,7 +41,7 @@ msgstr "Harald Sitter"
 #: src/kcmodule/notificationhelperconfigmodule.cpp:65
 #, kde-format
 msgid "Configure the behavior of Kubuntu Notification Helper"
-msgstr ""
+msgstr "Kubuntu -ის გაფრთხილებების დამხმარის ქცევის მორგება"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:72
 #, kde-format
@@ -86,7 +86,7 @@ msgstr "გაფრთხილების ტიპი:"
 #: src/kcmodule/notificationhelperconfigmodule.cpp:95
 #, kde-format
 msgid "Use both popups and tray icons"
-msgstr ""
+msgstr "ორივე, მხტუნარებისა და სისტემის კუთხეში ხატულების გამოყენება"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:97
 #, kde-format
