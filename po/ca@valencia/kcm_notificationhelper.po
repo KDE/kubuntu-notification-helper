@@ -26,7 +26,7 @@ msgstr ""
 #: src/kcmodule/notificationhelperconfigmodule.cpp:53
 #, kde-format
 msgid "Kubuntu Notification Helper Configuration"
-msgstr "Configuració de l'auxiliar de notificació de Kubuntu"
+msgstr "Configureu l'auxiliar de notificació de Kubuntu"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:57
 #, kde-format
