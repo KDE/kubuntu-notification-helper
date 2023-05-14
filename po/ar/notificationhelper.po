@@ -127,7 +127,7 @@ msgstr "ترميزات K3b CD"
 #: src/daemon/installevent/installevent.cpp:48
 #, kde-format
 msgid "MP3 Encoding"
-msgstr "ترميز ام بي ٣"
+msgstr "ترميز ام بي 3"
 
 #: src/daemon/installevent/installevent.cpp:66
 #, kde-format
