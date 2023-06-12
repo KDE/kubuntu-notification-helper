@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2021-01-09 03:00+0100\n"
-"PO-Revision-Date: 2023-06-02 23:49+0000\n"
+"PO-Revision-Date: 2023-06-11 15:14+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo@lists.kde.org>\n"
 "Language: eo\n"
@@ -60,7 +60,7 @@ msgctxt ""
 "Notification when additional packages are required for activating "
 "proprietary hardware"
 msgid "Proprietary drivers might be required to enable additional features"
-msgstr ""
+msgstr "Proprietaj peliloj povus esti postulataj por ebilgi pluajn trajtojn"
 
 #: src/daemon/driverevent/driverevent.cpp:149
 #, kde-format
