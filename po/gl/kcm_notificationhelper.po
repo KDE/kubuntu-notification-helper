@@ -47,7 +47,7 @@ msgstr "Configurar o comportamento do Asistente de notificacións de Kubuntu"
 #: src/kcmodule/notificationhelperconfigmodule.cpp:72
 #, kde-format
 msgid "Show notifications for:"
-msgstr "Mostrar notificacións para:"
+msgstr "Amosar notificacións para:"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:74
 #, kde-format

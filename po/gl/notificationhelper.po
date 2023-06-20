@@ -51,7 +51,7 @@ msgstr "Ignorar por agora"
 #, kde-format
 msgctxt "Button to make this notification never show up again"
 msgid "Never show again"
-msgstr "Non mostrar de novo"
+msgstr "Non amosar de novo"
 
 #: src/daemon/driverevent/driverevent.cpp:147
 #, kde-format
@@ -101,7 +101,7 @@ msgstr "Ignorar"
 #, kde-format
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Never show again"
-msgstr "Non mostrar de novo"
+msgstr "Non amosar de novo"
 
 #: src/daemon/hookevent/hookgui.cpp:53
 #, kde-format
