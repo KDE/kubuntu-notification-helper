@@ -52,7 +52,7 @@ msgstr "다음 항목 알리기:"
 #: src/kcmodule/notificationhelperconfigmodule.cpp:74
 #, kde-format
 msgid "Application crashes"
-msgstr "프로그램 충돌"
+msgstr "앱 충돌"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:75
 #, kde-format
