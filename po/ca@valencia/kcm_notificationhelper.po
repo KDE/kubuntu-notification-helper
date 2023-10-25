@@ -26,7 +26,7 @@ msgstr ""
 #: src/kcmodule/notificationhelperconfigmodule.cpp:53
 #, kde-format
 msgid "Kubuntu Notification Helper Configuration"
-msgstr "Configureu l'auxiliar de notificació de Kubuntu"
+msgstr "Configureu l'auxiliar de notificació de la Kubuntu"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:57
 #, kde-format
@@ -46,7 +46,7 @@ msgstr "Harald Sitter"
 #: src/kcmodule/notificationhelperconfigmodule.cpp:65
 #, kde-format
 msgid "Configure the behavior of Kubuntu Notification Helper"
-msgstr "Configureu el comportament de l'auxiliar de notificació de Kubuntu"
+msgstr "Configureu el comportament de l'auxiliar de notificació de la Kubuntu"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:72
 #, kde-format
