@@ -5,20 +5,21 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
 # Elkana Bardugo <ttv200@gmail.com>, 2016.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
+# SPDX-FileCopyrightText: 2023 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: notificationhelper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:39+0000\n"
-"PO-Revision-Date: 2017-05-16 06:42-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Hebrew <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2023-11-29 22:35+0200\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
+"Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Lokalize 23.08.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: src/daemon/apportevent/apportevent.cpp:84
@@ -43,7 +44,7 @@ msgstr "פרטים"
 #, kde-format
 msgctxt "Button to dismiss this notification once"
 msgid "Ignore for now"
-msgstr "התעלם לעכשיו"
+msgstr "להתעלם לעכשיו"
 
 #: src/daemon/apportevent/apportevent.cpp:89
 #: src/daemon/driverevent/driverevent.cpp:152
@@ -53,7 +54,7 @@ msgstr "התעלם לעכשיו"
 #, kde-format
 msgctxt "Button to make this notification never show up again"
 msgid "Never show again"
-msgstr "אל תראה שוב לעולם"
+msgstr "לא להציג שוב לעולם"
 
 #: src/daemon/driverevent/driverevent.cpp:147
 #, kde-format
@@ -61,23 +62,23 @@ msgctxt ""
 "Notification when additional packages are required for activating "
 "proprietary hardware"
 msgid "Proprietary drivers might be required to enable additional features"
-msgstr ""
+msgstr "יכול להיות שצריך מנהל התקנים קניינים כדי להפעיל יכולות נוספות"
 
 #: src/daemon/driverevent/driverevent.cpp:149
 #, kde-format
 msgctxt "Launches KDE Control Module to manage drivers"
 msgid "Manage Drivers"
-msgstr "נהל התקנים"
+msgstr "ניהול מנהלי התקנים"
 
 #: src/daemon/event.cpp:124
 #, kde-format
 msgid "System Notification Helper"
-msgstr ""
+msgstr "מסייע ההתראות של המערכת"
 
 #: src/daemon/event.cpp:148
 #, kde-format
 msgid "Hide"
-msgstr "הסתר"
+msgstr "הסתרה"
 
 #: src/daemon/event.cpp:161
 #, kde-format
@@ -89,19 +90,19 @@ msgstr "עוזר התראות מערכת"
 #, kde-format
 msgctxt "Notification when an upgrade requires the user to do something"
 msgid "Software upgrade notifications are available"
-msgstr ""
+msgstr "הודעות שדרוג תוכנה זמינות"
 
 #: src/daemon/hookevent/hookevent.cpp:75
 #, kde-format
 msgctxt "User declines an action"
 msgid "Ignore"
-msgstr "התעלם"
+msgstr "התעלמות"
 
 #: src/daemon/hookevent/hookevent.cpp:77
 #, kde-format
 msgctxt "User indicates he never wants to see this notification again"
 msgid "Never show again"
-msgstr "אל תראה שוב לעולם"
+msgstr "לא להציג שוב לעולם"
 
 #: src/daemon/hookevent/hookgui.cpp:53
 #, kde-format
@@ -111,34 +112,34 @@ msgstr "מידע עדכון"
 #: src/daemon/hookevent/hookgui.cpp:93
 #, kde-format
 msgid "Run this action now"
-msgstr "הרץ פעולה זו עכשיו"
+msgstr "הרצת פעולה זו כעת"
 
 #: src/daemon/installevent/installevent.cpp:45
 #, kde-format
 msgctxt "The name of the Adobe Flash plugin"
 msgid "Flash"
-msgstr ""
+msgstr "Flash"
 
 #: src/daemon/installevent/installevent.cpp:47
 #, kde-format
 msgid "K3b CD Codecs"
-msgstr ""
+msgstr "מפענחי תקליטורים של K3b"
 
 #: src/daemon/installevent/installevent.cpp:48
 #, kde-format
 msgid "MP3 Encoding"
-msgstr "קודקי MP3"
+msgstr "מפענחי MP3"
 
 #: src/daemon/installevent/installevent.cpp:66
 #, kde-format
 msgctxt "Notification when a package wants to install extra software"
 msgid "Extra packages can be installed to enhance functionality for %1"
-msgstr ""
+msgstr "אפשר להתקין חבילות נוספות כדי להרחיב את היכולות עבור %1"
 
 #: src/daemon/installevent/installgui.cpp:42
 #, kde-format
 msgid "Install Packages"
-msgstr "התקן חבילה"
+msgstr "התקנת חבילה"
 
 #: src/daemon/installevent/installgui.cpp:48
 #, kde-format
@@ -147,13 +148,15 @@ msgid ""
 "not installed by default due to either patent issues, restrictive licensing "
 "or a lack of space on the installation media."
 msgstr ""
+"יש לבחור הודעות להתקנה להעשרת היכולות. החבילות האלו לא מותקנות כברירת מחדל "
+"או מטעמי פטנטים, רישוי מגביל או העדר מקום באמצעי ההתקנה."
 
 #: src/daemon/installevent/installgui.cpp:112
 #, kde-format
 msgid ""
 "Installation complete. You will need to restart %1 to use the new "
 "functionality"
-msgstr "ההתקנה הסתיימה. צריך להפעיל מחדש את %1 כדי להשתמש באפשרויות החדשות"
+msgstr "ההתקנה הסתיימה. צריך להפעיל מחדש את %1 כדי להשתמש ביכולות החדשות"
 
 #: src/daemon/l10nevent/l10nevent.cpp:122
 #, kde-format
@@ -167,16 +170,16 @@ msgstr "התמיכה בשפה חלקית, נדרשות חבילות נוספות
 #, kde-format
 msgctxt "Installs additional localization packages"
 msgid "Install"
-msgstr "התקן"
+msgstr "התקנה"
 
 #: src/daemon/rebootevent/rebootevent.cpp:55
 #, kde-format
 msgctxt "Notification when the upgrade requires a restart"
 msgid "A system restart is needed to complete the update process"
-msgstr "המערכת צריכה להדלק מחדש כדי לסיים את תהליך העדכון"
+msgstr "המערכת צריכה הפעלה מחדש כדי לסיים את תהליך העדכון"
 
 #: src/daemon/rebootevent/rebootevent.cpp:57
 #, kde-format
 msgctxt "Restart the computer"
 msgid "Restart"
-msgstr "הפעל מחדש"
+msgstr "הפעלה מחדש"
