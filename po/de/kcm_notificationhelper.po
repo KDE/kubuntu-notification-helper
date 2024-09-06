@@ -6,7 +6,7 @@
 # Burkhard Lück <lueck@hube-lueck.de>, 2015, 2019.
 msgid ""
 msgstr ""
-"Project-Id-Version: kubuntu-notification-helper\n"
+"Project-Id-Version: kcm_notificationhelper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:39+0000\n"
 "PO-Revision-Date: 2019-08-15 11:59+0200\n"
