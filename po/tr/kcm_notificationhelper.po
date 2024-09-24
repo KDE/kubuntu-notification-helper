@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the kubuntu-notification-helper package.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-# Emir SARI <emir_sari@icloud.com>, 2022.
+# SPDX-FileCopyrightText: 2022, 2024 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kubuntu-notification-helper\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-11-05 12:39+0000\n"
-"PO-Revision-Date: 2022-06-17 10:28+0300\n"
+"PO-Revision-Date: 2024-09-23 15:31+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.04.2\n"
+"X-Generator: Lokalize 24.11.70\n"
 "X-Launchpad-Export-Date: 2015-04-01 12:20+0000\n"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:53
@@ -28,7 +28,7 @@ msgstr "Kubuntu Bildirim Yardımcısı Yapılandırması"
 #: src/kcmodule/notificationhelperconfigmodule.cpp:57
 #, kde-format
 msgid "(C) 2009-2010 Jonathan Thomas, (C) 2009-2014 Harald Sitter"
-msgstr "(C) 2009-2010 Jonathan Thomas, (C) 2009-2014 Harald Sitter"
+msgstr "© 2009–2010 Jonathan Thomas, © 2009–2014 Harald Sitter"
 
 #: src/kcmodule/notificationhelperconfigmodule.cpp:59
 #, kde-format
